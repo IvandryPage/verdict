@@ -1,5 +1,4 @@
 using System;
-using Verdict.Data.Cases;
 using Verdict.Data.Evidence;
 using Verdict.Runtime;
 
@@ -8,12 +7,42 @@ namespace Verdict.Systems
     public sealed class CourtroomController
     {
         private readonly CaseSessionManager caseSessionManager;
-        private readonly CourtroomFlow courtroomFlow;
         private readonly EvaluationSystem evaluationSystem;
         private readonly CourtStateEffectProcessor effectProcessor;
 
-        public event Action<EvaluationResult> EvaluationCompleted;
+        private CourtroomFlow courtroomFlow;
+
+        public StatementRuntime CurrentStatement =>
+                    courtroomFlow.CurrentStatement;
+
+        public TestimonyRuntime CurrentTestimony =>
+            courtroomFlow.CurrentTestimony;
+
+        public WitnessRuntime CurrentWitness =>
+            courtroomFlow.CurrentWitness;
+
+        public CourtStateRuntime CourtState =>
+            caseSessionManager.CurrentCase?.CourtState;
+
+        public bool HasActiveCase =>
+            caseSessionManager.HasActiveCase;
+
+        public bool CanMoveNextStatement =>
+            courtroomFlow.CanMoveNextStatement;
+
+        public bool CanMovePreviousStatement =>
+            courtroomFlow.CanMovePreviousStatement;
+
+        public bool IsLastStatement =>
+            courtroomFlow.IsLastStatement;
+
+        public event Action CaseStarted;
+        public event Action CaseRestarted;
+        public event Action CaseFinished;
+
         public event Action<StatementRuntime> CurrentStatementChanged;
+        public event Action<EvaluationResult> EvaluationCompleted;
+
 
         public CourtroomController(
             CaseSessionManager caseSessionManager,
@@ -21,52 +50,92 @@ namespace Verdict.Systems
             EvaluationSystem evaluationSystem,
             CourtStateEffectProcessor effectProcessor)
         {
-            this.caseSessionManager = caseSessionManager
-                ?? throw new ArgumentNullException(nameof(caseSessionManager));
+            this.caseSessionManager =
+                caseSessionManager ??
+                throw new ArgumentNullException(nameof(caseSessionManager));
 
-            this.courtroomFlow = courtroomFlow
-                ?? throw new ArgumentNullException(nameof(courtroomFlow));
+            this.courtroomFlow =
+                courtroomFlow ??
+                throw new ArgumentNullException(nameof(courtroomFlow));
 
-            this.evaluationSystem = evaluationSystem
-                ?? throw new ArgumentNullException(nameof(evaluationSystem));
+            this.evaluationSystem =
+                evaluationSystem ??
+                throw new ArgumentNullException(nameof(evaluationSystem));
 
-            this.effectProcessor = effectProcessor
-                ?? throw new ArgumentNullException(nameof(effectProcessor));
+            this.effectProcessor =
+                effectProcessor ??
+                throw new ArgumentNullException(nameof(effectProcessor));
         }
 
         public void BeginCase()
         {
-            // Reserved for future initialization.
+            if (!HasActiveCase)
+            {
+                throw new InvalidOperationException(
+                    "No active case.");
+            }
+
+            courtroomFlow =
+                new CourtroomFlow(
+                    caseSessionManager.CurrentCase);
+
+            RefreshCurrentStatement();
+
+            CaseStarted?.Invoke();
         }
 
-        public EvaluationResult PresentEvidence(EvidenceData evidence)
+        public void RestartCase()
         {
-            return Execute(EvaluationType.PresentEvidence, evidence);
+            caseSessionManager.RestartCase();
+
+            courtroomFlow =
+                new CourtroomFlow(
+                    caseSessionManager.CurrentCase);
+
+            RefreshCurrentStatement();
+
+            CaseRestarted?.Invoke();
+        }
+
+        public void EndCase()
+        {
+            CaseFinished?.Invoke();
+        }
+
+        public EvaluationResult PresentEvidence(
+            EvidenceData evidence)
+        {
+            return Execute(
+                Data.Cases.EvaluationType.PresentEvidence,
+                evidence);
         }
 
         public EvaluationResult Press()
         {
-            return Execute(EvaluationType.Press);
+            return Execute(
+                Data.Cases.EvaluationType.Press);
         }
 
         public EvaluationResult Question()
         {
-            return Execute(EvaluationType.Question);
+            return Execute(
+                Data.Cases.EvaluationType.Question);
         }
 
         public EvaluationResult RemainSilent()
         {
-            return Execute(EvaluationType.RemainSilent);
+            return Execute(
+                Data.Cases.EvaluationType.RemainSilent);
         }
 
         public bool MoveNextStatement()
         {
-            bool success = courtroomFlow.MoveNextStatement();
+            bool success =
+                courtroomFlow.MoveNextStatement();
 
             if (success)
             {
-                CurrentStatementChanged?.Invoke(
-                    courtroomFlow.CurrentStatement);
+                RefreshCurrentStatement();
             }
 
             return success;
@@ -74,21 +143,37 @@ namespace Verdict.Systems
 
         public bool MovePreviousStatement()
         {
-            return courtroomFlow.MovePreviousStatement();
+            bool success =
+                courtroomFlow.MovePreviousStatement();
+
+            if (success)
+            {
+                RefreshCurrentStatement();
+            }
+
+            return success;
         }
 
         private EvaluationResult Execute(
-            EvaluationType type,
+            Data.Cases.EvaluationType evaluationType,
             EvidenceData evidence = null)
         {
             EvaluationResult result =
-                evaluationSystem.Evaluate(type, evidence);
+                evaluationSystem.Evaluate(
+                    evaluationType,
+                    evidence);
 
             effectProcessor.Apply(result);
 
             EvaluationCompleted?.Invoke(result);
 
             return result;
+        }
+
+        private void RefreshCurrentStatement()
+        {
+            CurrentStatementChanged?.Invoke(
+                CurrentStatement);
         }
     }
 }
