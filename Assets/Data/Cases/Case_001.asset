@@ -26,5 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
   - {fileID: 11400000, guid: 3fc33aeaeb9f64da0b1986f5de9a83f1, type: 2}
   - {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+  truth:
+    facts: []
   witnesses: []
   endings: []

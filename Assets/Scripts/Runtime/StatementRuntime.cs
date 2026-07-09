@@ -1,6 +1,6 @@
 using Verdict.Data.Cases;
 
-namespace Verdict.Runtime.Witnesses
+namespace Verdict.Runtime
 {
     public sealed class StatementRuntime
     {

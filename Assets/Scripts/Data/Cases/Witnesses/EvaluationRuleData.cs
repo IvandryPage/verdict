@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Verdict.Data.Evidence;
 
@@ -9,20 +10,20 @@ namespace Verdict.Data.Cases
     {
         [SerializeField] private EvaluationType evaluationType;
 
-        [SerializeField] private EvidenceData requiredEvidence;
+        [SerializeField]
+        [Tooltip("Required only when EvaluationType is PresentEvidence.")]
+        private EvidenceData requiredEvidence;
 
-        [Tooltip("Applied when the player satisfies this rule.")]
-        [SerializeField] private CourtStateEffect successEffect;
+        [SerializeField] private List<CourtStateEffectData> successEffects = new();
 
-        [Tooltip("Applied when the player fails this rule.")]
-        [SerializeField] private CourtStateEffect failureEffect;
+        [SerializeField] private List<CourtStateEffectData> failureEffects = new();
 
         public EvaluationType EvaluationType => evaluationType;
 
         public EvidenceData RequiredEvidence => requiredEvidence;
 
-        public CourtStateEffect SuccessEffect => successEffect;
+        public IReadOnlyList<CourtStateEffectData> SuccessEffects => successEffects;
 
-        public CourtStateEffect FailureEffect => failureEffect;
+        public IReadOnlyList<CourtStateEffectData> FailureEffects => failureEffects;
     }
 }

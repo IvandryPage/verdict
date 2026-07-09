@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Verdict.Data.Cases;
 
-namespace Verdict.Runtime.Witnesses
+namespace Verdict.Runtime
 {
     public sealed class WitnessRuntime
     {
@@ -16,8 +16,6 @@ namespace Verdict.Runtime.Witnesses
         public WitnessData Data { get; }
 
         public IReadOnlyList<TestimonyRuntime> Testimonies { get; }
-
-        public int CurrentTestimonyIndex { get; set; }
 
         public float Credibility { get; set; } = 100f;
     }

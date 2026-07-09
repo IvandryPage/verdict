@@ -1,6 +1,6 @@
 using Verdict.Data.Evidence;
 
-namespace Verdict.Runtime.Evidence
+namespace Verdict.Runtime
 {
     public sealed class EvidenceRuntime
     {
