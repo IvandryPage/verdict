@@ -20,8 +20,8 @@ namespace Verdict.Data.Evidence
         [SerializeField] private EvidenceType type;
 
         [Header("Visuals")]
-        [SerializeField] private Sprite icon;
-        [SerializeField] private Sprite artwork;
+        [SerializeField] private Sprite icon; // art in the inventory
+        [SerializeField] private Sprite artwork; // closer look art
 
         public string Id => id;
         public string DisplayName => displayName;

@@ -5,7 +5,7 @@ namespace Verdict.Data.Characters
         Unknown,
         Judge,
         Prosecutor,
-        DefenseAttorney,
+        DefenseLawyer,
         Detective,
         PoliceOfficer,
         ForensicExpert,
