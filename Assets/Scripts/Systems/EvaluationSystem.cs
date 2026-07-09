@@ -41,7 +41,6 @@ namespace Verdict.Systems
                             rule);
                     }
 
-                    // Simpan kandidat failure pertama.
                     failureClaim ??= claim;
                     failureRule ??= rule;
                 }

@@ -21,8 +21,6 @@ namespace Verdict.Data.Cases
         [SerializeField] private CharacterData judge;
         [SerializeField] private CharacterData prosecutor;
         [SerializeField] private CharacterData defenseLawyer;
-        [SerializeField] private CharacterData detective;
-        [SerializeField] private CharacterData victim;
 
         [Header("Evidence")]
         [SerializeField] private List<EvidenceData> evidence = new();
@@ -44,8 +42,6 @@ namespace Verdict.Data.Cases
         public CharacterData Judge => judge;
         public CharacterData Prosecutor => prosecutor;
         public CharacterData DefenseLawyer => defenseLawyer;
-        public CharacterData Detective => detective;
-        public CharacterData Victim => victim;
 
         public IReadOnlyList<EvidenceData> Evidence => evidence;
 

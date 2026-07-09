@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: CrimeScenePhoto
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
+  id: crime_scene_photo
+  displayName: Crime Scene Photo
   description: 
-  type: 0
+  type: 2
   icon: {fileID: 0}
   artwork: {fileID: 0}

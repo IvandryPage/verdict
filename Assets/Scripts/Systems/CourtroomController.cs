@@ -41,46 +41,21 @@ namespace Verdict.Systems
 
         public EvaluationResult PresentEvidence(EvidenceData evidence)
         {
-            EvaluationResult result =
-                evaluationSystem.Evaluate(
-                    EvaluationType.PresentEvidence,
-                    evidence);
-
-            effectProcessor.Apply(result);
-
-            return Execute(EvaluationType.PresentEvidence);
+            return Execute(EvaluationType.PresentEvidence, evidence);
         }
 
         public EvaluationResult Press()
         {
-            EvaluationResult result =
-                evaluationSystem.Evaluate(
-                    EvaluationType.Press);
-
-            effectProcessor.Apply(result);
-
             return Execute(EvaluationType.Press);
         }
 
         public EvaluationResult Question()
         {
-            EvaluationResult result =
-                evaluationSystem.Evaluate(
-                    EvaluationType.Question);
-
-            effectProcessor.Apply(result);
-
             return Execute(EvaluationType.Question);
         }
 
         public EvaluationResult RemainSilent()
         {
-            EvaluationResult result =
-                evaluationSystem.Evaluate(
-                    EvaluationType.RemainSilent);
-
-            effectProcessor.Apply(result);
-
             return Execute(EvaluationType.RemainSilent);
         }
 
