@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
-  m_Name: Detective
+  m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
+  m_Name: Floorplan
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  occupation: 0
-  biography: 
-  portraits: []
+  id: ev_floorplan
+  displayName: Floor Plan
+  description: Layout of the Restaurant
+  type: 2
+  icon: {fileID: 0}
+  artwork: {fileID: 0}

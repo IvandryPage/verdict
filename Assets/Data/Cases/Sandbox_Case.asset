@@ -1,0 +1,579 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3e117572c1d42ae8a11495666a174e, type: 3}
+  m_Name: Sandbox_Case
+  m_EditorClassIdentifier: 
+  id: case_engine_sandbox_001
+  title: The Kitchen Murder
+  description: Internal sandbox case used to validate every gameplay system int the
+    Verdict courtroom engine
+  difficulty: 0
+  purpose: 1
+  tags: []
+  estimatedPlayTimeMinutes: 10
+  version: 1
+  author: Artificial Intelligence
+  courtSetup:
+    judgeTrust: 70
+    penalty: 0
+    publicOpinion: 50
+    juryOpinion: 50
+    storyProgress: 0
+    caseProgress: 0
+  judge: {fileID: 11400000, guid: 51a4b5c23956d48788cc7f45d13c7555, type: 2}
+  prosecutor: {fileID: 11400000, guid: 76d060268f60d4ccd8e2e1fb6f2d5006, type: 2}
+  defenseLawyer: {fileID: 11400000, guid: 07b8f9dbf3fe0467686ce3dd678ab253, type: 2}
+  characterOverrides: []
+  evidence:
+  - evidence: {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 6e5a795defd6c4d5aa21ea9b73a64a4a, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 9af1a8854ceb94235ae038e8c3543a0f, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  - evidence: {fileID: 11400000, guid: 33329e78c2e3e48d6948e966732bdd9d, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  - evidence: {fileID: 11400000, guid: 33329e78c2e3e48d6948e966732bdd9d, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  truth:
+    facts:
+    - id: fact_001
+      subject:
+        type: 0
+        value: alice
+      predicate: 3
+      object:
+        type: 2
+        value: Kitchen
+      supportingEvidence:
+      - {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
+    - id: fact_002
+      subject:
+        type: 0
+        value: alice
+      predicate: 8
+      object:
+        type: 1
+        value: ev_kitchen_knife
+      supportingEvidence:
+      - {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+    - id: fact_003
+      subject:
+        type: 1
+        value: ev_cctv
+      predicate: 17
+      object:
+        type: 1
+        value: ev_phone
+      supportingEvidence:
+      - {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
+      - {fileID: 11400000, guid: 48708dba82d224af3bc47febfa0008f4, type: 2}
+    - id: fact_004
+      subject:
+        type: 0
+        value: victim
+      predicate: 20
+      object:
+        type: 1
+        value: ev_knife
+      supportingEvidence:
+      - {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+    - id: fact_005
+      subject:
+        type: 0
+        value: alice
+      predicate: 10
+      object:
+        type: 0
+        value: victim
+      supportingEvidence:
+      - {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+    - id: fact_006
+      subject:
+        type: 0
+        value: alice
+      predicate: 0
+      object:
+        type: 4
+        value: Innocent
+      supportingEvidence:
+      - {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+      - {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+      - {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
+      - {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+      - {fileID: 11400000, guid: 9af1a8854ceb94235ae038e8c3543a0f, type: 2}
+      - {fileID: 11400000, guid: 6e5a795defd6c4d5aa21ea9b73a64a4a, type: 2}
+      - {fileID: 11400000, guid: 48708dba82d224af3bc47febfa0008f4, type: 2}
+      - {fileID: 11400000, guid: 33329e78c2e3e48d6948e966732bdd9d, type: 2}
+    - id: fact_007
+      subject:
+        type: 0
+        value: alice
+      predicate: 2
+      object:
+        type: 4
+        value: Medicine
+      supportingEvidence:
+      - {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
+    - id: fact_008
+      subject:
+        type: 2
+        value: Kitchen
+      predicate: 18
+      object:
+        type: 1
+        value: ev_kitchen_knife
+      supportingEvidence:
+      - {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+  witnesses:
+  - id: witness_alice
+    character: {fileID: 11400000, guid: 4e9f239c299d541a986730775880e60e, type: 2}
+    role: 2
+    description: Alice testifies regarding the events before the murder.
+    testimonies:
+    - id: testimony_initial
+      title: Initial Testimony
+      description: Alice explains what happened before the murder
+      statements:
+      - id: statement_001
+        text: I never entered the kitchen that night.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_location
+          factId: fact_001
+          isTrue: 0
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
+            successEffects:
+            - effect: 1
+              targetId: statement_002
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 9
+              targetId: 
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: 10
+            failureEffects:
+            - effect: 8
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
+          designerNotes: 
+        designerNotes: 
+      - id: statement_002
+        text: Fine... I entered the kitchen.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: claim_enter
+          factId: fact_001
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 3
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 5
+              targetId: statement_005
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+      - id: statement_003
+        text: I never touched the knife
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_touch
+          factId: fact_002
+          isTrue: 0
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+            successEffects:
+            - effect: 1
+              targetId: statement_004
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 9
+              targetId: 
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetId: 
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: 10
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+      - id: statement_004
+        text: I picked it up after hearing a scream.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_touch
+          factId: fact_002
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 1
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 2
+              targetId: testimony_revised
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        - id: claim_saw
+          factId: fact_005
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+            successEffects:
+            - effect: 9
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 4
+              value: 20
+            - effect: 9
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 15
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+      - id: statement_005
+        text: The CCTV timestamp is fake.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_cctv
+          factId: fact_003
+          isTrue: 0
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 48708dba82d224af3bc47febfa0008f4, type: 2}
+            successEffects:
+            - effect: 4
+              targetId: ev_floorplan
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 1
+              targetId: statement_006
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+      - id: statement_006
+        text: I lied because I panicked
+        initiallyVisible: 0
+        nextStatementId: statement_007
+        claims: []
+        designerNotes: 
+    - id: testimony_revised
+      title: Revised Testimony
+      description: Alice revises her testimony after several contradictions have
+        been exposed.
+      statements:
+      - id: statement_007
+        text: I never even saw the victim
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_saw
+          factId: fact_005
+          isTrue: 0
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+            successEffects:
+            - effect: 1
+              targetId: statement_008
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
+          designerNotes: 
+        designerNotes: 
+      - id: statement_008
+        text: I found the body, but I didn't kill him.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: claim_saw
+          factId: fact_005
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 3
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        - id: claim_innocent
+          factId: fact_006
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 3
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 5
+              targetId: statement_005
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+    initiallyVisible: 1
+    designerNotes: 
+  - id: witness_detective
+    character: {fileID: 11400000, guid: 9de497f5cc58141518bbc6ec2193905c, type: 2}
+    role: 1
+    description: Detective presents investigation findings
+    testimonies:
+    - id: testimony_detective
+      title: Detective Testimony
+      description: 
+      statements:
+      - id: statement_009
+        text: Alice's fingerprints prove Alice is the murderer
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_fingerprint
+          factId: fact_002
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+            successEffects:
+            - effect: 1
+              targetId: statement_010
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        - id: claim_murderer
+          factId: 
+          isTrue: 0
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+            successEffects:
+            - effect: 1
+              targetId: statement_010
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 9
+              targetId: 
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: -20
+            - effect: 8
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 15
+          designerNotes: 
+        designerNotes: 
+      - id: statement_010
+        text: Fingerprints only prove she touched the weapon.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims: []
+        designerNotes: 
+      - id: statement_011
+        text: Alice purchased medicine before the murder.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: claim_medicine
+          factId: fact_007
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 1
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 1
+              targetId: statement_012
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+      - id: statement_012
+        text: That medicine was for the victim.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: claim_medicine
+          factId: fact_007
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 0
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 10
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        - id: claim_innocent
+          factId: fact_006
+          isTrue: 1
+          priority: 0
+          evaluationRules:
+          - description: 
+            evaluationType: 3
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 10
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          designerNotes: 
+        designerNotes: 
+    initiallyVisible: 1
+    designerNotes: 
+  endings:
+  - id: ending_perfect
+    title: Truth Revealed
+    description: Every contradiction was resolved
+    minimumJudgeTrust: 95
+    maximumPenalty: 0
+    priority: 0
+  - id: ending_good
+    title: Innocence Proven
+    description: Alice is declared innocent
+    minimumJudgeTrust: 80
+    maximumPenalty: 2
+    priority: 0
+  - id: ending_neutral
+    title: Reasonable Doubt
+    description: Alice avoids eviction but truth remains unclear
+    minimumJudgeTrust: 60
+    maximumPenalty: 5
+    priority: 0
+  - id: ending_bad
+    title: Guilty Verdict
+    description: Alice is found guilty
+    minimumJudgeTrust: 0
+    maximumPenalty: 5
+    priority: 0
+  - id: ending_fail
+    title: Court Dismissed
+    description: Too many procedural mistakes
+    minimumJudgeTrust: 0
+    maximumPenalty: 5
+    priority: 0

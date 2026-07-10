@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: Fingerprint
   m_EditorClassIdentifier: 
-  id: fingerprint
-  displayName: Fingerprint
-  description: Alice's fingerprints were found on the knife.
+  id: ev_fingerprint_report
+  displayName: Fingerprint Report
+  description: Fingerprints found on the knife.
   type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}

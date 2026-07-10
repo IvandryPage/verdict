@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: KitchenKnife
   m_EditorClassIdentifier: 
-  id: kitchen_knife
+  id: ev_kitchen_knife
   displayName: Kitchen Knife
-  description: Knife recovered from the crime scene.
+  description: Murder weapon
   type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

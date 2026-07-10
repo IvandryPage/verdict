@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
-  m_Name: Prosecutor
+  m_Name: DetectiveMiles
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  occupation: 0
-  biography: 
+  id: detective_miles
+  displayName: Detective Miles
+  occupation: 4
+  biography: Investigating Officer
+  defaultCredibility: 95
+  defaultTrust: 20
+  defaultStress: 5
+  defaultFear: 0
+  defaultCooperation: 30
+  defaultAffinity: 0
   portraits: []
