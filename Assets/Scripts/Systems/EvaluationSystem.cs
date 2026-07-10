@@ -59,7 +59,9 @@ namespace Verdict.Systems
             switch (rule.EvaluationType)
             {
                 case EvaluationType.PresentEvidence:
-                    return rule.RequiredEvidence == presentedEvidence;
+                    return rule.RequiredEvidence != null &&
+                        presentedEvidence != null &&
+                        rule.RequiredEvidence == presentedEvidence;
 
                 case EvaluationType.Press:
                 case EvaluationType.Question:

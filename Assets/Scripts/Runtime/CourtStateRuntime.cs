@@ -53,17 +53,32 @@ namespace Verdict.Runtime
 
         public bool RevealStatement(string statementId)
         {
-            return revealedStatementIds.Add(statementId);
+            return revealedStatementIds.Add(
+                ValidateTargetId(statementId));
         }
 
         public bool RevealTestimony(string testimonyId)
         {
-            return revealedTestimonyIds.Add(testimonyId);
+            return revealedTestimonyIds.Add(
+                ValidateTargetId(testimonyId));
         }
 
         public bool UnlockEvidence(string evidenceId)
         {
-            return unlockedEvidenceIds.Add(evidenceId);
+            return unlockedEvidenceIds.Add(
+                ValidateTargetId(evidenceId));
+        }
+
+        private static string ValidateTargetId(string targetId)
+        {
+            if (string.IsNullOrWhiteSpace(targetId))
+            {
+                throw new ArgumentException(
+                    "Target ID cannot be null or empty.",
+                    nameof(targetId));
+            }
+
+            return targetId;
         }
     }
 }

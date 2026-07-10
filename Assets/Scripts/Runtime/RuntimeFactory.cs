@@ -96,8 +96,16 @@ namespace Verdict.Runtime
                 $"Case '{data.name}' has no evidence list.");
 
             Ensure(
+                data.Evidence.All(e => e != null),
+                $"Case '{data.name}' contains a null evidence entry.");
+
+            Ensure(
                 data.Witnesses != null,
                 $"Case '{data.name}' has no witness list.");
+
+            Ensure(
+                data.Witnesses.All(w => w != null),
+                $"Case '{data.name}' contains a null witness entry.");
 
             Ensure(
                 data.Witnesses.Count > 0,
@@ -111,8 +119,16 @@ namespace Verdict.Runtime
                 "Encountered a null WitnessData.");
 
             Ensure(
+                witness.Character != null,
+                $"Witness '{witness.Id}' has no character assigned.");
+
+            Ensure(
                 witness.Testimonies != null,
                 $"Witness '{witness.Character.name}' has no testimony list.");
+
+            Ensure(
+                witness.Testimonies.All(t => t != null),
+                $"Witness '{witness.Character.name}' contains a null testimony entry.");
 
             Ensure(
                 witness.Testimonies.Count > 0,
@@ -130,6 +146,10 @@ namespace Verdict.Runtime
                 $"Testimony '{testimony.Title}' has no statement list.");
 
             Ensure(
+                testimony.Statements.All(s => s != null),
+                $"Testimony '{testimony.Title}' contains a null statement entry.");
+
+            Ensure(
                 testimony.Statements.Count > 0,
                 $"Testimony '{testimony.Title}' must contain at least one statement.");
         }
@@ -139,6 +159,62 @@ namespace Verdict.Runtime
             Ensure(
                 statement != null,
                 "Encountered a null StatementData.");
+
+            Ensure(
+                statement.Claims != null,
+                $"Statement '{statement.Id}' has no claims list.");
+
+            Ensure(
+                statement.Claims.All(c => c != null),
+                $"Statement '{statement.Id}' contains a null claim entry.");
+
+            foreach (ClaimData claim in statement.Claims)
+            {
+                ValidateClaim(claim);
+            }
+        }
+
+        private static void ValidateClaim(ClaimData claim)
+        {
+            Ensure(
+                claim != null,
+                "Encountered a null ClaimData.");
+
+            Ensure(
+                claim.EvaluationRules != null,
+                $"Claim '{claim.Id}' has no evaluation rules list.");
+
+            Ensure(
+                claim.EvaluationRules.All(r => r != null),
+                $"Claim '{claim.Id}' contains a null evaluation rule entry.");
+
+            foreach (EvaluationRuleData rule in claim.EvaluationRules)
+            {
+                ValidateEvaluationRule(rule);
+            }
+        }
+
+        private static void ValidateEvaluationRule(EvaluationRuleData rule)
+        {
+            Ensure(
+                rule != null,
+                "Encountered a null EvaluationRuleData.");
+
+            Ensure(
+                rule.SuccessEffects != null,
+                "Encountered a null SuccessEffects list.");
+
+            Ensure(
+                rule.SuccessEffects.All(e => e != null),
+                "Encountered a null CourtStateEffectData in SuccessEffects.");
+
+            Ensure(
+                rule.FailureEffects != null,
+                "Encountered a null FailureEffects list.");
+
+            Ensure(
+                rule.FailureEffects.All(e => e != null),
+                "Encountered a null CourtStateEffectData in FailureEffects.");
         }
 
         private static void Ensure(

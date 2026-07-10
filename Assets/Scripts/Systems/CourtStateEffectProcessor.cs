@@ -32,6 +32,10 @@ namespace Verdict.Systems
 
             foreach (CourtStateEffectData effect in effects)
             {
+                if (effect == null)
+                {
+                    continue;
+                }
                 ApplyEffect(effect);
             }
         }
