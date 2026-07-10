@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  id: knife
+  id: kitchen_knife
   displayName: Kitchen Knife
-  description: A standard stainless steel kitchen knife recovered during the investigation.
-    The blade appears clean at first glance, but further forensic examination may
-    reveal additional information.
+  description: Knife recovered from the crime scene.
   type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

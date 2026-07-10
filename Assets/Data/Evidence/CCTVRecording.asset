@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: cctv_recording
   displayName: CCTV Recording
-  description: 
+  description: Proves Alice entered the kitchen at 21:17
   type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

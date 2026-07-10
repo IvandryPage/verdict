@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: autopsy_report
   displayName: Autopsy Report
-  description: 
+  description: Confirms cause of death was a stab wound
   type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}

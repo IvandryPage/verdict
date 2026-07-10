@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: crime_scene_photo
   displayName: Crime Scene Photo
-  description: 
+  description: Shows the victim's body and blood position
   type: 2
   icon: {fileID: 0}
   artwork: {fileID: 0}

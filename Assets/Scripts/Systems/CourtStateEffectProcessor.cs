@@ -54,38 +54,56 @@ namespace Verdict.Systems
                 case CourtStateEffect.None:
                     break;
 
-                case CourtStateEffect.IncreasePenalty:
-                    courtState.IncreasePenalty(effectData.Value);
-                    break;
-
-                case CourtStateEffect.DecreasePenalty:
-                    courtState.DecreasePenalty(effectData.Value);
-                    break;
-
-                case CourtStateEffect.IncreaseTrust:
-                    courtState.IncreaseTrust(effectData.Value);
-                    break;
-
-                case CourtStateEffect.DecreaseTrust:
-                    courtState.DecreaseTrust(effectData.Value);
-                    break;
-
-                case CourtStateEffect.RevealNewStatement:
+                case CourtStateEffect.RevealStatement:
                     // Persist revealed statement ID for save/load, but gameplay uses runtime visibility directly.
                     courtState.RevealStatement(effectData.TargetId);
                     TryRevealRuntimeStatement(effectData.TargetId);
                     break;
 
-                case CourtStateEffect.RevealNewTestimony:
+                case CourtStateEffect.RevealTestimony:
                     courtState.RevealTestimony(effectData.TargetId);
+                    TryRevealRuntimeTestimony(effectData.TargetId);
+                    break;
+
+                case CourtStateEffect.RevealWitness:
+                    // Persist revealed witness (as testimony IDs are per-witness) and reveal runtime statements.
+                    // We'll reveal all testimonies/statements for the witness at runtime.
+                    TryRevealRuntimeWitness(effectData.TargetId);
                     break;
 
                 case CourtStateEffect.UnlockEvidence:
                     courtState.UnlockEvidence(effectData.TargetId);
                     break;
 
+                case CourtStateEffect.ModifyCourtStat:
+                    courtState.ModifyCourtStat(effectData.CourtStat, effectData.Value);
+                    break;
+
+                case CourtStateEffect.ModifyCharacterStat:
+                    // Find the witness/character runtime by target id and modify the stat.
+                    if (!string.IsNullOrWhiteSpace(effectData.TargetId))
+                    {
+                        foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+                        {
+                            if (witness.Data.Id == effectData.TargetId)
+                            {
+                                witness.ModifyCharacterStat(effectData.CharacterStat, effectData.Value);
+                                break;
+                            }
+                        }
+                    }
+
+                    break;
+
                 case CourtStateEffect.TriggerEnding:
-                    // Akan ditangani oleh EndingResolver / CourtroomController.
+                    // Handled by EndingResolver / CourtroomController.
+                    break;
+
+                case CourtStateEffect.JumpStatement:
+                case CourtStateEffect.JumpTestimony:
+                case CourtStateEffect.JumpWitness:
+                    // Flow-level jumps are handled by the controller/flow system; the effect can be
+                    // interpreted by higher-level systems which have access to the flow controller.
                     break;
 
                 default:
@@ -112,6 +130,60 @@ namespace Verdict.Systems
                             return;
                         }
                     }
+                }
+            }
+        }
+
+        private void TryRevealRuntimeTestimony(string testimonyId)
+        {
+            if (string.IsNullOrWhiteSpace(testimonyId))
+            {
+                return;
+            }
+
+            foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+            {
+                foreach (TestimonyRuntime testimony in witness.Testimonies)
+                {
+                    if (testimony.Data.Id == testimonyId)
+                    {
+                        foreach (StatementRuntime statement in testimony.Statements)
+                        {
+                            statement.IsVisible = true;
+                        }
+
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void TryRevealRuntimeWitness(string witnessId)
+        {
+            if (string.IsNullOrWhiteSpace(witnessId))
+            {
+                return;
+            }
+
+            foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+            {
+                if (witness.Data.Id == witnessId)
+                {
+                    foreach (TestimonyRuntime testimony in witness.Testimonies)
+                    {
+                        foreach (StatementRuntime statement in testimony.Statements)
+                        {
+                            statement.IsVisible = true;
+                        }
+                    }
+
+                    // Persist the witness's testimony IDs as revealed so saves can restore this state.
+                    foreach (TestimonyRuntime testimony in witness.Testimonies)
+                    {
+                        courtState.RevealTestimony(testimony.Data.Id);
+                    }
+
+                    return;
                 }
             }
         }

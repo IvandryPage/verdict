@@ -3,16 +3,35 @@ namespace Verdict.Data.Cases
     public enum FactPredicate
     {
         Is,
+        Has,
         Owns,
+
         LocatedAt,
         Entered,
         Left,
-        Handled,
+        Visited,
+
+        Held,
+        Touched,
+        Used,
+
+        Saw,
+        Heard,
+        Said,
+        Claimed,
+
+        HappenedAt,
+        OccurredBefore,
+        OccurredAfter,
+
         Matches,
-        TimeOfDeath,
-        CauseOfDeath,
-        WeaponUsed,
-        Alibi,
-        Relationship
+        Contains,
+
+        Caused,
+        Killed,
+
+        RelatedTo,
+
+        HasAlibi,
     }
 }

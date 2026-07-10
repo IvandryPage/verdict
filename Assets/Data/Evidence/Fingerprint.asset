@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: fingerprint
   displayName: Fingerprint
-  description: 
+  description: Alice's fingerprints were found on the knife.
   type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}

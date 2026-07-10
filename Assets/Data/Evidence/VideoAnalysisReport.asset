@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: VideoAnalysisReport
   m_EditorClassIdentifier: 
-  id: video_analysis_report
-  displayName: Video Analysis Report
-  description: 
+  id: phone_log
+  displayName: Phone Log
+  description: Confirms CCTV timestamp is accurate.
   type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}
