@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: VideoAnalysisReport
+  m_Name: Floorplan
   m_EditorClassIdentifier: 
-  id: video_analysis_report
-  displayName: Video Analysis Report
-  description: 
-  type: 3
+  id: ev_floorplan
+  displayName: Floor Plan
+  description: Layout of the Restaurant
+  type: 2
   icon: {fileID: 0}
   artwork: {fileID: 0}

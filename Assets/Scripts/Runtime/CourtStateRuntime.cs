@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Verdict.Data.Cases;
 
 namespace Verdict.Runtime
 {
@@ -9,22 +10,93 @@ namespace Verdict.Runtime
         private readonly HashSet<string> revealedTestimonyIds = new();
         private readonly HashSet<string> unlockedEvidenceIds = new();
 
-        public int Penalty { get; private set; }
-
-        public int JudgeTrust { get; private set; } = 100;
+        // Designer-facing court stats stored in a dictionary for easy extension.
+        private readonly Dictionary<CourtStat, int> courtStats = new()
+        {
+            { CourtStat.JudgeTrust, 100 },
+            { CourtStat.Penalty, 0 }
+        };
 
         public IReadOnlyCollection<string> RevealedStatementIds => revealedStatementIds;
+
+        // Persistent state only: save/load can use this list to recreate revealed statements.
+        // Gameplay should rely on StatementRuntime.IsVisible instead.
 
         public IReadOnlyCollection<string> RevealedTestimonyIds => revealedTestimonyIds;
 
         public IReadOnlyCollection<string> UnlockedEvidenceIds => unlockedEvidenceIds;
 
+        // Compatibility properties map to the dictionary-backed stats.
+        public int Penalty => GetCourtStat(CourtStat.Penalty);
+
+        public int JudgeTrust => GetCourtStat(CourtStat.JudgeTrust);
+
+        public int GetCourtStat(CourtStat stat)
+        {
+            if (courtStats.TryGetValue(stat, out int value))
+            {
+                return value;
+            }
+
+            return 0;
+        }
+
+        public void ModifyCourtStat(CourtStat stat, int value, StatOperation operation = StatOperation.Add)
+        {
+            if (operation == StatOperation.Add && value == 0)
+            {
+                return;
+            }
+
+            int current = GetCourtStat(stat);
+            long next = current;
+
+            switch (operation)
+            {
+                case StatOperation.Set:
+                    next = value;
+                    break;
+                case StatOperation.Add:
+                    next = (long)current + value;
+                    break;
+                case StatOperation.Subtract:
+                    next = (long)current - value;
+                    break;
+                case StatOperation.Multiply:
+                    next = (long)current * value;
+                    break;
+                case StatOperation.Divide:
+                    if (value == 0)
+                    {
+                        throw new ArgumentOutOfRangeException(
+                            nameof(value),
+                            "Division by zero is not allowed for stat operations.");
+                    }
+
+                    next = current / value;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        nameof(operation),
+                        operation,
+                        null);
+            }
+
+            if (next < 0)
+            {
+                next = 0;
+            }
+
+            courtStats[stat] = (int)next;
+        }
+
+        // Backwards-compatible helpers that map to the stat-based API.
         public void IncreasePenalty(int value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
-            Penalty += value;
+            ModifyCourtStat(CourtStat.Penalty, value);
         }
 
         public void DecreasePenalty(int value)
@@ -32,7 +104,7 @@ namespace Verdict.Runtime
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
-            Penalty = Math.Max(0, Penalty - value);
+            ModifyCourtStat(CourtStat.Penalty, -value);
         }
 
         public void IncreaseTrust(int value)
@@ -40,7 +112,7 @@ namespace Verdict.Runtime
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
-            JudgeTrust += value;
+            ModifyCourtStat(CourtStat.JudgeTrust, value);
         }
 
         public void DecreaseTrust(int value)
@@ -48,22 +120,37 @@ namespace Verdict.Runtime
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
-            JudgeTrust = Math.Max(0, JudgeTrust - value);
+            ModifyCourtStat(CourtStat.JudgeTrust, -value);
         }
 
         public bool RevealStatement(string statementId)
         {
-            return revealedStatementIds.Add(statementId);
+            return revealedStatementIds.Add(
+                ValidateTargetId(statementId));
         }
 
         public bool RevealTestimony(string testimonyId)
         {
-            return revealedTestimonyIds.Add(testimonyId);
+            return revealedTestimonyIds.Add(
+                ValidateTargetId(testimonyId));
         }
 
         public bool UnlockEvidence(string evidenceId)
         {
-            return unlockedEvidenceIds.Add(evidenceId);
+            return unlockedEvidenceIds.Add(
+                ValidateTargetId(evidenceId));
+        }
+
+        private static string ValidateTargetId(string targetId)
+        {
+            if (string.IsNullOrWhiteSpace(targetId))
+            {
+                throw new ArgumentException(
+                    "Target ID cannot be null or empty.",
+                    nameof(targetId));
+            }
+
+            return targetId;
         }
     }
 }

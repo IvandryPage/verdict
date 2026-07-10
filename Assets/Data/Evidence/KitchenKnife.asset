@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: Knife
+  m_Name: KitchenKnife
   m_EditorClassIdentifier: 
-  id: knife
+  id: ev_kitchen_knife
   displayName: Kitchen Knife
-  description: A standard stainless steel kitchen knife recovered during the investigation.
-    The blade appears clean at first glance, but further forensic examination may
-    reveal additional information.
+  description: Murder weapon
   type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

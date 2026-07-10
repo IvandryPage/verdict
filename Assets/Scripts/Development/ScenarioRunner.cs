@@ -45,7 +45,7 @@ namespace Verdict.Development
 
             evaluationSystem = new EvaluationSystem(courtroomFlow);
 
-            effectProcessor = new CourtStateEffectProcessor(runtime.CourtState);
+            effectProcessor = new CourtStateEffectProcessor(runtime, runtime.CourtState);
 
             courtroomController = new CourtroomController(
                 caseSessionManager,
@@ -111,7 +111,7 @@ namespace Verdict.Development
 
         private void NextStatement()
         {
-            if (!courtroomController.MoveNextStatement())
+            if (!courtroomController.Continue())
             {
                 Debug.Log("No more statements.");
 

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: CCTVRecording
+  m_Name: PhoneLog
   m_EditorClassIdentifier: 
-  id: cctv_recording
-  displayName: CCTV Recording
-  description: 
-  type: 3
+  id: ev_phone
+  displayName: Phone
+  description: Phone Log timestamp matches CCTV.
+  type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

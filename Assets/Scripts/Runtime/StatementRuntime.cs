@@ -11,6 +11,8 @@ namespace Verdict.Runtime
 
         public StatementData Data { get; }
 
+        public bool IsVisible { get; set; }
+
         public bool HasBeenVisited { get; set; }
 
         public bool HasBeenPressed { get; set; }

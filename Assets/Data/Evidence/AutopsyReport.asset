@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: AutopsyReport
   m_EditorClassIdentifier: 
-  id: autopsy_report
+  id: ev_autopsy_report
   displayName: Autopsy Report
-  description: 
+  description: Victim died from a stab wound.
   type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}

@@ -8,16 +8,28 @@ namespace Verdict.Data.Cases
     {
         [SerializeField] private CourtStateEffect effect;
 
-        [Min(0)]
-        [SerializeField] private int value;
-
-        [Tooltip("Optional target identifier (Statement ID, Testimony ID, Ending ID, etc.).")]
+        [Tooltip("Optional target identifier (Statement ID, Testimony ID, Witness ID, Character ID, Ending ID, etc.).")]
         [SerializeField] private string targetId;
+
+        [SerializeField] private CourtStat courtStat;
+
+        [SerializeField] private StatOperation operation;
+
+        [SerializeField] private CharacterStat characterStat;
+
+        [SerializeField]
+        private int value;
 
         public CourtStateEffect Effect => effect;
 
-        public int Value => value;
-
         public string TargetId => targetId;
+
+        public CourtStat CourtStat => courtStat;
+
+        public StatOperation Operation => operation;
+
+        public CharacterStat CharacterStat => characterStat;
+
+        public int Value => value;
     }
 }

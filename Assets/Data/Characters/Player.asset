@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
-  m_Name: Detective
+  m_Name: Player
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  occupation: 0
-  biography: 
+  id: player
+  displayName: Player
+  occupation: 3
+  biography: Controlled character.
+  defaultCredibility: 100
+  defaultTrust: 50
+  defaultStress: 20
+  defaultFear: 10
+  defaultCooperation: 60
+  defaultAffinity: 0
   portraits: []
