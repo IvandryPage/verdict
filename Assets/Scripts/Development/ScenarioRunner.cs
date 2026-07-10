@@ -111,7 +111,7 @@ namespace Verdict.Development
 
         private void NextStatement()
         {
-            if (!courtroomController.MoveNextStatement())
+            if (!courtroomController.Continue())
             {
                 Debug.Log("No more statements.");
 

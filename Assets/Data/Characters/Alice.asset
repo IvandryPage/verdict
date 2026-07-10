@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
   m_Name: Alice
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
+  id: alice
+  displayName: Alice
   occupation: 0
   biography: 
   portraits: []

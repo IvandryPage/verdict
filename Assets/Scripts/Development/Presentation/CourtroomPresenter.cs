@@ -64,7 +64,7 @@ namespace Verdict.Presentation
 
         public void Continue()
         {
-            controller.MoveNextStatement();
+            controller.Continue();
         }
 
         public void Retry()

@@ -128,10 +128,9 @@ namespace Verdict.Systems
                 Data.Cases.EvaluationType.RemainSilent);
         }
 
-        public bool MoveNextStatement()
+        public bool Continue()
         {
-            bool success =
-                courtroomFlow.MoveNextStatement();
+            bool success = courtroomFlow.MoveNext();
 
             if (success)
             {
