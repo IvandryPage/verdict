@@ -7,6 +7,6 @@ namespace Verdict.Data.Cases
         Stress,
         Fear,
         Cooperation,
-        Relationship
+        Affinity
     }
 }

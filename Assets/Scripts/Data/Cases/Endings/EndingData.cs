@@ -20,6 +20,11 @@ namespace Verdict.Data.Cases
         [Min(0)]
         [SerializeField] private int maximumPenalty;
 
+        [Range(0, 100)]
+        [SerializeField]
+        [Tooltip("Priority for tie-breaking when multiple endings meet their conditions. Higher priority = preferred.")]
+        private int priority = 50;
+
         public string Id => id;
 
         public string Title => title;
@@ -29,5 +34,7 @@ namespace Verdict.Data.Cases
         public int MinimumJudgeTrust => minimumJudgeTrust;
 
         public int MaximumPenalty => maximumPenalty;
+
+        public int Priority => priority;
     }
 }

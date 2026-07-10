@@ -8,6 +8,12 @@ namespace Verdict.Data.Cases
     [Serializable]
     public class EvaluationRuleData
     {
+        [Header("Description")]
+        [TextArea(2, 3)]
+        [SerializeField]
+        [Tooltip("Designer notes explaining what this evaluation rule represents (e.g., 'Present CCTV footage').")]
+        private string description;
+
         [SerializeField] private EvaluationType evaluationType;
 
         [SerializeField]
@@ -17,6 +23,8 @@ namespace Verdict.Data.Cases
         [SerializeField] private List<CourtStateEffectData> successEffects = new();
 
         [SerializeField] private List<CourtStateEffectData> failureEffects = new();
+
+        public string Description => description;
 
         public EvaluationType EvaluationType => evaluationType;
 

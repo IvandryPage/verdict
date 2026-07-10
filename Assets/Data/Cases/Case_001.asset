@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: case_sandbox_001
   title: The Kitchen Murder
-  description: Internal integration test case for validating courtroom flow, statement
-    branching, evidence evaluation, hidden statements, testimony progression, and
-    witness transitions.
+  description: Test every courtroom engine feature
   judge: {fileID: 11400000, guid: 1fd15949c6fb24ec8bdfdaaecc05ff72, type: 2}
   prosecutor: {fileID: 11400000, guid: 05af1f334767246de906b7aafbbc3e66, type: 2}
   defenseLawyer: {fileID: 11400000, guid: fa246ddcceddd475aa9705fd81847caf, type: 2}
@@ -29,14 +27,116 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9c36cb52ea05e4347b601b927db3d6bf, type: 2}
   truth:
     facts:
-    - id: fact_kitchen
+    - id: fact_location
       subject:
         type: 0
         value: alice
-      predicate: 6
+      predicate: 4
       object:
         type: 2
-        value: kitchen
-      supportingEvidence: []
-  witnesses: []
+        value: Kitchen
+      supportingEvidence:
+      - {fileID: 11400000, guid: 3fc33aeaeb9f64da0b1986f5de9a83f1, type: 2}
+      - {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+    - id: fact_touchknife
+      subject:
+        type: 0
+        value: alice
+      predicate: 8
+      object:
+        type: 1
+        value: kitchen_knife
+      supportingEvidence:
+      - {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+    - id: fact_weapon
+      subject:
+        type: 1
+        value: knife
+      predicate: 9
+      object:
+        type: 5
+        value: true
+      supportingEvidence:
+      - {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+    - id: fact_innocent
+      subject:
+        type: 0
+        value: alice
+      predicate: 0
+      object:
+        type: 5
+        value: true
+      supportingEvidence:
+      - {fileID: 11400000, guid: 9c36cb52ea05e4347b601b927db3d6bf, type: 2}
+      - {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
+      - {fileID: 11400000, guid: 3fc33aeaeb9f64da0b1986f5de9a83f1, type: 2}
+      - {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
+      - {fileID: 11400000, guid: 6e5a795defd6c4d5aa21ea9b73a64a4a, type: 2}
+      - {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
+    - id: fact_timestamp
+      subject:
+        type: 1
+        value: cctv_recording
+      predicate: 17
+      object:
+        type: 1
+        value: phone_log
+      supportingEvidence:
+      - {fileID: 11400000, guid: 9c36cb52ea05e4347b601b927db3d6bf, type: 2}
+  witnesses:
+  - id: alice
+    character: {fileID: 11400000, guid: 4e9f239c299d541a986730775880e60e, type: 2}
+    role: 2
+    testimonies:
+    - id: testimony_initial
+      title: Initial Testimony
+      description: Alice explains where she claims to have been during the murder,
+        insisting she has no connection to the crime scene.
+      statements:
+      - id: s001
+        text: I wasn't in the kitchen
+        initiallyVisible: 1
+        nextStatementId: s002
+        claims:
+        - id: claim_location
+          factId: fact_location
+          isTrue: 0
+          evaluationRules:
+          - evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 3fc33aeaeb9f64da0b1986f5de9a83f1, type: 2}
+            successEffects:
+            - effect: 1
+              targetId: s002
+              courtStat: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetId: 
+              courtStat: 0
+              characterStat: 0
+              value: 10
+            failureEffects: []
+    - id: testimony_confession
+      title: Revised Testimony
+      description: Confronted by undeniable evidence, Alice retracts part of her
+        previous testimony and begins revealing what really happened.
+      statements:
+      - id: s001
+        text: I wasn't in the kitchen
+        initiallyVisible: 1
+        nextStatementId: s002
+        claims:
+        - id: 
+          factId: 
+          isTrue: 0
+          evaluationRules: []
+  - id: detective
+    character: {fileID: 11400000, guid: c2c7b120e0eb949c9be85aa2b7299ebe, type: 2}
+    role: 1
+    testimonies:
+    - id: detective_report
+      title: Investigation Report
+      description: The detective presents the official investigation results, arguing
+        that the collected evidence points directly to Alice.
+      statements: []
   endings: []

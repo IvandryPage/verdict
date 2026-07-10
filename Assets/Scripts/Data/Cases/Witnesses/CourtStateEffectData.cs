@@ -13,6 +13,8 @@ namespace Verdict.Data.Cases
 
         [SerializeField] private CourtStat courtStat;
 
+        [SerializeField] private StatOperation operation;
+
         [SerializeField] private CharacterStat characterStat;
 
         [SerializeField]
@@ -23,6 +25,8 @@ namespace Verdict.Data.Cases
         public string TargetId => targetId;
 
         public CourtStat CourtStat => courtStat;
+
+        public StatOperation Operation => operation;
 
         public CharacterStat CharacterStat => characterStat;
 

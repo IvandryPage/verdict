@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using Verdict.Data.Cases;
 using Verdict.Data.Evidence;
 using Verdict.Runtime;
 
@@ -42,6 +44,7 @@ namespace Verdict.Systems
 
         public event Action<StatementRuntime> CurrentStatementChanged;
         public event Action<EvaluationResult> EvaluationCompleted;
+        public event Action<EndingData> EndingTriggered;
 
 
         public CourtroomController(
@@ -162,11 +165,54 @@ namespace Verdict.Systems
                     evaluationType,
                     evidence);
 
-            effectProcessor.Apply(result);
+            CourtStateEffectProcessingResult effectResult =
+                effectProcessor.Apply(result);
+
+            HandleFlowIntents(effectResult);
 
             EvaluationCompleted?.Invoke(result);
 
             return result;
+        }
+
+        private void HandleFlowIntents(CourtStateEffectProcessingResult effectResult)
+        {
+            if (effectResult == null)
+            {
+                return;
+            }
+
+            foreach (CourtStateEffectIntent intent in effectResult.Intents)
+            {
+                switch (intent.Effect)
+                {
+                    case CourtStateEffect.JumpStatement:
+                        courtroomFlow.GoToStatement(intent.TargetId);
+                        RefreshCurrentStatement();
+                        return;
+
+                    case CourtStateEffect.JumpTestimony:
+                        courtroomFlow.GoToTestimony(intent.TargetId);
+                        RefreshCurrentStatement();
+                        return;
+
+                    case CourtStateEffect.JumpWitness:
+                        courtroomFlow.GoToWitness(intent.TargetId);
+                        RefreshCurrentStatement();
+                        return;
+                    case CourtStateEffect.TriggerEnding:
+                        if (caseSessionManager.CurrentCase?.Data != null)
+                        {
+                            EndingData ending = caseSessionManager.CurrentCase.Data.Endings
+                                .FirstOrDefault(e => e.Id == intent.TargetId);
+                            if (ending != null)
+                            {
+                                EndingTriggered?.Invoke(ending);
+                            }
+                        }
+                        return;
+                }
+            }
         }
 
         private void RefreshCurrentStatement()

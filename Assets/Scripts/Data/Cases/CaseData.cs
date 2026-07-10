@@ -17,13 +17,26 @@ namespace Verdict.Data.Cases
         [TextArea(3, 5)]
         [SerializeField] private string description;
 
+        [SerializeField] private CaseDifficulty difficulty = CaseDifficulty.Normal;
+        [SerializeField] private CasePurpose purpose = CasePurpose.Story;
+        [SerializeField] private List<string> tags = new();
+        [SerializeField] private int estimatedPlayTimeMinutes = 15;
+        [SerializeField] private int version = 1;
+        [SerializeField] private string author;
+
+        [Header("Court Setup")]
+        [SerializeField] private CourtSetupData courtSetup = new();
+
         [Header("Participants")]
         [SerializeField] private CharacterData judge;
         [SerializeField] private CharacterData prosecutor;
         [SerializeField] private CharacterData defenseLawyer;
 
+        [Header("Character Overrides")]
+        [SerializeField] private List<CharacterOverrideData> characterOverrides = new();
+
         [Header("Evidence")]
-        [SerializeField] private List<EvidenceData> evidence = new();
+        [SerializeField] private List<EvidenceEntryData> evidence = new();
 
         [Header("Truth")]
         [SerializeField] private TruthData truth;
@@ -38,12 +51,22 @@ namespace Verdict.Data.Cases
         public string Id => id;
         public string Title => title;
         public string Description => description;
+        public CaseDifficulty Difficulty => difficulty;
+        public CasePurpose Purpose => purpose;
+        public IReadOnlyList<string> Tags => tags;
+        public int EstimatedPlayTimeMinutes => estimatedPlayTimeMinutes;
+        public int Version => version;
+        public string Author => author;
+
+        public CourtSetupData CourtSetup => courtSetup;
 
         public CharacterData Judge => judge;
         public CharacterData Prosecutor => prosecutor;
         public CharacterData DefenseLawyer => defenseLawyer;
 
-        public IReadOnlyList<EvidenceData> Evidence => evidence;
+        public IReadOnlyList<CharacterOverrideData> CharacterOverrides => characterOverrides;
+
+        public IReadOnlyList<EvidenceEntryData> Evidence => evidence;
 
         public TruthData Truth => truth;
 

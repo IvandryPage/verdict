@@ -14,8 +14,20 @@ namespace Verdict.Data.Cases
         [SerializeField] private CharacterData character;
         [SerializeField] private WitnessRole role;
 
+        [TextArea(2, 3)]
+        [SerializeField]
+        private string description;
+
         [Header("Testimonies")]
         [SerializeField] private List<TestimonyData> testimonies = new();
+
+        [SerializeField]
+        private bool initiallyVisible = true;
+
+        [Header("Designer Notes")]
+        [TextArea(2, 3)]
+        [SerializeField]
+        private string designerNotes;
 
         public string Id => id;
 
@@ -23,6 +35,12 @@ namespace Verdict.Data.Cases
 
         public WitnessRole Role => role;
 
+        public string Description => description;
+
         public IReadOnlyList<TestimonyData> Testimonies => testimonies;
+
+        public bool InitiallyVisible => initiallyVisible;
+
+        public string DesignerNotes => designerNotes;
     }
 }

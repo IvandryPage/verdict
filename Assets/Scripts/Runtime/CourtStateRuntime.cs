@@ -41,16 +41,47 @@ namespace Verdict.Runtime
             return 0;
         }
 
-        public void ModifyCourtStat(CourtStat stat, int delta)
+        public void ModifyCourtStat(CourtStat stat, int value, StatOperation operation = StatOperation.Add)
         {
-            // delta can be negative to decrease.
-            if (delta == 0)
+            if (operation == StatOperation.Add && value == 0)
             {
                 return;
             }
 
             int current = GetCourtStat(stat);
-            long next = (long)current + delta;
+            long next = current;
+
+            switch (operation)
+            {
+                case StatOperation.Set:
+                    next = value;
+                    break;
+                case StatOperation.Add:
+                    next = (long)current + value;
+                    break;
+                case StatOperation.Subtract:
+                    next = (long)current - value;
+                    break;
+                case StatOperation.Multiply:
+                    next = (long)current * value;
+                    break;
+                case StatOperation.Divide:
+                    if (value == 0)
+                    {
+                        throw new ArgumentOutOfRangeException(
+                            nameof(value),
+                            "Division by zero is not allowed for stat operations.");
+                    }
+
+                    next = current / value;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        nameof(operation),
+                        operation,
+                        null);
+            }
+
             if (next < 0)
             {
                 next = 0;

@@ -50,24 +50,10 @@ namespace Verdict.Systems
                     {
                         // ignore invalid ids coming from older save data
                     }
-
-                    // Set runtime visibility if statement exists in the runtime model.
-                    foreach (var witness in CurrentCase.Witnesses)
+                    if (CurrentCase.TryGetStatement(id, out StatementRuntime statement))
                     {
-                        foreach (var testimony in witness.Testimonies)
-                        {
-                            foreach (var statement in testimony.Statements)
-                            {
-                                if (statement.Data.Id == id)
-                                {
-                                    statement.IsVisible = true;
-                                    goto NextId; // found, move to next saved id
-                                }
-                            }
-                        }
+                        statement.IsVisible = true;
                     }
-
-                NextId:;
                 }
             }
 

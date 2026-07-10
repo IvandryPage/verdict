@@ -26,6 +26,8 @@ namespace Verdict.Systems
     {
         private readonly CaseRuntime runtime;
         private readonly Dictionary<string, StatementLocation> statementLocations;
+        private readonly Dictionary<string, (int WitnessIndex, int TestimonyIndex)> testimonyLocationIndices;
+        private readonly Dictionary<string, int> witnessLocationIndices;
 
         private int witnessIndex;
         private int testimonyIndex;
@@ -34,7 +36,10 @@ namespace Verdict.Systems
         public CourtroomFlow(CaseRuntime runtime)
         {
             this.runtime = runtime ?? throw new ArgumentNullException(nameof(runtime));
-            statementLocations = BuildStatementLocations(runtime);
+            statementLocations = BuildStatementLocations(
+                runtime,
+                out testimonyLocationIndices,
+                out witnessLocationIndices);
             Reset();
         }
 
@@ -210,6 +215,46 @@ namespace Verdict.Systems
             return true;
         }
 
+        public bool TryMoveToTestimony(string testimonyId)
+        {
+            if (!TryGetTestimonyLocation(testimonyId, out StatementLocation target) || !IsStatementVisible(target))
+            {
+                return false;
+            }
+
+            SetCurrentLocation(target);
+            return true;
+        }
+
+        public void GoToTestimony(string testimonyId)
+        {
+            if (!TryMoveToTestimony(testimonyId))
+            {
+                throw new InvalidOperationException(
+                    $"Testimony '{testimonyId}' cannot be reached or contains no visible statements.");
+            }
+        }
+
+        public bool TryMoveToWitness(string witnessId)
+        {
+            if (!TryGetWitnessLocation(witnessId, out StatementLocation target) || !IsStatementVisible(target))
+            {
+                return false;
+            }
+
+            SetCurrentLocation(target);
+            return true;
+        }
+
+        public void GoToWitness(string witnessId)
+        {
+            if (!TryMoveToWitness(witnessId))
+            {
+                throw new InvalidOperationException(
+                    $"Witness '{witnessId}' cannot be reached or contains no visible statements.");
+            }
+        }
+
         public void GoToStatement(string statementId)
         {
             if (!TryMoveToStatement(statementId))
@@ -267,6 +312,50 @@ namespace Verdict.Systems
             }
 
             return statementLocations.TryGetValue(statementId, out location);
+        }
+
+        private bool TryGetTestimonyLocation(string testimonyId, out StatementLocation location)
+        {
+            location = default;
+
+            if (string.IsNullOrWhiteSpace(testimonyId))
+            {
+                return false;
+            }
+
+            if (!testimonyLocationIndices.TryGetValue(testimonyId, out var indices))
+            {
+                return false;
+            }
+
+            return FindNextVisibleStatementFrom(indices.WitnessIndex, indices.TestimonyIndex, -1) is StatementLocation target
+                ? AssignLocation(ref location, target)
+                : false;
+        }
+
+        private bool TryGetWitnessLocation(string witnessId, out StatementLocation location)
+        {
+            location = default;
+
+            if (string.IsNullOrWhiteSpace(witnessId))
+            {
+                return false;
+            }
+
+            if (!witnessLocationIndices.TryGetValue(witnessId, out int witnessIndex))
+            {
+                return false;
+            }
+
+            return FindNextVisibleStatementFrom(witnessIndex, 0, -1) is StatementLocation target
+                ? AssignLocation(ref location, target)
+                : false;
+        }
+
+        private static bool AssignLocation(ref StatementLocation location, StatementLocation value)
+        {
+            location = value;
+            return true;
         }
 
         private StatementLocation? FindNextVisibleStatementInCurrentTestimony()
@@ -406,13 +495,28 @@ namespace Verdict.Systems
             statementIndex = location.StatementIndex;
         }
 
-        private static Dictionary<string, StatementLocation> BuildStatementLocations(CaseRuntime runtime)
+        private static Dictionary<string, StatementLocation> BuildStatementLocations(
+            CaseRuntime runtime,
+            out Dictionary<string, (int WitnessIndex, int TestimonyIndex)> testimonyLocationIndices,
+            out Dictionary<string, int> witnessLocationIndices)
         {
             var locations = new Dictionary<string, StatementLocation>(StringComparer.Ordinal);
+            testimonyLocationIndices = new Dictionary<string, (int WitnessIndex, int TestimonyIndex)>(StringComparer.Ordinal);
+            witnessLocationIndices = new Dictionary<string, int>(StringComparer.Ordinal);
             for (int witness = 0; witness < runtime.Witnesses.Count; witness++)
             {
                 for (int testimony = 0; testimony < runtime.Witnesses[witness].Testimonies.Count; testimony++)
                 {
+                    string testimonyId = runtime.Witnesses[witness].Testimonies[testimony].Data.Id;
+                    if (!string.IsNullOrWhiteSpace(testimonyId) && !testimonyLocationIndices.ContainsKey(testimonyId))
+                    {
+                        testimonyLocationIndices.Add(testimonyId, (witness, testimony));
+                    }
+
+                    if (!witnessLocationIndices.ContainsKey(runtime.Witnesses[witness].Data.Id))
+                    {
+                        witnessLocationIndices.Add(runtime.Witnesses[witness].Data.Id, witness);
+                    }
                     for (int statement = 0; statement < runtime.Witnesses[witness].Testimonies[testimony].Statements.Count; statement++)
                     {
                         StatementRuntime statementRuntime = runtime.Witnesses[witness].Testimonies[testimony].Statements[statement];

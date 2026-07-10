@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Verdict.Data.Cases;
 using Verdict.Runtime;
 
@@ -20,7 +21,7 @@ namespace Verdict.Systems
                 ?? throw new ArgumentNullException(nameof(courtState));
         }
 
-        public void Apply(EvaluationResult result)
+        public CourtStateEffectProcessingResult Apply(EvaluationResult result)
         {
             if (result == null)
             {
@@ -29,13 +30,14 @@ namespace Verdict.Systems
 
             if (!result.HasMatchedRule)
             {
-                return;
+                return new CourtStateEffectProcessingResult(Array.Empty<CourtStateEffectIntent>());
             }
 
             var effects = result.IsSuccess
                 ? result.MatchedRule.SuccessEffects
                 : result.MatchedRule.FailureEffects;
 
+            var intents = new List<CourtStateEffectIntent>();
             foreach (CourtStateEffectData effect in effects)
             {
                 if (effect == null)
@@ -43,11 +45,17 @@ namespace Verdict.Systems
                     continue;
                 }
 
-                ApplyEffect(effect);
+                CourtStateEffectIntent intent = ApplyEffect(effect);
+                if (intent != null)
+                {
+                    intents.Add(intent);
+                }
             }
+
+            return new CourtStateEffectProcessingResult(intents);
         }
 
-        private void ApplyEffect(CourtStateEffectData effectData)
+        private CourtStateEffectIntent ApplyEffect(CourtStateEffectData effectData)
         {
             switch (effectData.Effect)
             {
@@ -76,39 +84,37 @@ namespace Verdict.Systems
                     break;
 
                 case CourtStateEffect.ModifyCourtStat:
-                    courtState.ModifyCourtStat(effectData.CourtStat, effectData.Value);
+                    courtState.ModifyCourtStat(
+                        effectData.CourtStat,
+                        effectData.Value,
+                        effectData.Operation);
                     break;
 
                 case CourtStateEffect.ModifyCharacterStat:
-                    // Find the witness/character runtime by target id and modify the stat.
-                    if (!string.IsNullOrWhiteSpace(effectData.TargetId))
+                    if (!string.IsNullOrWhiteSpace(effectData.TargetId) &&
+                        caseRuntime.TryGetWitness(effectData.TargetId, out WitnessRuntime targetWitness))
                     {
-                        foreach (WitnessRuntime witness in caseRuntime.Witnesses)
-                        {
-                            if (witness.Data.Id == effectData.TargetId)
-                            {
-                                witness.ModifyCharacterStat(effectData.CharacterStat, effectData.Value);
-                                break;
-                            }
-                        }
+                        targetWitness.ModifyCharacterStat(
+                            effectData.CharacterStat,
+                            effectData.Value,
+                            effectData.Operation);
                     }
 
                     break;
 
                 case CourtStateEffect.TriggerEnding:
-                    // Handled by EndingResolver / CourtroomController.
-                    break;
+                    return new CourtStateEffectIntent(effectData.Effect, effectData.TargetId);
 
                 case CourtStateEffect.JumpStatement:
                 case CourtStateEffect.JumpTestimony:
                 case CourtStateEffect.JumpWitness:
-                    // Flow-level jumps are handled by the controller/flow system; the effect can be
-                    // interpreted by higher-level systems which have access to the flow controller.
-                    break;
+                    return new CourtStateEffectIntent(effectData.Effect, effectData.TargetId);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(effectData.Effect), effectData.Effect, null);
             }
+
+            return null;
         }
 
         private void TryRevealRuntimeStatement(string statementId)
@@ -118,19 +124,9 @@ namespace Verdict.Systems
                 return;
             }
 
-            foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+            if (caseRuntime.TryGetStatement(statementId, out StatementRuntime statement))
             {
-                foreach (TestimonyRuntime testimony in witness.Testimonies)
-                {
-                    foreach (StatementRuntime statement in testimony.Statements)
-                    {
-                        if (statement.Data.Id == statementId)
-                        {
-                            statement.IsVisible = true;
-                            return;
-                        }
-                    }
-                }
+                statement.IsVisible = true;
             }
         }
 
@@ -141,19 +137,11 @@ namespace Verdict.Systems
                 return;
             }
 
-            foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+            if (caseRuntime.TryGetTestimony(testimonyId, out TestimonyRuntime testimony))
             {
-                foreach (TestimonyRuntime testimony in witness.Testimonies)
+                foreach (StatementRuntime statement in testimony.Statements)
                 {
-                    if (testimony.Data.Id == testimonyId)
-                    {
-                        foreach (StatementRuntime statement in testimony.Statements)
-                        {
-                            statement.IsVisible = true;
-                        }
-
-                        return;
-                    }
+                    statement.IsVisible = true;
                 }
             }
         }
@@ -165,25 +153,17 @@ namespace Verdict.Systems
                 return;
             }
 
-            foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+            if (caseRuntime.TryGetWitness(witnessId, out WitnessRuntime witness))
             {
-                if (witness.Data.Id == witnessId)
+                foreach (TestimonyRuntime testimony in witness.Testimonies)
                 {
-                    foreach (TestimonyRuntime testimony in witness.Testimonies)
+                    foreach (StatementRuntime statement in testimony.Statements)
                     {
-                        foreach (StatementRuntime statement in testimony.Statements)
-                        {
-                            statement.IsVisible = true;
-                        }
+                        statement.IsVisible = true;
                     }
 
                     // Persist the witness's testimony IDs as revealed so saves can restore this state.
-                    foreach (TestimonyRuntime testimony in witness.Testimonies)
-                    {
-                        courtState.RevealTestimony(testimony.Data.Id);
-                    }
-
-                    return;
+                    courtState.RevealTestimony(testimony.Data.Id);
                 }
             }
         }
