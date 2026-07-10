@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Verdict.Data.Cases;
 
 namespace Verdict.Data.Cases
 {
@@ -8,7 +9,9 @@ namespace Verdict.Data.Cases
     {
         [SerializeField] private CourtStateEffect effect;
 
-        [Tooltip("Optional target identifier (Statement ID, Testimony ID, Witness ID, Character ID, Ending ID, etc.).")]
+        [SerializeField] private EffectTargetType targetType;
+
+        [Tooltip("Optional target identifier (Statement ID, Testimony ID, Witness ID, Character ID, Evidence ID, etc.).")]
         [SerializeField] private string targetId;
 
         [SerializeField] private CourtStat courtStat;
@@ -22,6 +25,8 @@ namespace Verdict.Data.Cases
 
         public CourtStateEffect Effect => effect;
 
+        public EffectTargetType TargetType => targetType;
+
         public string TargetId => targetId;
 
         public CourtStat CourtStat => courtStat;
@@ -31,5 +36,11 @@ namespace Verdict.Data.Cases
         public CharacterStat CharacterStat => characterStat;
 
         public int Value => value;
+
+        public bool RequiresTarget =>
+            TargetType != EffectTargetType.None;
+
+        public bool HasTarget =>
+            !string.IsNullOrWhiteSpace(TargetId);
     }
 }
