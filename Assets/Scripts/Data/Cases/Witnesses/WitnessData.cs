@@ -24,11 +24,6 @@ namespace Verdict.Data.Cases
         [SerializeField]
         private bool initiallyVisible = true;
 
-        [Header("Designer Notes")]
-        [TextArea(2, 3)]
-        [SerializeField]
-        private string designerNotes;
-
         public string Id => id;
 
         public CharacterData Character => character;
@@ -40,7 +35,5 @@ namespace Verdict.Data.Cases
         public IReadOnlyList<TestimonyData> Testimonies => testimonies;
 
         public bool InitiallyVisible => initiallyVisible;
-
-        public string DesignerNotes => designerNotes;
     }
 }

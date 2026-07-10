@@ -14,17 +14,7 @@ namespace Verdict.Data.Cases
         [Tooltip("True if the witness claims the fact is true. False if the witness denies it.")]
         [SerializeField] private bool isTrue = true;
 
-        [SerializeField]
-        [Range(0, 100)]
-        [Tooltip("Optional priority for tie-breaking when multiple claims have the same evaluation result.")]
-        private int priority = 0;
-
         [SerializeField] private List<EvaluationRuleData> evaluationRules = new();
-
-        [Header("Designer Notes")]
-        [TextArea(2, 3)]
-        [SerializeField]
-        private string designerNotes;
 
         public string Id => id;
 
@@ -32,10 +22,6 @@ namespace Verdict.Data.Cases
 
         public bool IsTrue => isTrue;
 
-        public int Priority => priority;
-
         public IReadOnlyList<EvaluationRuleData> EvaluationRules => evaluationRules;
-
-        public string DesignerNotes => designerNotes;
     }
 }

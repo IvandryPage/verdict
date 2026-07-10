@@ -21,11 +21,6 @@ namespace Verdict.Data.Cases
 
         [SerializeField] private List<ClaimData> claims = new();
 
-        [Header("Designer Notes")]
-        [TextArea(2, 3)]
-        [SerializeField]
-        private string designerNotes;
-
         public string Id => id;
 
         public string Text => text;
@@ -35,7 +30,5 @@ namespace Verdict.Data.Cases
         public string NextStatementId => nextStatementId;
 
         public IReadOnlyList<ClaimData> Claims => claims;
-
-        public string DesignerNotes => designerNotes;
     }
 }

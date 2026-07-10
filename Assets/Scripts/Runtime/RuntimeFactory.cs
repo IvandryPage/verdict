@@ -634,12 +634,6 @@ namespace Verdict.Runtime
                 case CourtStateEffect.ModifyCourtStat:
                     break;
 
-                case CourtStateEffect.TriggerEnding:
-                    Ensure(
-                        !string.IsNullOrWhiteSpace(effect.TargetId),
-                        $"TriggerEnding effect in claim '{claim.Id}' must reference an ending ID.");
-                    break;
-
                 default:
                     throw new InvalidOperationException(
                         $"Unsupported effect type '{effect.Effect}' in claim '{claim.Id}'.");
@@ -779,12 +773,6 @@ namespace Verdict.Runtime
                     Ensure(
                         evidenceIds.Contains(effect.TargetId),
                         $"Effect '{effect.Effect}' in claim '{claim.Id}' references unknown evidence '{effect.TargetId}'.");
-                    break;
-
-                case CourtStateEffect.TriggerEnding:
-                    Ensure(
-                        endingIds.Contains(effect.TargetId),
-                        $"Effect '{effect.Effect}' in claim '{claim.Id}' references unknown ending '{effect.TargetId}'.");
                     break;
 
                 case CourtStateEffect.ModifyCourtStat:

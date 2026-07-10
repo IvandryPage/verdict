@@ -200,17 +200,6 @@ namespace Verdict.Systems
                         courtroomFlow.GoToWitness(intent.TargetId);
                         RefreshCurrentStatement();
                         return;
-                    case CourtStateEffect.TriggerEnding:
-                        if (caseSessionManager.CurrentCase?.Data != null)
-                        {
-                            EndingData ending = caseSessionManager.CurrentCase.Data.Endings
-                                .FirstOrDefault(e => e.Id == intent.TargetId);
-                            if (ending != null)
-                            {
-                                EndingTriggered?.Invoke(ending);
-                            }
-                        }
-                        return;
                 }
             }
         }
