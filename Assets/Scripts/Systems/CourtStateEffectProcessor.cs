@@ -6,10 +6,16 @@ namespace Verdict.Systems
 {
     public sealed class CourtStateEffectProcessor
     {
+        private readonly CaseRuntime caseRuntime;
         private readonly CourtStateRuntime courtState;
 
-        public CourtStateEffectProcessor(CourtStateRuntime courtState)
+        public CourtStateEffectProcessor(
+            CaseRuntime caseRuntime,
+            CourtStateRuntime courtState)
         {
+            this.caseRuntime = caseRuntime
+                ?? throw new ArgumentNullException(nameof(caseRuntime));
+
             this.courtState = courtState
                 ?? throw new ArgumentNullException(nameof(courtState));
         }
@@ -36,6 +42,7 @@ namespace Verdict.Systems
                 {
                     continue;
                 }
+
                 ApplyEffect(effect);
             }
         }
@@ -64,7 +71,9 @@ namespace Verdict.Systems
                     break;
 
                 case CourtStateEffect.RevealNewStatement:
+                    // Persist revealed statement ID for save/load, but gameplay uses runtime visibility directly.
                     courtState.RevealStatement(effectData.TargetId);
+                    TryRevealRuntimeStatement(effectData.TargetId);
                     break;
 
                 case CourtStateEffect.RevealNewTestimony:
@@ -80,7 +89,30 @@ namespace Verdict.Systems
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(effectData.Effect), effectData.Effect, null);
+            }
+        }
+
+        private void TryRevealRuntimeStatement(string statementId)
+        {
+            if (string.IsNullOrWhiteSpace(statementId))
+            {
+                return;
+            }
+
+            foreach (WitnessRuntime witness in caseRuntime.Witnesses)
+            {
+                foreach (TestimonyRuntime testimony in witness.Testimonies)
+                {
+                    foreach (StatementRuntime statement in testimony.Statements)
+                    {
+                        if (statement.Data.Id == statementId)
+                        {
+                            statement.IsVisible = true;
+                            return;
+                        }
+                    }
+                }
             }
         }
     }

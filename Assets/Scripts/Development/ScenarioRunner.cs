@@ -45,7 +45,7 @@ namespace Verdict.Development
 
             evaluationSystem = new EvaluationSystem(courtroomFlow);
 
-            effectProcessor = new CourtStateEffectProcessor(runtime.CourtState);
+            effectProcessor = new CourtStateEffectProcessor(runtime, runtime.CourtState);
 
             courtroomController = new CourtroomController(
                 caseSessionManager,

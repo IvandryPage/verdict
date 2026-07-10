@@ -82,7 +82,10 @@ namespace Verdict.Runtime
         {
             ValidateStatement(statement);
 
-            return new StatementRuntime(statement);
+            return new StatementRuntime(statement)
+            {
+                IsVisible = statement.InitiallyVisible
+            };
         }
 
         // ------------------------------------------------------------------

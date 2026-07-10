@@ -93,7 +93,9 @@ namespace Verdict.UI
                 new EvaluationSystem(flow);
 
             var processor =
-                new CourtStateEffectProcessor(caseSessionManager.CurrentCase.CourtState);
+                new CourtStateEffectProcessor(
+                    caseSessionManager.CurrentCase,
+                    caseSessionManager.CurrentCase.CourtState);
 
             controller =
                 new CourtroomController(

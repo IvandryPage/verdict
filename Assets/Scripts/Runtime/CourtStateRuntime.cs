@@ -15,6 +15,9 @@ namespace Verdict.Runtime
 
         public IReadOnlyCollection<string> RevealedStatementIds => revealedStatementIds;
 
+        // Persistent state only: save/load can use this list to recreate revealed statements.
+        // Gameplay should rely on StatementRuntime.IsVisible instead.
+
         public IReadOnlyCollection<string> RevealedTestimonyIds => revealedTestimonyIds;
 
         public IReadOnlyCollection<string> UnlockedEvidenceIds => unlockedEvidenceIds;
