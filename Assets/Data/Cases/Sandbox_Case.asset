@@ -55,8 +55,8 @@ MonoBehaviour:
   - evidence: {fileID: 11400000, guid: 33329e78c2e3e48d6948e966732bdd9d, type: 2}
     initiallyUnlocked: 0
     canPresent: 0
-  - evidence: {fileID: 11400000, guid: 33329e78c2e3e48d6948e966732bdd9d, type: 2}
-    initiallyUnlocked: 0
+  - evidence: {fileID: 11400000, guid: 48708dba82d224af3bc47febfa0008f4, type: 2}
+    initiallyUnlocked: 1
     canPresent: 0
   truth:
     facts:
@@ -166,25 +166,26 @@ MonoBehaviour:
         - id: claim_location
           factId: fact_001
           isTrue: 0
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
             successEffects:
             - effect: 1
+              targetType: 0
               targetId: statement_002
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             - effect: 8
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 10
             - effect: 9
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 1
@@ -192,13 +193,12 @@ MonoBehaviour:
               value: 10
             failureEffects:
             - effect: 8
+              targetType: 0
               targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 1
-          designerNotes: 
-        designerNotes: 
       - id: statement_002
         text: Fine... I entered the kitchen.
         initiallyVisible: 0
@@ -207,56 +207,52 @@ MonoBehaviour:
         - id: claim_enter
           factId: fact_001
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 3
+          - evaluationType: 3
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 5
+              targetType: 0
               targetId: statement_005
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
       - id: statement_003
         text: I never touched the knife
         initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: claim_touch
+        - id: claim_touch0
           factId: fact_002
           isTrue: 0
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
             successEffects:
             - effect: 1
+              targetType: 0
               targetId: statement_004
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             - effect: 9
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 1
               characterStat: 0
               value: 5
             - effect: 8
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 1
               characterStat: 0
               value: 10
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
       - id: statement_004
         text: I picked it up after hearing a scream.
         initiallyVisible: 1
@@ -265,44 +261,40 @@ MonoBehaviour:
         - id: claim_touch
           factId: fact_002
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 1
+          - evaluationType: 1
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 2
+              targetType: 0
               targetId: testimony_revised
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        - id: claim_saw
+        - id: claim_saw0
           factId: fact_005
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
             successEffects:
             - effect: 9
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 4
               value: 20
             - effect: 9
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 2
               value: 15
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
       - id: statement_005
         text: The CCTV timestamp is fake.
         initiallyVisible: 1
@@ -311,33 +303,30 @@ MonoBehaviour:
         - id: claim_cctv
           factId: fact_003
           isTrue: 0
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: 48708dba82d224af3bc47febfa0008f4, type: 2}
             successEffects:
             - effect: 4
+              targetType: 0
               targetId: ev_floorplan
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             - effect: 1
+              targetType: 0
               targetId: statement_006
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
       - id: statement_006
         text: I lied because I panicked
         initiallyVisible: 0
         nextStatementId: statement_007
         claims: []
-        designerNotes: 
     - id: testimony_revised
       title: Revised Testimony
       description: Alice revises her testimony after several contradictions have
@@ -348,16 +337,15 @@ MonoBehaviour:
         initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: claim_saw
+        - id: claim_saw1
           factId: fact_005
           isTrue: 0
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: ba847476cd84f49b79127d89dd91ffde, type: 2}
             successEffects:
             - effect: 1
+              targetType: 0
               targetId: statement_008
               courtStat: 0
               operation: 0
@@ -365,13 +353,12 @@ MonoBehaviour:
               value: 0
             failureEffects:
             - effect: 8
+              targetType: 0
               targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 1
-          designerNotes: 
-        designerNotes: 
       - id: statement_008
         text: I found the body, but I didn't kill him.
         initiallyVisible: 0
@@ -380,40 +367,34 @@ MonoBehaviour:
         - id: claim_saw
           factId: fact_005
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 3
+          - evaluationType: 3
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 0
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        - id: claim_innocent
+        - id: claim_innocent0
           factId: fact_006
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 3
+          - evaluationType: 3
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 5
+              targetType: 0
               targetId: statement_005
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
     initiallyVisible: 1
-    designerNotes: 
   - id: witness_detective
     character: {fileID: 11400000, guid: 9de497f5cc58141518bbc6ec2193905c, type: 2}
     role: 1
@@ -431,30 +412,27 @@ MonoBehaviour:
         - id: claim_fingerprint
           factId: fact_002
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
             successEffects:
             - effect: 1
+              targetType: 0
               targetId: statement_010
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
         - id: claim_murderer
-          factId: 
+          factId: fact_006
           isTrue: 0
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
+          - evaluationType: 0
             requiredEvidence: {fileID: 11400000, guid: a735e286909c64be49464a06b753cd95, type: 2}
             successEffects:
             - effect: 1
+              targetType: 0
               targetId: statement_010
               courtStat: 0
               operation: 0
@@ -462,48 +440,44 @@ MonoBehaviour:
               value: 0
             failureEffects:
             - effect: 9
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 1
               characterStat: 0
               value: -20
             - effect: 8
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 15
-          designerNotes: 
-        designerNotes: 
       - id: statement_010
         text: Fingerprints only prove she touched the weapon.
         initiallyVisible: 0
         nextStatementId: 
         claims: []
-        designerNotes: 
       - id: statement_011
         text: Alice purchased medicine before the murder.
         initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: claim_medicine
+        - id: claim_medicine1
           factId: fact_007
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 1
+          - evaluationType: 1
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 1
+              targetType: 0
               targetId: statement_012
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
       - id: statement_012
         text: That medicine was for the victim.
         initiallyVisible: 0
@@ -512,68 +486,57 @@ MonoBehaviour:
         - id: claim_medicine
           factId: fact_007
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 0
-            requiredEvidence: {fileID: 0}
+          - evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 33329e78c2e3e48d6948e966732bdd9d, type: 2}
             successEffects:
             - effect: 10
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
         - id: claim_innocent
           factId: fact_006
           isTrue: 1
-          priority: 0
           evaluationRules:
-          - description: 
-            evaluationType: 3
+          - evaluationType: 3
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 10
+              targetType: 0
               targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             failureEffects: []
-          designerNotes: 
-        designerNotes: 
     initiallyVisible: 1
-    designerNotes: 
   endings:
   - id: ending_perfect
     title: Truth Revealed
     description: Every contradiction was resolved
     minimumJudgeTrust: 95
     maximumPenalty: 0
-    priority: 0
   - id: ending_good
     title: Innocence Proven
     description: Alice is declared innocent
     minimumJudgeTrust: 80
     maximumPenalty: 2
-    priority: 0
   - id: ending_neutral
     title: Reasonable Doubt
     description: Alice avoids eviction but truth remains unclear
     minimumJudgeTrust: 60
     maximumPenalty: 5
-    priority: 0
   - id: ending_bad
     title: Guilty Verdict
     description: Alice is found guilty
     minimumJudgeTrust: 0
     maximumPenalty: 5
-    priority: 0
   - id: ending_fail
     title: Court Dismissed
     description: Too many procedural mistakes
     minimumJudgeTrust: 0
     maximumPenalty: 5
-    priority: 0
