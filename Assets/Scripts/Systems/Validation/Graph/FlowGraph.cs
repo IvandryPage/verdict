@@ -13,7 +13,11 @@ namespace Verdict.Systems.Validation.Graph
 
         public void AddNode(FlowGraphNode node)
         {
-            _nodes.TryAdd(node.Id, node);
+            if (!_nodes.TryAdd(node.Id, node))
+            {
+                throw new InvalidOperationException(
+                    $"Duplicate graph node '{node.Id}'.");
+            }
         }
 
         public bool TryGetNode(

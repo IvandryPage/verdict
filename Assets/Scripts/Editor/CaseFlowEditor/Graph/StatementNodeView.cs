@@ -7,33 +7,48 @@ namespace Verdict.Editor.CaseFlow
 {
     public sealed class StatementNodeView : Node
     {
+        private readonly Port inputPort;
+        private readonly Port outputPort;
+
         public StatementData Statement { get; }
 
-        public WitnessData Witness { get; }
+        public Port InputPort => inputPort;
 
-        public TestimonyData Testimony { get; }
+        public Port OutputPort => outputPort;
 
         public event Action<StatementNodeView> Selected;
 
         public StatementNodeView(
-            StatementData statement,
-            WitnessData witness,
-            TestimonyData testimony)
+            StatementData statement)
         {
             Statement = statement;
-            Witness = witness;
-            Testimony = testimony;
 
-            title = witness.Character.DisplayName;
-
-            extensionContainer.Add(
-                new Label(testimony.Title));
+            title = statement.Id;
 
             extensionContainer.Add(
                 new Label(statement.Text));
 
-            RefreshExpandedState();
+            inputPort = InstantiatePort(
+                Orientation.Horizontal,
+                Direction.Input,
+                Port.Capacity.Multi,
+                typeof(bool));
+
+            inputPort.portName = "";
+
+            outputPort = InstantiatePort(
+                Orientation.Horizontal,
+                Direction.Output,
+                Port.Capacity.Multi,
+                typeof(bool));
+
+            outputPort.portName = "";
+
+            inputContainer.Add(inputPort);
+            outputContainer.Add(outputPort);
+
             RefreshPorts();
+            RefreshExpandedState();
         }
 
         public override void OnSelected()

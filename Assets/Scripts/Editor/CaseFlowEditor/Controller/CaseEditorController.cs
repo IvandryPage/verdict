@@ -162,7 +162,7 @@ namespace Verdict.Editor.CaseFlow
 
             session.LoadCase(caseData);
 
-            graphBuilder.Build(caseData);
+            graphBuilder.Build(session.FlowGraph);
         }
 
         private void ReloadCase()
@@ -175,7 +175,7 @@ namespace Verdict.Editor.CaseFlow
             if (currentCase == null)
                 return;
 
-            graphBuilder.Build(currentCase);
+            graphBuilder.Build(session.FlowGraph);
         }
     }
 }

@@ -1,31 +1,38 @@
 using System.Collections.Generic;
 using Verdict.Data.Cases;
+using Verdict.Systems.Validation.Graph;
 
 namespace Verdict.Editor.CaseFlow
 {
     public sealed class EditorSession
     {
+        private readonly Dictionary<string, StatementContext> statementContexts =
+            new();
+
         public CaseData CurrentCase { get; private set; }
+
+        public FlowGraph FlowGraph { get; private set; }
 
         public EditorSelection Selection { get; }
 
-        private readonly Dictionary<StatementData, WitnessData> statementToWitness =
-            new();
-
-        private readonly Dictionary<StatementData, TestimonyData> statementToTestimony =
-            new();
+        public bool HasCase => CurrentCase != null;
 
         public EditorSession()
         {
             Selection = new EditorSelection();
         }
 
-        public void LoadCase(CaseData caseData)
+        public void LoadCase(
+            CaseData caseData)
         {
             CurrentCase = caseData;
 
-            statementToWitness.Clear();
-            statementToTestimony.Clear();
+            Selection.Clear();
+
+            statementContexts.Clear();
+
+            FlowGraph =
+                FlowGraphBuilder.Build(caseData);
 
             foreach (WitnessData witness in caseData.Witnesses)
             {
@@ -33,28 +40,34 @@ namespace Verdict.Editor.CaseFlow
                 {
                     foreach (StatementData statement in testimony.Statements)
                     {
-                        statementToWitness.Add(statement, witness);
-                        statementToTestimony.Add(statement, testimony);
+                        statementContexts.Add(
+                            statement.Id,
+                            new StatementContext(
+                                statement,
+                                testimony,
+                                witness));
                     }
                 }
             }
         }
 
-        public WitnessData GetWitness(
-            StatementData statement)
+        public bool TryGetContext(
+            string statementId,
+            out StatementContext context)
         {
-            return statementToWitness.GetValueOrDefault(statement);
-        }
-
-        public TestimonyData GetTestimony(
-            StatementData statement)
-        {
-            return statementToTestimony.GetValueOrDefault(statement);
+            return statementContexts.TryGetValue(
+                statementId,
+                out context);
         }
 
         public void Clear()
         {
             CurrentCase = null;
+            FlowGraph = null;
+
+            Selection.Clear();
+
+            statementContexts.Clear();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Verdict.Systems.Validation.Graph
     {
         public FlowEdgeType Type { get; }
 
-        public string TargetId { get; }
+        public string? TargetId { get; }
 
         public FlowGraphNode From { get; }
 

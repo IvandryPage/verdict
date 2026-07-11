@@ -42,29 +42,23 @@ namespace Verdict.Editor.CaseFlow
         }
 
         public void Show(
-            StatementData statement)
+            StatementContext context)
         {
-            WitnessData witness =
-                session.GetWitness(statement);
-
-            TestimonyData testimony =
-                session.GetTestimony(statement);
-
             emptyLabel.style.display = DisplayStyle.None;
 
             content.Clear();
 
             content.Add(
-                new Label($"Statement : {statement.Id}"));
+                new Label($"Statement : {context.Statement.Id}"));
 
             content.Add(
-                new Label($"Witness : {witness.Id}"));
+                new Label($"Witness : {context.Witness.Id}"));
 
             content.Add(
-                new Label($"Testimony : {testimony.Title}"));
+                new Label($"Testimony : {context.Testimony.Title}"));
 
             content.Add(
-                new Label(statement.Text));
+                new Label(context.Statement.Text));
         }
 
         public void ClearInspector()
@@ -86,7 +80,15 @@ namespace Verdict.Editor.CaseFlow
                 return;
             }
 
-            Show(statement);
+            if (!session.TryGetContext(
+                statement.Id,
+                out StatementContext context))
+            {
+                ClearInspector();
+                return;
+            }
+
+            Show(context);
         }
     }
 }

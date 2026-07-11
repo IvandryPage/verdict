@@ -1,4 +1,5 @@
-using Verdict.Data.Cases;
+using UnityEngine;
+using Verdict.Systems.Validation.Graph;
 
 namespace Verdict.Editor.CaseFlow
 {
@@ -12,35 +13,30 @@ namespace Verdict.Editor.CaseFlow
             this.graphView = graphView;
         }
 
-        public void Build(CaseData caseData)
+        public void Build(
+            FlowGraph graph)
         {
             graphView.ClearGraph();
 
             float x = 100;
             float y = 100;
 
-            foreach (WitnessData witness in caseData.Witnesses)
+            foreach (FlowGraphNode node in graph.Nodes.Values)
             {
-                foreach (TestimonyData testimony in witness.Testimonies)
+                graphView.CreateStatementNode(
+                    node,
+                    new Vector2(x, y));
+
+                x += 350;
+
+                if (x > 1800)
                 {
-                    foreach (StatementData statement in testimony.Statements)
-                    {
-                        graphView.CreateStatementNode(
-                            statement,
-                            witness,
-                            testimony,
-                            new UnityEngine.Vector2(x, y));
-
-                        x += 350;
-
-                        if (x > 1800)
-                        {
-                            x = 100;
-                            y += 250;
-                        }
-                    }
+                    x = 100;
+                    y += 250;
                 }
             }
+
+            graphView.CreateEdges(graph);
         }
     }
 }
