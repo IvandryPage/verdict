@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using Verdict.Data.Cases;
 
@@ -6,15 +5,21 @@ namespace Verdict.Systems.Validation.Graph
 {
     public static class FlowGraphBuilder
     {
-        public static FlowGraph Build(CaseData caseData)
+        public static FlowGraph Build(
+            CaseData caseData)
         {
             FlowGraph graph = new();
 
-            CreateNodes(graph, caseData);
+            CreateNodes(
+                graph,
+                caseData);
 
-            LinkNextStatements(graph);
+            LinkSequentialFlow(
+                graph,
+                caseData);
 
-            LinkEffects(graph);
+            LinkGameplayEffects(
+                graph);
 
             return graph;
         }
@@ -36,32 +41,63 @@ namespace Verdict.Systems.Validation.Graph
             }
         }
 
-        private static void LinkNextStatements(
-            FlowGraph graph)
+        /// <summary>
+        /// Builds the default testimony flow.
+        /// If NextStatementId is empty, the next statement in the testimony is used.
+        /// </summary>
+        private static void LinkSequentialFlow(
+            FlowGraph graph,
+            CaseData caseData)
         {
-            foreach (FlowGraphNode node in graph.Nodes.Values)
+            foreach (WitnessData witness in caseData.Witnesses)
             {
-                StatementData statement = node.Statement;
-
-                if (string.IsNullOrWhiteSpace(statement.NextStatementId))
+                foreach (TestimonyData testimony in witness.Testimonies)
                 {
-                    continue;
+                    IReadOnlyList<StatementData> statements =
+                        testimony.Statements;
+
+                    for (int i = 0; i < statements.Count; i++)
+                    {
+                        StatementData current =
+                            statements[i];
+
+                        if (!graph.TryGetNode(
+                            current.Id,
+                            out FlowGraphNode currentNode))
+                        {
+                            continue;
+                        }
+
+                        string targetId = current.NextStatementId;
+
+                        // fallback ke statement berikutnya
+                        if (string.IsNullOrWhiteSpace(targetId))
+                        {
+                            if (i >= statements.Count - 1)
+                            {
+                                continue;
+                            }
+
+                            targetId =
+                                statements[i + 1].Id;
+                        }
+
+                        graph.TryGetNode(
+                            targetId,
+                            out FlowGraphNode targetNode);
+
+                        currentNode.AddEdge(
+                            new FlowGraphEdge(
+                                currentNode,
+                                targetNode,
+                                targetId,
+                                FlowEdgeType.NextStatement));
+                    }
                 }
-
-                graph.Nodes.TryGetValue(
-                    statement.NextStatementId,
-                    out FlowGraphNode target);
-
-                node.Outgoing.Add(
-                    new FlowGraphEdge(
-                        node,
-                        target,
-                        statement.NextStatementId,
-                        FlowEdgeType.NextStatement));
             }
         }
 
-        private static void LinkEffects(
+        private static void LinkGameplayEffects(
             FlowGraph graph)
         {
             foreach (FlowGraphNode node in graph.Nodes.Values)
@@ -70,9 +106,15 @@ namespace Verdict.Systems.Validation.Graph
                 {
                     foreach (EvaluationRuleData rule in claim.EvaluationRules)
                     {
-                        LinkEffects(node, graph, rule.SuccessEffects);
+                        LinkEffects(
+                            node,
+                            graph,
+                            rule.SuccessEffects);
 
-                        LinkEffects(node, graph, rule.FailureEffects);
+                        LinkEffects(
+                            node,
+                            graph,
+                            rule.FailureEffects);
                     }
                 }
             }
@@ -101,27 +143,29 @@ namespace Verdict.Systems.Validation.Graph
             {
                 CourtStateEffect.RevealStatement => FlowEdgeType.RevealStatement,
                 CourtStateEffect.JumpStatement => FlowEdgeType.JumpStatement,
+
                 CourtStateEffect.RevealWitness => FlowEdgeType.RevealWitness,
                 CourtStateEffect.JumpWitness => FlowEdgeType.JumpWitness,
+
                 CourtStateEffect.RevealTestimony => FlowEdgeType.RevealTestimony,
                 CourtStateEffect.JumpTestimony => FlowEdgeType.JumpTestimony,
 
                 _ => null
             };
 
-            if (edgeType == null)
+            if (!edgeType.HasValue)
             {
                 return;
             }
 
-            graph.Nodes.TryGetValue(
+            graph.TryGetNode(
                 effect.TargetId,
-                out FlowGraphNode target);
+                out FlowGraphNode targetNode);
 
-            node.Outgoing.Add(
+            node.AddEdge(
                 new FlowGraphEdge(
                     node,
-                    target,
+                    targetNode,
                     effect.TargetId,
                     edgeType.Value));
         }

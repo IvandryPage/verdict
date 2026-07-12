@@ -9,8 +9,8 @@ namespace Verdict.Systems.Validation
             new BasicValidator(),
             new IdValidator(),
             new ReferenceValidator(),
-            // new EffectValidator(),
-            // new FlowValidator(),
+            new EffectValidator(),
+            new FlowValidator(),
         };
 
         public static ValidationResult Validate(

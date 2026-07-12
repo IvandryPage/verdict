@@ -84,7 +84,7 @@ namespace Verdict.Systems.Validation
                             statementIds.Contains(statement.NextStatementId),
                             ValidationScope.Statement,
                             $"Statement '{statement.Id}' references unknown NextStatement '{statement.NextStatementId}'.",
-                            caseData);
+                            testimony.Id);
                     }
                 }
             }
@@ -108,7 +108,7 @@ namespace Verdict.Systems.Validation
                                 !string.IsNullOrWhiteSpace(claim.FactId),
                                 ValidationScope.Claim,
                                 $"Claim '{claim.Id}' has no FactId.",
-                                caseData);
+                                statement.Id);
 
                             if (string.IsNullOrWhiteSpace(claim.FactId))
                                 continue;
@@ -118,7 +118,7 @@ namespace Verdict.Systems.Validation
                                 factIds.Contains(claim.FactId),
                                 ValidationScope.Claim,
                                 $"Claim '{claim.Id}' references unknown Fact '{claim.FactId}'.",
-                                caseData);
+                                statement.Id);
                         }
                     }
                 }
@@ -148,7 +148,7 @@ namespace Verdict.Systems.Validation
                                     rule.RequiredEvidence != null,
                                     ValidationScope.Rule,
                                     $"PresentEvidence rule in Claim '{claim.Id}' has no RequiredEvidence.",
-                                    caseData);
+                                    claim.Id);
 
                                 if (rule.RequiredEvidence == null)
                                     continue;
@@ -158,7 +158,7 @@ namespace Verdict.Systems.Validation
                                     evidenceIds.Contains(rule.RequiredEvidence.Id),
                                     ValidationScope.Rule,
                                     $"PresentEvidence rule in Claim '{claim.Id}' references Evidence '{rule.RequiredEvidence.Id}' which is not part of this case.",
-                                    caseData);
+                                    claim.Id);
                             }
                         }
                     }
@@ -192,7 +192,7 @@ namespace Verdict.Systems.Validation
                                 characterIds,
                                 evidenceIds,
                                 result,
-                                caseData);
+                                statement.Id);
 
                             ValidateEffects(
                                 claim,
@@ -203,7 +203,7 @@ namespace Verdict.Systems.Validation
                                 characterIds,
                                 evidenceIds,
                                 result,
-                                caseData);
+                                statement.Id);
                         }
                     }
                 }
@@ -219,7 +219,7 @@ namespace Verdict.Systems.Validation
             HashSet<string> characterIds,
             HashSet<string> evidenceIds,
             ValidationResult result,
-            CaseData source)
+            string contextId)
         {
             foreach (CourtStateEffectData effect in effects)
             {
@@ -237,7 +237,7 @@ namespace Verdict.Systems.Validation
                             statementIds.Contains(effect.TargetId),
                             ValidationScope.Effect,
                             $"Effect '{effect.Effect}' references unknown Statement '{effect.TargetId}'.",
-                            source);
+                            contextId);
                         break;
 
                     case EffectTargetType.Testimony:
@@ -246,7 +246,7 @@ namespace Verdict.Systems.Validation
                             testimonyIds.Contains(effect.TargetId),
                             ValidationScope.Effect,
                             $"Effect '{effect.Effect}' references unknown Testimony '{effect.TargetId}'.",
-                            source);
+                            contextId);
                         break;
 
                     case EffectTargetType.Witness:
@@ -255,7 +255,7 @@ namespace Verdict.Systems.Validation
                             witnessIds.Contains(effect.TargetId),
                             ValidationScope.Effect,
                             $"Effect '{effect.Effect}' references unknown Witness '{effect.TargetId}'.",
-                            source);
+                            contextId);
                         break;
 
                     case EffectTargetType.Character:
@@ -264,7 +264,7 @@ namespace Verdict.Systems.Validation
                             characterIds.Contains(effect.TargetId),
                             ValidationScope.Effect,
                             $"Effect '{effect.Effect}' references unknown Character '{effect.TargetId}'.",
-                            source);
+                            contextId);
                         break;
 
                     case EffectTargetType.Evidence:
@@ -273,7 +273,7 @@ namespace Verdict.Systems.Validation
                             evidenceIds.Contains(effect.TargetId),
                             ValidationScope.Effect,
                             $"Effect '{effect.Effect}' references unknown Evidence '{effect.TargetId}'.",
-                            source);
+                            claim.Id);
                         break;
                 }
             }

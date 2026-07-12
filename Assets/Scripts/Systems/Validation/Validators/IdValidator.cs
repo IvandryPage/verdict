@@ -31,7 +31,6 @@ namespace Verdict.Systems.Validation
                     witness.Id,
                     "Witness",
                     ValidationScope.Witness,
-                    caseData,
                     result);
 
                 foreach (TestimonyData testimony in witness.Testimonies)
@@ -41,7 +40,6 @@ namespace Verdict.Systems.Validation
                         testimony.Id,
                         "Testimony",
                         ValidationScope.Testimony,
-                        caseData,
                         result);
 
                     foreach (StatementData statement in testimony.Statements)
@@ -51,7 +49,6 @@ namespace Verdict.Systems.Validation
                             statement.Id,
                             "Statement",
                             ValidationScope.Statement,
-                            caseData,
                             result);
 
                         foreach (ClaimData claim in statement.Claims)
@@ -61,7 +58,6 @@ namespace Verdict.Systems.Validation
                                 claim.Id,
                                 "Claim",
                                 ValidationScope.Claim,
-                                caseData,
                                 result);
                         }
                     }
@@ -85,7 +81,6 @@ namespace Verdict.Systems.Validation
                     entry.Evidence.Id,
                     "Evidence",
                     ValidationScope.Evidence,
-                    entry.Evidence,
                     result);
             }
         }
@@ -103,7 +98,6 @@ namespace Verdict.Systems.Validation
                     fact.Id,
                     "Fact",
                     ValidationScope.Truth,
-                    caseData,
                     result);
             }
         }
@@ -121,7 +115,6 @@ namespace Verdict.Systems.Validation
                     ending.Id,
                     "Ending",
                     ValidationScope.Ending,
-                    caseData,
                     result);
             }
         }
@@ -131,15 +124,13 @@ namespace Verdict.Systems.Validation
             string id,
             string displayName,
             ValidationScope scope,
-            UnityEngine.Object source,
             ValidationResult result)
         {
             ValidationUtility.Ensure(
                 result,
                 !string.IsNullOrWhiteSpace(id),
                 scope,
-                $"{displayName} has no ID.",
-                source);
+                $"{displayName} has no ID.");
 
             if (string.IsNullOrWhiteSpace(id))
                 return;
@@ -148,8 +139,7 @@ namespace Verdict.Systems.Validation
                 result,
                 ids.Add(id),
                 scope,
-                $"Duplicate {displayName} ID '{id}'.",
-                source);
+                $"Duplicate {displayName} ID '{id}'.");
         }
     }
 }

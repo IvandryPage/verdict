@@ -32,8 +32,7 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Evidence != null,
                 ValidationScope.Evidence,
-                $"Case '{caseData.name}' has no evidence list.",
-                caseData);
+                $"Case '{caseData.name}' has no evidence list.");
 
             if (caseData.Evidence == null)
             {
@@ -44,15 +43,13 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Evidence.Count > 0,
                 ValidationScope.Evidence,
-                $"Case '{caseData.name}' must contain at least one evidence entry.",
-                caseData);
+                $"Case '{caseData.name}' must contain at least one evidence entry.");
 
             ValidationUtility.Ensure(
                 result,
                 caseData.Evidence.All(e => e != null),
                 ValidationScope.Evidence,
-                $"Case '{caseData.name}' contains a null evidence entry.",
-                caseData);
+                $"Case '{caseData.name}' contains a null evidence entry.");
         }
 
         private static void ValidateWitnesses(
@@ -63,8 +60,7 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Witnesses != null,
                 ValidationScope.Witness,
-                $"Case '{caseData.name}' has no witness list.",
-                caseData);
+                $"Case '{caseData.name}' has no witness list.");
 
             if (caseData.Witnesses == null)
             {
@@ -75,15 +71,13 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Witnesses.Count > 0,
                 ValidationScope.Witness,
-                $"Case '{caseData.name}' must contain at least one witness.",
-                caseData);
+                $"Case '{caseData.name}' must contain at least one witness.");
 
             ValidationUtility.Ensure(
                 result,
                 caseData.Witnesses.All(w => w != null),
                 ValidationScope.Witness,
-                $"Case '{caseData.name}' contains a null witness entry.",
-                caseData);
+                $"Case '{caseData.name}' contains a null witness entry.");
         }
 
         private static void ValidateTruth(
@@ -94,8 +88,7 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Truth != null,
                 ValidationScope.Truth,
-                $"Case '{caseData.name}' has no TruthData assigned.",
-                caseData);
+                $"Case '{caseData.name}' has no TruthData assigned.");
 
             if (caseData.Truth == null)
             {
@@ -106,8 +99,7 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Truth.Facts != null,
                 ValidationScope.Truth,
-                $"Case '{caseData.name}' has no fact list.",
-                caseData);
+                $"Case '{caseData.name}' has no fact list.");
         }
 
         private static void ValidateEndings(
@@ -118,8 +110,7 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Endings != null,
                 ValidationScope.Ending,
-                $"Case '{caseData.name}' has no ending list.",
-                caseData);
+                $"Case '{caseData.name}' has no ending list.");
 
             if (caseData.Endings == null)
             {
@@ -130,15 +121,13 @@ namespace Verdict.Systems.Validation
                 result,
                 caseData.Endings.Count > 0,
                 ValidationScope.Ending,
-                $"Case '{caseData.name}' must contain at least one ending.",
-                caseData);
+                $"Case '{caseData.name}' must contain at least one ending.");
 
             ValidationUtility.Ensure(
                 result,
                 caseData.Endings.All(e => e != null),
                 ValidationScope.Ending,
-                $"Case '{caseData.name}' contains a null ending entry.",
-                caseData);
+                $"Case '{caseData.name}' contains a null ending entry.");
         }
     }
 }

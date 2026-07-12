@@ -9,7 +9,8 @@ namespace Verdict.Systems.Validation
             bool condition,
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
             if (condition)
             {
@@ -19,7 +20,8 @@ namespace Verdict.Systems.Validation
             result.AddError(
                 scope,
                 message,
-                source);
+                contextId,
+                path);
         }
 
         public static void Warning(
@@ -27,7 +29,8 @@ namespace Verdict.Systems.Validation
             bool condition,
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
             if (condition)
             {
@@ -37,19 +40,22 @@ namespace Verdict.Systems.Validation
             result.AddWarning(
                 scope,
                 message,
-                source);
+                contextId,
+                path);
         }
 
         public static void Info(
             ValidationResult result,
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
             result.AddInfo(
                 scope,
                 message,
-                source);
+                contextId,
+                path);
         }
     }
 }

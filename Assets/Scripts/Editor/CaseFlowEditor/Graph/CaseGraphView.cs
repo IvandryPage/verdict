@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Editor.CaseFlow.Theme;
 using Verdict.Systems.Validation.Graph;
 
 namespace Verdict.Editor.CaseFlow
@@ -100,6 +101,81 @@ namespace Verdict.Editor.CaseFlow
             edgeView.input.Connect(edgeView);
 
             AddElement(edgeView);
+
+            EdgeStyle style = GetStyle(edge.Type);
+
+            ApplyStyle(edgeView, style);
+
+            edgeView.UpdateEdgeControl();
+            edgeView.edgeControl.MarkDirtyRepaint();
+        }
+
+        // FIXME: There's a bug where styles doesn't applied to the graph edge.
+        // Report says it is because the properties got ignored
+        private static void ApplyStyle(
+            Edge edge,
+            EdgeStyle style)
+        {
+            edge.edgeControl.inputColor =
+                style.Color;
+
+            edge.edgeControl.outputColor =
+                style.Color;
+
+            edge.edgeControl.edgeWidth =
+                (int)style.Width;
+        }
+
+        private static EdgeStyle GetStyle(
+        FlowEdgeType type)
+        {
+            EdgeColor color =
+                type switch
+                {
+                    FlowEdgeType.NextStatement =>
+                        EdgeColor.Default,
+
+                    FlowEdgeType.RevealStatement =>
+                        EdgeColor.Reveal,
+
+                    FlowEdgeType.RevealWitness =>
+                        EdgeColor.Reveal,
+
+                    FlowEdgeType.RevealTestimony =>
+                        EdgeColor.Reveal,
+
+                    FlowEdgeType.JumpStatement =>
+                        EdgeColor.Jump,
+
+                    FlowEdgeType.JumpWitness =>
+                        EdgeColor.Jump,
+
+                    FlowEdgeType.JumpTestimony =>
+                        EdgeColor.Jump,
+
+                    _ =>
+                        EdgeColor.Default
+                };
+
+            return CaseEditorTheme.GetEdgeStyle(
+                color);
+        }
+
+        public void Frame(
+            string id)
+        {
+            if (!nodeViews.TryGetValue(
+                id,
+                out StatementNodeView node))
+            {
+                return;
+            }
+
+            ClearSelection();
+
+            AddToSelection(node);
+
+            FrameSelection();
         }
 
         public void ClearGraph()

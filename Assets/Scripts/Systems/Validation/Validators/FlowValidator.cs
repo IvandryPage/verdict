@@ -32,7 +32,8 @@ namespace Verdict.Systems.Validation
 
             result.AddError(
                 ValidationScope.Flow,
-                "Case contains no entry statement.");
+                "Case contains no entry statement."
+                );
         }
 
         private static void ValidateBrokenEdges(
@@ -156,7 +157,8 @@ namespace Verdict.Systems.Validation
 
                 result.AddWarning(
                     ValidationScope.Flow,
-                    $"Statement '{node.Statement.Id}' is unreachable.");
+                    $"Statement '{node.Statement.Id}' is unreachable.",
+                    node.Id);
             }
         }
     }

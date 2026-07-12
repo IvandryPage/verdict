@@ -3,6 +3,8 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Editor.CaseFlow.Validation;
+using Verdict.Systems.Validation;
 
 namespace Verdict.Editor.CaseFlow
 {
@@ -17,6 +19,8 @@ namespace Verdict.Editor.CaseFlow
         private readonly CaseInspectorView inspector;
 
         private readonly CaseGraphBuilder graphBuilder;
+
+        private readonly ValidationPanel validationPanel;
 
         private ObjectField caseField;
         private CaseData currentCase;
@@ -35,9 +39,17 @@ namespace Verdict.Editor.CaseFlow
                 session.Selection.Select(statement);
             };
 
+            session.Selection.SelectionChanged += HandleSelectionChanged;
+
             graphBuilder = new CaseGraphBuilder(graphView);
 
             inspector = new CaseInspectorView(session);
+
+            validationPanel =
+                new ValidationPanel();
+
+            validationPanel.IssueSelected +=
+                HandleValidationIssueSelected;
         }
 
         public void Initialize()
@@ -50,17 +62,31 @@ namespace Verdict.Editor.CaseFlow
 
             root.Add(toolbar);
 
-            TwoPaneSplitView split =
+            // Graph | Right Panel
+            TwoPaneSplitView horizontalSplit =
                 new TwoPaneSplitView(
-                0,
-                900,
-                TwoPaneSplitViewOrientation.Horizontal);
+                    0,
+                    900,
+                    TwoPaneSplitViewOrientation.Horizontal);
 
-            split.Add(graphView);
+            // Inspector
+            // ----------
+            // Validation
+            TwoPaneSplitView verticalSplit =
+                new TwoPaneSplitView(
+                    0,
+                    350,
+                    TwoPaneSplitViewOrientation.Vertical);
 
-            split.Add(inspector);
+            verticalSplit.Add(inspector);
 
-            root.Add(split);
+            verticalSplit.Add(validationPanel);
+
+            horizontalSplit.Add(graphView);
+
+            horizontalSplit.Add(verticalSplit);
+
+            root.Add(horizontalSplit);
         }
 
         private Toolbar BuildToolbar()
@@ -131,7 +157,10 @@ namespace Verdict.Editor.CaseFlow
             if (currentCase == null)
                 return;
 
-            Debug.Log("Validate...");
+            ValidationResult result =
+                RuntimeValidator.Validate(currentCase);
+
+            validationPanel.Show(result);
         }
 
         private void PlayCase()
@@ -162,7 +191,12 @@ namespace Verdict.Editor.CaseFlow
 
             session.LoadCase(caseData);
 
-            graphBuilder.Build(session.FlowGraph);
+            ValidationResult result =
+                RuntimeValidator.Validate(caseData);
+
+            validationPanel.Show(result);
+
+            graphBuilder.Build(session.FlowGraph, result);
         }
 
         private void ReloadCase()
@@ -175,7 +209,46 @@ namespace Verdict.Editor.CaseFlow
             if (currentCase == null)
                 return;
 
-            graphBuilder.Build(session.FlowGraph);
+            ValidationResult result =
+                    RuntimeValidator.Validate(currentCase);
+
+            graphBuilder.Build(session.FlowGraph, result);
+        }
+
+        private void HandleValidationIssueSelected(
+            ValidationIssue issue)
+        {
+            if (string.IsNullOrWhiteSpace(issue.ContextId))
+            {
+                return;
+            }
+
+            if (!session.TryGetContext(
+                    issue.ContextId,
+                    out StatementContext context))
+            {
+                Debug.Log("Context not FOUND");
+                return;
+            }
+
+            Debug.Log("Context FOUND");
+
+            session.Selection.Select(
+                context.Statement);
+
+            graphView.Frame(
+                context.Statement.Id);
+        }
+
+        private void HandleSelectionChanged()
+        {
+            StatementData statement =
+                session.Selection.Get<StatementData>();
+
+            if (statement == null)
+                return;
+
+            graphView.Frame(statement.Id);
         }
     }
 }

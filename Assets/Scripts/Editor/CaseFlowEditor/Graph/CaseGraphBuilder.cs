@@ -1,4 +1,7 @@
 using UnityEngine;
+using Verdict.Editor.CaseFlow.Theme;
+using Verdict.Editor.CaseFlow.Validation;
+using Verdict.Systems.Validation;
 using Verdict.Systems.Validation.Graph;
 
 namespace Verdict.Editor.CaseFlow
@@ -14,7 +17,8 @@ namespace Verdict.Editor.CaseFlow
         }
 
         public void Build(
-            FlowGraph graph)
+            FlowGraph graph,
+            ValidationResult result)
         {
             graphView.ClearGraph();
 
@@ -23,9 +27,14 @@ namespace Verdict.Editor.CaseFlow
 
             foreach (FlowGraphNode node in graph.Nodes.Values)
             {
-                graphView.CreateStatementNode(
+                StatementNodeView view = graphView.CreateStatementNode(
                     node,
                     new Vector2(x, y));
+
+                ApplyNodeTheme(
+                    node,
+                    view,
+                    result);
 
                 x += 350;
 
@@ -37,6 +46,30 @@ namespace Verdict.Editor.CaseFlow
             }
 
             graphView.CreateEdges(graph);
+        }
+
+        private static void ApplyNodeTheme(
+            FlowGraphNode node,
+            StatementNodeView view,
+            ValidationResult result)
+        {
+            NodeColor color =
+                node.IsEntry
+                    ? NodeColor.Entry
+                    : NodeColor.Hidden;
+
+            NodeColor validation =
+                ValidationOverlayBuilder.GetNodeColor(
+                    result,
+                    node.Id);
+
+            if (validation != NodeColor.Default)
+            {
+                color = validation;
+            }
+
+            view.ApplyStyle(
+                CaseEditorTheme.GetNodeStyle(color));
         }
     }
 }

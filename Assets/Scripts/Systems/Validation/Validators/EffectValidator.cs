@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Verdict.Data.Cases;
 
 namespace Verdict.Systems.Validation
@@ -19,10 +20,12 @@ namespace Verdict.Systems.Validation
                             foreach (EvaluationRuleData rule in claim.EvaluationRules)
                             {
                                 ValidateEffects(
+                                    statement,
                                     rule.SuccessEffects,
                                     result);
 
                                 ValidateEffects(
+                                    statement,
                                     rule.FailureEffects,
                                     result);
                             }
@@ -33,67 +36,65 @@ namespace Verdict.Systems.Validation
         }
 
         private static void ValidateEffects(
-            System.Collections.Generic.IEnumerable<CourtStateEffectData> effects,
+            StatementData statement,
+            IEnumerable<CourtStateEffectData> effects,
             ValidationResult result)
         {
             foreach (CourtStateEffectData effect in effects)
             {
-                ValidateEffect(effect, result);
+                ValidateEffect(
+                    statement,
+                    effect,
+                    result);
             }
         }
 
         private static void ValidateEffect(
+            StatementData statement,
             CourtStateEffectData effect,
             ValidationResult result)
         {
             switch (effect.Effect)
             {
                 case CourtStateEffect.None:
-                    ValidateNone(effect, result);
+                    ValidateNone(statement, effect, result);
                     break;
 
                 case CourtStateEffect.RevealStatement:
                 case CourtStateEffect.JumpStatement:
-                    ValidateTarget(
-                        effect,
-                        EffectTargetType.Statement,
-                        result);
+                    ValidateTarget(statement, effect,
+                        EffectTargetType.Statement, result);
                     break;
 
                 case CourtStateEffect.RevealTestimony:
                 case CourtStateEffect.JumpTestimony:
-                    ValidateTarget(
-                        effect,
-                        EffectTargetType.Testimony,
-                        result);
+                    ValidateTarget(statement, effect,
+                        EffectTargetType.Testimony, result);
                     break;
 
                 case CourtStateEffect.RevealWitness:
                 case CourtStateEffect.JumpWitness:
-                    ValidateTarget(
-                        effect,
-                        EffectTargetType.Witness,
-                        result);
+                    ValidateTarget(statement, effect,
+                        EffectTargetType.Witness, result);
                     break;
 
                 case CourtStateEffect.UnlockEvidence:
-                    ValidateTarget(
-                        effect,
-                        EffectTargetType.Evidence,
-                        result);
+                    ValidateTarget(statement, effect,
+                        EffectTargetType.Evidence, result);
                     break;
 
                 case CourtStateEffect.ModifyCourtStat:
-                    ValidateCourtStat(effect, result);
+                    ValidateCourtStat(statement, effect, result);
                     break;
 
                 case CourtStateEffect.ModifyCharacterStat:
-                    ValidateCharacterStat(effect, result);
+                    ValidateCharacterStat(statement, effect, result);
                     break;
             }
         }
 
         private static void ValidateNone(
+            StatementData statement,
             CourtStateEffectData effect,
             ValidationResult result)
         {
@@ -101,16 +102,19 @@ namespace Verdict.Systems.Validation
                 result,
                 effect.TargetType == EffectTargetType.None,
                 ValidationScope.Effect,
-                "Effect 'None' must use TargetType.None.");
+                "Effect 'None' must use TargetType.None.",
+                statement.Id);
 
             ValidationUtility.Ensure(
                 result,
                 !effect.HasTarget,
                 ValidationScope.Effect,
-                "Effect 'None' must not define TargetId.");
+                "Effect 'None' must not define TargetId.",
+                statement.Id);
         }
 
         private static void ValidateTarget(
+            StatementData statement,
             CourtStateEffectData effect,
             EffectTargetType expectedTarget,
             ValidationResult result)
@@ -119,16 +123,19 @@ namespace Verdict.Systems.Validation
                 result,
                 effect.TargetType == expectedTarget,
                 ValidationScope.Effect,
-                $"'{effect.Effect}' requires TargetType.{expectedTarget}.");
+                $"'{effect.Effect}' requires TargetType.{expectedTarget}.",
+                statement.Id);
 
             ValidationUtility.Ensure(
                 result,
                 effect.HasTarget,
                 ValidationScope.Effect,
-                $"'{effect.Effect}' requires a TargetId.");
+                $"'{effect.Effect}' requires a TargetId.",
+                statement.Id);
         }
 
         private static void ValidateCourtStat(
+            StatementData statement,
             CourtStateEffectData effect,
             ValidationResult result)
         {
@@ -136,16 +143,19 @@ namespace Verdict.Systems.Validation
                 result,
                 effect.TargetType == EffectTargetType.None,
                 ValidationScope.Effect,
-                "ModifyCourtStat must use TargetType.None.");
+                "ModifyCourtStat must use TargetType.None.",
+                statement.Id);
 
             ValidationUtility.Ensure(
                 result,
                 !effect.HasTarget,
                 ValidationScope.Effect,
-                "ModifyCourtStat must not define TargetId.");
+                "ModifyCourtStat must not define TargetId.",
+                statement.Id);
         }
 
         private static void ValidateCharacterStat(
+            StatementData statement,
             CourtStateEffectData effect,
             ValidationResult result)
         {
@@ -153,13 +163,15 @@ namespace Verdict.Systems.Validation
                 result,
                 effect.TargetType == EffectTargetType.Character,
                 ValidationScope.Effect,
-                "ModifyCharacterStat must use TargetType.Character.");
+                "ModifyCharacterStat must use TargetType.Character.",
+                statement.Id);
 
             ValidationUtility.Ensure(
                 result,
                 effect.HasTarget,
                 ValidationScope.Effect,
-                "ModifyCharacterStat requires a TargetId.");
+                "ModifyCharacterStat requires a TargetId.",
+                statement.Id);
         }
     }
 }

@@ -34,18 +34,28 @@ namespace Verdict.Editor.CaseFlow
             FlowGraph =
                 FlowGraphBuilder.Build(caseData);
 
-            foreach (WitnessData witness in caseData.Witnesses)
+            for (int w = 0; w < caseData.Witnesses.Count; w++)
             {
-                foreach (TestimonyData testimony in witness.Testimonies)
+                WitnessData witness = caseData.Witnesses[w];
+
+                for (int t = 0; t < witness.Testimonies.Count; t++)
                 {
-                    foreach (StatementData statement in testimony.Statements)
+                    TestimonyData testimony = witness.Testimonies[t];
+
+                    for (int s = 0; s < testimony.Statements.Count; s++)
                     {
+                        StatementData statement = testimony.Statements[s];
+
                         statementContexts.Add(
                             statement.Id,
                             new StatementContext(
-                                statement,
+                                caseData,
+                                witness,
                                 testimony,
-                                witness));
+                                statement,
+                                w,
+                                t,
+                                s));
                     }
                 }
             }

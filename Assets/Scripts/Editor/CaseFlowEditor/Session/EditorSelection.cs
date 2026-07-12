@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Verdict.Editor.CaseFlow
 {
@@ -11,11 +12,12 @@ namespace Verdict.Editor.CaseFlow
         public void Select<T>(T value)
             where T : class
         {
+            Debug.Log($"Selecting {value}");
             if (ReferenceEquals(Selected, value))
                 return;
 
             Selected = value;
-
+            Debug.Log("Selected changed!");
             SelectionChanged?.Invoke();
         }
 

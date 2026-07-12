@@ -41,9 +41,16 @@ namespace Verdict.Systems.Validation
             ValidationSeverity severity,
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
-            var issue = new ValidationIssue(severity, scope, message, source);
+            ValidationIssue issue =
+                new ValidationIssue(
+                    severity,
+                    scope,
+                    message,
+                    contextId,
+                    path);
 
             _issues.Add(issue);
 
@@ -53,37 +60,77 @@ namespace Verdict.Systems.Validation
         public void AddError(
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
             AddIssue(
                 ValidationSeverity.Error,
                 scope,
                 message,
-                source);
+                contextId,
+                path);
         }
 
         public void AddWarning(
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
             AddIssue(
                 ValidationSeverity.Warning,
                 scope,
                 message,
-                source);
+                contextId,
+                path);
         }
 
         public void AddInfo(
             ValidationScope scope,
             string message,
-            Object source = null)
+            string contextId = null,
+            string path = null)
         {
             AddIssue(
                 ValidationSeverity.Info,
                 scope,
                 message,
-                source);
+                contextId,
+                path);
+        }
+
+        public IEnumerable<ValidationIssue> GetIssues(
+            ValidationScope scope)
+        {
+            return _issues.Where(issue =>
+                issue.Scope == scope);
+        }
+
+        public IEnumerable<ValidationIssue> GetIssues(
+            ValidationSeverity severity)
+        {
+            return _issues.Where(issue =>
+                issue.Severity == severity);
+        }
+
+        public IEnumerable<ValidationIssue> GetIssues(
+            ValidationScope scope,
+            string path)
+        {
+            return _issues.Where(issue =>
+                issue.Scope == scope &&
+                issue.ContextId == path);
+        }
+
+        public IEnumerable<ValidationIssue> GetIssues(
+            ValidationScope scope,
+            string path,
+            ValidationSeverity severity)
+        {
+            return _issues.Where(issue =>
+                issue.Scope == scope &&
+                issue.ContextId == path &&
+                issue.Severity == severity);
         }
 
         public void Merge(ValidationResult other)

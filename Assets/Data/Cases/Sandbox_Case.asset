@@ -171,8 +171,8 @@ MonoBehaviour:
             requiredEvidence: {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
             successEffects:
             - effect: 1
-              targetType: 0
-              targetId: statement_002
+              targetType: 1
+              targetId: statement_012
               courtStat: 0
               operation: 0
               characterStat: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
               characterStat: 0
               value: 10
             - effect: 9
-              targetType: 0
-              targetId: 
+              targetType: 5
+              targetId: alice
               courtStat: 0
               operation: 1
               characterStat: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
             requiredEvidence: {fileID: 0}
             successEffects:
             - effect: 5
-              targetType: 0
+              targetType: 1
               targetId: statement_005
               courtStat: 0
               operation: 0
@@ -232,14 +232,14 @@ MonoBehaviour:
             requiredEvidence: {fileID: 11400000, guid: 8e74049795e5f49fdba0a5cc2ed24ca2, type: 2}
             successEffects:
             - effect: 1
-              targetType: 0
+              targetType: 1
               targetId: statement_004
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 0
             - effect: 9
-              targetType: 0
+              targetType: 5
               targetId: 
               courtStat: 0
               operation: 1

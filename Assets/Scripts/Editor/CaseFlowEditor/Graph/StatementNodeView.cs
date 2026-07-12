@@ -1,7 +1,9 @@
 using System;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Editor.CaseFlow.Theme;
 
 namespace Verdict.Editor.CaseFlow
 {
@@ -55,6 +57,38 @@ namespace Verdict.Editor.CaseFlow
         {
             base.OnSelected();
             Selected?.Invoke(this);
+        }
+
+        public void ApplyStyle(
+            NodeStyle style)
+        {
+            mainContainer.style.backgroundColor =
+                new StyleColor(style.Background);
+
+            mainContainer.style.borderLeftColor =
+                new StyleColor(style.Border);
+
+            mainContainer.style.borderRightColor =
+                new StyleColor(style.Border);
+
+            mainContainer.style.borderTopColor =
+                new StyleColor(style.Border);
+
+            mainContainer.style.borderBottomColor =
+                new StyleColor(style.Border);
+
+            titleContainer.style.backgroundColor =
+                new StyleColor(style.Border);
+
+            titleContainer.style.color =
+                new StyleColor(style.Title);
+        }
+
+        public void FocusToStatement()
+        {
+            BringToFront();
+
+            AddToClassList("selected");
         }
     }
 }
