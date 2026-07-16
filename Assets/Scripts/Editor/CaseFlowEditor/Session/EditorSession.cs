@@ -28,17 +28,6 @@ namespace Verdict.Editor.CaseFlow
         {
             CurrentCase = caseData;
 
-            foreach (var witness in caseData.Witnesses)
-            {
-                foreach (var testimony in witness.Testimonies)
-                {
-                    foreach (var statement in testimony.Statements)
-                    {
-                        Debug.Log($"{statement.Id} -> {statement.NextStatementId}");
-                    }
-                }
-            }
-
             Selection.Clear();
 
             statementContexts.Clear();

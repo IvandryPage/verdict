@@ -124,11 +124,6 @@ namespace Verdict.Editor.CaseFlow
 
             toolbar.Add(new ToolbarSpacer());
 
-            toolbar.Add(new ToolbarButton(ReloadCase)
-            {
-                text = "Reload"
-            });
-
             toolbar.Add(new ToolbarButton(SaveCase)
             {
                 text = "Save"
@@ -154,11 +149,15 @@ namespace Verdict.Editor.CaseFlow
 
         private void OnCaseChanged(ChangeEvent<Object> evt)
         {
+
+            Debug.Log($"Old: {evt.previousValue}");
+            Debug.Log($"New: {evt.newValue}");
+
             if (evt.newValue is not CaseData caseData)
             {
                 return;
             }
-
+            Debug.Log("LOAD");
             LoadCase(caseData);
         }
 
@@ -219,11 +218,6 @@ namespace Verdict.Editor.CaseFlow
         {
             session.LoadCase(caseData);
 
-            RefreshEditor();
-        }
-
-        private void ReloadCase()
-        {
             RefreshEditor();
         }
 
@@ -289,11 +283,8 @@ namespace Verdict.Editor.CaseFlow
                     issue.ContextId,
                     out StatementContext context))
             {
-                Debug.Log("Context not FOUND");
                 return;
             }
-
-            Debug.Log("Context FOUND");
 
             session.Selection.SelectStatement(context);
 
@@ -325,7 +316,7 @@ namespace Verdict.Editor.CaseFlow
 
         private void HandleCaseModified()
         {
-            EditorUtility.SetDirty(session.CurrentCase);
+            RefreshEditor();
         }
 
         private void SelectStatement(
@@ -375,7 +366,7 @@ namespace Verdict.Editor.CaseFlow
                 from.Context,
                 to.Context);
         }
-        
+
         private void HandleEdgeRemoved(
             Edge edge)
         {

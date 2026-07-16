@@ -12,6 +12,7 @@ namespace Verdict.Editor.CaseFlow
 {
     public sealed class CaseGraphView : GraphView
     {
+        private bool suppressGraphEvents;
         private readonly Dictionary<string, StatementNodeView> nodeViews =
             new(StringComparer.Ordinal);
 
@@ -204,7 +205,9 @@ namespace Verdict.Editor.CaseFlow
         private GraphViewChange HandleGraphChanged(
             GraphViewChange change)
         {
-            Debug.Log("Graph Changed");
+            if (suppressGraphEvents)
+                return change;
+
             if (change.edgesToCreate != null)
             {
                 foreach (Edge edge in change.edgesToCreate)
@@ -238,6 +241,19 @@ namespace Verdict.Editor.CaseFlow
                     port.direction != startPort.direction &&
                     port.node != startPort.node)
                 .ToList();
+        }
+
+        public void BeginRebuild()
+        {
+            suppressGraphEvents = true;
+        }
+
+        public void EndRebuild()
+        {
+            schedule.Execute(() =>
+            {
+                suppressGraphEvents = false;
+            });
         }
     }
 }

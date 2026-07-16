@@ -20,35 +20,46 @@ namespace Verdict.Editor.CaseFlow
             EditorSession session,
             ValidationResult result)
         {
-            graphView.ClearGraph();
+            graphView.BeginRebuild();
 
-            float x = 100;
-            float y = 100;
-
-            foreach (FlowGraphNode node in session.FlowGraph.Nodes.Values)
+            try
             {
-                StatementContext context = session.GetContext(node.Id);
+                graphView.ClearGraph();
 
-                StatementNodeView view = graphView.CreateStatementNode(
-                    context,
-                    node,
-                    new Vector2(x, y));
+                float x = 100;
+                float y = 100;
 
-                ApplyNodeTheme(
-                    node,
-                    view,
-                    result);
-
-                x += 350;
-
-                if (x > 1800)
+                foreach (FlowGraphNode node in session.FlowGraph.Nodes.Values)
                 {
-                    x = 100;
-                    y += 250;
-                }
-            }
+                    StatementContext context =
+                        session.GetContext(node.Id);
 
-            graphView.CreateEdges(session.FlowGraph);
+                    StatementNodeView view =
+                        graphView.CreateStatementNode(
+                            context,
+                            node,
+                            new Vector2(x, y));
+
+                    ApplyNodeTheme(
+                        node,
+                        view,
+                        result);
+
+                    x += 350;
+
+                    if (x > 1800)
+                    {
+                        x = 100;
+                        y += 250;
+                    }
+                }
+
+                graphView.CreateEdges(session.FlowGraph);
+            }
+            finally
+            {
+                graphView.EndRebuild();
+            }
         }
 
         private static void ApplyNodeTheme(
