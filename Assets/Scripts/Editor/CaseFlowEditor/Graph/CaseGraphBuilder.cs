@@ -17,7 +17,7 @@ namespace Verdict.Editor.CaseFlow
         }
 
         public void Build(
-            FlowGraph graph,
+            EditorSession session,
             ValidationResult result)
         {
             graphView.ClearGraph();
@@ -25,9 +25,12 @@ namespace Verdict.Editor.CaseFlow
             float x = 100;
             float y = 100;
 
-            foreach (FlowGraphNode node in graph.Nodes.Values)
+            foreach (FlowGraphNode node in session.FlowGraph.Nodes.Values)
             {
+                StatementContext context = session.GetContext(node.Id);
+
                 StatementNodeView view = graphView.CreateStatementNode(
+                    context,
                     node,
                     new Vector2(x, y));
 
@@ -45,7 +48,7 @@ namespace Verdict.Editor.CaseFlow
                 }
             }
 
-            graphView.CreateEdges(graph);
+            graphView.CreateEdges(session.FlowGraph);
         }
 
         private static void ApplyNodeTheme(

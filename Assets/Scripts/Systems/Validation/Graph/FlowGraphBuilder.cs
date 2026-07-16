@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Verdict.Data.Cases;
 
 namespace Verdict.Systems.Validation.Graph
@@ -9,6 +10,11 @@ namespace Verdict.Systems.Validation.Graph
             CaseData caseData)
         {
             FlowGraph graph = new();
+
+            if (caseData == null)
+            {
+                return graph;
+            }
 
             CreateNodes(
                 graph,
@@ -23,6 +29,7 @@ namespace Verdict.Systems.Validation.Graph
 
             return graph;
         }
+
 
         private static void CreateNodes(
             FlowGraph graph,
@@ -41,13 +48,10 @@ namespace Verdict.Systems.Validation.Graph
             }
         }
 
-        /// <summary>
-        /// Builds the default testimony flow.
-        /// If NextStatementId is empty, the next statement in the testimony is used.
-        /// </summary>
+
         private static void LinkSequentialFlow(
-            FlowGraph graph,
-            CaseData caseData)
+     FlowGraph graph,
+     CaseData caseData)
         {
             foreach (WitnessData witness in caseData.Witnesses)
             {
@@ -62,34 +66,36 @@ namespace Verdict.Systems.Validation.Graph
                             statements[i];
 
                         if (!graph.TryGetNode(
-                            current.Id,
-                            out FlowGraphNode currentNode))
+                                current.Id,
+                                out FlowGraphNode from))
                         {
                             continue;
                         }
 
-                        string targetId = current.NextStatementId;
+                        string targetId =
+                            current.NextStatementId;
 
                         // fallback ke statement berikutnya
                         if (string.IsNullOrWhiteSpace(targetId))
                         {
                             if (i >= statements.Count - 1)
-                            {
                                 continue;
-                            }
 
                             targetId =
                                 statements[i + 1].Id;
                         }
 
-                        graph.TryGetNode(
-                            targetId,
-                            out FlowGraphNode targetNode);
+                        if (!graph.TryGetNode(
+                                targetId,
+                                out FlowGraphNode to))
+                        {
+                            continue;
+                        }
 
-                        currentNode.AddEdge(
+                        from.AddEdge(
                             new FlowGraphEdge(
-                                currentNode,
-                                targetNode,
+                                from,
+                                to,
                                 targetId,
                                 FlowEdgeType.NextStatement));
                     }
@@ -97,19 +103,27 @@ namespace Verdict.Systems.Validation.Graph
             }
         }
 
+
         private static void LinkGameplayEffects(
             FlowGraph graph)
         {
-            foreach (FlowGraphNode node in graph.Nodes.Values)
+            foreach (FlowGraphNode node
+                in graph.Nodes.Values)
             {
-                foreach (ClaimData claim in node.Statement.Claims)
+                IReadOnlyList<ClaimData> claims =
+                    node.Statement.Claims;
+
+
+                foreach (ClaimData claim in claims)
                 {
-                    foreach (EvaluationRuleData rule in claim.EvaluationRules)
+                    foreach (EvaluationRuleData rule
+                        in claim.EvaluationRules)
                     {
                         LinkEffects(
                             node,
                             graph,
                             rule.SuccessEffects);
+
 
                         LinkEffects(
                             node,
@@ -119,6 +133,7 @@ namespace Verdict.Systems.Validation.Graph
                 }
             }
         }
+
 
         private static void LinkEffects(
             FlowGraphNode node,
@@ -134,40 +149,71 @@ namespace Verdict.Systems.Validation.Graph
             }
         }
 
+
         private static void LinkEffect(
             FlowGraphNode node,
             FlowGraph graph,
             CourtStateEffectData effect)
         {
-            FlowEdgeType? edgeType = effect.Effect switch
-            {
-                CourtStateEffect.RevealStatement => FlowEdgeType.RevealStatement,
-                CourtStateEffect.JumpStatement => FlowEdgeType.JumpStatement,
+            FlowEdgeType? edgeType =
+                ConvertEffectToEdgeType(
+                    effect.Effect);
 
-                CourtStateEffect.RevealWitness => FlowEdgeType.RevealWitness,
-                CourtStateEffect.JumpWitness => FlowEdgeType.JumpWitness,
-
-                CourtStateEffect.RevealTestimony => FlowEdgeType.RevealTestimony,
-                CourtStateEffect.JumpTestimony => FlowEdgeType.JumpTestimony,
-
-                _ => null
-            };
 
             if (!edgeType.HasValue)
             {
                 return;
             }
 
-            graph.TryGetNode(
-                effect.TargetId,
-                out FlowGraphNode targetNode);
+
+            if (!graph.TryGetNode(
+                    effect.TargetId,
+                    out FlowGraphNode target))
+            {
+                Debug.LogWarning(
+                    $"Effect target not found: {effect.TargetId}");
+
+                return;
+            }
+
 
             node.AddEdge(
                 new FlowGraphEdge(
                     node,
-                    targetNode,
+                    target,
                     effect.TargetId,
                     edgeType.Value));
+        }
+
+
+        private static FlowEdgeType? ConvertEffectToEdgeType(
+            CourtStateEffect effect)
+        {
+            return effect switch
+            {
+                CourtStateEffect.RevealStatement =>
+                    FlowEdgeType.RevealStatement,
+
+                CourtStateEffect.JumpStatement =>
+                    FlowEdgeType.JumpStatement,
+
+
+                CourtStateEffect.RevealWitness =>
+                    FlowEdgeType.RevealWitness,
+
+                CourtStateEffect.JumpWitness =>
+                    FlowEdgeType.JumpWitness,
+
+
+                CourtStateEffect.RevealTestimony =>
+                    FlowEdgeType.RevealTestimony,
+
+                CourtStateEffect.JumpTestimony =>
+                    FlowEdgeType.JumpTestimony,
+
+
+                _ => null
+            };
         }
     }
 }

@@ -35,5 +35,39 @@ namespace Verdict.Data.Cases
         public IReadOnlyList<TestimonyData> Testimonies => testimonies;
 
         public bool InitiallyVisible => initiallyVisible;
+
+        public WitnessData(string id)
+        {
+            this.id = id;
+            character = null;
+            role = WitnessRole.Eyewitness;
+        }
+
+        public void AddTestimony(TestimonyData testimony)
+        {
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            testimonies.Add(testimony);
+        }
+
+        public void InsertTestimony(
+            int index,
+            TestimonyData testimony)
+        {
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            testimonies.Insert(index, testimony);
+        }
+
+        public bool RemoveTestimony(
+            TestimonyData testimony)
+        {
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            return testimonies.Remove(testimony);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -39,13 +40,18 @@ namespace Verdict.Editor.CaseFlow
 
             graphView = new CaseGraphView();
 
-            graphView.StatementSelected += HandleStatementSelected;
+            graphView.StatementSelected += session.Selection.SelectStatement;
 
             session.Selection.SelectionChanged += HandleSelectionChanged;
 
-            graphBuilder = new CaseGraphBuilder(graphView);
+            graphView.EdgeCreated +=
+                HandleEdgeCreated;
 
-            inspector = new CaseInspectorView(session);
+
+            graphView.EdgeRemoved +=
+                HandleEdgeRemoved;
+
+            graphBuilder = new CaseGraphBuilder(graphView);
 
             validationPanel =
                 new ValidationPanel();
@@ -57,6 +63,8 @@ namespace Verdict.Editor.CaseFlow
 
             editService.CaseModified +=
                 HandleCaseModified;
+
+            inspector = new CaseInspectorView(session, editService);
         }
 
         public void Initialize()
@@ -224,12 +232,16 @@ namespace Verdict.Editor.CaseFlow
             if (!HasCase)
                 return;
 
+            string selectedId = session.Selection.Statement?.Id;
+
             RebuildSession();
 
             ValidationResult result =
                 Validate();
 
             RefreshGraph(result);
+
+            RestoreSelection(selectedId);
 
             RefreshValidation(result);
 
@@ -250,7 +262,7 @@ namespace Verdict.Editor.CaseFlow
             ValidationResult result)
         {
             graphBuilder.Build(
-                session.FlowGraph,
+                session,
                 result);
         }
 
@@ -313,7 +325,7 @@ namespace Verdict.Editor.CaseFlow
 
         private void HandleCaseModified()
         {
-            RefreshEditor();
+            EditorUtility.SetDirty(session.CurrentCase);
         }
 
         private void SelectStatement(
@@ -327,6 +339,55 @@ namespace Verdict.Editor.CaseFlow
             }
 
             session.Selection.SelectStatement(context);
+        }
+
+        private void RestoreSelection(
+            string statementId)
+        {
+            if (string.IsNullOrWhiteSpace(statementId))
+                return;
+
+            if (!session.TryGetContext(
+                statementId,
+                out StatementContext context))
+            {
+                return;
+            }
+
+            session.Selection.SelectStatement(context);
+
+            graphView.Frame(statementId);
+        }
+
+
+        private void HandleEdgeCreated(
+            Edge edge)
+        {
+            if (edge.output.node is not StatementNodeView from)
+                return;
+
+
+            if (edge.input.node is not StatementNodeView to)
+                return;
+
+
+            editService.ConnectStatements(
+                from.Context,
+                to.Context);
+        }
+        
+        private void HandleEdgeRemoved(
+            Edge edge)
+        {
+            if (edge.output.node is not StatementNodeView from)
+                return;
+
+            if (edge.input.node is not StatementNodeView to)
+                return;
+
+            editService.DisconnectStatements(
+                from.Context,
+                to.Context);
         }
     }
 }

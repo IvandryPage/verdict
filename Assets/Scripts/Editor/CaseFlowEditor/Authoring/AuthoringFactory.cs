@@ -8,6 +8,20 @@ namespace Verdict.Editor.CaseFlow.Authoring
     /// </summary>
     internal static class AuthoringFactory
     {
+        public static WitnessData CreateWitness()
+        {
+            return new WitnessData(
+                AuthoringId.New());
+        }
+
+        public static TestimonyData CreateTestimony()
+        {
+            return new TestimonyData(
+                AuthoringId.New(),
+                AuthoringDefaults.TestimonyTitle,
+                AuthoringDefaults.TestimonyDescription);
+        }
+
         public static StatementData CreateStatement()
         {
             return new StatementData(
@@ -19,14 +33,6 @@ namespace Verdict.Editor.CaseFlow.Authoring
         {
             return new ClaimData(
                 AuthoringId.New());
-        }
-
-        public static TestimonyData CreateTestimony()
-        {
-            return new TestimonyData(
-                AuthoringId.New(),
-                AuthoringDefaults.TestimonyTitle,
-                AuthoringDefaults.TestimonyDescription);
         }
     }
 }

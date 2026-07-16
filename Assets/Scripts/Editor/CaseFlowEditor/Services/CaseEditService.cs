@@ -1,7 +1,9 @@
 using System;
 using UnityEditor;
+using UnityEngine;
 using Verdict.Data.Cases;
 using Verdict.Editor.CaseFlow.Authoring;
+using Verdict.Systems.Validation.Graph;
 
 namespace Verdict.Editor.CaseFlow.Service
 {
@@ -38,16 +40,26 @@ namespace Verdict.Editor.CaseFlow.Service
             CaseModified?.Invoke();
         }
 
-        private static T Execute<T>(
-                    string operation,
-                    Func<T> action)
+        private T ExecuteMutation<T>(
+            string operation,
+            Func<T> action)
         {
+            EnsureCaseLoaded();
+
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
 
             try
             {
-                return action();
+                Undo.RecordObject(CurrentCase, operation);
+
+                T result = action();
+
+                EditorUtility.SetDirty(CurrentCase);
+
+                CaseModified?.Invoke();
+
+                return result;
             }
             catch (Exception exception)
             {
@@ -57,16 +69,24 @@ namespace Verdict.Editor.CaseFlow.Service
             }
         }
 
-        private static void Execute(
+        private void ExecuteMutation(
             string operation,
             Action action)
         {
+            EnsureCaseLoaded();
+
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
 
             try
             {
+                Undo.RecordObject(CurrentCase, operation);
+
                 action();
+
+                EditorUtility.SetDirty(CurrentCase);
+
+                CaseModified?.Invoke();
             }
             catch (Exception exception)
             {
@@ -94,7 +114,7 @@ namespace Verdict.Editor.CaseFlow.Service
             if (testimony == null)
                 throw new ArgumentNullException(nameof(testimony));
 
-            return Execute(
+            return ExecuteMutation(
                 "Create Statement",
                 () =>
                 {
@@ -102,15 +122,9 @@ namespace Verdict.Editor.CaseFlow.Service
                         AuthoringFactory.CreateStatement();
 
                     if (index < 0)
-                    {
                         testimony.AddStatement(statement);
-                    }
                     else
-                    {
                         testimony.InsertStatement(index, statement);
-                    }
-
-                    NotifyModified();
 
                     return statement;
                 });
@@ -126,7 +140,7 @@ namespace Verdict.Editor.CaseFlow.Service
             if (statement == null)
                 throw new ArgumentNullException(nameof(statement));
 
-            return Execute(
+            return ExecuteMutation(
                 "Delete Statement",
                 () => testimony.RemoveStatement(statement));
         }
@@ -142,5 +156,103 @@ namespace Verdict.Editor.CaseFlow.Service
                 context.Statement);
         }
 
+        public WitnessData CreateWitness()
+        {
+            return ExecuteMutation(
+                "Create Witness",
+                () =>
+                {
+                    WitnessData witness =
+                        AuthoringFactory.CreateWitness();
+
+                    CurrentCase.AddWitness(witness);
+
+                    return witness;
+                });
+        }
+
+        public bool DeleteWitness(
+            WitnessData witness)
+        {
+            if (witness == null)
+                throw new ArgumentNullException(nameof(witness));
+
+            return ExecuteMutation(
+                "Delete Witness",
+                () => CurrentCase.RemoveWitness(witness));
+        }
+
+        public TestimonyData CreateTestimony(
+            WitnessData witness)
+        {
+            if (witness == null)
+                throw new ArgumentNullException(nameof(witness));
+
+            return ExecuteMutation(
+                "Create Testimony",
+                () =>
+                {
+                    TestimonyData testimony =
+                        AuthoringFactory.CreateTestimony();
+
+                    witness.AddTestimony(testimony);
+
+                    return testimony;
+                });
+        }
+
+        public bool DeleteTestimony(
+            WitnessData witness,
+            TestimonyData testimony)
+        {
+            if (witness == null)
+                throw new ArgumentNullException(nameof(witness));
+
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            return ExecuteMutation(
+                "Delete Testimony",
+                () => witness.RemoveTestimony(testimony));
+        }
+
+        public void ConnectStatements(
+            StatementContext from,
+            StatementContext to)
+        {
+            if (from == null)
+                throw new ArgumentNullException(nameof(from));
+
+            if (to == null)
+                throw new ArgumentNullException(nameof(to));
+
+            ExecuteMutation(
+                "Connect Statement",
+                () =>
+                {
+                    from.Statement.SetNextStatement(to.Statement.Id);
+                });
+        }
+
+        public void DisconnectStatements(
+            StatementContext from,
+            StatementContext to)
+        {
+            if (from == null)
+                throw new ArgumentNullException(nameof(from));
+
+            if (to == null)
+                throw new ArgumentNullException(nameof(to));
+
+            ExecuteMutation(
+                "Disconnect Statement",
+                () =>
+                {
+                    if (from.Statement.NextStatementId == to.Statement.Id)
+                    {
+                        from.Statement.SetNextStatement(null);
+                    }
+                });
+        }
     }
 }

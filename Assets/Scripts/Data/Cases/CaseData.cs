@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verdict.Data.Characters;
@@ -74,5 +75,33 @@ namespace Verdict.Data.Cases
 
         public IReadOnlyList<EndingData> Endings => endings;
 
+
+        public void AddWitness(
+            WitnessData witness)
+        {
+            if (witness == null)
+                throw new ArgumentNullException(nameof(witness));
+
+            witnesses.Add(witness);
+        }
+
+        public void InsertWitness(
+            int index,
+            WitnessData witness)
+        {
+            if (witness == null)
+                throw new ArgumentNullException(nameof(witness));
+
+            witnesses.Insert(index, witness);
+        }
+
+        public bool RemoveWitness(
+            WitnessData witness)
+        {
+            if (witness == null)
+                throw new ArgumentNullException(nameof(witness));
+
+            return witnesses.Remove(witness);
+        }
     }
 }

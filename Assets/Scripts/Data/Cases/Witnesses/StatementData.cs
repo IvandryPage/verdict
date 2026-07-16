@@ -33,10 +33,82 @@ namespace Verdict.Data.Cases
 
         public StatementData() { }
 
-        public StatementData(string id, string text)
+        public StatementData(
+            string id,
+            string text,
+            bool initiallyVisible = true,
+            string nextStatementId = "",
+            List<ClaimData> claims = null)
         {
-            this.text = text;
             this.id = id;
+            this.text = text;
+
+            this.initiallyVisible = initiallyVisible;
+            this.nextStatementId = nextStatementId;
+
+            this.claims = claims ?? new List<ClaimData>();
+        }
+
+        public void SetNextStatement(
+            string id)
+        {
+            if (nextStatementId == id)
+                return;
+
+            nextStatementId = id;
+        }
+
+        public void AddClaim(
+            ClaimData claim)
+        {
+            if (claim == null)
+                throw new ArgumentNullException(nameof(claim));
+
+            claims.Add(claim);
+        }
+
+        public void InsertClaim(
+            int index,
+            ClaimData claim)
+        {
+            if (claim == null)
+                throw new ArgumentNullException(nameof(claim));
+
+            if (index < 0 || index > claims.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            claims.Insert(index, claim);
+        }
+
+        public bool RemoveClaim(
+            ClaimData claim)
+        {
+            if (claim == null)
+                throw new ArgumentNullException(nameof(claim));
+
+            return claims.Remove(claim);
+        }
+
+        public void ClearClaims()
+        {
+            claims.Clear();
+        }
+
+        public void MoveClaim(
+            int oldIndex,
+            int newIndex)
+        {
+            if (oldIndex < 0 || oldIndex >= claims.Count)
+                throw new ArgumentOutOfRangeException(nameof(oldIndex));
+
+            if (newIndex < 0 || newIndex >= claims.Count)
+                throw new ArgumentOutOfRangeException(nameof(newIndex));
+
+            ClaimData claim = claims[oldIndex];
+
+            claims.RemoveAt(oldIndex);
+
+            claims.Insert(newIndex, claim);
         }
     }
 }

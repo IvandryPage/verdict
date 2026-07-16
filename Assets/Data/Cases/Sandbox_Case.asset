@@ -212,6 +212,18 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 1
+            - effect: 5
+              targetType: 1
+              targetId: af453f546d1644babcf02d0731719023
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
+      - id: ee608bd5fb38425d8a309021911f6449
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 831fe7ebce3e4920bfda4edaefab4228
+        claims: []
       - id: statement_002
         text: Fine... I entered the kitchen.
         initiallyVisible: 0
@@ -232,6 +244,101 @@ MonoBehaviour:
               characterStat: 0
               value: 0
             failureEffects: []
+      - id: ab7cf3098f714e329e8f2eee37e699a3
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: af453f546d1644babcf02d0731719023
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 551fc140016843ab8acfd5407439f214
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 444631781fc04f8aa71ab6d63b68402f
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 831fe7ebce3e4920bfda4edaefab4228
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: f323ee1cac074f3d9853969a92d1a885
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: c306ec080d674578aefe1a4d66544be9
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 484c0e30ac7e44a48a362a87b5ab3438
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 51dbea78524244eaa7d6b53115b25adb
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 575b0c7f3f194d8593db4a9d02b8f4f3
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 65634a40526f43948ca89e255caa31b6
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 7657b745da564ffbb74cc27cdeedd474
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 3f2df57f412346ee8820791978c11b18
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: e3d75051ea4f4befbfcac12507486d39
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: f8e6c29f02b24d7b823ab8c734867482
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 55a887592b7f466f81880e3f8f514b67
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: ec462bfea242439bbad9d2af473a7349
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: b53c1e6f8ef34f23a5a6335ca0a92190
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 5df85d6d1a874b56aa48eec98234eaec
+        text: New Statement
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
       - id: statement_003
         text: I never touched the knife
         initiallyVisible: 1
@@ -338,7 +445,7 @@ MonoBehaviour:
       - id: statement_006
         text: I lied because I panicked
         initiallyVisible: 0
-        nextStatementId: statement_007
+        nextStatementId: 
         claims: []
     - id: testimony_revised
       title: Revised Testimony

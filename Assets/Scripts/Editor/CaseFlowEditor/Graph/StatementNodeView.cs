@@ -12,7 +12,10 @@ namespace Verdict.Editor.CaseFlow
         private readonly Port inputPort;
         private readonly Port outputPort;
 
-        public StatementData Statement { get; }
+        public StatementContext Context { get; }
+
+        public StatementData Statement =>
+            Context.Statement;
 
         public Port InputPort => inputPort;
 
@@ -21,14 +24,23 @@ namespace Verdict.Editor.CaseFlow
         public event Action<StatementNodeView> Selected;
 
         public StatementNodeView(
-            StatementData statement)
+            StatementContext context)
         {
-            Statement = statement;
+            Context = context;
+
+            capabilities |=
+                Capabilities.Selectable |
+                Capabilities.Movable |
+                Capabilities.Deletable |
+                Capabilities.Ascendable;
+
+            StatementData statement = context.Statement;
 
             title = statement.Id;
 
             extensionContainer.Add(
                 new Label(statement.Text));
+
 
             inputPort = InstantiatePort(
                 Orientation.Horizontal,
@@ -36,28 +48,34 @@ namespace Verdict.Editor.CaseFlow
                 Port.Capacity.Multi,
                 typeof(bool));
 
-            inputPort.portName = "";
+            inputPort.portName = "Input";
+
 
             outputPort = InstantiatePort(
                 Orientation.Horizontal,
                 Direction.Output,
-                Port.Capacity.Multi,
+                Port.Capacity.Single,
                 typeof(bool));
 
-            outputPort.portName = "";
+            outputPort.portName = "Next";
+
 
             inputContainer.Add(inputPort);
             outputContainer.Add(outputPort);
+
 
             RefreshPorts();
             RefreshExpandedState();
         }
 
+
         public override void OnSelected()
         {
             base.OnSelected();
+
             Selected?.Invoke(this);
         }
+
 
         public void ApplyStyle(
             NodeStyle style)
@@ -82,13 +100,6 @@ namespace Verdict.Editor.CaseFlow
 
             titleContainer.style.color =
                 new StyleColor(style.Title);
-        }
-
-        public void FocusToStatement()
-        {
-            BringToFront();
-
-            AddToClassList("selected");
         }
     }
 }

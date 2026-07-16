@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Verdict.Data.Cases;
 using Verdict.Systems.Validation.Graph;
 
@@ -26,6 +27,17 @@ namespace Verdict.Editor.CaseFlow
             CaseData caseData)
         {
             CurrentCase = caseData;
+
+            foreach (var witness in caseData.Witnesses)
+            {
+                foreach (var testimony in witness.Testimonies)
+                {
+                    foreach (var statement in testimony.Statements)
+                    {
+                        Debug.Log($"{statement.Id} -> {statement.NextStatementId}");
+                    }
+                }
+            }
 
             Selection.Clear();
 
@@ -78,6 +90,12 @@ namespace Verdict.Editor.CaseFlow
             Selection.Clear();
 
             statementContexts.Clear();
+        }
+
+        public StatementContext GetContext(
+            string statementId)
+        {
+            return statementContexts[statementId];
         }
     }
 }

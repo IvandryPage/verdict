@@ -18,7 +18,10 @@ namespace Verdict.Editor.CaseFlow
         public IReadOnlyDictionary<string, StatementNodeView> NodeViews =>
             nodeViews;
 
-        public event Action<StatementData> StatementSelected;
+        public event Action<StatementContext> StatementSelected;
+
+        public event Action<Edge> EdgeCreated;
+        public event Action<Edge> EdgeRemoved;
 
         public CaseGraphView()
         {
@@ -32,6 +35,12 @@ namespace Verdict.Editor.CaseFlow
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
 
+            this.AddManipulator(
+                new SelectionDragger());
+
+            this.graphViewChanged =
+                HandleGraphChanged;
+
             GridBackground grid = new();
             Insert(0, grid);
 
@@ -39,11 +48,12 @@ namespace Verdict.Editor.CaseFlow
         }
 
         public StatementNodeView CreateStatementNode(
+            StatementContext context,
             FlowGraphNode graphNode,
             Vector2 position)
         {
             StatementNodeView node =
-                new StatementNodeView(graphNode.Statement);
+                new StatementNodeView(context);
 
             node.SetPosition(
                 new Rect(
@@ -188,7 +198,46 @@ namespace Verdict.Editor.CaseFlow
         private void HandleNodeSelected(
             StatementNodeView node)
         {
-            StatementSelected?.Invoke(node.Statement);
+            StatementSelected?.Invoke(node.Context);
+        }
+
+        private GraphViewChange HandleGraphChanged(
+            GraphViewChange change)
+        {
+            Debug.Log("Graph Changed");
+            if (change.edgesToCreate != null)
+            {
+                foreach (Edge edge in change.edgesToCreate)
+                {
+                    EdgeCreated?.Invoke(edge);
+                }
+            }
+
+
+            if (change.elementsToRemove != null)
+            {
+                foreach (GraphElement element in change.elementsToRemove)
+                {
+                    if (element is Edge edge)
+                    {
+                        EdgeRemoved?.Invoke(edge);
+                    }
+                }
+            }
+
+
+            return change;
+        }
+
+        public override List<Port> GetCompatiblePorts(
+            Port startPort,
+            NodeAdapter nodeAdapter)
+        {
+            return ports
+                .Where(port =>
+                    port.direction != startPort.direction &&
+                    port.node != startPort.node)
+                .ToList();
         }
     }
 }

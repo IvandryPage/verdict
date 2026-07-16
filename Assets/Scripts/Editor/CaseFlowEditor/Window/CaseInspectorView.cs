@@ -4,6 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Editor.CaseFlow.Service;
 
 namespace Verdict.Editor.CaseFlow
 {
@@ -11,14 +12,18 @@ namespace Verdict.Editor.CaseFlow
     {
         private readonly EditorSession session;
 
+        private readonly CaseEditService editService;
+
         private readonly Label emptyLabel;
 
         private readonly ScrollView content;
 
         public CaseInspectorView(
-            EditorSession session)
+            EditorSession session,
+            CaseEditService editService)
         {
             this.session = session;
+            this.editService = editService;
 
             style.flexGrow = 1;
             style.minWidth = 320;
@@ -69,6 +74,8 @@ namespace Verdict.Editor.CaseFlow
             DrawHeader(context);
 
             DrawStatement(context);
+
+            DrawActions(context);
         }
 
         private void DrawHeader(
@@ -118,7 +125,64 @@ namespace Verdict.Editor.CaseFlow
 
             field.Bind(serializedObject);
 
+            field.RegisterValueChangeCallback(evt =>
+            {
+                serializedObject.ApplyModifiedProperties();
+
+                EditorUtility.SetDirty(
+                    context.Case);
+
+                session.LoadCase(
+                    context.Case);
+            });
+
             content.Add(field);
+        }
+
+        private void DrawActions(
+            StatementContext context)
+        {
+            Button addButton =
+                new Button(() =>
+                {
+                    StatementData statement =
+                        editService.CreateStatementAfter(
+                            context);
+
+                    Refresh();
+                })
+                {
+                    text = "Add Statement After"
+                };
+
+
+            Button deleteButton =
+                new Button(() =>
+                {
+                    editService.DeleteStatement(
+                        context);
+
+                    ClearInspector();
+                })
+                {
+                    text = "Delete Statement"
+                };
+
+
+            content.Add(addButton);
+            content.Add(deleteButton);
+
+
+            content.Add(
+                new VisualElement
+                {
+                    style =
+                    {
+                    height = 1,
+                    marginTop = 6,
+                    marginBottom = 6
+                    }
+                });
         }
 
         private void ClearInspector()
