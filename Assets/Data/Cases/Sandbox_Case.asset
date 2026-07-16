@@ -23,16 +23,29 @@ MonoBehaviour:
   version: 1
   author: Artificial Intelligence
   courtSetup:
-    judgeTrust: 70
+    judgeTrust: 86
     penalty: 0
-    publicOpinion: 50
+    publicOpinion: 37
     juryOpinion: 50
     storyProgress: 0
     caseProgress: 0
   judge: {fileID: 11400000, guid: 51a4b5c23956d48788cc7f45d13c7555, type: 2}
   prosecutor: {fileID: 11400000, guid: 76d060268f60d4ccd8e2e1fb6f2d5006, type: 2}
   defenseLawyer: {fileID: 11400000, guid: 07b8f9dbf3fe0467686ce3dd678ab253, type: 2}
-  characterOverrides: []
+  characterOverrides:
+  - character: {fileID: 0}
+    overrideCredibility: 0
+    credibility: 0
+    overrideTrust: 0
+    trust: 0
+    overrideStress: 0
+    stress: 0
+    overrideFear: 0
+    fear: 0
+    overrideCooperation: 0
+    cooperation: 0
+    overrideAffinity: 0
+    affinity: 0
   evidence:
   - evidence: {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
     initiallyUnlocked: 1
@@ -240,7 +253,7 @@ MonoBehaviour:
               value: 0
             - effect: 9
               targetType: 5
-              targetId: 
+              targetId: alice
               courtStat: 0
               operation: 1
               characterStat: 0

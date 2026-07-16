@@ -23,7 +23,9 @@ namespace Verdict.Editor.CaseFlow
         private readonly ValidationPanel validationPanel;
 
         private ObjectField caseField;
-        private CaseData currentCase;
+
+        private bool HasCase =>
+            session.CurrentCase != null;
 
         public CaseEditorController(
             VisualElement root)
@@ -144,28 +146,22 @@ namespace Verdict.Editor.CaseFlow
 
         private void SaveCase()
         {
-            if (currentCase == null)
+            if (!HasCase)
                 return;
 
-            EditorUtility.SetDirty(currentCase);
+            EditorUtility.SetDirty(session.CurrentCase);
 
             AssetDatabase.SaveAssets();
         }
 
         private void ValidateCase()
         {
-            if (currentCase == null)
-                return;
-
-            ValidationResult result =
-                RuntimeValidator.Validate(currentCase);
-
-            validationPanel.Show(result);
+            RefreshEditor();
         }
 
         private void PlayCase()
         {
-            if (currentCase == null)
+            if (!HasCase)
                 return;
 
             Debug.Log("Play...");
@@ -187,32 +183,53 @@ namespace Verdict.Editor.CaseFlow
 
         private void LoadCase(CaseData caseData)
         {
-            currentCase = caseData;
-
             session.LoadCase(caseData);
 
-            ValidationResult result =
-                RuntimeValidator.Validate(caseData);
-
-            validationPanel.Show(result);
-
-            graphBuilder.Build(session.FlowGraph, result);
+            RefreshEditor();
         }
 
         private void ReloadCase()
         {
-            RefreshGraph();
+            RefreshEditor();
         }
 
-        private void RefreshGraph()
+        private void RefreshEditor()
         {
-            if (currentCase == null)
+            if (!HasCase)
                 return;
 
-            ValidationResult result =
-                    RuntimeValidator.Validate(currentCase);
+            RebuildSession();
 
-            graphBuilder.Build(session.FlowGraph, result);
+            ValidationResult result =
+                Validate();
+
+            RefreshGraph(result);
+
+            RefreshValidation(result);
+        }
+
+        private void RebuildSession()
+        {
+            session.LoadCase(session.CurrentCase);
+        }
+
+        private ValidationResult Validate()
+        {
+            return RuntimeValidator.Validate(session.CurrentCase);
+        }
+
+        private void RefreshGraph(
+            ValidationResult result)
+        {
+            graphBuilder.Build(
+                session.FlowGraph,
+                result);
+        }
+
+        private void RefreshValidation(
+            ValidationResult result)
+        {
+            validationPanel.Show(result);
         }
 
         private void HandleValidationIssueSelected(
