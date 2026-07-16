@@ -254,5 +254,154 @@ namespace Verdict.Editor.CaseFlow.Service
                     }
                 });
         }
+
+        public ClaimData CreateClaim(
+            StatementContext context)
+        {
+
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            return ExecuteMutation(
+                "Create Claim",
+                () =>
+                {
+                    ClaimData claim =
+                        AuthoringFactory.CreateClaim();
+
+                    context.Statement.AddClaim(claim);
+
+                    return claim;
+                });
+        }
+
+        public bool DeleteClaim(
+            StatementContext context,
+            ClaimData claim)
+        {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            if (claim == null)
+                throw new ArgumentNullException(nameof(claim));
+
+            return ExecuteMutation(
+                "Delete Claim",
+                () =>
+                {
+                    return context.Statement.RemoveClaim(claim);
+                });
+        }
+
+        public EvaluationRuleData CreateEvaluationRule(
+            ClaimData claim)
+        {
+            if (claim == null)
+                throw new ArgumentNullException(nameof(claim));
+
+            return ExecuteMutation(
+                "Create Evaluation Rule",
+                () =>
+                {
+                    EvaluationRuleData rule =
+                        AuthoringFactory.CreateEvaluationRule();
+
+                    claim.AddEvaluationRule(rule);
+
+                    return rule;
+                });
+        }
+
+        public bool DeleteEvaluationRule(
+            ClaimData claim,
+            EvaluationRuleData rule)
+        {
+            if (claim == null)
+                throw new ArgumentNullException(nameof(claim));
+
+            if (rule == null)
+                throw new ArgumentNullException(nameof(rule));
+
+            return ExecuteMutation(
+                "Delete Evaluation Rule",
+                () =>
+                {
+                    return claim.RemoveEvaluationRule(rule);
+                });
+        }
+
+        public CourtStateEffectData CreateSuccessEffect(
+            EvaluationRuleData rule)
+        {
+            if (rule == null)
+                throw new ArgumentNullException(nameof(rule));
+
+            return ExecuteMutation(
+                "Create Success Effect",
+                () =>
+                {
+                    CourtStateEffectData effect =
+                        AuthoringFactory.CreateEffect();
+
+                    rule.AddSuccessEffect(effect);
+
+                    return effect;
+                });
+        }
+
+        public bool DeleteSuccessEffect(
+            EvaluationRuleData rule,
+            CourtStateEffectData effect)
+        {
+            if (rule == null)
+                throw new ArgumentNullException(nameof(rule));
+
+            if (effect == null)
+                throw new ArgumentNullException(nameof(effect));
+
+            return ExecuteMutation(
+                "Delete Success Effect",
+                () =>
+                {
+                    return rule.RemoveSuccessEffect(effect);
+                });
+        }
+
+        public CourtStateEffectData CreateFailureEffect(
+            EvaluationRuleData rule)
+        {
+            if (rule == null)
+                throw new ArgumentNullException(nameof(rule));
+
+            return ExecuteMutation(
+                "Create Failure Effect",
+                () =>
+                {
+                    CourtStateEffectData effect =
+                        AuthoringFactory.CreateEffect();
+
+                    rule.AddFailureEffect(effect);
+
+                    return effect;
+                });
+        }
+
+        public bool DeleteFailureEffect(
+            EvaluationRuleData rule,
+            CourtStateEffectData effect)
+        {
+            if (rule == null)
+                throw new ArgumentNullException(nameof(rule));
+
+            if (effect == null)
+                throw new ArgumentNullException(nameof(effect));
+
+            return ExecuteMutation(
+                "Delete Failure Effect",
+                () =>
+                {
+                    return rule.RemoveFailureEffect(effect);
+                });
+        }
     }
 }

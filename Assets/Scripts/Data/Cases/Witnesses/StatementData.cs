@@ -61,6 +61,7 @@ namespace Verdict.Data.Cases
         public void AddClaim(
             ClaimData claim)
         {
+            Debug.Log($"AddClaim {claim.Id}");
             if (claim == null)
                 throw new ArgumentNullException(nameof(claim));
 

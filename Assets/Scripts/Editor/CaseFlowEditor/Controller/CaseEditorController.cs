@@ -84,22 +84,18 @@ namespace Verdict.Editor.CaseFlow
                     900,
                     TwoPaneSplitViewOrientation.Horizontal);
 
-            // Inspector
-            // ----------
-            // Validation
-            TwoPaneSplitView verticalSplit =
-                new TwoPaneSplitView(
+            TwoPaneSplitView vertical =
+                new(
                     0,
                     350,
                     TwoPaneSplitViewOrientation.Vertical);
 
-            verticalSplit.Add(inspector);
-
-            verticalSplit.Add(validationPanel);
+            vertical.Add(inspector);
+            vertical.Add(validationPanel);// Inspector
 
             horizontalSplit.Add(graphView);
 
-            horizontalSplit.Add(verticalSplit);
+            horizontalSplit.Add(vertical);
 
             root.Add(horizontalSplit);
         }
@@ -134,14 +130,18 @@ namespace Verdict.Editor.CaseFlow
                 text = "Validate"
             });
 
+            toolbar.Add(new ToolbarSpacer());
+
             toolbar.Add(new ToolbarButton(PlayCase)
             {
                 text = "Play"
             });
 
+            toolbar.Add(new ToolbarSpacer());
+
             toolbar.Add(new ToolbarButton(CreateStatement)
             {
-                text = "New Statement"
+                text = "+ Statement"
             });
 
             return toolbar;
@@ -149,15 +149,11 @@ namespace Verdict.Editor.CaseFlow
 
         private void OnCaseChanged(ChangeEvent<Object> evt)
         {
-
-            Debug.Log($"Old: {evt.previousValue}");
-            Debug.Log($"New: {evt.newValue}");
-
             if (evt.newValue is not CaseData caseData)
             {
                 return;
             }
-            Debug.Log("LOAD");
+
             LoadCase(caseData);
         }
 

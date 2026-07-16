@@ -34,5 +34,15 @@ namespace Verdict.Editor.CaseFlow.Authoring
             return new ClaimData(
                 AuthoringId.New());
         }
+
+        public static EvaluationRuleData CreateEvaluationRule()
+        {
+            return new EvaluationRuleData();
+        }
+
+        public static CourtStateEffectData CreateEffect()
+        {
+            return new CourtStateEffectData();
+        }
     }
 }

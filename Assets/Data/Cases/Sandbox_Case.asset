@@ -176,54 +176,10 @@ MonoBehaviour:
         initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: claim_location
-          factId: fact_001
-          isTrue: 0
-          evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: a4faf24ea4c7d448b9c03bfbcc4321d2, type: 2}
-            successEffects:
-            - effect: 1
-              targetType: 1
-              targetId: statement_012
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 0
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 10
-            - effect: 9
-              targetType: 5
-              targetId: alice
-              courtStat: 0
-              operation: 1
-              characterStat: 0
-              value: 10
-            failureEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 1
-            - effect: 5
-              targetType: 1
-              targetId: af453f546d1644babcf02d0731719023
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 1
-      - id: ee608bd5fb38425d8a309021911f6449
-        text: New Statement
-        initiallyVisible: 1
-        nextStatementId: 831fe7ebce3e4920bfda4edaefab4228
-        claims: []
+        - id: 98059eee9fb0474d92040a3ab4c36722
+          factId: 
+          isTrue: 1
+          evaluationRules: []
       - id: statement_002
         text: Fine... I entered the kitchen.
         initiallyVisible: 0
@@ -249,27 +205,7 @@ MonoBehaviour:
         initiallyVisible: 1
         nextStatementId: 
         claims: []
-      - id: af453f546d1644babcf02d0731719023
-        text: New Statement
-        initiallyVisible: 1
-        nextStatementId: 
-        claims: []
       - id: 551fc140016843ab8acfd5407439f214
-        text: New Statement
-        initiallyVisible: 1
-        nextStatementId: 
-        claims: []
-      - id: 444631781fc04f8aa71ab6d63b68402f
-        text: New Statement
-        initiallyVisible: 1
-        nextStatementId: 
-        claims: []
-      - id: 831fe7ebce3e4920bfda4edaefab4228
-        text: New Statement
-        initiallyVisible: 1
-        nextStatementId: 
-        claims: []
-      - id: f323ee1cac074f3d9853969a92d1a885
         text: New Statement
         initiallyVisible: 1
         nextStatementId: 
@@ -310,11 +246,6 @@ MonoBehaviour:
         nextStatementId: 
         claims: []
       - id: e3d75051ea4f4befbfcac12507486d39
-        text: New Statement
-        initiallyVisible: 1
-        nextStatementId: 
-        claims: []
-      - id: f8e6c29f02b24d7b823ab8c734867482
         text: New Statement
         initiallyVisible: 1
         nextStatementId: 
