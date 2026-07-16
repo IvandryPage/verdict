@@ -38,10 +38,8 @@ namespace Verdict.Editor.CaseFlow
 
         private void Refresh()
         {
-            Debug.Log("Inspector: Refresh!");
             StatementData statement =
-                session.Selection.Get<StatementData>();
-            Debug.Log($"Statement ID: {statement?.Id}");
+                session.Selection.Statement;
 
             if (statement == null)
             {

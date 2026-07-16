@@ -3,6 +3,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Editor.CaseFlow.Service;
 using Verdict.Editor.CaseFlow.Validation;
 using Verdict.Systems.Validation;
 
@@ -22,6 +23,8 @@ namespace Verdict.Editor.CaseFlow
 
         private readonly ValidationPanel validationPanel;
 
+        private readonly CaseEditService editService;
+
         private ObjectField caseField;
 
         private bool HasCase =>
@@ -36,10 +39,7 @@ namespace Verdict.Editor.CaseFlow
 
             graphView = new CaseGraphView();
 
-            graphView.StatementSelected += statement =>
-            {
-                session.Selection.Select(statement);
-            };
+            graphView.StatementSelected += HandleStatementSelected;
 
             session.Selection.SelectionChanged += HandleSelectionChanged;
 
@@ -52,6 +52,11 @@ namespace Verdict.Editor.CaseFlow
 
             validationPanel.IssueSelected +=
                 HandleValidationIssueSelected;
+
+            editService = new CaseEditService(session);
+
+            editService.CaseModified +=
+                HandleCaseModified;
         }
 
         public void Initialize()
@@ -131,6 +136,11 @@ namespace Verdict.Editor.CaseFlow
                 text = "Play"
             });
 
+            toolbar.Add(new ToolbarButton(CreateStatement)
+            {
+                text = "New Statement"
+            });
+
             return toolbar;
         }
 
@@ -165,6 +175,22 @@ namespace Verdict.Editor.CaseFlow
                 return;
 
             Debug.Log("Play...");
+        }
+
+        private void CreateStatement()
+        {
+            if (!HasCase) return;
+
+            if (!session.Selection.HasStatement)
+            {
+                Debug.LogWarning("Select a statement first.");
+                return;
+            }
+
+            StatementContext context = session.Selection.StatementContext;
+            StatementData newStatement = editService.CreateStatementAfter(context);
+            RefreshEditor();
+            SelectStatement(newStatement);
         }
 
         public void HandleEvent(Event e)
@@ -206,6 +232,8 @@ namespace Verdict.Editor.CaseFlow
             RefreshGraph(result);
 
             RefreshValidation(result);
+
+            RefreshInspector();
         }
 
         private void RebuildSession()
@@ -232,6 +260,11 @@ namespace Verdict.Editor.CaseFlow
             validationPanel.Show(result);
         }
 
+        private void RefreshInspector()
+        {
+            // Future
+        }
+
         private void HandleValidationIssueSelected(
             ValidationIssue issue)
         {
@@ -250,8 +283,7 @@ namespace Verdict.Editor.CaseFlow
 
             Debug.Log("Context FOUND");
 
-            session.Selection.Select(
-                context.Statement);
+            session.Selection.SelectStatement(context);
 
             graphView.Frame(
                 context.Statement.Id);
@@ -259,13 +291,42 @@ namespace Verdict.Editor.CaseFlow
 
         private void HandleSelectionChanged()
         {
-            StatementData statement =
-                session.Selection.Get<StatementData>();
-
-            if (statement == null)
+            if (!session.Selection.HasStatement)
                 return;
 
-            graphView.Frame(statement.Id);
+            graphView.Frame(
+                session.Selection.Statement.Id);
+        }
+
+        private void HandleStatementSelected(
+            StatementData statement)
+        {
+            if (!session.TryGetContext(
+                statement.Id,
+                out StatementContext context))
+            {
+                return;
+            }
+
+            session.Selection.SelectStatement(context);
+        }
+
+        private void HandleCaseModified()
+        {
+            RefreshEditor();
+        }
+
+        private void SelectStatement(
+            StatementData statement)
+        {
+            if (!session.TryGetContext(
+                    statement.Id,
+                    out StatementContext context))
+            {
+                return;
+            }
+
+            session.Selection.SelectStatement(context);
         }
     }
 }

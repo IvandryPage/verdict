@@ -1,36 +1,83 @@
 using System;
-using UnityEngine;
+using Verdict.Data.Cases;
 
 namespace Verdict.Editor.CaseFlow
 {
+    /// <summary>
+    /// Represents the current authoring context inside the Case Flow Editor.
+    /// </summary>
     public sealed class EditorSelection
     {
         public event Action SelectionChanged;
 
-        public object Selected { get; private set; }
+        public CaseData Case { get; private set; }
 
-        public void Select<T>(T value)
-            where T : class
+        public StatementContext StatementContext { get; private set; }
+
+        public bool HasCase => Case != null;
+
+        public bool HasWitness => Witness != null;
+
+        public bool HasTestimony => Testimony != null;
+
+        public bool HasStatement =>
+            StatementContext != null;
+
+        public WitnessData Witness =>
+            StatementContext?.Witness;
+
+        public TestimonyData Testimony =>
+            StatementContext?.Testimony;
+
+        public StatementData Statement =>
+            StatementContext?.Statement;
+
+
+        public void SelectCase(CaseData caseData)
         {
-            Debug.Log($"Selecting {value}");
-            if (ReferenceEquals(Selected, value))
+            if (ReferenceEquals(Case, caseData) &&
+                StatementContext == null)
+            {
                 return;
+            }
 
-            Selected = value;
-            Debug.Log("Selected changed!");
-            SelectionChanged?.Invoke();
+            Case = caseData;
+            StatementContext = null;
+
+            NotifySelectionChanged();
         }
 
-        public T Get<T>()
-            where T : class
+        public void SelectStatement(
+            StatementContext context)
         {
-            return Selected as T;
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            if (ReferenceEquals(StatementContext, context))
+                return;
+
+            Case = context.Case;
+            StatementContext = context;
+
+            NotifySelectionChanged();
         }
 
         public void Clear()
         {
-            Selected = null;
+            if (Case == null &&
+                StatementContext == null)
+            {
+                return;
+            }
 
+            Case = null;
+            StatementContext = null;
+
+            NotifySelectionChanged();
+        }
+
+        private void NotifySelectionChanged()
+        {
             SelectionChanged?.Invoke();
         }
     }

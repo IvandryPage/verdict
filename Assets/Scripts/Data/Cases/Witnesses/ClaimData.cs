@@ -23,5 +23,9 @@ namespace Verdict.Data.Cases
         public bool IsTrue => isTrue;
 
         public IReadOnlyList<EvaluationRuleData> EvaluationRules => evaluationRules;
+
+        public ClaimData() { }
+
+        public ClaimData(string id) { this.id = id; }
     }
 }
