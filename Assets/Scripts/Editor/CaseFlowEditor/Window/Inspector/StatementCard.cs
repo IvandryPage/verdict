@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -94,16 +97,119 @@ namespace Verdict.Editor.CaseFlow.Inspector
             PropertyField visibleField =
                 new(visibleProperty);
 
-            PropertyField nextField =
-                new(nextProperty);
+            VisualElement nextField =
+                CreateStatementDropdown(
+                    so,
+                    nextProperty,
+                    context.Case);
 
             textField.Bind(so);
             visibleField.Bind(so);
-            nextField.Bind(so);
 
             Add(textField);
             Add(visibleField);
             Add(nextField);
+        }
+
+        private VisualElement CreateStatementDropdown(
+            SerializedObject serializedObject,
+            SerializedProperty statementProperty,
+            CaseData caseData)
+        {
+            VisualElement container =
+                new VisualElement();
+
+            container.Add(new Label("Next Statement")
+            {
+                style =
+                {
+                    unityFontStyleAndWeight = FontStyle.Bold,
+                    marginBottom = 2
+                }
+            });
+
+            List<ReferenceEntry> options =
+                new()
+                {
+                    new ReferenceEntry(
+                        string.Empty,
+                        "<None>")
+                };
+
+            foreach (WitnessData witness in caseData.Witnesses)
+            {
+                foreach (TestimonyData testimony in witness.Testimonies)
+                {
+                    foreach (StatementData statement in testimony.Statements)
+                    {
+                        string label =
+                            string.IsNullOrWhiteSpace(
+                                statement.Text)
+                                ? statement.Id
+                                : $"{statement.Id} — {GetPreviewText(statement.Text)}";
+
+                        options.Add(
+                            new ReferenceEntry(
+                                statement.Id,
+                                label));
+                    }
+                }
+            }
+
+            int selectedIndex =
+                Math.Max(
+                    0,
+                    options.FindIndex(
+                        option => option.Id ==
+                            statementProperty.stringValue));
+
+            PopupField<ReferenceEntry> popup =
+                new PopupField<ReferenceEntry>(
+                    options,
+                    selectedIndex,
+                    entry => entry.Label,
+                    entry => entry.Label);
+
+            popup.RegisterValueChangedCallback(
+                evt =>
+                {
+                    statementProperty.stringValue =
+                        evt.newValue?.Id ?? string.Empty;
+                    serializedObject.ApplyModifiedProperties();
+                    EditorUtility.SetDirty(context.Case);
+                });
+
+            container.Add(popup);
+            return container;
+        }
+
+        private static string GetPreviewText(
+            string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return string.Empty;
+
+            const int maxLength = 40;
+            string oneLine =
+                text.Replace('\n', ' ');
+
+            return oneLine.Length <= maxLength
+                ? oneLine
+                : oneLine[..maxLength] + "...";
+        }
+
+        private sealed class ReferenceEntry
+        {
+            public string Id { get; }
+            public string Label { get; }
+
+            public ReferenceEntry(
+                string id,
+                string label)
+            {
+                Id = id;
+                Label = label;
+            }
         }
 
         private void DrawButtons()

@@ -40,8 +40,7 @@ namespace Verdict.Editor.CaseFlow
                 context.Statement;
 
             title =
-                HierarchyDisplayUtility.GetStatementName(
-                    statement);
+                GetStatementTitle(statement);
 
             style.width = 320;
             style.maxWidth = 320;
@@ -50,7 +49,7 @@ namespace Verdict.Editor.CaseFlow
 
 
             Label preview =
-                new Label(GetPreview(statement))
+                new Label(GetPreviewText(statement))
                 {
                     tooltip = statement.Text
                 };
@@ -194,7 +193,34 @@ namespace Verdict.Editor.CaseFlow
         }
 
 
-        private static string GetPreview(
+        private static string GetStatementTitle(
+            StatementData statement)
+        {
+            if (statement == null)
+                return "<Missing Statement>";
+
+            string id = GetShortId(statement.Id);
+
+            if (string.IsNullOrWhiteSpace(statement.Text))
+                return id;
+
+            string text = statement.Text.Trim();
+
+            return $"{id} — {(text.Length <= 30 ? text : text.Substring(0, 30) + "...")}";
+        }
+
+        private static string GetShortId(
+            string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return "<no id>";
+
+            return id.Length <= 5
+                ? id
+                : id[..5];
+        }
+
+        private static string GetPreviewText(
             StatementData statement)
         {
             if (string.IsNullOrWhiteSpace(statement.Text))

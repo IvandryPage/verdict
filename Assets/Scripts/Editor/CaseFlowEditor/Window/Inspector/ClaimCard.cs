@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -76,20 +79,16 @@ namespace Verdict.Editor.CaseFlow.Inspector
                 claimProperty.FindPropertyRelative(
                     "isTrue");
 
-            PropertyField factField =
-                new PropertyField(factProperty);
+            VisualElement factField =
+                CreateFactDropdown(
+                    so,
+                    factProperty,
+                    context.Case);
 
             PropertyField truthField =
                 new PropertyField(truthProperty);
 
-            factField.Bind(so);
             truthField.Bind(so);
-
-            factField.RegisterValueChangeCallback(_ =>
-            {
-                so.ApplyModifiedProperties();
-                EditorUtility.SetDirty(context.Case);
-            });
 
             truthField.RegisterValueChangeCallback(_ =>
             {
@@ -99,6 +98,96 @@ namespace Verdict.Editor.CaseFlow.Inspector
 
             Add(factField);
             Add(truthField);
+        }
+
+        private VisualElement CreateFactDropdown(
+            SerializedObject serializedObject,
+            SerializedProperty factProperty,
+            CaseData caseData)
+        {
+            VisualElement container =
+                new VisualElement();
+
+            container.Add(new Label("Fact")
+            {
+                style =
+                {
+                    unityFontStyleAndWeight = FontStyle.Bold,
+                    marginBottom = 2
+                }
+            });
+
+            IReadOnlyList<FactData> facts =
+                caseData?.Truth?.Facts ??
+                Array.Empty<FactData>();
+
+            List<ReferenceEntry> options =
+                facts.Select(f =>
+                    new ReferenceEntry(
+                        f.Id,
+                        GetFactLabel(f)))
+                .ToList();
+
+            options.Insert(
+                0,
+                new ReferenceEntry(
+                    string.Empty,
+                    "<None>"));
+
+            int selectedIndex =
+                Math.Max(
+                    0,
+                    options.FindIndex(
+                        option => option.Id ==
+                            factProperty.stringValue));
+
+            PopupField<ReferenceEntry> popup =
+                new PopupField<ReferenceEntry>(
+                    options,
+                    selectedIndex,
+                    entry => entry.Label,
+                    entry => entry.Label);
+
+            popup.RegisterValueChangedCallback(
+                evt =>
+                {
+                    factProperty.stringValue =
+                        evt.newValue?.Id ?? string.Empty;
+                    serializedObject.ApplyModifiedProperties();
+                    EditorUtility.SetDirty(context.Case);
+                });
+
+            container.Add(popup);
+            return container;
+        }
+
+        private static string GetFactLabel(
+            FactData fact)
+        {
+            if (fact == null)
+                return string.Empty;
+
+            string subject = fact.Subject?.ToString() ?? "?";
+            string predicate = fact.Predicate.ToString();
+            string @object = fact.Object?.ToString() ?? "?";
+
+            return string.IsNullOrWhiteSpace(fact.Id)
+                ? $"{subject} {predicate} {@object}"
+                : $"{fact.Id} — {subject} {predicate} {@object}";
+        }
+
+        private sealed class ReferenceEntry
+        {
+            public string Id { get; }
+            public string Label { get; }
+
+            public ReferenceEntry(
+                string id,
+                string label)
+            {
+                Id = id;
+                Label = label;
+            }
         }
 
         private void DrawRules()
