@@ -20,77 +20,34 @@ namespace Verdict.Editor.CaseFlow.Layout
             Dictionary<string, List<FlowGraphNode>> incoming =
                 BuildIncomingMap(graph);
 
-            IEnumerable<IGrouping<int, KeyValuePair<string, int>>> grouped =
-                layers
-                .GroupBy(x => x.Value)
-                .OrderBy(x => x.Key);
+            Dictionary<string, List<FlowGraphNode>> outgoing =
+                BuildOutgoingMap(graph);
 
-            foreach (IGrouping<int, KeyValuePair<string, int>> layer in grouped)
-            {
-                List<KeyValuePair<string, int>> nodes =
-                    layer.ToList();
+            Dictionary<int, List<NodeLayout>> layerNodes =
+                BuildLayerNodes(graph, layers);
 
-                nodes.Sort((a, b) =>
-                {
-                    float ay =
-                        AverageParentY(
-                            a.Key,
-                            incoming,
-                            positions);
+            InitializeLayerOrder(
+                layerNodes,
+                incoming);
 
-                    float by =
-                        AverageParentY(
-                            b.Key,
-                            incoming,
-                            positions);
-
-                    return ay.CompareTo(by);
-                });
-
-                int count =
-                    nodes.Count;
-
-                float offset =
-                    (count - 1) *
-                    settings.RowSpacing *
-                    0.5f;
-
-                for (int row = 0;
-                     row < nodes.Count;
-                     row++)
-                {
-                    KeyValuePair<string, int> node =
-                        nodes[row];
-
-                    float x =
-                        settings.StartPosition.x +
-                        layer.Key *
-                        settings.LayerSpacing;
-
-                    float y =
-                        settings.StartPosition.y +
-                        row *
-                        settings.RowSpacing -
-                        offset;
-
-                    positions[node.Key] =
-                        new Vector2(x, y);
-                }
-            }
-
-            RelaxPositions(
-                graph,
+            MinimizeCrossings(
+                layerNodes,
                 incoming,
-                positions);
+                outgoing);
 
+            AssignCoordinates(
+                layerNodes,
+                settings,
+                positions);
 
             ResolveCollisions(
-                graph,
-                positions);
+                positions,
+                settings.RowSpacing);
 
             CenterParents(
                 graph,
-                positions);
+                positions,
+                settings);
 
             return positions;
         }
@@ -119,6 +76,233 @@ namespace Verdict.Editor.CaseFlow.Layout
             }
 
             return map;
+        }
+
+        private static Dictionary<string, List<FlowGraphNode>> BuildOutgoingMap(
+            FlowGraph graph)
+        {
+            Dictionary<string, List<FlowGraphNode>> map =
+                new();
+
+            foreach (FlowGraphNode node in graph.Nodes.Values)
+            {
+                map[node.Id] =
+                    new List<FlowGraphNode>();
+            }
+
+            foreach (FlowGraphNode node in graph.Nodes.Values)
+            {
+                foreach (FlowGraphEdge edge in node.Outgoing)
+                {
+                    if (!edge.IsResolved)
+                        continue;
+
+                    map[node.Id].Add(edge.To);
+                }
+            }
+
+            return map;
+        }
+
+        private static Dictionary<int, List<NodeLayout>> BuildLayerNodes(
+            FlowGraph graph,
+            Dictionary<string, int> layers)
+        {
+            Dictionary<int, List<NodeLayout>> layerNodes =
+                new();
+
+            foreach (FlowGraphNode node in graph.Nodes.Values)
+            {
+                int layer =
+                    layers.TryGetValue(node.Id, out int value)
+                        ? value
+                        : 0;
+
+                if (!layerNodes.TryGetValue(
+                        layer,
+                        out List<NodeLayout> list))
+                {
+                    list = new List<NodeLayout>();
+                    layerNodes.Add(layer, list);
+                }
+
+                list.Add(new NodeLayout
+                {
+                    Id = node.Id,
+                    Layer = layer
+                });
+            }
+
+            foreach (List<NodeLayout> list in layerNodes.Values)
+            {
+                list.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+            }
+
+            return layerNodes;
+        }
+
+        private static void InitializeLayerOrder(
+            Dictionary<int, List<NodeLayout>> layerNodes,
+            Dictionary<string, List<FlowGraphNode>> incoming)
+        {
+            Dictionary<string, NodeLayout> layoutById =
+                layerNodes.Values
+                    .SelectMany(list => list)
+                    .ToDictionary(node => node.Id);
+
+            foreach (KeyValuePair<int, List<NodeLayout>> layer in layerNodes)
+            {
+                layer.Value.Sort((a, b) =>
+                {
+                    float ay =
+                        AverageParentOrder(a.Id, incoming, layoutById);
+                    float by =
+                        AverageParentOrder(b.Id, incoming, layoutById);
+                    return ay.CompareTo(by);
+                });
+
+                for (int i = 0; i < layer.Value.Count; i++)
+                {
+                    layer.Value[i].Order = i;
+                }
+            }
+        }
+
+        private static float AverageParentOrder(
+            string nodeId,
+            Dictionary<string, List<FlowGraphNode>> incoming,
+            Dictionary<string, NodeLayout> layoutById)
+        {
+            if (!incoming.TryGetValue(nodeId, out List<FlowGraphNode> parents) ||
+                parents.Count == 0)
+            {
+                return 0f;
+            }
+
+            float total = 0f;
+            int count = 0;
+            foreach (FlowGraphNode parent in parents)
+            {
+                if (layoutById.TryGetValue(parent.Id, out NodeLayout parentLayout))
+                {
+                    total += parentLayout.Order;
+                    count++;
+                }
+            }
+
+            return count == 0 ? 0f : total / count;
+        }
+
+        private static void MinimizeCrossings(
+            Dictionary<int, List<NodeLayout>> layerNodes,
+            Dictionary<string, List<FlowGraphNode>> incoming,
+            Dictionary<string, List<FlowGraphNode>> outgoing)
+        {
+            int minLayer = layerNodes.Keys.Min();
+            int maxLayer = layerNodes.Keys.Max();
+
+            for (int pass = 0; pass < 4; pass++)
+            {
+                bool topDown = pass % 2 == 0;
+
+                if (topDown)
+                {
+                    for (int layer = minLayer + 1; layer <= maxLayer; layer++)
+                    {
+                        if (!layerNodes.TryGetValue(layer, out List<NodeLayout> list))
+                            continue;
+
+                        OrderLayerByAdjacent(
+                            list,
+                            layerNodes[layer - 1],
+                            incoming);
+                    }
+                }
+                else
+                {
+                    for (int layer = maxLayer - 1; layer >= minLayer; layer--)
+                    {
+                        if (!layerNodes.TryGetValue(layer, out List<NodeLayout> list))
+                            continue;
+
+                        OrderLayerByAdjacent(
+                            list,
+                            layerNodes[layer + 1],
+                            outgoing);
+                    }
+                }
+            }
+        }
+
+        private static void OrderLayerByAdjacent(
+            List<NodeLayout> layer,
+            List<NodeLayout> adjacentLayer,
+            Dictionary<string, List<FlowGraphNode>> adjacency)
+        {
+            if (adjacentLayer == null || adjacentLayer.Count == 0)
+                return;
+
+            Dictionary<string, int> adjacentOrder =
+                adjacentLayer
+                    .Select((layout, index) => new { layout.Id, index })
+                    .ToDictionary(x => x.Id, x => x.index);
+
+            List<(NodeLayout node, float median)> scoring =
+                layer.Select(node =>
+                {
+                    List<int> neighborOrders =
+                        adjacency.TryGetValue(node.Id, out List<FlowGraphNode> neighbors)
+                            ? neighbors
+                                .Where(n => adjacentOrder.ContainsKey(n.Id))
+                                .Select(n => adjacentOrder[n.Id])
+                                .OrderBy(x => x)
+                                .ToList()
+                            : new List<int>();
+
+                    float median = neighborOrders.Count switch
+                    {
+                        0 => node.Order,
+                        1 => neighborOrders[0],
+                        _ => (neighborOrders[(neighborOrders.Count - 1) / 2] + neighborOrders[neighborOrders.Count / 2]) * 0.5f,
+                    };
+
+                    return (node, median);
+                })
+                .ToList();
+
+            scoring.Sort((a, b) =>
+            {
+                int compare = a.median.CompareTo(b.median);
+                return compare != 0 ? compare : string.CompareOrdinal(a.node.Id, b.node.Id);
+            });
+
+            for (int i = 0; i < scoring.Count; i++)
+            {
+                scoring[i].node.Order = i;
+                layer[i] = scoring[i].node;
+            }
+        }
+
+        private static void AssignCoordinates(
+            Dictionary<int, List<NodeLayout>> layerNodes,
+            LayoutSettings settings,
+            Dictionary<string, Vector2> positions)
+        {
+            foreach (KeyValuePair<int, List<NodeLayout>> layer in layerNodes)
+            {
+                List<NodeLayout> nodes = layer.Value;
+                int count = nodes.Count;
+                float offset = (count - 1) * settings.RowSpacing * 0.5f;
+
+                for (int i = 0; i < count; i++)
+                {
+                    NodeLayout node = nodes[i];
+                    float x = settings.StartPosition.x + layer.Key * settings.LayerSpacing;
+                    float y = settings.StartPosition.y + node.Order * settings.RowSpacing - offset;
+                    node.Position = new Vector2(x, y);
+                    positions[node.Id] = node.Position;
+                }
+            }
         }
 
         private static float AverageParentY(
@@ -212,8 +396,8 @@ namespace Verdict.Editor.CaseFlow.Layout
         }
 
         private static void ResolveCollisions(
-            FlowGraph graph,
-            Dictionary<string, Vector2> positions)
+            Dictionary<string, Vector2> positions,
+            float rowSpacing)
         {
             Dictionary<float, List<KeyValuePair<string, Vector2>>> layers =
                 new();
@@ -256,11 +440,35 @@ namespace Verdict.Editor.CaseFlow.Layout
                     }
                 }
             }
+            foreach (List<KeyValuePair<string, Vector2>> layer in layers.Values)
+            {
+                layer.Sort((a, b) =>
+                    a.Value.y.CompareTo(b.Value.y));
+
+                for (int i = 1; i < layer.Count; i++)
+                {
+                    Vector2 previous =
+                        positions[layer[i - 1].Key];
+
+                    Vector2 current =
+                        positions[layer[i].Key];
+
+                    float minY =
+                        previous.y + rowSpacing;
+
+                    if (current.y < minY)
+                    {
+                        current.y = minY;
+                        positions[layer[i].Key] = current;
+                    }
+                }
+            }
         }
 
         private static void CenterParents(
             FlowGraph graph,
-            Dictionary<string, Vector2> positions)
+            Dictionary<string, Vector2> positions,
+            LayoutSettings settings)
         {
             foreach (FlowGraphNode node in graph.Nodes.Values.Reverse())
             {
