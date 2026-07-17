@@ -563,11 +563,13 @@ namespace Verdict.Editor.CaseFlow
 
         private void HandleSelectionChanged()
         {
-            if (!session.Selection.HasStatement)
-                return;
+            if (session.Selection.HasStatement)
+            {
+                graphView.Select(
+                    session.Selection.Statement.Id);
+            }
 
-            graphView.Select(
-                session.Selection.Statement.Id);
+            hierarchy.SelectCurrent(session.Selection);
         }
 
 

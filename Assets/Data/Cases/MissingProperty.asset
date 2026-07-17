@@ -259,7 +259,7 @@ MonoBehaviour:
         text: Actually, I did see something suspicious. Morgan was near my desk earlier,
           which was unusual.
         initiallyVisible: 0
-        nextStatementId: 
+        nextStatementId: 97cbb78e98ab40a2975d1c94367d6624
         claims:
         - id: ee7ff2ddf64e482cb00a78db19920e7b
           factId: fact_morgan_near_desk
@@ -370,7 +370,7 @@ MonoBehaviour:
           around 8:15 AM. That's unusual because Morgan usually doesn't work with
           lab equipment.
         initiallyVisible: 0
-        nextStatementId: 
+        nextStatementId: c03ede89f2b64ed99dfa2d82562d9fa3
         claims:
         - id: 456ad0fa777a4c468eceff4c779078da
           factId: fact_morgan_requested_tools
@@ -456,6 +456,10 @@ MonoBehaviour:
               operation: 0
               characterStat: 1
               value: 3
+        - id: be5340184fca4e029abb08c59cdcf820
+          factId: 
+          isTrue: 1
+          evaluationRules: []
       - id: eb598063d999428e98ae72ef8619062d
         text: I never touched the prototype. I don't even know how to operate it.
         initiallyVisible: 1
@@ -487,6 +491,10 @@ MonoBehaviour:
         claims:
         - id: 98e6fb43e3664b45b3544de471bdd599
           factId: fact_inside_job
+          isTrue: 1
+          evaluationRules: []
+        - id: 9f38780b754d4786a0cddc30ae5d39e5
+          factId: 
           isTrue: 1
           evaluationRules: []
     initiallyVisible: 1

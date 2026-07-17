@@ -202,9 +202,10 @@ namespace Verdict.Editor.CaseFlow
 
         public void ClearGraph()
         {
-            DeleteElements(graphElements.ToList());
+            List<GraphElement> elements = graphElements.ToList();
 
             nodeViews.Clear();
+            DeleteElements(elements);
         }
 
         private void HandleNodeSelected(

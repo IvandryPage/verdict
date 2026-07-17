@@ -4,6 +4,7 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
     {
         public int Id;
         public string Name;
+        public string Key;
         public HierarchyType Type;
 
         public WitnessContext Witness;
