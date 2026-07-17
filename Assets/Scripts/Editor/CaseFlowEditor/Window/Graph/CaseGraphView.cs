@@ -172,7 +172,7 @@ namespace Verdict.Editor.CaseFlow
                 color);
         }
 
-        public void Frame(string id)
+        public void Select(string id)
         {
             if (!nodeViews.TryGetValue(id, out StatementNodeView node))
                 return;
@@ -181,9 +181,14 @@ namespace Verdict.Editor.CaseFlow
 
             ClearSelection();
             AddToSelection(node);
-            FrameSelection();
 
             node.SuppressSelectedEvent = false;
+        }
+
+        public void Frame(string id)
+        {
+            Select(id);
+            FrameSelection();
         }
 
         public void ClearGraph()

@@ -539,7 +539,7 @@ namespace Verdict.Editor.CaseFlow
             if (!session.Selection.HasStatement)
                 return;
 
-            graphView.Frame(
+            graphView.Select(
                 session.Selection.Statement.Id);
         }
 
@@ -587,7 +587,7 @@ namespace Verdict.Editor.CaseFlow
 
 
 
-            graphView.Frame(
+            graphView.Select(
                 context.Statement.Id);
         }
 
@@ -645,7 +645,7 @@ namespace Verdict.Editor.CaseFlow
 
 
 
-            graphView.Frame(
+            graphView.Select(
                 statementId);
         }
 

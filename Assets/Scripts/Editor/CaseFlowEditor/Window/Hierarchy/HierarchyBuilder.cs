@@ -57,7 +57,7 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
                 NextId(),
                 new HierarchyItem
                 {
-                    Name = witness.Id,
+                    Name = HierarchyDisplayUtility.GetWitnessName(witness),
                     Type = HierarchyType.Witness,
                     Witness = witnessContext
                 },
@@ -89,7 +89,7 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
                 NextId(),
                 new HierarchyItem
                 {
-                    Name = testimony.Title,
+                    Name = HierarchyDisplayUtility.GetTestimonyName(testimony),
                     Type = HierarchyType.Testimony,
                     Testimony = testimonyContext
                 },
@@ -112,12 +112,12 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
                 NextId(),
                 new HierarchyItem
                 {
-                    Name = statement.Text,
+                    Name = HierarchyDisplayUtility.GetStatementName(statement),
                     Type = HierarchyType.Statement,
                     Statement = context
                 });
         }
-        
+
 
         private int NextId()
         {

@@ -35,35 +35,60 @@ namespace Verdict.Editor.CaseFlow
                 Capabilities.Deletable |
                 Capabilities.Ascendable;
 
-            StatementData statement = context.Statement;
+            StatementData statement =
+                context.Statement;
 
-            title = statement.Id;
+            title =
+                HierarchyDisplayUtility.GetStatementName(
+                    statement);
 
-            extensionContainer.Add(
-                new Label(statement.Text));
+
+            Label preview =
+                new Label(GetPreview(statement))
+                {
+                    tooltip = statement.Text
+                };
+
+            preview.style.whiteSpace =
+                WhiteSpace.Normal;
+
+            preview.style.unityTextAlign =
+                TextAnchor.UpperLeft;
+
+            preview.style.marginTop = 4;
+
+            preview.style.marginBottom = 4;
+
+            preview.style.fontSize = 11;
+
+            preview.style.color =
+                new Color(.82f, .82f, .82f);
+
+            extensionContainer.Add(preview);
 
 
-            inputPort = InstantiatePort(
-                Orientation.Horizontal,
-                Direction.Input,
-                Port.Capacity.Multi,
-                typeof(bool));
+            inputPort =
+                InstantiatePort(
+                    Orientation.Horizontal,
+                    Direction.Input,
+                    Port.Capacity.Multi,
+                    typeof(bool));
 
             inputPort.portName = "Input";
 
 
-            outputPort = InstantiatePort(
-                Orientation.Horizontal,
-                Direction.Output,
-                Port.Capacity.Single,
-                typeof(bool));
+            outputPort =
+                InstantiatePort(
+                    Orientation.Horizontal,
+                    Direction.Output,
+                    Port.Capacity.Single,
+                    typeof(bool));
 
             outputPort.portName = "Next";
 
 
             inputContainer.Add(inputPort);
             outputContainer.Add(outputPort);
-
 
             RefreshPorts();
             RefreshExpandedState();
@@ -104,6 +129,24 @@ namespace Verdict.Editor.CaseFlow
 
             titleContainer.style.color =
                 new StyleColor(style.Title);
+        }
+
+
+        private static string GetPreview(
+            StatementData statement)
+        {
+            if (string.IsNullOrWhiteSpace(statement.Text))
+                return "<Empty Statement>";
+
+            string text =
+                statement.Text.Replace('\n', ' ');
+
+            const int maxLength = 80;
+
+            if (text.Length <= maxLength)
+                return text;
+
+            return text[..maxLength] + "...";
         }
     }
 }
