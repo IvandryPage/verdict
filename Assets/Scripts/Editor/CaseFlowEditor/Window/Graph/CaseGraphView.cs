@@ -13,6 +13,7 @@ namespace Verdict.Editor.CaseFlow
     public sealed class CaseGraphView : GraphView
     {
         private bool suppressGraphEvents;
+
         private readonly Dictionary<string, StatementNodeView> nodeViews =
             new(StringComparer.Ordinal);
 
@@ -101,6 +102,14 @@ namespace Verdict.Editor.CaseFlow
             {
                 return;
             }
+
+            bool exists =
+                edges.ToList().Any(e =>
+                    e.output.node == from &&
+                    e.input.node == to);
+
+            if (exists)
+                return;
 
             Edge edgeView = new()
             {
@@ -212,7 +221,10 @@ namespace Verdict.Editor.CaseFlow
 
             if (change.edgesToCreate != null)
             {
-                foreach (Edge edge in change.edgesToCreate)
+                Edge[] edges =
+                    change.edgesToCreate.ToArray();
+
+                foreach (Edge edge in edges)
                 {
                     EdgeCreated?.Invoke(edge);
                 }
@@ -221,7 +233,10 @@ namespace Verdict.Editor.CaseFlow
 
             if (change.elementsToRemove != null)
             {
-                foreach (GraphElement element in change.elementsToRemove)
+                GraphElement[] elements =
+                        change.elementsToRemove.ToArray();
+
+                foreach (GraphElement element in elements)
                 {
                     if (element is Edge edge)
                     {

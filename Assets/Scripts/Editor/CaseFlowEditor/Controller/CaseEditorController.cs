@@ -304,7 +304,10 @@ namespace Verdict.Editor.CaseFlow
                 caseData);
 
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
 
@@ -330,7 +333,10 @@ namespace Verdict.Editor.CaseFlow
 
         private void ValidateCase()
         {
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
 
@@ -361,7 +367,10 @@ namespace Verdict.Editor.CaseFlow
                 editService.CreateStatement(
                     session.Selection.TestimonyContext.Testimony);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
 
             SelectStatement(statement);
         }
@@ -373,7 +382,10 @@ namespace Verdict.Editor.CaseFlow
             WitnessData witness =
                 editService.CreateWitness();
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
 
             if (session.TryGetWitnessContext(
                     witness.Id,
@@ -392,7 +404,10 @@ namespace Verdict.Editor.CaseFlow
                 editService.CreateTestimony(
                     session.Selection.WitnessContext.Witness);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
 
             if (session.TryGetTestimonyContext(
                     testimony.Id,
@@ -536,7 +551,10 @@ namespace Verdict.Editor.CaseFlow
 
         private void HandleCaseModified()
         {
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
 
@@ -719,7 +737,10 @@ namespace Verdict.Editor.CaseFlow
         {
             editService.CreateWitness();
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
         private void HandleCreateTestimony(
@@ -728,7 +749,10 @@ namespace Verdict.Editor.CaseFlow
             editService.CreateTestimony(
                 context.Witness);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
         private void HandleCreateStatement(
@@ -737,7 +761,10 @@ namespace Verdict.Editor.CaseFlow
             editService.CreateStatement(
                 context.Testimony);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
         private void HandleDeleteStatement(
@@ -748,7 +775,10 @@ namespace Verdict.Editor.CaseFlow
 
             editService.DeleteStatement(context);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
         private void HandleDeleteTestimony(
@@ -761,7 +791,10 @@ namespace Verdict.Editor.CaseFlow
                 context.Witness,
                 context.Testimony);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
 
         private void HandleDeleteWitness(
@@ -773,7 +806,10 @@ namespace Verdict.Editor.CaseFlow
             editService.DeleteWitness(
                 context.Witness);
 
-            RefreshEditor();
+            graphView.schedule.Execute(() =>
+            {
+                RefreshEditor();
+            });
         }
     }
 }
