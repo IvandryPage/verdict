@@ -180,27 +180,16 @@ MonoBehaviour:
           factId: 
           isTrue: 1
           evaluationRules: []
-      - id: statement_002
-        text: Fine... I entered the kitchen.
-        initiallyVisible: 0
+      - id: ab7cf3098f714e329e8f2eee37e699a3
+        text: New Statement
+        initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: claim_enter
-          factId: fact_001
+        - id: 19c32bdbd4c64860a2d87cfd90b0aaab
+          factId: 
           isTrue: 1
-          evaluationRules:
-          - evaluationType: 3
-            requiredEvidence: {fileID: 0}
-            successEffects:
-            - effect: 5
-              targetType: 1
-              targetId: statement_005
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 0
-            failureEffects: []
-      - id: ab7cf3098f714e329e8f2eee37e699a3
+          evaluationRules: []
+      - id: 866c98cf0e284aefadf6bd677aef1f0a
         text: New Statement
         initiallyVisible: 1
         nextStatementId: 
@@ -564,6 +553,32 @@ MonoBehaviour:
               characterStat: 0
               value: 0
             failureEffects: []
+    initiallyVisible: 1
+  - id: c07bf077016d412d84c5c3b54df200f7
+    character: {fileID: 0}
+    role: 0
+    description: 
+    testimonies: []
+    initiallyVisible: 1
+  - id: 97c0702499d846a58d661dcf13ec7b17
+    character: {fileID: 0}
+    role: 0
+    description: 
+    testimonies:
+    - id: 11ed067d8c6c4103ad88dd4cebfb624f
+      title: New Testimony
+      description: 
+      statements: []
+    initiallyVisible: 1
+  - id: cfee43b454104781b319e260202a50c5
+    character: {fileID: 0}
+    role: 0
+    description: 
+    testimonies:
+    - id: 9dd8b210d6aa4bb5b39ab791a5644496
+      title: New Testimony
+      description: 
+      statements: []
     initiallyVisible: 1
   endings:
   - id: ending_perfect

@@ -76,7 +76,7 @@ namespace Verdict.Editor.CaseFlow
 
             if (SuppressSelectedEvent)
                 return;
-            Debug.Log("1. Node Selected");
+
             Selected?.Invoke(this);
         }
 

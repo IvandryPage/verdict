@@ -102,7 +102,6 @@ namespace Verdict.Editor.CaseFlow
         public void SelectStatement(
             StatementContext context)
         {
-            Debug.Log($"3. SelectStatement : {context.Statement.Id}");
             Case =
                 context.Case;
 
@@ -138,7 +137,6 @@ namespace Verdict.Editor.CaseFlow
 
         private void Notify()
         {
-            Debug.Log("4. Notify");
             SelectionChanged?.Invoke();
         }
     }

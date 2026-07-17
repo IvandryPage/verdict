@@ -34,6 +34,9 @@ namespace Verdict.Editor.CaseFlow
             session.CurrentCase != null;
 
 
+        private ToolbarButton addButton;
+        private ToolbarButton deleteButton;
+
 
         public CaseEditorController(
             VisualElement root)
@@ -61,9 +64,11 @@ namespace Verdict.Editor.CaseFlow
                 HandleEdgeRemoved;
 
 
-
-            session.Selection.SelectionChanged +=
-                HandleSelectionChanged;
+            session.Selection.SelectionChanged += () =>
+            {
+                UpdateToolbarButtons();
+                HandleSelectionChanged();
+            };
 
 
 
@@ -211,27 +216,55 @@ namespace Verdict.Editor.CaseFlow
 
 
 
-            toolbar.Add(
-                new ToolbarButton(CreateStatement)
-                {
-                    text = "+ Statement"
-                });
+            addButton = new ToolbarButton(HandleCreate);
+            deleteButton = new ToolbarButton(HandleDelete);
 
+            toolbar.Add(new ToolbarSpacer());
 
+            toolbar.Add(addButton);
+            toolbar.Add(deleteButton);
 
-            toolbar.Add(
-                new ToolbarButton(PlayCase)
-                {
-                    text = "Play"
-                });
-
-
+            UpdateToolbarButtons();
 
             return toolbar;
         }
 
 
+        private void UpdateToolbarButtons()
+        {
+            if (!HasCase)
+            {
+                addButton.SetEnabled(false);
+                deleteButton.SetEnabled(false);
+                return;
+            }
 
+            addButton.SetEnabled(true);
+
+            if (session.Selection.HasStatement)
+            {
+                addButton.text = "+ Statement";
+                deleteButton.text = "Delete Statement";
+                deleteButton.SetEnabled(true);
+            }
+            else if (session.Selection.HasTestimony)
+            {
+                addButton.text = "+ Testimony";
+                deleteButton.text = "Delete Testimony";
+                deleteButton.SetEnabled(true);
+            }
+            else if (session.Selection.HasWitness)
+            {
+                addButton.text = "+ Witness";
+                deleteButton.text = "Delete Witness";
+                deleteButton.SetEnabled(true);
+            }
+            else
+            {
+                addButton.text = "+ Witness";
+                deleteButton.SetEnabled(false);
+            }
+        }
 
 
         private void OnCaseChanged(
@@ -286,48 +319,72 @@ namespace Verdict.Editor.CaseFlow
 
 
 
-
-
-        private void PlayCase()
+        private void HandleCreate()
         {
             if (!HasCase)
                 return;
 
-
-            Debug.Log("Play...");
-        }
-
-
-
-
-
-        private void CreateStatement()
-        {
-            if (!session.Selection.HasStatement)
+            if (session.Selection.HasStatement)
             {
-                Debug.LogWarning(
-                    "Select a statement first.");
-
+                CreateStatement();
                 return;
             }
 
+            if (session.Selection.HasTestimony)
+            {
+                CreateTestimony();
+                return;
+            }
 
+            CreateWitness();
+        }
 
+        private void CreateStatement()
+        {
             StatementData statement =
-                editService.CreateStatementAfter(
-                    session.Selection.StatementContext);
-
-
+                editService.CreateStatement(
+                    session.Selection.TestimonyContext.Testimony);
 
             RefreshEditor();
-
-
 
             SelectStatement(statement);
         }
 
 
 
+        private void CreateWitness()
+        {
+            WitnessData witness =
+                editService.CreateWitness();
+
+            RefreshEditor();
+
+            if (session.TryGetWitnessContext(
+                    witness.Id,
+                    out WitnessContext context))
+            {
+                session.Selection.SelectWitness(context);
+            }
+        }
+
+        private void CreateTestimony()
+        {
+            if (!session.Selection.HasWitness)
+                return;
+
+            TestimonyData testimony =
+                editService.CreateTestimony(
+                    session.Selection.WitnessContext.Witness);
+
+            RefreshEditor();
+
+            if (session.TryGetTestimonyContext(
+                    testimony.Id,
+                    out TestimonyContext context))
+            {
+                session.Selection.SelectTestimony(context);
+            }
+        }
 
 
         public void HandleEvent(
@@ -357,7 +414,33 @@ namespace Verdict.Editor.CaseFlow
         }
 
 
+        private void HandleDelete()
+        {
+            if (session.Selection.HasStatement)
+            {
+                editService.DeleteStatement(
+                    session.Selection.StatementContext);
 
+                return;
+            }
+
+            if (session.Selection.HasTestimony)
+            {
+                editService.DeleteTestimony(
+                    session.Selection.TestimonyContext.Witness,
+                    session.Selection.TestimonyContext.Testimony);
+
+                return;
+            }
+
+            if (session.Selection.HasWitness)
+            {
+                editService.DeleteWitness(
+                    session.Selection.WitnessContext.Witness);
+
+                return;
+            }
+        }
 
 
         private void RefreshEditor()

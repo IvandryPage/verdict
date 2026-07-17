@@ -1,3 +1,5 @@
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
@@ -8,11 +10,8 @@ namespace Verdict.Editor.CaseFlow.Inspector
     public sealed class WitnessCard : VisualElement
     {
         private readonly EditorSession session;
-
         private readonly CaseEditService editService;
-
         private readonly WitnessContext context;
-
 
         public WitnessCard(
             EditorSession session,
@@ -23,58 +22,89 @@ namespace Verdict.Editor.CaseFlow.Inspector
             this.editService = editService;
             this.context = context;
 
-
-            style.marginBottom = 10;
+            style.marginBottom = 12;
             style.paddingLeft = 8;
             style.paddingRight = 8;
             style.paddingTop = 8;
             style.paddingBottom = 8;
 
-
             Build();
         }
 
-
-
         private void Build()
         {
-            Button header =
-                new(() =>
+            Add(new Label("Witness")
+            {
+                style =
                 {
-                    session.Selection.SelectWitness(context);
-                });
+                    unityFontStyleAndWeight = FontStyle.Bold,
+                    fontSize = 14
+                }
+            });
 
+            DrawProperties();
 
-            header.text =
-                $"Witness : {context.Witness.Id}";
+            Add(CreateSeparator());
 
+            DrawTestimonies();
+        }
 
-            header.style.unityFontStyleAndWeight =
-                FontStyle.Bold;
+        private void DrawProperties()
+        {
+            SerializedObject so =
+                new SerializedObject(context.Case);
 
+            SerializedProperty witnessProperty =
+                so.FindProperty(context.PropertyPath);
 
-            Add(header);
+            if (witnessProperty == null)
+            {
+                Add(new Label("Witness property not found."));
+                return;
+            }
 
+            PropertyField id =
+                new(witnessProperty.FindPropertyRelative("id"));
 
+            PropertyField character =
+                new(witnessProperty.FindPropertyRelative("character"));
 
+            PropertyField role =
+                new(witnessProperty.FindPropertyRelative("role"));
+
+            PropertyField description =
+                new(witnessProperty.FindPropertyRelative("description"));
+
+            PropertyField visible =
+                new(witnessProperty.FindPropertyRelative("initiallyVisible"));
+
+            id.Bind(so);
+            character.Bind(so);
+            role.Bind(so);
+            description.Bind(so);
+            visible.Bind(so);
+
+            Add(id);
+            Add(character);
+            Add(role);
+            Add(description);
+            Add(visible);
+        }
+
+        private void DrawTestimonies()
+        {
             Foldout foldout = new()
             {
-                text =
-                    $"Testimonies ({context.Witness.Testimonies.Count})",
-
+                text = $"Testimonies ({context.Witness.Testimonies.Count})",
                 value = true
             };
 
-
-
-            foreach(TestimonyData testimony
-                in context.Witness.Testimonies)
+            foreach (TestimonyData testimony in context.Witness.Testimonies)
             {
                 TestimonyContext testimonyContext =
                     session.CreateTestimonyContext(
                         context.Witness,
                         testimony);
-
 
                 foldout.Add(
                     new TestimonyCard(
@@ -82,8 +112,6 @@ namespace Verdict.Editor.CaseFlow.Inspector
                         editService,
                         testimonyContext));
             }
-
-
 
             Button add =
                 new(() =>
@@ -95,11 +123,24 @@ namespace Verdict.Editor.CaseFlow.Inspector
                     text = "+ Add Testimony"
                 };
 
-
             foldout.Add(add);
 
-
             Add(foldout);
+        }
+
+        private static VisualElement CreateSeparator()
+        {
+            return new VisualElement
+            {
+                style =
+                {
+                    height = 1,
+                    marginTop = 8,
+                    marginBottom = 8,
+                    backgroundColor =
+                        new Color(.22f,.22f,.22f)
+                }
+            };
         }
     }
 }

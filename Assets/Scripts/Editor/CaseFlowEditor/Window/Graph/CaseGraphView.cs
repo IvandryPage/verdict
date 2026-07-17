@@ -196,7 +196,6 @@ namespace Verdict.Editor.CaseFlow
         private void HandleNodeSelected(
             StatementNodeView node)
         {
-            Debug.Log($"2. Graph Selected : {node.Context.Statement.Id}");
             StatementSelected?.Invoke(node.Context);
         }
 
