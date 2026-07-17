@@ -24,11 +24,6 @@ namespace Verdict.Data.Cases
         [SerializeField]
         private bool initiallyVisible = true;
 
-        [Header("Designer Notes")]
-        [TextArea(2, 3)]
-        [SerializeField]
-        private string designerNotes;
-
         public string Id => id;
 
         public CharacterData Character => character;
@@ -41,6 +36,38 @@ namespace Verdict.Data.Cases
 
         public bool InitiallyVisible => initiallyVisible;
 
-        public string DesignerNotes => designerNotes;
+        public WitnessData(string id)
+        {
+            this.id = id;
+            character = null;
+            role = WitnessRole.Eyewitness;
+        }
+
+        public void AddTestimony(TestimonyData testimony)
+        {
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            testimonies.Add(testimony);
+        }
+
+        public void InsertTestimony(
+            int index,
+            TestimonyData testimony)
+        {
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            testimonies.Insert(index, testimony);
+        }
+
+        public bool RemoveTestimony(
+            TestimonyData testimony)
+        {
+            if (testimony == null)
+                throw new ArgumentNullException(nameof(testimony));
+
+            return testimonies.Remove(testimony);
+        }
     }
 }

@@ -1,0 +1,512 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3e117572c1d42ae8a11495666a174e, type: 3}
+  m_Name: MissingProperty
+  m_EditorClassIdentifier: 
+  id: case_stolen_prototype
+  title: The Stolen Research Prototype
+  description: 'A prototype for an advanced navigation system has gone missing from
+    the laboratory. Three suspects were present: Dr. Chen (lead researcher), Alex
+    (lab technician), and Morgan (security guard). You must investigate the testimonies,
+    cross-examine claims, and determine what happened.'
+  difficulty: 1
+  purpose: 4
+  tags: []
+  estimatedPlayTimeMinutes: 5
+  version: 1
+  author: Ivandry
+  courtSetup:
+    judgeTrust: 40
+    penalty: 0
+    publicOpinion: 50
+    juryOpinion: 50
+    storyProgress: 0
+    caseProgress: 0
+  judge: {fileID: 11400000, guid: 51a4b5c23956d48788cc7f45d13c7555, type: 2}
+  prosecutor: {fileID: 11400000, guid: 76d060268f60d4ccd8e2e1fb6f2d5006, type: 2}
+  defenseLawyer: {fileID: 11400000, guid: 07b8f9dbf3fe0467686ce3dd678ab253, type: 2}
+  characterOverrides: []
+  evidence:
+  - evidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 0d3901043003b42498b74ad09b9da09b, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  - evidence: {fileID: 11400000, guid: b0089379f40a14ba7b97787d63741518, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  - evidence: {fileID: 11400000, guid: 48f5c87311d4240f4a0d669c42fcd02e, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  - evidence: {fileID: 11400000, guid: e40e99ad9f1024c4c85c7ab1dda8cbd1, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 0
+  truth:
+    facts:
+    - id: fact_prototype_on_desk
+      subject:
+        type: 4
+        value: Prototype
+      predicate: 3
+      object:
+        type: 2
+        value: Dr. Chen Desk
+      supportingEvidence:
+      - {fileID: 11400000, guid: 0d3901043003b42498b74ad09b9da09b, type: 2}
+    - id: fact_chen_left_lab
+      subject:
+        type: 0
+        value: char_chen
+      predicate: 5
+      object:
+        type: 2
+        value: Lab
+      supportingEvidence:
+      - {fileID: 11400000, guid: 0d3901043003b42498b74ad09b9da09b, type: 2}
+    - id: fact_prototype_missing
+      subject:
+        type: 4
+        value: Prototype
+      predicate: 0
+      object:
+        type: 5
+        value: True
+      supportingEvidence: []
+    - id: fact_morgan_near_desk
+      subject:
+        type: 0
+        value: char_morgan
+      predicate: 0
+      object:
+        type: 5
+        value: True
+      supportingEvidence: []
+    - id: fact_backup_exist
+      subject:
+        type: 4
+        value: Prototype Backup
+      predicate: 0
+      object:
+        type: 5
+        value: True
+      supportingEvidence:
+      - {fileID: 11400000, guid: b0089379f40a14ba7b97787d63741518, type: 2}
+    - id: fact_alex_checked_equipment
+      subject:
+        type: 0
+        value: char_alex
+      predicate: 0
+      object:
+        type: 5
+        value: True
+      supportingEvidence: []
+    - id: fact_alex_in_archive
+      subject:
+        type: 0
+        value: char_alex
+      predicate: 6
+      object:
+        type: 2
+        value: Archive Room
+      supportingEvidence:
+      - {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+    - id: fact_alex_didnt_see_theft
+      subject:
+        type: 0
+        value: char_alex
+      predicate: 0
+      object:
+        type: 5
+        value: true
+      supportingEvidence: []
+    - id: fact_morgan_requested_tools
+      subject:
+        type: 0
+        value: char_morgan
+      predicate: 0
+      object:
+        type: 5
+        value: true
+      supportingEvidence:
+      - {fileID: 11400000, guid: e40e99ad9f1024c4c85c7ab1dda8cbd1, type: 2}
+    - id: fact_morgan_patrol
+      subject:
+        type: 0
+        value: char_morgan
+      predicate: 0
+      object:
+        type: 5
+        value: true
+      supportingEvidence:
+      - {fileID: 11400000, guid: 0d3901043003b42498b74ad09b9da09b, type: 2}
+    - id: fact_morgan_no_knowledge
+      subject:
+        type: 0
+        value: char_morgan
+      predicate: 0
+      object:
+        type: 5
+        value: true
+      supportingEvidence: []
+    - id: fact_morgan_not_at_desk
+      subject:
+        type: 0
+        value: char_morgan
+      predicate: 0
+      object:
+        type: 5
+        value: false
+      supportingEvidence: []
+    - id: fact_no_unauthorized_access
+      subject:
+        type: 2
+        value: Laboratory
+      predicate: 0
+      object:
+        type: 5
+        value: true
+      supportingEvidence:
+      - {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+    - id: fact_inside_job
+      subject:
+        type: 4
+        value: Theft
+      predicate: 0
+      object:
+        type: 4
+        value: Laboratory Team
+      supportingEvidence: []
+    - id: fact_chen_saw_morgan_suspicious
+      subject:
+        type: 0
+        value: char_chen
+      predicate: 10
+      object:
+        type: 0
+        value: char_morgan
+      supportingEvidence: []
+  witnesses:
+  - id: 8766827e4c3e4bb7b988844e3474e7f3
+    character: {fileID: 11400000, guid: afb5c64e1c6e34f40bd77f5375bfeaa4, type: 2}
+    role: 2
+    description: Lead researcher on the Navigation Project. Last person to see the
+      prototype before it disappeared.
+    testimonies:
+    - id: 7898dd4c16a14b438931270d652d27a3
+      title: The Lab that Morning
+      description: ' Dr. Chen describes the events leading up to the discovery of
+        the theft.'
+      statements:
+      - id: 99e5bbd7972d4178ac31c51c815273f7
+        text: I arrived at the lab at 6 AM as usual. The prototype was on my desk
+          where I left it yesterday.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: b80a717ed8ad40a6a01047b0c5a93a72
+          factId: fact_prototype_on_desk
+          isTrue: 1
+          evaluationRules: []
+      - id: 77132c3c61b74aaebdc89104af2bc524
+        text: Around 8 AM, I stepped out to grab coffee. I was gone for maybe 10
+          minutes.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 8c6bf91600ae4f8eacd0f574a9f85ec9
+          factId: fact_chen_left_lab
+          isTrue: 1
+          evaluationRules:
+          - evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
+      - id: c523e8f1394542acbd28f0fad473583d
+        text: When I returned, the prototype was gone. I immediately checked with
+          Alex and Morgan, but neither had seen it.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 03c623e1d20748a1bbda787e208ccf51
+          factId: fact_prototype_missing
+          isTrue: 1
+          evaluationRules: []
+      - id: 777b0cae14e14920bd2c9255b7e7c458
+        text: Actually, I did see something suspicious. Morgan was near my desk earlier,
+          which was unusual.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: ee7ff2ddf64e482cb00a78db19920e7b
+          factId: fact_morgan_near_desk
+          isTrue: 1
+          evaluationRules:
+          - evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 48f5c87311d4240f4a0d669c42fcd02e, type: 2}
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: 2
+    - id: 09c00afe4ddc413a9f0b012c96ec6d95
+      title: The Backup Location
+      description: Dr. Chen reveals where backups and duplicates might be stored.
+      statements:
+      - id: 5fb526c5dadc45a4bcbb3f34ea7ae16d
+        text: There should be a backup prototype in Storage Room B. We always keep
+          duplicates for testing.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: ba8a3dc8c5aa4feda563a2ac2fb82af5
+          factId: fact_backup_exist
+          isTrue: 1
+          evaluationRules: []
+      - id: d153d61179de474a84f757672df2bb3d
+        text: I haven't checked if it's still there. With everything that happened,
+          it slipped my mind.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+    initiallyVisible: 1
+  - id: 7b25f7d950254b43b531d0f73d009dd4
+    character: {fileID: 11400000, guid: 87e3b180882784eaa972a917988a82c8, type: 2}
+    role: 2
+    description: Junior lab technician. Recently hired, still learning protocols.
+    testimonies:
+    - id: f3e4663c25664cc8912c59fefd35e9d4
+      title: Morning Schedule
+      description: Alex describes their activities during the morning.
+      statements:
+      - id: 166ccc09982c4753bee80e96bf13b0a5
+        text: I arrived at 7:30 AM and went straight to check the equipment calibration
+          logs.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 7cd06f983afd419fb0af85970bbeb061
+          factId: fact_alex_checked_equipment
+          isTrue: 1
+          evaluationRules: []
+      - id: 2b097edd1b194559b34dfe943e8d5fe9
+        text: Dr. Chen asked me to retrieve some archived data files around 8 AM.
+          I was in the archive room for about 20 minutes."
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 7a84ddbd8bbd4bbabaa816b0cd1f42c9
+          factId: fact_alex_in_archive
+          isTrue: 1
+          evaluationRules:
+          - evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+      - id: 99626e8a81e340ae925f2dae16eb8bbe
+        text: I didn't see the prototype go missing. I was focused on my assigned
+          tasks."
+        initiallyVisible: 1
+        nextStatementId: 616412e0e7e34a2dbf77d4977cd4655a
+        claims:
+        - id: 6b31ddb32e434ca881423eb55318ba77
+          factId: fact_alex_didnt_see_theft
+          isTrue: 1
+          evaluationRules: []
+    - id: a6008c5eb3354cbb801883584a682cde
+      title: The Tool Request
+      description: Alex mentions a tool that went missing after the prototype disappeared.
+      statements:
+      - id: 616412e0e7e34a2dbf77d4977cd4655a
+        text: Wait, now that you mention it... Morgan asked me for a precision toolkit
+          around 8:15 AM. That's unusual because Morgan usually doesn't work with
+          lab equipment.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: 456ad0fa777a4c468eceff4c779078da
+          factId: fact_morgan_requested_tools
+          isTrue: 1
+          evaluationRules:
+          - evaluationType: 0
+            requiredEvidence: {fileID: 11400000, guid: e40e99ad9f1024c4c85c7ab1dda8cbd1, type: 2}
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: char_morgan
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: 10
+            - effect: 9
+              targetType: 5
+              targetId: char_morgan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            failureEffects:
+            - effect: 9
+              targetType: 5
+              targetId: char_alex
+              courtStat: 0
+              operation: 1
+              characterStat: 1
+              value: 2
+    initiallyVisible: 1
+  - id: 3cd615131e494b898230f74ed1698b8f
+    character: {fileID: 11400000, guid: e3f3b40b8bdd94036a28e011c2fbd718, type: 2}
+    role: 0
+    description: 
+    testimonies:
+    - id: 71b80c5ad57545cc8485b6cd91bc2ae2
+      title: Security Rounds
+      description: Morgan describes the morning security patrol.
+      statements:
+      - id: f408a635f60d48bbbf50a2cdbe95ef89
+        text: I made my usual security rounds at 7 AM, 8 AM, and 9 AM. Everything
+          was normal.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 09e69436201b47a282a22b5bb7096bbf
+          factId: fact_morgan_patrol
+          isTrue: 1
+          evaluationRules: []
+      - id: 40924b0c080547be87572e2fbbde16a0
+        text: I didn't go near Dr. Chen's desk at any point. I stick to the main
+          corridors during my rounds.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: bbfe63c64b3242d4bb9a5a5fa1871214
+          factId: fact_morgan_not_at_desk
+          isTrue: 1
+          evaluationRules:
+          - evaluationType: 2
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 1
+              targetType: 1
+              targetId: 777b0cae14e14920bd2c9255b7e7c458
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 1
+              value: 3
+      - id: eb598063d999428e98ae72ef8619062d
+        text: I never touched the prototype. I don't even know how to operate it.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 539dd5d6bc0f4e41b2f16e0c2552f0b1
+          factId: fact_morgan_no_knowledge
+          isTrue: 1
+          evaluationRules: []
+    - id: d81b6c74db9845e38fd369fafe31971d
+      title: Morgan Discovery
+      description: Morgan reveals what happened after the theft was reported.
+      statements:
+      - id: 97cbb78e98ab40a2975d1c94367d6624
+        text: When Dr. Chen reported the theft, I checked the access logs and found
+          no unauthorized entries to the lab that morning.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: c08cef0f07924a70b9267d2575db1672
+          factId: fact_no_unauthorized_access
+          isTrue: 1
+          evaluationRules: []
+      - id: c03ede89f2b64ed99dfa2d82562d9fa3
+        text: This means the person who took it had legitimate access to the building.
+          It wasn't an outsider."
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 98e6fb43e3664b45b3544de471bdd599
+          factId: fact_inside_job
+          isTrue: 1
+          evaluationRules: []
+    initiallyVisible: 1
+  endings:
+  - id: ending_justice
+    title: Justice Served
+    description: You successfully identified Morgan as the culprit. The combination
+      of the tool manifest, the suspicious timing, and Dr. Chen's testimony proved
+      conclusive.
+    minimumJudgeTrust: 80
+    maximumPenalty: 2
+  - id: ending_reasonable_doubt
+    title: Reasonable Doubt
+    description: While suspicion fell on Morgan, insufficient evidence proved reasonable
+      doubt. The case is dismissed, but the prototype remains missing.
+    minimumJudgeTrust: 30
+    maximumPenalty: 5
+  - id: ending_false_accusation
+    title: False Accusation
+    description: You accused the wrong person. The judge rules in favor of the accused,
+      and your credibility is damaged.
+    minimumJudgeTrust: 0
+    maximumPenalty: 8

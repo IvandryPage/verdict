@@ -19,8 +19,6 @@ namespace Verdict.Data.Cases
         ModifyCourtStat,
 
         // Character-scoped stat modification
-        ModifyCharacterStat,
-
-        TriggerEnding
+        ModifyCharacterStat
     }
 }

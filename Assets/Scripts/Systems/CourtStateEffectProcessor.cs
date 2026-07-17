@@ -102,9 +102,6 @@ namespace Verdict.Systems
 
                     break;
 
-                case CourtStateEffect.TriggerEnding:
-                    return new CourtStateEffectIntent(effectData.Effect, effectData.TargetId);
-
                 case CourtStateEffect.JumpStatement:
                 case CourtStateEffect.JumpTestimony:
                 case CourtStateEffect.JumpWitness:
