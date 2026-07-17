@@ -10,6 +10,12 @@ namespace Verdict.Editor.CaseFlow
         private readonly Dictionary<string, StatementContext> statementContexts =
             new();
 
+        private readonly Dictionary<string, WitnessContext> witnessContexts =
+            new();
+
+        private readonly Dictionary<string, TestimonyContext> testimonyContexts =
+            new();
+
         public CaseData CurrentCase { get; private set; }
 
         public FlowGraph FlowGraph { get; private set; }
@@ -32,20 +38,45 @@ namespace Verdict.Editor.CaseFlow
 
             statementContexts.Clear();
 
-            FlowGraph =
-                FlowGraphBuilder.Build(caseData);
+            witnessContexts.Clear();
+
+            testimonyContexts.Clear();
+
 
             for (int w = 0; w < caseData.Witnesses.Count; w++)
             {
                 WitnessData witness = caseData.Witnesses[w];
 
+
+                witnessContexts.Add(
+                    witness.Id,
+                    new WitnessContext(
+                        caseData,
+                        witness,
+                        w));
+
+
                 for (int t = 0; t < witness.Testimonies.Count; t++)
                 {
-                    TestimonyData testimony = witness.Testimonies[t];
+                    TestimonyData testimony =
+                        witness.Testimonies[t];
+
+
+                    testimonyContexts.Add(
+                        testimony.Id,
+                        new TestimonyContext(
+                            caseData,
+                            witness,
+                            testimony,
+                            w,
+                            t));
+
 
                     for (int s = 0; s < testimony.Statements.Count; s++)
                     {
-                        StatementData statement = testimony.Statements[s];
+                        StatementData statement =
+                            testimony.Statements[s];
+
 
                         statementContexts.Add(
                             statement.Id,
@@ -60,6 +91,10 @@ namespace Verdict.Editor.CaseFlow
                     }
                 }
             }
+
+
+            FlowGraph =
+                FlowGraphBuilder.Build(caseData);
         }
 
         public bool TryGetContext(
@@ -85,6 +120,109 @@ namespace Verdict.Editor.CaseFlow
             string statementId)
         {
             return statementContexts[statementId];
+        }
+
+        public StatementContext CreateStatementContext(
+            WitnessData witness,
+            TestimonyData testimony,
+            StatementData statement)
+        {
+            int wIndex =
+                FindIndex(
+                    CurrentCase.Witnesses,
+                    witness);
+
+            int tIndex =
+                FindIndex(
+                    witness.Testimonies,
+                    testimony);
+
+            int sIndex =
+                FindIndex(
+                    testimony.Statements,
+                    statement);
+
+
+            if (wIndex < 0 ||
+                tIndex < 0 ||
+                sIndex < 0)
+            {
+                return null;
+            }
+
+
+            return new StatementContext(
+                CurrentCase,
+                witness,
+                testimony,
+                statement,
+                wIndex,
+                tIndex,
+                sIndex);
+        }
+
+        public TestimonyContext CreateTestimonyContext(
+            WitnessData witness,
+            TestimonyData testimony)
+        {
+            int wIndex =
+                FindIndex(
+                    CurrentCase.Witnesses,
+                    witness);
+
+
+            int tIndex =
+                FindIndex(
+                    witness.Testimonies,
+                    testimony);
+
+
+            if (wIndex < 0 || tIndex < 0)
+                return null;
+
+
+            return new TestimonyContext(
+                CurrentCase,
+                witness,
+                testimony,
+                wIndex,
+                tIndex);
+        }
+
+        private int FindIndex<T>(
+            IReadOnlyList<T> list,
+            T target)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (ReferenceEquals(
+                    list[i],
+                    target))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        public bool TryGetWitnessContext(
+            string id,
+            out WitnessContext context)
+        {
+            return witnessContexts.TryGetValue(
+                id,
+                out context);
+        }
+
+
+        public bool TryGetTestimonyContext(
+            string id,
+            out TestimonyContext context)
+        {
+            return testimonyContexts.TryGetValue(
+                id,
+                out context);
         }
     }
 }

@@ -165,7 +165,8 @@ namespace Verdict.Editor.CaseFlow.Service
                     WitnessData witness =
                         AuthoringFactory.CreateWitness();
 
-                    CurrentCase.AddWitness(witness);
+                    session.CurrentCase.AddWitness(
+                        witness);
 
                     return witness;
                 });
@@ -177,9 +178,14 @@ namespace Verdict.Editor.CaseFlow.Service
             if (witness == null)
                 throw new ArgumentNullException(nameof(witness));
 
+
             return ExecuteMutation(
                 "Delete Witness",
-                () => CurrentCase.RemoveWitness(witness));
+                () =>
+                {
+                    return session.CurrentCase.RemoveWitness(
+                        witness);
+                });
         }
 
         public TestimonyData CreateTestimony(

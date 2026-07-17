@@ -1,83 +1,144 @@
 using System;
+using UnityEngine;
 using Verdict.Data.Cases;
 
 namespace Verdict.Editor.CaseFlow
 {
-    /// <summary>
-    /// Represents the current authoring context inside the Case Flow Editor.
-    /// </summary>
     public sealed class EditorSelection
     {
         public event Action SelectionChanged;
 
+
         public CaseData Case { get; private set; }
+
+
+        public WitnessContext WitnessContext { get; private set; }
+
+        public TestimonyContext TestimonyContext { get; private set; }
 
         public StatementContext StatementContext { get; private set; }
 
-        public bool HasCase => Case != null;
 
-        public bool HasWitness => Witness != null;
 
-        public bool HasTestimony => Testimony != null;
+        public bool HasCase =>
+            Case != null;
+
+
+        public bool HasWitness =>
+            WitnessContext != null;
+
+
+        public bool HasTestimony =>
+            TestimonyContext != null;
+
 
         public bool HasStatement =>
             StatementContext != null;
 
+
+
         public WitnessData Witness =>
-            StatementContext?.Witness;
+            WitnessContext?.Witness;
+
 
         public TestimonyData Testimony =>
-            StatementContext?.Testimony;
+            TestimonyContext?.Testimony;
+
 
         public StatementData Statement =>
             StatementContext?.Statement;
 
 
-        public void SelectCase(CaseData caseData)
-        {
-            if (ReferenceEquals(Case, caseData) &&
-                StatementContext == null)
-            {
-                return;
-            }
 
+        public void SelectCase(
+            CaseData caseData)
+        {
             Case = caseData;
+
+            WitnessContext = null;
+            TestimonyContext = null;
             StatementContext = null;
 
-            NotifySelectionChanged();
+            Notify();
         }
+
+
+
+        public void SelectWitness(
+            WitnessContext context)
+        {
+            Case =
+                context.Case;
+
+            WitnessContext =
+                context;
+
+            TestimonyContext = null;
+            StatementContext = null;
+
+            Notify();
+        }
+
+
+
+        public void SelectTestimony(
+            TestimonyContext context)
+        {
+            Case =
+                context.Case;
+
+            WitnessContext = null;
+
+            TestimonyContext =
+                context;
+
+            StatementContext = null;
+
+            Notify();
+        }
+
+
 
         public void SelectStatement(
             StatementContext context)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
+            Debug.Log($"3. SelectStatement : {context.Statement.Id}");
+            Case =
+                context.Case;
 
-            if (ReferenceEquals(StatementContext, context))
-                return;
 
-            Case = context.Case;
-            StatementContext = context;
+            WitnessContext = null;
 
-            NotifySelectionChanged();
+            TestimonyContext = null;
+
+
+            StatementContext =
+                context;
+
+
+            Notify();
         }
+
+
 
         public void Clear()
         {
-            if (Case == null &&
-                StatementContext == null)
-            {
-                return;
-            }
-
             Case = null;
+
+            WitnessContext = null;
+
+            TestimonyContext = null;
+
             StatementContext = null;
 
-            NotifySelectionChanged();
+            Notify();
         }
 
-        private void NotifySelectionChanged()
+
+
+        private void Notify()
         {
+            Debug.Log("4. Notify");
             SelectionChanged?.Invoke();
         }
     }

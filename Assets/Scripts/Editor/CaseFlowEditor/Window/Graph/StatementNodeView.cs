@@ -9,6 +9,7 @@ namespace Verdict.Editor.CaseFlow
 {
     public sealed class StatementNodeView : Node
     {
+        internal bool SuppressSelectedEvent { get; set; }
         private readonly Port inputPort;
         private readonly Port outputPort;
 
@@ -73,6 +74,9 @@ namespace Verdict.Editor.CaseFlow
         {
             base.OnSelected();
 
+            if (SuppressSelectedEvent)
+                return;
+            Debug.Log("1. Node Selected");
             Selected?.Invoke(this);
         }
 

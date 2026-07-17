@@ -82,39 +82,48 @@ namespace Verdict.Editor.CaseFlow
 
         private void Refresh()
         {
-            StatementData statement =
-                session.Selection.Statement;
-
-            if (statement == null)
-            {
-                ClearInspector();
-                return;
-            }
-
-            if (!session.TryGetContext(
-                    statement.Id,
-                    out StatementContext context))
-            {
-                ClearInspector();
-                return;
-            }
-
-            Show(context);
-        }
-        private void Show(
-            StatementContext context)
-        {
-            emptyLabel.style.display =
-                DisplayStyle.None;
-
-            content.style.display =
-                DisplayStyle.Flex;
-
             content.Clear();
 
-            DrawStatementSection(context);
+            if (session.Selection.HasStatement)
+            {
+                ShowContent();
 
-            DrawClaimsSection(context);
+                StatementContext context =
+                    session.Selection.StatementContext;
+
+                DrawStatementSection(context);
+                DrawClaimsSection(context);
+
+                return;
+            }
+
+            if (session.Selection.HasTestimony)
+            {
+                ShowContent();
+
+                content.Add(
+                    new TestimonyCard(
+                        session,
+                        editService,
+                        session.Selection.TestimonyContext));
+
+                return;
+            }
+
+            if (session.Selection.HasWitness)
+            {
+                ShowContent();
+
+                content.Add(
+                    new WitnessCard(
+                        session,
+                        editService,
+                        session.Selection.WitnessContext));
+
+                return;
+            }
+
+            ClearInspector();
         }
 
         private void DrawStatementSection(
@@ -202,6 +211,15 @@ namespace Verdict.Editor.CaseFlow
 
             content.style.display = DisplayStyle.None;
             emptyLabel.style.display = DisplayStyle.Flex;
+        }
+
+        private void ShowContent()
+        {
+            emptyLabel.style.display =
+                DisplayStyle.None;
+
+            content.style.display =
+                DisplayStyle.Flex;
         }
     }
 }

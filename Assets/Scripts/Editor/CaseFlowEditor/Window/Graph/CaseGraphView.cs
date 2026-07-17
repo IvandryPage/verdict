@@ -172,21 +172,18 @@ namespace Verdict.Editor.CaseFlow
                 color);
         }
 
-        public void Frame(
-            string id)
+        public void Frame(string id)
         {
-            if (!nodeViews.TryGetValue(
-                id,
-                out StatementNodeView node))
-            {
+            if (!nodeViews.TryGetValue(id, out StatementNodeView node))
                 return;
-            }
+
+            node.SuppressSelectedEvent = true;
 
             ClearSelection();
-
             AddToSelection(node);
-
             FrameSelection();
+
+            node.SuppressSelectedEvent = false;
         }
 
         public void ClearGraph()
@@ -199,6 +196,7 @@ namespace Verdict.Editor.CaseFlow
         private void HandleNodeSelected(
             StatementNodeView node)
         {
+            Debug.Log($"2. Graph Selected : {node.Context.Statement.Id}");
             StatementSelected?.Invoke(node.Context);
         }
 

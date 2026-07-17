@@ -15,7 +15,7 @@ namespace Verdict.Editor.CaseFlow.Validation
         public ValidationPanel()
         {
             style.flexGrow = 1;
-            style.minHeight = 100;
+            style.minHeight = 40;
 
             Label title = new("Validation");
 

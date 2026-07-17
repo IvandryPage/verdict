@@ -26,23 +26,32 @@ namespace Verdict.Editor.CaseFlow
 
         private readonly CaseEditService editService;
 
+
         private ObjectField caseField;
+
 
         private bool HasCase =>
             session.CurrentCase != null;
+
+
 
         public CaseEditorController(
             VisualElement root)
         {
             this.root = root;
 
-            session = new EditorSession();
 
-            graphView = new CaseGraphView();
+            session =
+                new EditorSession();
 
-            graphView.StatementSelected += session.Selection.SelectStatement;
 
-            session.Selection.SelectionChanged += HandleSelectionChanged;
+            graphView =
+                new CaseGraphView();
+
+
+            graphView.StatementSelected +=
+                HandleStatementSelected;
+
 
             graphView.EdgeCreated +=
                 HandleEdgeCreated;
@@ -51,202 +60,355 @@ namespace Verdict.Editor.CaseFlow
             graphView.EdgeRemoved +=
                 HandleEdgeRemoved;
 
-            graphBuilder = new CaseGraphBuilder(graphView);
+
+
+            session.Selection.SelectionChanged +=
+                HandleSelectionChanged;
+
+
+
+            graphBuilder =
+                new CaseGraphBuilder(
+                    graphView);
+
+
 
             validationPanel =
                 new ValidationPanel();
 
+
             validationPanel.IssueSelected +=
                 HandleValidationIssueSelected;
 
-            editService = new CaseEditService(session);
+
+
+            editService =
+                new CaseEditService(
+                    session);
+
 
             editService.CaseModified +=
                 HandleCaseModified;
 
-            inspector = new CaseInspectorView(session, editService);
+
+
+            inspector =
+                new CaseInspectorView(
+                    session,
+                    editService);
         }
+
+
 
         public void Initialize()
         {
             root.style.flexDirection =
                 FlexDirection.Column;
 
-            Toolbar toolbar =
-                BuildToolbar();
 
-            root.Add(toolbar);
 
-            // Graph | Right Panel
-            TwoPaneSplitView horizontalSplit =
-                new TwoPaneSplitView(
+            root.Add(
+                BuildToolbar());
+
+
+
+            TwoPaneSplitView mainSplit =
+                new(
                     0,
                     900,
                     TwoPaneSplitViewOrientation.Horizontal);
 
-            TwoPaneSplitView vertical =
+
+
+            TwoPaneSplitView rightSplit =
                 new(
                     0,
-                    350,
+                    700,
                     TwoPaneSplitViewOrientation.Vertical);
 
-            vertical.Add(inspector);
-            vertical.Add(validationPanel);// Inspector
 
-            horizontalSplit.Add(graphView);
 
-            horizontalSplit.Add(vertical);
+            rightSplit.Add(inspector);
 
-            root.Add(horizontalSplit);
+            rightSplit.Add(validationPanel);
+
+
+
+            mainSplit.Add(graphView);
+
+            mainSplit.Add(rightSplit);
+
+
+
+            root.Add(mainSplit);
         }
+
+
+
+
 
         private Toolbar BuildToolbar()
         {
-            Toolbar toolbar = new();
+            Toolbar toolbar =
+                new();
 
-            toolbar.Add(new Label("Case"));
 
-            caseField = new ObjectField
-            {
-                objectType = typeof(CaseData),
-                allowSceneObjects = false
-            };
 
-            caseField.style.minWidth = 300;
+            toolbar.Add(
+                new Label("Case"));
 
-            caseField.RegisterValueChangedCallback(OnCaseChanged);
+
+
+            caseField =
+                new ObjectField
+                {
+                    objectType =
+                        typeof(CaseData),
+
+                    allowSceneObjects =
+                        false
+                };
+
+
+
+            caseField.style.minWidth =
+                300;
+
+
+
+            caseField.RegisterValueChangedCallback(
+                OnCaseChanged);
+
+
 
             toolbar.Add(caseField);
 
-            toolbar.Add(new ToolbarSpacer());
 
-            toolbar.Add(new ToolbarButton(SaveCase)
-            {
-                text = "Save"
-            });
 
-            toolbar.Add(new ToolbarButton(ValidateCase)
-            {
-                text = "Validate"
-            });
+            toolbar.Add(
+                new ToolbarSpacer());
 
-            toolbar.Add(new ToolbarSpacer());
 
-            toolbar.Add(new ToolbarButton(PlayCase)
-            {
-                text = "Play"
-            });
 
-            toolbar.Add(new ToolbarSpacer());
+            toolbar.Add(
+                new ToolbarButton(SaveCase)
+                {
+                    text = "Save"
+                });
 
-            toolbar.Add(new ToolbarButton(CreateStatement)
-            {
-                text = "+ Statement"
-            });
+
+
+            toolbar.Add(
+                new ToolbarButton(ValidateCase)
+                {
+                    text = "Validate"
+                });
+
+
+
+            toolbar.Add(
+                new ToolbarSpacer());
+
+
+
+            toolbar.Add(
+                new ToolbarButton(CreateStatement)
+                {
+                    text = "+ Statement"
+                });
+
+
+
+            toolbar.Add(
+                new ToolbarButton(PlayCase)
+                {
+                    text = "Play"
+                });
+
+
 
             return toolbar;
         }
 
-        private void OnCaseChanged(ChangeEvent<Object> evt)
+
+
+
+
+        private void OnCaseChanged(
+            ChangeEvent<Object> evt)
         {
             if (evt.newValue is not CaseData caseData)
-            {
                 return;
-            }
+
 
             LoadCase(caseData);
         }
+
+
+
+
+
+        private void LoadCase(
+            CaseData caseData)
+        {
+            session.LoadCase(
+                caseData);
+
+
+            RefreshEditor();
+        }
+
+
+
+
 
         private void SaveCase()
         {
             if (!HasCase)
                 return;
 
-            EditorUtility.SetDirty(session.CurrentCase);
+
+            EditorUtility.SetDirty(
+                session.CurrentCase);
+
 
             AssetDatabase.SaveAssets();
         }
+
+
+
+
 
         private void ValidateCase()
         {
             RefreshEditor();
         }
 
+
+
+
+
         private void PlayCase()
         {
             if (!HasCase)
                 return;
 
+
             Debug.Log("Play...");
         }
 
+
+
+
+
         private void CreateStatement()
         {
-            if (!HasCase) return;
-
             if (!session.Selection.HasStatement)
             {
-                Debug.LogWarning("Select a statement first.");
+                Debug.LogWarning(
+                    "Select a statement first.");
+
                 return;
             }
 
-            StatementContext context = session.Selection.StatementContext;
-            StatementData newStatement = editService.CreateStatementAfter(context);
+
+
+            StatementData statement =
+                editService.CreateStatementAfter(
+                    session.Selection.StatementContext);
+
+
+
             RefreshEditor();
-            SelectStatement(newStatement);
+
+
+
+            SelectStatement(statement);
         }
 
-        public void HandleEvent(Event e)
+
+
+
+
+        public void HandleEvent(
+            Event e)
         {
-            if (e.commandName != "ObjectSelectorClosed")
+            if (e.commandName !=
+                "ObjectSelectorClosed")
+            {
                 return;
+            }
+
+
 
             CaseData selected =
-                EditorGUIUtility.GetObjectPickerObject() as CaseData;
+                EditorGUIUtility
+                .GetObjectPickerObject()
+                as CaseData;
+
+
 
             if (selected == null)
                 return;
 
+
+
             LoadCase(selected);
         }
 
-        private void LoadCase(CaseData caseData)
-        {
-            session.LoadCase(caseData);
 
-            RefreshEditor();
-        }
+
+
 
         private void RefreshEditor()
         {
             if (!HasCase)
                 return;
 
-            string selectedId = session.Selection.Statement?.Id;
 
-            RebuildSession();
+
+            string selectedId =
+                session.Selection.Statement?.Id;
+
+
+
+            session.LoadCase(
+                session.CurrentCase);
+
+
 
             ValidationResult result =
                 Validate();
 
-            RefreshGraph(result);
 
-            RestoreSelection(selectedId);
 
-            RefreshValidation(result);
+            RefreshGraph(
+                result);
 
-            RefreshInspector();
+
+
+            RestoreSelection(
+                selectedId);
+
+
+
+            RefreshValidation(
+                result);
         }
 
-        private void RebuildSession()
-        {
-            session.LoadCase(session.CurrentCase);
-        }
+
+
+
 
         private ValidationResult Validate()
         {
-            return RuntimeValidator.Validate(session.CurrentCase);
+            return RuntimeValidator.Validate(
+                session.CurrentCase);
         }
+
+
+
+
 
         private void RefreshGraph(
             ValidationResult result)
@@ -256,37 +418,29 @@ namespace Verdict.Editor.CaseFlow
                 result);
         }
 
+
+
+
+
         private void RefreshValidation(
             ValidationResult result)
         {
-            validationPanel.Show(result);
+            validationPanel.Show(
+                result);
         }
 
-        private void RefreshInspector()
+
+
+
+
+        private void HandleCaseModified()
         {
-            // Future
+            RefreshEditor();
         }
 
-        private void HandleValidationIssueSelected(
-            ValidationIssue issue)
-        {
-            if (string.IsNullOrWhiteSpace(issue.ContextId))
-            {
-                return;
-            }
 
-            if (!session.TryGetContext(
-                    issue.ContextId,
-                    out StatementContext context))
-            {
-                return;
-            }
 
-            session.Selection.SelectStatement(context);
 
-            graphView.Frame(
-                context.Statement.Id);
-        }
 
         private void HandleSelectionChanged()
         {
@@ -297,9 +451,66 @@ namespace Verdict.Editor.CaseFlow
                 session.Selection.Statement.Id);
         }
 
+
+
+
+
         private void HandleStatementSelected(
+            StatementContext context)
+        {
+            if (context == null)
+                return;
+
+
+            session.Selection.SelectStatement(
+                context);
+        }
+
+
+
+
+
+        private void HandleValidationIssueSelected(
+            ValidationIssue issue)
+        {
+            if (string.IsNullOrWhiteSpace(
+                issue.ContextId))
+            {
+                return;
+            }
+
+
+
+            if (!session.TryGetContext(
+                issue.ContextId,
+                out StatementContext context))
+            {
+                return;
+            }
+
+
+
+            session.Selection.SelectStatement(
+                context);
+
+
+
+            graphView.Frame(
+                context.Statement.Id);
+        }
+
+
+
+
+
+        private void SelectStatement(
             StatementData statement)
         {
+            if (statement == null)
+                return;
+
+
+
             if (!session.TryGetContext(
                 statement.Id,
                 out StatementContext context))
@@ -307,32 +518,26 @@ namespace Verdict.Editor.CaseFlow
                 return;
             }
 
-            session.Selection.SelectStatement(context);
+
+
+            session.Selection.SelectStatement(
+                context);
         }
 
-        private void HandleCaseModified()
-        {
-            RefreshEditor();
-        }
 
-        private void SelectStatement(
-            StatementData statement)
-        {
-            if (!session.TryGetContext(
-                    statement.Id,
-                    out StatementContext context))
-            {
-                return;
-            }
 
-            session.Selection.SelectStatement(context);
-        }
+
 
         private void RestoreSelection(
             string statementId)
         {
-            if (string.IsNullOrWhiteSpace(statementId))
+            if (string.IsNullOrWhiteSpace(
+                statementId))
+            {
                 return;
+            }
+
+
 
             if (!session.TryGetContext(
                 statementId,
@@ -341,21 +546,38 @@ namespace Verdict.Editor.CaseFlow
                 return;
             }
 
-            session.Selection.SelectStatement(context);
 
-            graphView.Frame(statementId);
+
+            session.Selection.SelectStatement(
+                context);
+
+
+
+            graphView.Frame(
+                statementId);
         }
+
+
+
 
 
         private void HandleEdgeCreated(
             Edge edge)
         {
-            if (edge.output.node is not StatementNodeView from)
+            if (edge.output.node
+                is not StatementNodeView from)
+            {
                 return;
+            }
 
 
-            if (edge.input.node is not StatementNodeView to)
+
+            if (edge.input.node
+                is not StatementNodeView to)
+            {
                 return;
+            }
+
 
 
             editService.ConnectStatements(
@@ -363,14 +585,28 @@ namespace Verdict.Editor.CaseFlow
                 to.Context);
         }
 
+
+
+
+
         private void HandleEdgeRemoved(
             Edge edge)
         {
-            if (edge.output.node is not StatementNodeView from)
+            if (edge.output.node
+                is not StatementNodeView from)
+            {
                 return;
+            }
 
-            if (edge.input.node is not StatementNodeView to)
+
+
+            if (edge.input.node
+                is not StatementNodeView to)
+            {
                 return;
+            }
+
+
 
             editService.DisconnectStatements(
                 from.Context,
