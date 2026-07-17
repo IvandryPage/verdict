@@ -4,6 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Editor.CaseFlow.Hierarchy;
 using Verdict.Editor.CaseFlow.Service;
 using Verdict.Editor.CaseFlow.Validation;
 using Verdict.Systems.Validation;
@@ -23,6 +24,8 @@ namespace Verdict.Editor.CaseFlow
         private readonly CaseGraphBuilder graphBuilder;
 
         private readonly ValidationPanel validationPanel;
+
+        private readonly CaseHierarchyView hierarchy;
 
         private readonly CaseEditService editService;
 
@@ -101,6 +104,12 @@ namespace Verdict.Editor.CaseFlow
                 new CaseInspectorView(
                     session,
                     editService);
+
+            hierarchy = new CaseHierarchyView();
+
+            hierarchy.WitnessSelected += session.Selection.SelectWitness;
+            hierarchy.TestimonySelected += session.Selection.SelectTestimony;
+            hierarchy.StatementSelected += session.Selection.SelectStatement;
         }
 
 
@@ -110,40 +119,38 @@ namespace Verdict.Editor.CaseFlow
             root.style.flexDirection =
                 FlexDirection.Column;
 
-
-
             root.Add(
                 BuildToolbar());
 
-
-
-            TwoPaneSplitView mainSplit =
+            // Hierarchy | Graph
+            TwoPaneSplitView leftSplit =
                 new(
                     0,
-                    900,
+                    260,
                     TwoPaneSplitViewOrientation.Horizontal);
 
+            leftSplit.Add(hierarchy);
+            leftSplit.Add(graphView);
 
-
+            // Inspector | Validation
             TwoPaneSplitView rightSplit =
                 new(
                     0,
                     700,
                     TwoPaneSplitViewOrientation.Vertical);
 
-
-
             rightSplit.Add(inspector);
-
             rightSplit.Add(validationPanel);
 
+            // (Hierarchy | Graph) | Right Panel
+            TwoPaneSplitView mainSplit =
+                new(
+                    0,
+                    1200,
+                    TwoPaneSplitViewOrientation.Horizontal);
 
-
-            mainSplit.Add(graphView);
-
+            mainSplit.Add(leftSplit);
             mainSplit.Add(rightSplit);
-
-
 
             root.Add(mainSplit);
         }
@@ -477,6 +484,8 @@ namespace Verdict.Editor.CaseFlow
 
             RefreshValidation(
                 result);
+
+            hierarchy.Rebuild(session);
         }
 
 
