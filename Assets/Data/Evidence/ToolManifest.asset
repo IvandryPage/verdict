@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: CrimeScenePhoto
+  m_Name: ToolManifest
   m_EditorClassIdentifier: 
-  id: ev_crime_scene_photo
-  displayName: Crime Scene Photo
-  description: Photo of the crime scene
-  type: 2
+  id: ev003
+  displayName: Tool Manifest
+  description: Morgan checkout toolkit
+  type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

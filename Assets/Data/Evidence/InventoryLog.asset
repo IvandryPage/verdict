@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: StoreReceipt
+  m_Name: InventoryLog
   m_EditorClassIdentifier: 
-  id: ev_store_receipt
-  displayName: Store Receipt
-  description: Receipt proving Alice bought medicine.
+  id: ev004
+  displayName: Inventory Log
+  description: Backup Prototype was in Storage Room B
   type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

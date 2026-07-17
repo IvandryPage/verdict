@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: Floorplan
+  m_Name: AccessCardLog
   m_EditorClassIdentifier: 
-  id: ev_floorplan
-  displayName: Floor Plan
-  description: Layout of the Restaurant
-  type: 2
+  id: ev001
+  displayName: Access Card Log
+  description: Door access records for Laboratory 3
+  type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}
