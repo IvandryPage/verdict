@@ -13,6 +13,18 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
         public event Action<TestimonyContext> TestimonySelected;
         public event Action<StatementContext> StatementSelected;
 
+        public event Action CreateWitnessRequested;
+
+        public event Action<WitnessContext> CreateTestimonyRequested;
+
+        public event Action<TestimonyContext> CreateStatementRequested;
+
+        public event Action<WitnessContext> DeleteWitnessRequested;
+
+        public event Action<TestimonyContext> DeleteTestimonyRequested;
+
+        public event Action<StatementContext> DeleteStatementRequested;
+
         public CaseHierarchyView()
         {
             style.flexGrow = 1;
@@ -25,15 +37,29 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
             tree.selectionType = SelectionType.Single;
             tree.fixedItemHeight = 22;
 
-            tree.makeItem = () => new Label();
+            tree.makeItem = () =>
+            {
+                Label label = new();
+
+                return label;
+            };
 
             tree.bindItem = (element, index) =>
             {
                 Label label = (Label)element;
 
-                HierarchyItem item = tree.GetItemDataForIndex<HierarchyItem>(index);
+                HierarchyItem item =
+                    tree.GetItemDataForIndex<HierarchyItem>(index);
 
                 label.text = item.Name;
+
+                label.AddManipulator(
+                    new ContextualMenuManipulator(evt =>
+                    {
+                        BuildContextMenu(evt, item);
+                    }));
+
+                label.userData = item;
             };
 
             tree.selectedIndicesChanged += OnSelectionChanged;
@@ -84,6 +110,56 @@ namespace Verdict.Editor.CaseFlow.Hierarchy
 
                 ExpandRecursive(item.children);
             }
+        }
+
+        private void BuildContextMenu(
+            ContextualMenuPopulateEvent evt,
+            HierarchyItem item)
+        {
+            switch (item.Type)
+            {
+                case HierarchyType.Witness:
+
+                    evt.menu.AppendAction(
+                        "Create Testimony",
+                        _ => CreateTestimonyRequested?.Invoke(item.Witness));
+
+                    evt.menu.AppendSeparator();
+
+                    evt.menu.AppendAction(
+                        "Delete Witness",
+                        _ => DeleteWitnessRequested?.Invoke(item.Witness));
+
+                    break;
+
+                case HierarchyType.Testimony:
+
+                    evt.menu.AppendAction(
+                        "Create Statement",
+                        _ => CreateStatementRequested?.Invoke(item.Testimony));
+
+                    evt.menu.AppendSeparator();
+
+                    evt.menu.AppendAction(
+                        "Delete Testimony",
+                        _ => DeleteTestimonyRequested?.Invoke(item.Testimony));
+
+                    break;
+
+                case HierarchyType.Statement:
+
+                    evt.menu.AppendAction(
+                        "Delete Statement",
+                        _ => DeleteStatementRequested?.Invoke(item.Statement));
+
+                    break;
+            }
+
+            evt.menu.AppendSeparator();
+
+            evt.menu.AppendAction(
+                "Create Witness",
+                _ => CreateWitnessRequested?.Invoke());
         }
     }
 }

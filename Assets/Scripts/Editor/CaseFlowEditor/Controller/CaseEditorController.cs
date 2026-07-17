@@ -110,9 +110,18 @@ namespace Verdict.Editor.CaseFlow
             hierarchy.WitnessSelected += session.Selection.SelectWitness;
             hierarchy.TestimonySelected += session.Selection.SelectTestimony;
             hierarchy.StatementSelected += session.Selection.SelectStatement;
+            hierarchy.CreateWitnessRequested += HandleCreateWitness;
+
+            hierarchy.CreateTestimonyRequested += HandleCreateTestimony;
+
+            hierarchy.CreateStatementRequested += HandleCreateStatement;
+
+            hierarchy.DeleteWitnessRequested += HandleDeleteWitness;
+
+            hierarchy.DeleteTestimonyRequested += HandleDeleteTestimony;
+
+            hierarchy.DeleteStatementRequested += HandleDeleteStatement;
         }
-
-
 
         public void Initialize()
         {
@@ -703,6 +712,68 @@ namespace Verdict.Editor.CaseFlow
             editService.DisconnectStatements(
                 from.Context,
                 to.Context);
+        }
+
+
+        private void HandleCreateWitness()
+        {
+            editService.CreateWitness();
+
+            RefreshEditor();
+        }
+
+        private void HandleCreateTestimony(
+            WitnessContext context)
+        {
+            editService.CreateTestimony(
+                context.Witness);
+
+            RefreshEditor();
+        }
+
+        private void HandleCreateStatement(
+            TestimonyContext context)
+        {
+            editService.CreateStatement(
+                context.Testimony);
+
+            RefreshEditor();
+        }
+
+        private void HandleDeleteStatement(
+            StatementContext context)
+        {
+            if (context == null)
+                return;
+
+            editService.DeleteStatement(context);
+
+            RefreshEditor();
+        }
+
+        private void HandleDeleteTestimony(
+            TestimonyContext context)
+        {
+            if (context == null)
+                return;
+
+            editService.DeleteTestimony(
+                context.Witness,
+                context.Testimony);
+
+            RefreshEditor();
+        }
+
+        private void HandleDeleteWitness(
+            WitnessContext context)
+        {
+            if (context == null)
+                return;
+
+            editService.DeleteWitness(
+                context.Witness);
+
+            RefreshEditor();
         }
     }
 }
