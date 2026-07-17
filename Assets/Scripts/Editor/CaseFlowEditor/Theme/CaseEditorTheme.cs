@@ -11,33 +11,33 @@ namespace Verdict.Editor.CaseFlow.Theme
             {
                 NodeColor.Entry =>
                     new NodeStyle(
-                        Hex("#2E7D32"),
-                        Hex("#66BB6A"),
-                        Color.white),
+                        Hex("#1B5E20"),
+                        Hex("#43A047"),
+                        Hex("#E8F5E9")),
 
                 NodeColor.Hidden =>
                     new NodeStyle(
-                        Hex("#4A4A4A"),
-                        Hex("#757575"),
-                        Color.white),
+                        Hex("#2B2E36"),
+                        Hex("#61656D"),
+                        Hex("#E0E0E0")),
 
                 NodeColor.Warning =>
                     new NodeStyle(
-                        Hex("#A16A00"),
-                        Hex("#FBC02D"),
-                        Color.white),
+                        Hex("#4E342E"),
+                        Hex("#F9A825"),
+                        Hex("#FFF8E1")),
 
                 NodeColor.Error =>
                     new NodeStyle(
-                        Hex("#7F1D1D"),
-                        Hex("#EF5350"),
-                        Color.white),
+                        Hex("#B71C1C"),
+                        Hex("#D32F2F"),
+                        Hex("#FFEBEE")),
 
                 _ =>
                     new NodeStyle(
-                        Hex("#2D2D30"),
+                        Hex("#23232A"),
                         Hex("#616161"),
-                        Color.white)
+                        Hex("#E8EAF6"))
             };
         }
 
@@ -53,12 +53,12 @@ namespace Verdict.Editor.CaseFlow.Theme
 
                 EdgeColor.Jump =>
                     new EdgeStyle(
-                        Hex("#FB8C00"),
+                        Hex("#7C4DFF"),
                         3f),
 
                 EdgeColor.Warning =>
                     new EdgeStyle(
-                        Hex("#FBC02D"),
+                        Hex("#F9A825"),
                         3f),
 
                 EdgeColor.Error =>

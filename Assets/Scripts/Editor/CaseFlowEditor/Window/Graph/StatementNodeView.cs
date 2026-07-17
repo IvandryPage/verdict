@@ -9,6 +9,7 @@ namespace Verdict.Editor.CaseFlow
 {
     public sealed class StatementNodeView : Node
     {
+        private NodeStyle currentStyle;
         internal bool SuppressSelectedEvent { get; set; }
         private readonly Port inputPort;
         private readonly Port outputPort;
@@ -39,18 +40,33 @@ namespace Verdict.Editor.CaseFlow
                 context.Statement;
 
             title =
-                HierarchyDisplayUtility.GetStatementName(
-                    statement);
+                GetStatementTitle(statement);
+
+            style.width = 320;
+            style.maxWidth = 320;
+            style.minWidth = 260;
+            style.flexShrink = 0;
 
 
             Label preview =
-                new Label(GetPreview(statement))
+                new Label(GetPreviewText(statement))
                 {
                     tooltip = statement.Text
                 };
 
             preview.style.whiteSpace =
                 WhiteSpace.Normal;
+
+            preview.style.flexShrink = 1;
+            preview.style.flexWrap = Wrap.Wrap;
+
+            preview.style.overflow =
+                Overflow.Hidden;
+            preview.style.unityOverflowClipBox =
+                OverflowClipBox.ContentBox;
+            preview.style.textOverflow =
+                TextOverflow.Ellipsis;
+            preview.style.maxWidth = 300;
 
             preview.style.unityTextAlign =
                 TextAnchor.UpperLeft;
@@ -94,23 +110,18 @@ namespace Verdict.Editor.CaseFlow
             RefreshExpandedState();
         }
 
-
-        public override void OnSelected()
-        {
-            base.OnSelected();
-
-            if (SuppressSelectedEvent)
-                return;
-
-            Selected?.Invoke(this);
-        }
-
-
         public void ApplyStyle(
             NodeStyle style)
         {
+            currentStyle = style;
+
             mainContainer.style.backgroundColor =
                 new StyleColor(style.Background);
+
+            mainContainer.style.borderLeftWidth = 1;
+            mainContainer.style.borderRightWidth = 1;
+            mainContainer.style.borderTopWidth = 1;
+            mainContainer.style.borderBottomWidth = 1;
 
             mainContainer.style.borderLeftColor =
                 new StyleColor(style.Border);
@@ -131,8 +142,85 @@ namespace Verdict.Editor.CaseFlow
                 new StyleColor(style.Title);
         }
 
+        public override void OnSelected()
+        {
+            base.OnSelected();
 
-        private static string GetPreview(
+            ApplySelectionStyle();
+
+            if (!SuppressSelectedEvent)
+            {
+                Selected?.Invoke(this);
+            }
+        }
+
+        public override void OnUnselected()
+        {
+            base.OnUnselected();
+            RestoreSelectionStyle();
+        }
+
+        private void ApplySelectionStyle()
+        {
+            if (currentStyle == null)
+                return;
+
+            Color selectionColor = new Color(0.26f, 0.63f, 0.96f);
+
+            mainContainer.style.borderLeftWidth = 3;
+            mainContainer.style.borderRightWidth = 3;
+            mainContainer.style.borderTopWidth = 3;
+            mainContainer.style.borderBottomWidth = 3;
+            mainContainer.style.borderLeftColor = new StyleColor(selectionColor);
+            mainContainer.style.borderRightColor = new StyleColor(selectionColor);
+            mainContainer.style.borderTopColor = new StyleColor(selectionColor);
+            mainContainer.style.borderBottomColor = new StyleColor(selectionColor);
+        }
+
+        private void RestoreSelectionStyle()
+        {
+            if (currentStyle == null)
+                return;
+
+            mainContainer.style.borderLeftWidth = 1;
+            mainContainer.style.borderRightWidth = 1;
+            mainContainer.style.borderTopWidth = 1;
+            mainContainer.style.borderBottomWidth = 1;
+            mainContainer.style.borderLeftColor = new StyleColor(currentStyle.Border);
+            mainContainer.style.borderRightColor = new StyleColor(currentStyle.Border);
+            mainContainer.style.borderTopColor = new StyleColor(currentStyle.Border);
+            mainContainer.style.borderBottomColor = new StyleColor(currentStyle.Border);
+        }
+
+
+        private static string GetStatementTitle(
+            StatementData statement)
+        {
+            if (statement == null)
+                return "<Missing Statement>";
+
+            string id = GetShortId(statement.Id);
+
+            if (string.IsNullOrWhiteSpace(statement.Text))
+                return id;
+
+            string text = statement.Text.Trim();
+
+            return $"{id} — {(text.Length <= 30 ? text : text.Substring(0, 30) + "...")}";
+        }
+
+        private static string GetShortId(
+            string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return "<no id>";
+
+            return id.Length <= 5
+                ? id
+                : id[..5];
+        }
+
+        private static string GetPreviewText(
             StatementData statement)
         {
             if (string.IsNullOrWhiteSpace(statement.Text))
