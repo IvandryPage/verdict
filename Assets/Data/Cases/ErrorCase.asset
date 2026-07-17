@@ -35,5 +35,50 @@ MonoBehaviour:
   evidence: []
   truth:
     facts: []
-  witnesses: []
+  witnesses:
+  - id: 650351ed21ad471fa36db4eb134fb1e1
+    character: {fileID: 11400000, guid: 4e9f239c299d541a986730775880e60e, type: 2}
+    role: 0
+    description: 
+    testimonies:
+    - id: d96f00a63b1b440ab60accdf49776f25
+      title: New Testimony
+      description: 
+      statements:
+      - id: 9fd9077889d540978ce8bde22ee6deb6
+        text: Statement 1
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 2041a6671fd24ea0b4ed09a0d5034415
+          factId: fact_001
+          isTrue: 1
+          evaluationRules:
+          - evaluationType: 1
+            requiredEvidence: {fileID: 0}
+            successEffects:
+            - effect: 5
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+      - id: 14fd5b2aa78945a1b4e16b2e88d9b029
+        text: Statement 2
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 1e42d60955ca420b9786e1ad119d8080
+        text: Statement 3
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 1bb88e2899d74fb59317150259aa7505
+        text: Statement 4
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+    initiallyVisible: 1
   endings: []

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Verdict.Editor.CaseFlow.Service;
 using Verdict.Editor.CaseFlow.Theme;
 using Verdict.Editor.CaseFlow.Validation;
 using Verdict.Systems.Validation;
@@ -9,6 +11,9 @@ namespace Verdict.Editor.CaseFlow
     public sealed class CaseGraphBuilder
     {
         private readonly CaseGraphView graphView;
+
+        private readonly AutoLayoutService autoLayout =
+            new();
 
         public CaseGraphBuilder(
             CaseGraphView graphView)
@@ -26,32 +31,24 @@ namespace Verdict.Editor.CaseFlow
             {
                 graphView.ClearGraph();
 
-                float x = 100;
-                float y = 100;
+                Dictionary<string, Vector2> positions =
+                    autoLayout.Calculate(
+                        session.FlowGraph);
 
                 foreach (FlowGraphNode node in session.FlowGraph.Nodes.Values)
                 {
                     StatementContext context =
                         session.GetContext(node.Id);
 
-                    StatementNodeView view =
-                        graphView.CreateStatementNode(
-                            context,
-                            node,
-                            new Vector2(x, y));
+                    StatementNodeView view = graphView.CreateStatementNode(
+                        context,
+                        node,
+                        positions[node.Id]);
 
                     ApplyNodeTheme(
                         node,
                         view,
                         result);
-
-                    x += 350;
-
-                    if (x > 1800)
-                    {
-                        x = 100;
-                        y += 250;
-                    }
                 }
 
                 graphView.CreateEdges(session.FlowGraph);
