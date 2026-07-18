@@ -7,82 +7,108 @@ namespace Verdict.Systems
 {
     public sealed class CaseSessionManager
     {
-        public event Action<CaseRuntime> CaseLoaded;
-        public event Action CaseUnloaded;
+        public event Action<CaseSession> SessionLoaded;
+        public event Action SessionUnloaded;
 
-        public CaseRuntime CurrentCase { get; private set; }
+        public CaseSession CurrentSession { get; private set; }
 
-        public bool HasActiveCase => CurrentCase != null;
+        public bool HasActiveSession =>
+            CurrentSession != null;
 
-        // Load a case and optionally apply persisted revealed statement IDs.
-        // revealedStatementIds is intended for restore from save: it will be
-        // added to CourtStateRuntime.RevealedStatementIds and will also set
-        // corresponding StatementRuntime.IsVisible = true so gameplay reflects saved state.
-        public void LoadCase(CaseData caseData, IEnumerable<string> revealedStatementIds = null)
+        public void LoadCase(
+            CaseData caseData,
+            IEnumerable<string> revealedStatementIds = null)
         {
-            // ArgumentNullException.ThrowIfNull(caseData);
             if (caseData == null)
             {
                 throw new ArgumentNullException(nameof(caseData));
             }
 
-            if (HasActiveCase)
+            if (HasActiveSession)
             {
                 throw new InvalidOperationException(
                     "A case is already loaded.");
             }
 
-            CurrentCase = RuntimeFactory.Create(caseData);
+            CaseRuntime runtime =
+                RuntimeFactory.Create(caseData);
 
-            // Apply persisted revealed IDs (if any) to both CourtStateRuntime and StatementRuntime.
+            CourtroomFlow flow =
+                new CourtroomFlow(runtime);
+
+            DialogueRunner dialogueRunner =
+                new DialogueRunner();
+
+            EvaluationSystem evaluationSystem =
+                new EvaluationSystem(flow);
+
+            CourtStateEffectProcessor effectProcessor =
+                new CourtStateEffectProcessor(runtime);
+
+            CurrentSession =
+                new CaseSession(
+                    runtime,
+                    flow,
+                    dialogueRunner,
+                    evaluationSystem,
+                    effectProcessor);
+
             if (revealedStatementIds != null)
             {
                 foreach (string id in revealedStatementIds)
                 {
                     if (string.IsNullOrWhiteSpace(id))
+                    {
                         continue;
+                    }
 
                     try
                     {
-                        CurrentCase.CourtState.RevealStatement(id);
+                        CurrentSession.Runtime.CourtState
+                            .RevealStatement(id);
                     }
                     catch (ArgumentException)
                     {
-                        // ignore invalid ids coming from older save data
+                        continue;
                     }
-                    if (CurrentCase.TryGetStatement(id, out StatementRuntime statement))
+
+                    if (CurrentSession.Runtime.TryGetStatement(
+                        id,
+                        out StatementRuntime statement))
                     {
                         statement.IsVisible = true;
                     }
                 }
             }
 
-            CaseLoaded?.Invoke(CurrentCase);
+            SessionLoaded?.Invoke(CurrentSession);
         }
 
         public void UnloadCase()
         {
-            if (!HasActiveCase)
+            if (!HasActiveSession)
             {
                 return;
             }
 
-            CurrentCase = null;
+            CurrentSession = null;
 
-            CaseUnloaded?.Invoke();
+            SessionUnloaded?.Invoke();
         }
 
         public void RestartCase()
         {
-            if (!HasActiveCase)
+            if (!HasActiveSession)
             {
                 throw new InvalidOperationException(
-                    "No active case to restart.");
+                    "No active case.");
             }
 
-            CurrentCase = RuntimeFactory.Create(CurrentCase.Data);
+            CaseData data =
+                CurrentSession.Runtime.Data;
 
-            CaseLoaded?.Invoke(CurrentCase);
+            UnloadCase();
+            LoadCase(data);
         }
     }
 }

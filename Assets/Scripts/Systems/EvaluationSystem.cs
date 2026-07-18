@@ -11,15 +11,17 @@ namespace Verdict.Systems
 
         public EvaluationSystem(CourtroomFlow courtroomFlow)
         {
-            this.courtroomFlow = courtroomFlow
-                ?? throw new ArgumentNullException(nameof(courtroomFlow));
+            this.courtroomFlow =
+                courtroomFlow ??
+                throw new ArgumentNullException(nameof(courtroomFlow));
         }
 
         public EvaluationResult Evaluate(
             EvaluationType evaluationType,
             EvidenceData presentedEvidence = null)
         {
-            StatementRuntime currentStatement = courtroomFlow.CurrentStatement;
+            StatementRuntime currentStatement =
+                courtroomFlow.CurrentStatement;
 
             ClaimData failureClaim = null;
             EvaluationRuleData failureRule = null;
@@ -29,9 +31,7 @@ namespace Verdict.Systems
                 foreach (EvaluationRuleData rule in claim.EvaluationRules)
                 {
                     if (rule.EvaluationType != evaluationType)
-                    {
                         continue;
-                    }
 
                     if (Matches(rule, presentedEvidence))
                     {
@@ -60,8 +60,8 @@ namespace Verdict.Systems
             {
                 case EvaluationType.PresentEvidence:
                     return rule.RequiredEvidence != null &&
-                        presentedEvidence != null &&
-                        rule.RequiredEvidence == presentedEvidence;
+                           presentedEvidence != null &&
+                           rule.RequiredEvidence == presentedEvidence;
 
                 case EvaluationType.Press:
                 case EvaluationType.Question:

@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Verdict.Data.Cases;
 using Verdict.Data.Evidence;
 using Verdict.Runtime;
@@ -9,34 +8,33 @@ namespace Verdict.Systems
     public sealed class CourtroomController
     {
         private readonly CaseSessionManager caseSessionManager;
-        private readonly EvaluationSystem evaluationSystem;
-        private readonly CourtStateEffectProcessor effectProcessor;
 
-        private CourtroomFlow courtroomFlow;
+        private CaseSession Session =>
+            caseSessionManager.CurrentSession;
 
         public StatementRuntime CurrentStatement =>
-                    courtroomFlow.CurrentStatement;
+            Session?.Flow.CurrentStatement;
 
         public TestimonyRuntime CurrentTestimony =>
-            courtroomFlow.CurrentTestimony;
+            Session?.Flow.CurrentTestimony;
 
         public WitnessRuntime CurrentWitness =>
-            courtroomFlow.CurrentWitness;
+            Session?.Flow.CurrentWitness;
 
         public CourtStateRuntime CourtState =>
-            caseSessionManager.CurrentCase?.CourtState;
+            Session?.Runtime.CourtState;
 
         public bool HasActiveCase =>
-            caseSessionManager.HasActiveCase;
+            caseSessionManager.HasActiveSession;
 
         public bool CanMoveNextStatement =>
-            courtroomFlow.CanMoveNextStatement;
+            Session?.Flow.CanMoveNextStatement ?? false;
 
         public bool CanMovePreviousStatement =>
-            courtroomFlow.CanMovePreviousStatement;
+            Session?.Flow.CanMovePreviousStatement ?? false;
 
         public bool IsLastStatement =>
-            courtroomFlow.IsLastStatement;
+            Session?.Flow.IsLastStatement ?? true;
 
         public event Action CaseStarted;
         public event Action CaseRestarted;
@@ -46,28 +44,12 @@ namespace Verdict.Systems
         public event Action<EvaluationResult> EvaluationCompleted;
         public event Action<EndingData> EndingTriggered;
 
-
         public CourtroomController(
-            CaseSessionManager caseSessionManager,
-            CourtroomFlow courtroomFlow,
-            EvaluationSystem evaluationSystem,
-            CourtStateEffectProcessor effectProcessor)
+            CaseSessionManager caseSessionManager)
         {
             this.caseSessionManager =
                 caseSessionManager ??
                 throw new ArgumentNullException(nameof(caseSessionManager));
-
-            this.courtroomFlow =
-                courtroomFlow ??
-                throw new ArgumentNullException(nameof(courtroomFlow));
-
-            this.evaluationSystem =
-                evaluationSystem ??
-                throw new ArgumentNullException(nameof(evaluationSystem));
-
-            this.effectProcessor =
-                effectProcessor ??
-                throw new ArgumentNullException(nameof(effectProcessor));
         }
 
         public void BeginCase()
@@ -78,9 +60,7 @@ namespace Verdict.Systems
                     "No active case.");
             }
 
-            courtroomFlow =
-                new CourtroomFlow(
-                    caseSessionManager.CurrentCase);
+            Session.Flow.Reset();
 
             RefreshCurrentStatement();
 
@@ -90,10 +70,6 @@ namespace Verdict.Systems
         public void RestartCase()
         {
             caseSessionManager.RestartCase();
-
-            courtroomFlow =
-                new CourtroomFlow(
-                    caseSessionManager.CurrentCase);
 
             RefreshCurrentStatement();
 
@@ -109,31 +85,32 @@ namespace Verdict.Systems
             EvidenceData evidence)
         {
             return Execute(
-                Data.Cases.EvaluationType.PresentEvidence,
+                EvaluationType.PresentEvidence,
                 evidence);
         }
 
         public EvaluationResult Press()
         {
             return Execute(
-                Data.Cases.EvaluationType.Press);
+                EvaluationType.Press);
         }
 
         public EvaluationResult Question()
         {
             return Execute(
-                Data.Cases.EvaluationType.Question);
+                EvaluationType.Question);
         }
 
         public EvaluationResult RemainSilent()
         {
             return Execute(
-                Data.Cases.EvaluationType.RemainSilent);
+                EvaluationType.RemainSilent);
         }
 
         public bool Continue()
         {
-            bool success = courtroomFlow.MoveNext();
+            bool success =
+                Session.Flow.MoveNext();
 
             if (success)
             {
@@ -146,7 +123,7 @@ namespace Verdict.Systems
         public bool MovePreviousStatement()
         {
             bool success =
-                courtroomFlow.MovePreviousStatement();
+                Session.Flow.MovePreviousStatement();
 
             if (success)
             {
@@ -157,16 +134,16 @@ namespace Verdict.Systems
         }
 
         private EvaluationResult Execute(
-            Data.Cases.EvaluationType evaluationType,
+            EvaluationType evaluationType,
             EvidenceData evidence = null)
         {
             EvaluationResult result =
-                evaluationSystem.Evaluate(
+                Session.EvaluationSystem.Evaluate(
                     evaluationType,
                     evidence);
 
             CourtStateEffectProcessingResult effectResult =
-                effectProcessor.Apply(result);
+                Session.EffectProcessor.Apply(result);
 
             HandleFlowIntents(effectResult);
 
@@ -175,7 +152,8 @@ namespace Verdict.Systems
             return result;
         }
 
-        private void HandleFlowIntents(CourtStateEffectProcessingResult effectResult)
+        private void HandleFlowIntents(
+            CourtStateEffectProcessingResult effectResult)
         {
             if (effectResult == null)
             {
@@ -187,17 +165,26 @@ namespace Verdict.Systems
                 switch (intent.Effect)
                 {
                     case CourtStateEffect.JumpStatement:
-                        courtroomFlow.GoToStatement(intent.TargetId);
+
+                        Session.Flow.GoToStatement(
+                            intent.TargetId);
+
                         RefreshCurrentStatement();
                         return;
 
                     case CourtStateEffect.JumpTestimony:
-                        courtroomFlow.GoToTestimony(intent.TargetId);
+
+                        Session.Flow.GoToTestimony(
+                            intent.TargetId);
+
                         RefreshCurrentStatement();
                         return;
 
                     case CourtStateEffect.JumpWitness:
-                        courtroomFlow.GoToWitness(intent.TargetId);
+
+                        Session.Flow.GoToWitness(
+                            intent.TargetId);
+
                         RefreshCurrentStatement();
                         return;
                 }
