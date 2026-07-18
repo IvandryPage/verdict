@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Verdict.Data.Cases;
+using Verdict.Runtime.Dialogue;
 
 namespace Verdict.Runtime
 {
@@ -36,6 +37,7 @@ namespace Verdict.Runtime
         public IReadOnlyDictionary<string, TestimonyRuntime> TestimoniesById { get; }
 
         public IReadOnlyDictionary<string, WitnessRuntime> WitnessesById { get; }
+
 
         public bool TryGetStatement(string statementId, out StatementRuntime statement)
         {

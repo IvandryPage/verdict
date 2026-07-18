@@ -1,4 +1,3 @@
-using Verdict.Data.Cases;
 using Verdict.Data.Dialogue;
 
 namespace Verdict.Runtime.Dialogue
@@ -28,9 +27,6 @@ namespace Verdict.Runtime.Dialogue
 
         public DialogueEventData CurrentEntryEvent =>
             CurrentEntry?.Event;
-
-        public StatementData CurrentEntryStatement =>
-            CurrentEntry?.Statement;
 
         public DialogueEntryData CurrentEntry
         {

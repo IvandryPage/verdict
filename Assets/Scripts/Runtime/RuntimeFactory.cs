@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verdict.Data.Cases;
+using Verdict.Data.Dialogue;
 using Verdict.Data.Evidence;
+using Verdict.Runtime.Dialogue;
 using Verdict.Systems.Validation;
 
 namespace Verdict.Runtime
@@ -27,8 +29,11 @@ namespace Verdict.Runtime
             IReadOnlyList<EvidenceRuntime> evidence =
                 CreateEvidence(data);
 
+            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId =
+                BuildStatementDialogueBindingLookup(data);
+
             IReadOnlyList<WitnessRuntime> witnesses =
-                CreateWitnesses(data);
+                CreateWitnesses(data, dialogueByStatementId);
 
             CourtStateRuntime courtState = CreateCourtState(data);
 
@@ -53,6 +58,42 @@ namespace Verdict.Runtime
                 witnessesById);
         }
 
+        /// <summary>
+        /// Reads StatementDialogueBinding entries from the case's dialogue
+        /// database and turns them into a statementId -> DialogueData lookup.
+        /// This is the only place gameplay and dialogue data are connected.
+        /// </summary>
+        private static IReadOnlyDictionary<string, DialogueData> BuildStatementDialogueBindingLookup(
+            CaseData data)
+        {
+            var map = new Dictionary<string, DialogueData>(StringComparer.Ordinal);
+
+            IReadOnlyList<StatementDialogueBinding> bindings =
+                data.Dialogue?.Bindings;
+
+            if (bindings == null)
+            {
+                return map;
+            }
+
+            foreach (StatementDialogueBinding binding in bindings)
+            {
+                if (!binding.IsValid)
+                {
+                    continue;
+                }
+
+                string statementId = binding.Statement.Id;
+
+                if (!map.ContainsKey(statementId))
+                {
+                    map.Add(statementId, binding.Dialogue);
+                }
+            }
+
+            return map;
+        }
+
         private static IReadOnlyList<EvidenceRuntime> CreateEvidence(
             CaseData data)
         {
@@ -65,19 +106,21 @@ namespace Verdict.Runtime
         }
 
         private static IReadOnlyList<WitnessRuntime> CreateWitnesses(
-            CaseData data)
+            CaseData data,
+            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
         {
             return data.Witnesses
-                .Select(CreateWitness)
+                .Select(witness => CreateWitness(witness, dialogueByStatementId))
                 .ToList();
         }
 
         private static WitnessRuntime CreateWitness(
-            WitnessData witness)
+            WitnessData witness,
+            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
         {
             IReadOnlyList<TestimonyRuntime> testimonies =
                 witness.Testimonies
-                    .Select(CreateTestimony)
+                    .Select(testimony => CreateTestimony(testimony, dialogueByStatementId))
                     .ToList();
 
             return new WitnessRuntime(
@@ -90,11 +133,12 @@ namespace Verdict.Runtime
         }
 
         private static TestimonyRuntime CreateTestimony(
-            TestimonyData testimony)
+            TestimonyData testimony,
+            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
         {
             IReadOnlyList<StatementRuntime> statements =
                 testimony.Statements
-                    .Select(CreateStatement)
+                    .Select(statement => CreateStatement(statement, dialogueByStatementId))
                     .ToList();
 
             return new TestimonyRuntime(
@@ -103,9 +147,20 @@ namespace Verdict.Runtime
         }
 
         private static StatementRuntime CreateStatement(
-            StatementData statement)
+            StatementData statement,
+            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
         {
-            return new StatementRuntime(statement)
+            DialogueData dialogue = null;
+
+            if (!string.IsNullOrWhiteSpace(statement.Id) &&
+                dialogueByStatementId.TryGetValue(statement.Id, out DialogueData boundDialogue))
+            {
+                dialogue = boundDialogue;
+            }
+
+            return new StatementRuntime(
+                statement,
+                dialogue)
             {
                 IsVisible = statement.InitiallyVisible
             };

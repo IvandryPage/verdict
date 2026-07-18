@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using Verdict.Data.Cases;
 using Verdict.Data.Dialogue;
 using Verdict.Runtime.Dialogue;
 
@@ -22,7 +21,14 @@ namespace Verdict.Runtime
 
         public event Action<DialogueEventData> EventTriggered;
 
-        public event Action<StatementData> StatementReached;
+        /// <summary>
+        /// Raised when the dialogue reaches a StatementMarker entry.
+        /// Carries no data - the runner does not know which StatementData
+        /// is active. Whoever started this dialogue already knows which
+        /// statement it is bound to (via StatementDialogueBinding) and is
+        /// responsible for handing control back to gameplay.
+        /// </summary>
+        public event Action StatementMarkerReached;
 
         public DialogueRuntime Runtime { get; private set; }
 
@@ -30,10 +36,10 @@ namespace Verdict.Runtime
             Runtime != null &&
             !Runtime.IsFinished;
 
-        public void Start(DialogueRuntime runtime)
+        public void Start(DialogueData data)
         {
-            Runtime = runtime ??
-                throw new ArgumentNullException(nameof(runtime));
+            Runtime = new DialogueRuntime(data) ??
+                throw new ArgumentNullException(nameof(data));
 
             Runtime.CurrentEntryIndex = 0;
 
@@ -97,9 +103,9 @@ namespace Verdict.Runtime
 
                         continue;
 
-                    case DialogueEntryType.Statement:
+                    case DialogueEntryType.StatementMarker:
 
-                        ProcessStatement(entry.Statement);
+                        ProcessStatementMarker();
 
                         return;
                 }
@@ -120,9 +126,9 @@ namespace Verdict.Runtime
             Runtime.CurrentEntryIndex++;
         }
 
-        private void ProcessStatement(StatementData statement)
+        private void ProcessStatementMarker()
         {
-            StatementReached?.Invoke(statement);
+            StatementMarkerReached?.Invoke();
         }
     }
 }

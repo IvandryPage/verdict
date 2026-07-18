@@ -1,16 +1,29 @@
 using System;
 using Verdict.Data.Cases;
+using Verdict.Data.Dialogue;
 using Verdict.Data.Evidence;
 using Verdict.Runtime;
+using Verdict.Runtime.Dialogue;
 
 namespace Verdict.Systems
 {
+    /// <summary>
+    /// Coordinates gameplay flow and dialogue playback.
+    /// Does not know what dialogue *contains* - only that a statement may
+    /// have dialogue bound to it, and that dialogue must finish before
+    /// gameplay is considered active for that statement.
+    /// </summary>
     public sealed class CourtroomController
     {
         private readonly CaseSessionManager caseSessionManager;
 
+        private bool isInteractionLocked;
+
         private CaseSession Session =>
             caseSessionManager.CurrentSession;
+
+        private DialogueCoordinator DialogueCoordinator =>
+            Session?.DialogueCoordinator;
 
         public StatementRuntime CurrentStatement =>
             Session?.Flow.CurrentStatement;
@@ -36,6 +49,14 @@ namespace Verdict.Systems
         public bool IsLastStatement =>
             Session?.Flow.IsLastStatement ?? true;
 
+        /// <summary>
+        /// True once the current statement's dialogue (if any) has reached
+        /// its StatementMarker / finished, and gameplay actions (Press,
+        /// Question, PresentEvidence, RemainSilent) are allowed.
+        /// </summary>
+        public bool CanInteract =>
+            HasActiveCase && !isInteractionLocked;
+
         public event Action CaseStarted;
         public event Action CaseRestarted;
         public event Action CaseFinished;
@@ -50,6 +71,9 @@ namespace Verdict.Systems
             this.caseSessionManager =
                 caseSessionManager ??
                 throw new ArgumentNullException(nameof(caseSessionManager));
+
+            DialogueCoordinator.DialogueFinished += HandleDialogueFinished;
+            DialogueCoordinator.StatementReached += HandleStatementReached;
         }
 
         public void BeginCase()
@@ -137,6 +161,12 @@ namespace Verdict.Systems
             EvaluationType evaluationType,
             EvidenceData evidence = null)
         {
+            if (!CanInteract)
+            {
+                throw new InvalidOperationException(
+                    "Cannot interact while dialogue is playing.");
+            }
+
             EvaluationResult result =
                 Session.EvaluationSystem.Evaluate(
                     evaluationType,
@@ -145,19 +175,39 @@ namespace Verdict.Systems
             CourtStateEffectProcessingResult effectResult =
                 Session.EffectProcessor.Apply(result);
 
-            HandleFlowIntents(effectResult);
+            bool jumped = HandleFlowIntents(effectResult);
+
+            if (!jumped)
+            {
+                ResumeDialogueAfterEvaluation();
+            }
 
             EvaluationCompleted?.Invoke(result);
 
             return result;
         }
 
-        private void HandleFlowIntents(
+        /// <summary>
+        /// If the current statement's dialogue is paused at its
+        /// StatementMarker and evaluation didn't jump elsewhere, resume it
+        /// so any reaction/consequence lines after the marker get played.
+        /// </summary>
+        private void ResumeDialogueAfterEvaluation()
+        {
+            if (!DialogueCoordinator.CanResume)
+                return;
+
+            isInteractionLocked = true;
+
+            DialogueCoordinator.Resume();
+        }
+
+        private bool HandleFlowIntents(
             CourtStateEffectProcessingResult effectResult)
         {
             if (effectResult == null)
             {
-                return;
+                return false;
             }
 
             foreach (CourtStateEffectIntent intent in effectResult.Intents)
@@ -170,7 +220,7 @@ namespace Verdict.Systems
                             intent.TargetId);
 
                         RefreshCurrentStatement();
-                        return;
+                        return true;
 
                     case CourtStateEffect.JumpTestimony:
 
@@ -178,7 +228,7 @@ namespace Verdict.Systems
                             intent.TargetId);
 
                         RefreshCurrentStatement();
-                        return;
+                        return true;
 
                     case CourtStateEffect.JumpWitness:
 
@@ -186,15 +236,46 @@ namespace Verdict.Systems
                             intent.TargetId);
 
                         RefreshCurrentStatement();
-                        return;
+                        return true;
                 }
             }
+
+            return false;
         }
 
         private void RefreshCurrentStatement()
         {
+
             CurrentStatementChanged?.Invoke(
                 CurrentStatement);
+
+            DialogueData dialogue = CurrentStatement?.Dialogue;
+
+            if (dialogue != null)
+            {
+                isInteractionLocked = true;
+
+                DialogueCoordinator.Play(dialogue);
+            }
+            else
+            {
+                isInteractionLocked = false;
+            }
+        }
+
+        private void HandleStatementMarkerReached()
+        {
+            isInteractionLocked = false;
+        }
+
+        private void HandleDialogueFinished()
+        {
+            isInteractionLocked = false;
+        }
+
+        private void HandleStatementReached()
+        {
+            isInteractionLocked = false;
         }
     }
 }
