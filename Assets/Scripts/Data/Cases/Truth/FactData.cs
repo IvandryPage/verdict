@@ -27,5 +27,36 @@ namespace Verdict.Data.Cases
         public FactOperand Object => @object;
 
         public IReadOnlyList<EvidenceData> SupportingEvidence => supportingEvidence;
+
+        public FactData()
+        {
+        }
+
+        public FactData(string id)
+        {
+            this.id = id;
+        }
+
+        public void SetSubject(FactOperand newSubject) => subject = newSubject;
+
+        public void SetPredicate(FactPredicate newPredicate) => predicate = newPredicate;
+
+        public void SetObject(FactOperand newObject) => @object = newObject;
+
+        public void AddSupportingEvidence(EvidenceData evidence)
+        {
+            if (evidence == null)
+                throw new ArgumentNullException(nameof(evidence));
+
+            supportingEvidence.Add(evidence);
+        }
+
+        public bool RemoveSupportingEvidence(EvidenceData evidence)
+        {
+            if (evidence == null)
+                return false;
+
+            return supportingEvidence.Remove(evidence);
+        }
     }
 }

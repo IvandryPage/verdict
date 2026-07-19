@@ -17,7 +17,7 @@ namespace Verdict.Systems.Validation
                     {
                         foreach (ClaimData claim in statement.Claims)
                         {
-                            foreach (EvaluationRuleData rule in claim.EvaluationRules)
+                            foreach (ArgumentRuleData rule in claim.ArgumentRules)
                             {
                                 ValidateEffects(
                                     statement,

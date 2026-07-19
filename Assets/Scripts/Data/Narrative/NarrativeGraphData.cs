@@ -24,5 +24,61 @@ namespace Verdict.Data.Narrative
         public string StartNodeId => startNodeId;
 
         public IReadOnlyList<NarrativeNodeData> Nodes => nodes;
+
+        public void SetStartNodeId(string nodeId)
+        {
+            startNodeId = nodeId;
+        }
+
+        public void AddNode(NarrativeNodeData node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            nodes.Add(node);
+        }
+
+        public bool RemoveNode(NarrativeNodeData node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+
+            bool removed = nodes.Remove(node);
+
+            if (removed && startNodeId == node.NodeId)
+            {
+                startNodeId = null;
+            }
+
+            return removed;
+        }
+
+        public NarrativeNodeData FindNode(string nodeId)
+        {
+            if (string.IsNullOrWhiteSpace(nodeId))
+            {
+                return null;
+            }
+
+            foreach (NarrativeNodeData node in nodes)
+            {
+                if (node != null && node.NodeId == nodeId)
+                {
+                    return node;
+                }
+            }
+
+            return null;
+        }
+
+        public void Clear()
+        {
+            nodes.Clear();
+            startNodeId = null;
+        }
     }
 }

@@ -116,8 +116,8 @@ namespace Verdict.Systems.Validation.Graph
 
                 foreach (ClaimData claim in claims)
                 {
-                    foreach (EvaluationRuleData rule
-                        in claim.EvaluationRules)
+                    foreach (ArgumentRuleData rule
+                        in claim.ArgumentRules)
                     {
                         LinkEffects(
                             node,

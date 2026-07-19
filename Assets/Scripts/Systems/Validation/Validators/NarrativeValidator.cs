@@ -107,6 +107,67 @@ namespace Verdict.Systems.Validation
 
             ValidateLinks(caseData, nodes, nodesById, result);
             ValidateStatementReferences(caseData, nodes, result);
+            ValidateReachability(caseData, graph, nodesById, result);
+        }
+
+        /// <summary>
+        /// "Tidak ada Narrative Branch yang mustahil dicapai" - BFS from
+        /// StartNodeId over every node's outgoing connections. Anything
+        /// never reached is an unreachable branch - almost always an
+        /// authoring mistake (dangling content or a forgotten link).
+        /// </summary>
+        private static void ValidateReachability(
+            CaseData caseData,
+            NarrativeGraphData graph,
+            IReadOnlyDictionary<string, List<NarrativeNodeData>> nodesById,
+            ValidationResult result)
+        {
+            if (string.IsNullOrWhiteSpace(graph.StartNodeId) ||
+                !nodesById.ContainsKey(graph.StartNodeId))
+            {
+                // Already reported as an error by the StartNodeId check above.
+                return;
+            }
+
+            HashSet<string> visited = new(StringComparer.Ordinal);
+            Queue<string> queue = new();
+
+            queue.Enqueue(graph.StartNodeId);
+            visited.Add(graph.StartNodeId);
+
+            while (queue.Count > 0)
+            {
+                string currentId = queue.Dequeue();
+
+                if (!nodesById.TryGetValue(currentId, out List<NarrativeNodeData> group))
+                {
+                    continue;
+                }
+
+                foreach (NarrativeNodeData node in group)
+                {
+                    foreach (string nextId in node.GetOutgoingNodeIds())
+                    {
+                        if (string.IsNullOrWhiteSpace(nextId) || visited.Contains(nextId))
+                        {
+                            continue;
+                        }
+
+                        visited.Add(nextId);
+                        queue.Enqueue(nextId);
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<string, List<NarrativeNodeData>> entry in nodesById)
+            {
+                ValidationUtility.Warning(
+                    result,
+                    visited.Contains(entry.Key),
+                    ValidationScope.Narrative,
+                    $"Case '{caseData.name}' node '{entry.Key}' is never reachable from StartNodeId.",
+                    entry.Key);
+            }
         }
 
         private static void ValidateLinks(

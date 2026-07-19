@@ -41,7 +41,7 @@ namespace Verdict.Data.Cases
         [SerializeField] private List<EvidenceEntryData> evidence = new();
 
         [Header("Truth")]
-        [SerializeField] private TruthData truth;
+        [SerializeField] private TruthData truth = new();
 
         [Header("Witnesses")]
         [SerializeField] private List<WitnessData> witnesses = new();

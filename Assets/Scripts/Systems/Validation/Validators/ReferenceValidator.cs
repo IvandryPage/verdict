@@ -50,9 +50,14 @@ namespace Verdict.Systems.Validation
                 factIds,
                 result);
 
-            ValidateEvaluationRuleReferences(
+            ValidateArgumentRuleReferences(
                 caseData,
                 evidenceIds,
+                factIds,
+                result);
+
+            ValidateNoOrphanFacts(
+                caseData,
                 result);
 
             ValidateEffectReferences(
@@ -76,6 +81,13 @@ namespace Verdict.Systems.Validation
                 {
                     foreach (StatementData statement in testimony.Statements)
                     {
+                        ValidationUtility.Ensure(
+                            result,
+                            statement.Claims != null && statement.Claims.Count > 0,
+                            ValidationScope.Statement,
+                            $"Statement '{statement.Id}' has no claims.",
+                            testimony.Id);
+
                         if (string.IsNullOrWhiteSpace(statement.NextStatementId))
                             continue;
 
@@ -125,9 +137,56 @@ namespace Verdict.Systems.Validation
             }
         }
 
-        private static void ValidateEvaluationRuleReferences(
+        private static void ValidateNoOrphanFacts(
+            CaseData caseData,
+            ValidationResult result)
+        {
+            HashSet<string> referencedFactIds = new();
+
+            foreach (WitnessData witness in caseData.Witnesses)
+            {
+                foreach (TestimonyData testimony in witness.Testimonies)
+                {
+                    foreach (StatementData statement in testimony.Statements)
+                    {
+                        foreach (ClaimData claim in statement.Claims)
+                        {
+                            if (!string.IsNullOrWhiteSpace(claim.FactId))
+                            {
+                                referencedFactIds.Add(claim.FactId);
+                            }
+
+                            foreach (ArgumentRuleData rule in claim.ArgumentRules)
+                            {
+                                foreach (ArgumentConditionData condition in rule.Conditions)
+                                {
+                                    if (condition is FactConditionData factCondition &&
+                                        !string.IsNullOrWhiteSpace(factCondition.FactId))
+                                    {
+                                        referencedFactIds.Add(factCondition.FactId);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (FactData fact in caseData.Truth.Facts)
+            {
+                ValidationUtility.Warning(
+                    result,
+                    referencedFactIds.Contains(fact.Id),
+                    ValidationScope.Fact,
+                    $"Fact '{fact.Id}' is not referenced by any Claim or FactCondition - it can never be proven or matter to gameplay.",
+                    fact.Id);
+            }
+        }
+
+        private static void ValidateArgumentRuleReferences(
             CaseData caseData,
             HashSet<string> evidenceIds,
+            HashSet<string> factIds,
             ValidationResult result)
         {
             foreach (WitnessData witness in caseData.Witnesses)
@@ -138,31 +197,92 @@ namespace Verdict.Systems.Validation
                     {
                         foreach (ClaimData claim in statement.Claims)
                         {
-                            foreach (EvaluationRuleData rule in claim.EvaluationRules)
+                            foreach (ArgumentRuleData rule in claim.ArgumentRules)
                             {
-                                if (rule.EvaluationType != EvaluationType.PresentEvidence)
-                                    continue;
-
                                 ValidationUtility.Ensure(
                                     result,
-                                    rule.RequiredEvidence != null,
+                                    rule.Conditions != null && rule.Conditions.Count > 0,
                                     ValidationScope.Rule,
-                                    $"PresentEvidence rule in Claim '{claim.Id}' has no RequiredEvidence.",
+                                    $"Argument rule on Claim '{claim.Id}' has no conditions.",
                                     claim.Id);
 
-                                if (rule.RequiredEvidence == null)
-                                    continue;
-
-                                ValidationUtility.Ensure(
-                                    result,
-                                    evidenceIds.Contains(rule.RequiredEvidence.Id),
-                                    ValidationScope.Rule,
-                                    $"PresentEvidence rule in Claim '{claim.Id}' references Evidence '{rule.RequiredEvidence.Id}' which is not part of this case.",
-                                    claim.Id);
+                                foreach (ArgumentConditionData condition in rule.Conditions)
+                                {
+                                    ValidateCondition(
+                                        claim,
+                                        condition,
+                                        evidenceIds,
+                                        factIds,
+                                        result);
+                                }
                             }
                         }
                     }
                 }
+            }
+        }
+
+        private static void ValidateCondition(
+            ClaimData claim,
+            ArgumentConditionData condition,
+            HashSet<string> evidenceIds,
+            HashSet<string> factIds,
+            ValidationResult result)
+        {
+            switch (condition)
+            {
+                case EvidenceConditionData evidenceCondition:
+
+                    ValidationUtility.Ensure(
+                        result,
+                        evidenceCondition.RequiredEvidence != null,
+                        ValidationScope.Rule,
+                        $"Evidence condition in Claim '{claim.Id}' has no RequiredEvidence.",
+                        claim.Id);
+
+                    if (evidenceCondition.RequiredEvidence != null)
+                    {
+                        ValidationUtility.Ensure(
+                            result,
+                            evidenceIds.Contains(evidenceCondition.RequiredEvidence.Id),
+                            ValidationScope.Rule,
+                            $"Evidence condition in Claim '{claim.Id}' references Evidence '{evidenceCondition.RequiredEvidence.Id}' which is not part of this case.",
+                            claim.Id);
+                    }
+
+                    break;
+
+                case FactConditionData factCondition:
+
+                    ValidationUtility.Ensure(
+                        result,
+                        !string.IsNullOrWhiteSpace(factCondition.FactId),
+                        ValidationScope.Rule,
+                        $"Fact condition in Claim '{claim.Id}' has no FactId.",
+                        claim.Id);
+
+                    if (!string.IsNullOrWhiteSpace(factCondition.FactId))
+                    {
+                        ValidationUtility.Ensure(
+                            result,
+                            factIds.Contains(factCondition.FactId),
+                            ValidationScope.Rule,
+                            $"Fact condition in Claim '{claim.Id}' references unknown Fact '{factCondition.FactId}'.",
+                            claim.Id);
+                    }
+
+                    break;
+
+                case ClaimConditionData claimCondition:
+
+                    ValidationUtility.Ensure(
+                        result,
+                        !string.IsNullOrWhiteSpace(claimCondition.ClaimId),
+                        ValidationScope.Rule,
+                        $"Claim condition in Claim '{claim.Id}' has no target ClaimId.",
+                        claim.Id);
+
+                    break;
             }
         }
 
@@ -185,7 +305,7 @@ namespace Verdict.Systems.Validation
                         {
                             ValidateEffects(
                                 claim,
-                                claim.EvaluationRules.SelectMany(r => r.SuccessEffects),
+                                claim.ArgumentRules.SelectMany(r => r.SuccessEffects),
                                 statementIds,
                                 testimonyIds,
                                 witnessIds,
@@ -196,7 +316,7 @@ namespace Verdict.Systems.Validation
 
                             ValidateEffects(
                                 claim,
-                                claim.EvaluationRules.SelectMany(r => r.FailureEffects),
+                                claim.ArgumentRules.SelectMany(r => r.FailureEffects),
                                 statementIds,
                                 testimonyIds,
                                 witnessIds,

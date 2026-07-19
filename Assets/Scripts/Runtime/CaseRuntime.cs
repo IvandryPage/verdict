@@ -13,7 +13,8 @@ namespace Verdict.Runtime
             IReadOnlyDictionary<string, StatementRuntime> statementsById,
             IReadOnlyDictionary<string, TestimonyRuntime> testimoniesById,
             IReadOnlyDictionary<string, WitnessRuntime> witnessesById,
-            IReadOnlyDictionary<string, string> statementNodeIds)
+            IReadOnlyDictionary<string, string> statementNodeIds,
+            IReadOnlyDictionary<string, ClaimRuntime> claimsById)
         {
             Data = data;
             Evidence = evidence;
@@ -23,6 +24,7 @@ namespace Verdict.Runtime
             TestimoniesById = testimoniesById;
             WitnessesById = witnessesById;
             StatementNodeIds = statementNodeIds;
+            ClaimsById = claimsById;
         }
 
         public CaseData Data { get; }
@@ -45,6 +47,23 @@ namespace Verdict.Runtime
         /// by RuntimeFactory from CaseData.Narrative.
         /// </summary>
         public IReadOnlyDictionary<string, string> StatementNodeIds { get; }
+
+        /// <summary>
+        /// All claims across every statement, by ClaimData.Id - used by
+        /// ClaimConditionData to check another claim's resolution state.
+        /// </summary>
+        public IReadOnlyDictionary<string, ClaimRuntime> ClaimsById { get; }
+
+        public bool TryGetClaim(string claimId, out ClaimRuntime claim)
+        {
+            if (string.IsNullOrWhiteSpace(claimId))
+            {
+                claim = null;
+                return false;
+            }
+
+            return ClaimsById.TryGetValue(claimId, out claim);
+        }
 
         public bool TryGetStatement(string statementId, out StatementRuntime statement)
         {

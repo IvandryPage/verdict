@@ -216,7 +216,18 @@ MonoBehaviour:
         - id: b80a717ed8ad40a6a01047b0c5a93a72
           factId: fact_prototype_on_desk
           isTrue: 1
-          evaluationRules: []
+          evaluationRules:
+          - action: 0
+            conditions: []
+            successEffects:
+            - effect: 5
+              targetType: 1
+              targetId: eb598063d999428e98ae72ef8619062d
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
       - id: 77132c3c61b74aaebdc89104af2bc524
         text: Around 8 AM, I stepped out to grab coffee. I was gone for maybe 10
           minutes.
@@ -227,8 +238,8 @@ MonoBehaviour:
           factId: fact_chen_left_lab
           isTrue: 1
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+          - action: 0
+            conditions: []
             successEffects:
             - effect: 8
               targetType: 0
@@ -265,8 +276,8 @@ MonoBehaviour:
           factId: fact_morgan_near_desk
           isTrue: 1
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 48f5c87311d4240f4a0d669c42fcd02e, type: 2}
+          - action: 0
+            conditions: []
             successEffects:
             - effect: 8
               targetType: 0
@@ -296,7 +307,18 @@ MonoBehaviour:
         - id: ba8a3dc8c5aa4feda563a2ac2fb82af5
           factId: fact_backup_exist
           isTrue: 1
-          evaluationRules: []
+          evaluationRules:
+          - action: 0
+            conditions: []
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            failureEffects: []
       - id: d153d61179de474a84f757672df2bb3d
         text: I haven't checked if it's still there. With everything that happened,
           it slipped my mind.
@@ -333,8 +355,8 @@ MonoBehaviour:
           factId: fact_alex_in_archive
           isTrue: 1
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+          - action: 0
+            conditions: []
             successEffects:
             - effect: 8
               targetType: 0
@@ -376,8 +398,8 @@ MonoBehaviour:
           factId: fact_morgan_requested_tools
           isTrue: 1
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: e40e99ad9f1024c4c85c7ab1dda8cbd1, type: 2}
+          - action: 0
+            conditions: []
             successEffects:
             - effect: 9
               targetType: 5
@@ -431,8 +453,8 @@ MonoBehaviour:
           factId: fact_morgan_not_at_desk
           isTrue: 1
           evaluationRules:
-          - evaluationType: 2
-            requiredEvidence: {fileID: 0}
+          - action: 0
+            conditions: []
             successEffects:
             - effect: 8
               targetType: 0
@@ -489,8 +511,8 @@ MonoBehaviour:
           factId: fact_inside_job
           isTrue: 1
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 0}
+          - action: 0
+            conditions: []
             successEffects:
             - effect: 0
               targetType: 0
@@ -514,22 +536,7 @@ MonoBehaviour:
         text: New Statement
         initiallyVisible: 1
         nextStatementId: 99e5bbd7972d4178ac31c51c815273f7
-        claims:
-        - id: e9b277f4d30d4261a9015c0f92db16da
-          factId: fact_chen_left_lab
-          isTrue: 1
-          evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
-            successEffects:
-            - effect: 1
-              targetType: 1
-              targetId: c03ede89f2b64ed99dfa2d82562d9fa3
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 0
-            failureEffects: []
+        claims: []
     initiallyVisible: 1
   endings:
   - id: ending_justice
@@ -552,8 +559,43 @@ MonoBehaviour:
     minimumJudgeTrust: 0
     maximumPenalty: 8
   narrative:
-    startNodeId: 
-    nodes: []
+    startNodeId: 5c7da01706c840a380b1c190f722d484
+    nodes:
+    - rid: 3510799343001796692
+    - rid: 3510799343001796693
+    - rid: 3510799343001796694
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3510799343001796692
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 5c7da01706c840a380b1c190f722d484
+        position: {x: -303, y: 117.5}
+        statementId: 99e5bbd7972d4178ac31c51c815273f7
+        nextNodeId: 31ecac2c596b4bd494315b2a1662a057
+    - rid: 3510799343001796693
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4b1d5be9825e4cff9784d75bd38db832
+        position: {x: 709, y: -31}
+        gameplayEventId: 
+        nextNodeId: 
+    - rid: 3510799343001796694
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 31ecac2c596b4bd494315b2a1662a057
+        position: {x: 394, y: -77.5}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: asdfasdf
+        nextNodeId: 4b1d5be9825e4cff9784d75bd38db832
