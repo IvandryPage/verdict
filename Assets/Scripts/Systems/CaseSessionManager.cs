@@ -36,8 +36,11 @@ namespace Verdict.Systems
             CourtroomFlow flow =
                 new CourtroomFlow(runtime);
 
-            DialogueRunner dialogueRunner =
-                new DialogueRunner();
+            NarrativeRunner narrativeRunner =
+                new NarrativeRunner(runtime.CourtState);
+
+            NarrativeCoordinator narrativeCoordinator =
+                new NarrativeCoordinator(narrativeRunner);
 
             EvaluationSystem evaluationSystem =
                 new EvaluationSystem(flow);
@@ -49,7 +52,7 @@ namespace Verdict.Systems
                 new CaseSession(
                     runtime,
                     flow,
-                    dialogueRunner,
+                    narrativeCoordinator,
                     evaluationSystem,
                     effectProcessor);
 

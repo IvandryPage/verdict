@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Verdict.Data.Cases;
-using Verdict.Runtime.Dialogue;
 
 namespace Verdict.Runtime
 {
@@ -13,7 +12,8 @@ namespace Verdict.Runtime
             CourtStateRuntime courtState,
             IReadOnlyDictionary<string, StatementRuntime> statementsById,
             IReadOnlyDictionary<string, TestimonyRuntime> testimoniesById,
-            IReadOnlyDictionary<string, WitnessRuntime> witnessesById)
+            IReadOnlyDictionary<string, WitnessRuntime> witnessesById,
+            IReadOnlyDictionary<string, string> statementNodeIds)
         {
             Data = data;
             Evidence = evidence;
@@ -22,6 +22,7 @@ namespace Verdict.Runtime
             StatementsById = statementsById;
             TestimoniesById = testimoniesById;
             WitnessesById = witnessesById;
+            StatementNodeIds = statementNodeIds;
         }
 
         public CaseData Data { get; }
@@ -38,6 +39,12 @@ namespace Verdict.Runtime
 
         public IReadOnlyDictionary<string, WitnessRuntime> WitnessesById { get; }
 
+        /// <summary>
+        /// Maps StatementData.Id -> the NodeId of the StatementNodeData
+        /// (if any) bound to it in the case's narrative graph. Built once
+        /// by RuntimeFactory from CaseData.Narrative.
+        /// </summary>
+        public IReadOnlyDictionary<string, string> StatementNodeIds { get; }
 
         public bool TryGetStatement(string statementId, out StatementRuntime statement)
         {
@@ -70,6 +77,17 @@ namespace Verdict.Runtime
             }
 
             return WitnessesById.TryGetValue(witnessId, out witness);
+        }
+
+        public bool TryGetNodeIdForStatement(string statementId, out string nodeId)
+        {
+            if (string.IsNullOrWhiteSpace(statementId))
+            {
+                nodeId = null;
+                return false;
+            }
+
+            return StatementNodeIds.TryGetValue(statementId, out nodeId);
         }
     }
 }

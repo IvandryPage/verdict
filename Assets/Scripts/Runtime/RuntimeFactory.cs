@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verdict.Data.Cases;
-using Verdict.Data.Dialogue;
+using Verdict.Data.Narrative;
 using Verdict.Data.Evidence;
-using Verdict.Runtime.Dialogue;
 using Verdict.Systems.Validation;
 
 namespace Verdict.Runtime
@@ -29,11 +28,8 @@ namespace Verdict.Runtime
             IReadOnlyList<EvidenceRuntime> evidence =
                 CreateEvidence(data);
 
-            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId =
-                BuildStatementDialogueBindingLookup(data);
-
             IReadOnlyList<WitnessRuntime> witnesses =
-                CreateWitnesses(data, dialogueByStatementId);
+                CreateWitnesses(data);
 
             CourtStateRuntime courtState = CreateCourtState(data);
 
@@ -48,6 +44,9 @@ namespace Verdict.Runtime
             IReadOnlyDictionary<string, WitnessRuntime> witnessesById =
                 BuildWitnessLookup(witnesses);
 
+            IReadOnlyDictionary<string, string> statementNodeIds =
+                BuildStatementNodeLookup(data);
+
             return new CaseRuntime(
                 data,
                 evidence,
@@ -55,39 +54,43 @@ namespace Verdict.Runtime
                 courtState,
                 statementsById,
                 testimoniesById,
-                witnessesById);
+                witnessesById,
+                statementNodeIds);
         }
 
         /// <summary>
-        /// Reads StatementDialogueBinding entries from the case's dialogue
-        /// database and turns them into a statementId -> DialogueData lookup.
-        /// This is the only place gameplay and dialogue data are connected.
+        /// Scans the case's narrative graph for StatementNodeData and
+        /// builds a statementId -> nodeId lookup. This is the only place
+        /// gameplay and narrative are connected.
         /// </summary>
-        private static IReadOnlyDictionary<string, DialogueData> BuildStatementDialogueBindingLookup(
+        private static IReadOnlyDictionary<string, string> BuildStatementNodeLookup(
             CaseData data)
         {
-            var map = new Dictionary<string, DialogueData>(StringComparer.Ordinal);
+            var map = new Dictionary<string, string>(StringComparer.Ordinal);
 
-            IReadOnlyList<StatementDialogueBinding> bindings =
-                data.Dialogue?.Bindings;
+            IReadOnlyList<NarrativeNodeData> nodes =
+                data.Narrative?.Nodes;
 
-            if (bindings == null)
+            if (nodes == null)
             {
                 return map;
             }
 
-            foreach (StatementDialogueBinding binding in bindings)
+            foreach (NarrativeNodeData node in nodes)
             {
-                if (!binding.IsValid)
+                if (node is not StatementNodeData statementNode)
                 {
                     continue;
                 }
 
-                string statementId = binding.Statement.Id;
-
-                if (!map.ContainsKey(statementId))
+                if (string.IsNullOrWhiteSpace(statementNode.StatementId))
                 {
-                    map.Add(statementId, binding.Dialogue);
+                    continue;
+                }
+
+                if (!map.ContainsKey(statementNode.StatementId))
+                {
+                    map.Add(statementNode.StatementId, statementNode.NodeId);
                 }
             }
 
@@ -106,21 +109,19 @@ namespace Verdict.Runtime
         }
 
         private static IReadOnlyList<WitnessRuntime> CreateWitnesses(
-            CaseData data,
-            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
+            CaseData data)
         {
             return data.Witnesses
-                .Select(witness => CreateWitness(witness, dialogueByStatementId))
+                .Select(CreateWitness)
                 .ToList();
         }
 
         private static WitnessRuntime CreateWitness(
-            WitnessData witness,
-            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
+            WitnessData witness)
         {
             IReadOnlyList<TestimonyRuntime> testimonies =
                 witness.Testimonies
-                    .Select(testimony => CreateTestimony(testimony, dialogueByStatementId))
+                    .Select(CreateTestimony)
                     .ToList();
 
             return new WitnessRuntime(
@@ -133,12 +134,11 @@ namespace Verdict.Runtime
         }
 
         private static TestimonyRuntime CreateTestimony(
-            TestimonyData testimony,
-            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
+            TestimonyData testimony)
         {
             IReadOnlyList<StatementRuntime> statements =
                 testimony.Statements
-                    .Select(statement => CreateStatement(statement, dialogueByStatementId))
+                    .Select(CreateStatement)
                     .ToList();
 
             return new TestimonyRuntime(
@@ -147,20 +147,9 @@ namespace Verdict.Runtime
         }
 
         private static StatementRuntime CreateStatement(
-            StatementData statement,
-            IReadOnlyDictionary<string, DialogueData> dialogueByStatementId)
+            StatementData statement)
         {
-            DialogueData dialogue = null;
-
-            if (!string.IsNullOrWhiteSpace(statement.Id) &&
-                dialogueByStatementId.TryGetValue(statement.Id, out DialogueData boundDialogue))
-            {
-                dialogue = boundDialogue;
-            }
-
-            return new StatementRuntime(
-                statement,
-                dialogue)
+            return new StatementRuntime(statement)
             {
                 IsVisible = statement.InitiallyVisible
             };

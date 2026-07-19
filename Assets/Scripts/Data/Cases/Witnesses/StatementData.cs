@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Verdict.Data.Dialogue;
 
 namespace Verdict.Data.Cases
 {

@@ -1,29 +1,30 @@
 using System;
+using System.Linq;
 using Verdict.Data.Cases;
-using Verdict.Data.Dialogue;
 using Verdict.Data.Evidence;
+using Verdict.Data.Narrative;
 using Verdict.Runtime;
-using Verdict.Runtime.Dialogue;
 
 namespace Verdict.Systems
 {
     /// <summary>
-    /// Coordinates gameplay flow and dialogue playback.
-    /// Does not know what dialogue *contains* - only that a statement may
-    /// have dialogue bound to it, and that dialogue must finish before
-    /// gameplay is considered active for that statement.
+    /// Coordinates gameplay flow and narrative playback.
+    /// No longer owns narrative logic - it only reacts to
+    /// NarrativeCoordinator events (a statement was reached, the graph
+    /// ended) and tells it when to resume or jump. Controller only knows
+    /// Gameplay, Flow, Evaluation and CourtState.
     /// </summary>
     public sealed class CourtroomController
     {
         private readonly CaseSessionManager caseSessionManager;
 
-        private bool isInteractionLocked;
+        private NarrativeCoordinator subscribedCoordinator;
 
         private CaseSession Session =>
             caseSessionManager.CurrentSession;
 
-        private DialogueCoordinator DialogueCoordinator =>
-            Session?.DialogueCoordinator;
+        private NarrativeCoordinator Narrative =>
+            Session?.NarrativeCoordinator;
 
         public StatementRuntime CurrentStatement =>
             Session?.Flow.CurrentStatement;
@@ -50,12 +51,28 @@ namespace Verdict.Systems
             Session?.Flow.IsLastStatement ?? true;
 
         /// <summary>
-        /// True once the current statement's dialogue (if any) has reached
-        /// its StatementMarker / finished, and gameplay actions (Press,
-        /// Question, PresentEvidence, RemainSilent) are allowed.
+        /// True once the narrative graph has paused on the current
+        /// statement's StatementNodeData (or has no narrative at all),
+        /// and gameplay actions (Press, Question, PresentEvidence,
+        /// RemainSilent) are allowed.
         /// </summary>
         public bool CanInteract =>
-            HasActiveCase && !isInteractionLocked;
+            HasActiveCase &&
+            (Narrative == null ||
+            Narrative.IsWaitingForStatement ||
+            !Narrative.IsPlaying);
+
+        public bool IsWaitingForChoice =>
+            Narrative?.IsWaitingForChoice ?? false;
+
+        public NarrativeDialogueEntryData CurrentNarrativeEntry =>
+            Narrative?.CurrentEntry;
+
+        public NarrativeLineData CurrentNarrativeLine =>
+            Narrative?.CurrentLine;
+
+        public ChoiceNodeData CurrentChoice =>
+            Narrative?.CurrentChoice;
 
         public event Action CaseStarted;
         public event Action CaseRestarted;
@@ -71,9 +88,6 @@ namespace Verdict.Systems
             this.caseSessionManager =
                 caseSessionManager ??
                 throw new ArgumentNullException(nameof(caseSessionManager));
-
-            DialogueCoordinator.DialogueFinished += HandleDialogueFinished;
-            DialogueCoordinator.StatementReached += HandleStatementReached;
         }
 
         public void BeginCase()
@@ -86,7 +100,11 @@ namespace Verdict.Systems
 
             Session.Flow.Reset();
 
-            RefreshCurrentStatement();
+            EnsureNarrativeSubscribed();
+
+            CurrentStatementChanged?.Invoke(CurrentStatement);
+
+            Narrative.TryPlay(Session.Runtime.Data.Narrative);
 
             CaseStarted?.Invoke();
         }
@@ -95,7 +113,13 @@ namespace Verdict.Systems
         {
             caseSessionManager.RestartCase();
 
-            RefreshCurrentStatement();
+            Session.Flow.Reset();
+
+            EnsureNarrativeSubscribed();
+
+            CurrentStatementChanged?.Invoke(CurrentStatement);
+
+            Narrative.TryPlay(Session.Runtime.Data.Narrative);
 
             CaseRestarted?.Invoke();
         }
@@ -131,6 +155,11 @@ namespace Verdict.Systems
                 EvaluationType.RemainSilent);
         }
 
+        public bool SelectChoice(int choiceIndex)
+        {
+            return Narrative?.SelectChoice(choiceIndex) ?? false;
+        }
+
         public bool Continue()
         {
             bool success =
@@ -138,7 +167,7 @@ namespace Verdict.Systems
 
             if (success)
             {
-                RefreshCurrentStatement();
+                SyncNarrativeToCurrentStatement();
             }
 
             return success;
@@ -151,7 +180,7 @@ namespace Verdict.Systems
 
             if (success)
             {
-                RefreshCurrentStatement();
+                SyncNarrativeToCurrentStatement();
             }
 
             return success;
@@ -164,7 +193,7 @@ namespace Verdict.Systems
             if (!CanInteract)
             {
                 throw new InvalidOperationException(
-                    "Cannot interact while dialogue is playing.");
+                    "Cannot interact while narrative is playing.");
             }
 
             EvaluationResult result =
@@ -179,7 +208,7 @@ namespace Verdict.Systems
 
             if (!jumped)
             {
-                ResumeDialogueAfterEvaluation();
+                ResumeNarrativeAfterEvaluation();
             }
 
             EvaluationCompleted?.Invoke(result);
@@ -188,18 +217,13 @@ namespace Verdict.Systems
         }
 
         /// <summary>
-        /// If the current statement's dialogue is paused at its
-        /// StatementMarker and evaluation didn't jump elsewhere, resume it
-        /// so any reaction/consequence lines after the marker get played.
+        /// If the graph is paused at the current statement's node and
+        /// evaluation didn't jump elsewhere, resume it so any reaction/
+        /// consequence content after the statement node gets played.
         /// </summary>
-        private void ResumeDialogueAfterEvaluation()
+        private void ResumeNarrativeAfterEvaluation()
         {
-            if (!DialogueCoordinator.CanResume)
-                return;
-
-            isInteractionLocked = true;
-
-            DialogueCoordinator.Resume();
+            Narrative?.TryResume();
         }
 
         private bool HandleFlowIntents(
@@ -219,7 +243,7 @@ namespace Verdict.Systems
                         Session.Flow.GoToStatement(
                             intent.TargetId);
 
-                        RefreshCurrentStatement();
+                        SyncNarrativeToCurrentStatement();
                         return true;
 
                     case CourtStateEffect.JumpTestimony:
@@ -227,7 +251,7 @@ namespace Verdict.Systems
                         Session.Flow.GoToTestimony(
                             intent.TargetId);
 
-                        RefreshCurrentStatement();
+                        SyncNarrativeToCurrentStatement();
                         return true;
 
                     case CourtStateEffect.JumpWitness:
@@ -235,7 +259,7 @@ namespace Verdict.Systems
                         Session.Flow.GoToWitness(
                             intent.TargetId);
 
-                        RefreshCurrentStatement();
+                        SyncNarrativeToCurrentStatement();
                         return true;
                 }
             }
@@ -243,39 +267,83 @@ namespace Verdict.Systems
             return false;
         }
 
-        private void RefreshCurrentStatement()
+        /// <summary>
+        /// Called whenever Flow moves to a different statement on its own
+        /// (Continue/MovePreviousStatement/effect-driven jumps). Notifies
+        /// listeners and, if the narrative graph has a node bound to this
+        /// statement, jumps the graph there too so presentation stays in
+        /// sync with gameplay navigation.
+        /// </summary>
+        private void SyncNarrativeToCurrentStatement()
         {
-
             CurrentStatementChanged?.Invoke(
                 CurrentStatement);
 
-            DialogueData dialogue = CurrentStatement?.Dialogue;
-
-            if (dialogue != null)
+            if (CurrentStatement == null)
             {
-                isInteractionLocked = true;
-
-                DialogueCoordinator.Play(dialogue);
+                return;
             }
-            else
+
+            if (Session.Runtime.TryGetNodeIdForStatement(
+                CurrentStatement.Data.Id,
+                out string nodeId))
             {
-                isInteractionLocked = false;
+                Narrative.JumpToNode(nodeId);
             }
         }
 
-        private void HandleStatementMarkerReached()
+        private void EnsureNarrativeSubscribed()
         {
-            isInteractionLocked = false;
+            NarrativeCoordinator coordinator = Narrative;
+
+            if (coordinator == null ||
+                ReferenceEquals(coordinator, subscribedCoordinator))
+            {
+                return;
+            }
+
+            if (subscribedCoordinator != null)
+            {
+                subscribedCoordinator.StatementReached -= HandleStatementReached;
+                subscribedCoordinator.EndingReached -= HandleEndingReached;
+            }
+
+            coordinator.StatementReached += HandleStatementReached;
+            coordinator.EndingReached += HandleEndingReached;
+
+            subscribedCoordinator = coordinator;
         }
 
-        private void HandleDialogueFinished()
+        /// <summary>
+        /// The graph reached a StatementNodeData on its own (natural
+        /// progression, not a Flow-driven jump). Sync Flow to match so
+        /// EvaluationSystem/EffectProcessor read the right statement.
+        /// </summary>
+        private void HandleStatementReached(string statementId)
         {
-            isInteractionLocked = false;
+            if (!string.IsNullOrWhiteSpace(statementId))
+            {
+                Session.Flow.TryMoveToStatement(statementId);
+            }
+
+            CurrentStatementChanged?.Invoke(CurrentStatement);
         }
 
-        private void HandleStatementReached()
+        private void HandleEndingReached(string endingId)
         {
-            isInteractionLocked = false;
+            if (!string.IsNullOrWhiteSpace(endingId))
+            {
+                EndingData ending =
+                    Session.Runtime.Data.Endings
+                        .FirstOrDefault(e => e.Id == endingId);
+
+                if (ending != null)
+                {
+                    EndingTriggered?.Invoke(ending);
+                }
+            }
+
+            EndCase();
         }
     }
 }

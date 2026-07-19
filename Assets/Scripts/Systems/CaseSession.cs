@@ -8,13 +8,13 @@ namespace Verdict.Systems
         public CaseSession(
             CaseRuntime runtime,
             CourtroomFlow flow,
-            DialogueCoordinator dialogueCoordinator,
+            NarrativeCoordinator narrativeCoordinator,
             EvaluationSystem evaluationSystem,
             CourtStateEffectProcessor effectProcessor)
         {
             Runtime = runtime ?? throw new ArgumentNullException(nameof(runtime));
             Flow = flow ?? throw new ArgumentNullException(nameof(flow));
-            DialogueCoordinator = dialogueCoordinator ?? throw new ArgumentNullException(nameof(dialogueCoordinator));
+            NarrativeCoordinator = narrativeCoordinator ?? throw new ArgumentNullException(nameof(narrativeCoordinator));
             EvaluationSystem = evaluationSystem ?? throw new ArgumentNullException(nameof(evaluationSystem));
             EffectProcessor = effectProcessor ?? throw new ArgumentNullException(nameof(effectProcessor));
         }
@@ -23,7 +23,7 @@ namespace Verdict.Systems
 
         public CourtroomFlow Flow { get; }
 
-        public DialogueCoordinator DialogueCoordinator {get;}
+        public NarrativeCoordinator NarrativeCoordinator { get; }
 
         public EvaluationSystem EvaluationSystem { get; }
 

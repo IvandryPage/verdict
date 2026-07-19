@@ -1,28 +1,22 @@
 using System;
 using Verdict.Data.Cases;
-using Verdict.Data.Dialogue;
 
 namespace Verdict.Runtime
 {
+    /// <summary>
+    /// Pure gameplay runtime state for a statement. Does not know about
+    /// dialogue or narrative at all - the narrative graph references
+    /// statements by id via StatementNodeData, never the other way around.
+    /// </summary>
     public sealed class StatementRuntime
     {
         public StatementRuntime(
-            StatementData data,
-            DialogueData dialogue = null)
+            StatementData data)
         {
             Data = data ?? throw new ArgumentNullException(nameof(data));
-            Dialogue = dialogue;
         }
 
         public StatementData Data { get; }
-
-        /// <summary>
-        /// Dialogue bound to this statement via StatementDialogueBinding, if any.
-        /// Not every statement has one.
-        /// </summary>
-        public DialogueData Dialogue { get; }
-
-        public bool HasDialogue => Dialogue != null;
 
         public bool IsVisible { get; set; }
 

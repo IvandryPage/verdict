@@ -11,6 +11,7 @@ namespace Verdict.Systems.Validation
             new ReferenceValidator(),
             new EffectValidator(),
             new FlowValidator(),
+            new NarrativeValidator(),
         };
 
         public static ValidationResult Validate(
