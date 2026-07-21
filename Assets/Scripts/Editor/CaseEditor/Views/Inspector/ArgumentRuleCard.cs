@@ -234,13 +234,7 @@ namespace Verdict.Editor.CaseEditor.Inspector
             }
 
             foldout.Add(
-                new Button(() =>
-                {
-                    editService.CreateSuccessEffect(rule);
-                })
-                {
-                    text = "+ Effect"
-                });
+                BuildAddEffectButton(type => editService.CreateSuccessEffect(rule, type)));
 
             Add(foldout);
         }
@@ -267,15 +261,33 @@ namespace Verdict.Editor.CaseEditor.Inspector
             }
 
             foldout.Add(
-                new Button(() =>
-                {
-                    editService.CreateFailureEffect(rule);
-                })
-                {
-                    text = "+ Effect"
-                });
+                BuildAddEffectButton(type => editService.CreateFailureEffect(rule, type)));
 
             Add(foldout);
+        }
+
+        private static Button BuildAddEffectButton(Action<CourtStateEffect> create)
+        {
+            Button addButton = new() { text = "+ Effect" };
+
+            addButton.clicked += () =>
+            {
+                GenericMenu menu = new();
+
+                menu.AddItem(new GUIContent("Reveal Statement"), false, () => create(CourtStateEffect.RevealStatement));
+                menu.AddItem(new GUIContent("Reveal Testimony"), false, () => create(CourtStateEffect.RevealTestimony));
+                menu.AddItem(new GUIContent("Reveal Witness"), false, () => create(CourtStateEffect.RevealWitness));
+                menu.AddItem(new GUIContent("Unlock Evidence"), false, () => create(CourtStateEffect.UnlockEvidence));
+                menu.AddItem(new GUIContent("Modify Court Stat"), false, () => create(CourtStateEffect.ModifyCourtStat));
+                menu.AddItem(new GUIContent("Modify Character Stat"), false, () => create(CourtStateEffect.ModifyCharacterStat));
+                menu.AddItem(new GUIContent("Jump Statement"), false, () => create(CourtStateEffect.JumpStatement));
+                menu.AddItem(new GUIContent("Jump Testimony"), false, () => create(CourtStateEffect.JumpTestimony));
+                menu.AddItem(new GUIContent("Jump Witness"), false, () => create(CourtStateEffect.JumpWitness));
+
+                menu.ShowAsContext();
+            };
+
+            return addButton;
         }
     }
 }

@@ -51,6 +51,13 @@ namespace Verdict.Editor.CaseEditor.Authoring
             return new CourtStateEffectData();
         }
 
+        public static CourtStateEffectData CreateEffect(CourtStateEffect type)
+        {
+            CourtStateEffectData effect = new();
+            effect.SetEffect(type);
+            return effect;
+        }
+
         public static ActionConditionData CreateActionCondition() => new();
 
         public static EvidenceConditionData CreateEvidenceCondition() => new();

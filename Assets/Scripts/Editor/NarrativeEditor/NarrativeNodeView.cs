@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Data.Characters;
 using Verdict.Data.Narrative;
 using Verdict.Editor.CaseEditor.Theme;
 
@@ -150,25 +152,97 @@ namespace Verdict.Editor.NarrativeEditor
 
         private void BuildDialogueBody(DialogueNodeData node)
         {
+            VisualElement previewContainer = new();
+            extensionContainer.Add(previewContainer);
+
             Label summary = new(GetEntrySummary(node))
             {
                 style = { whiteSpace = WhiteSpace.Normal, marginTop = 4, marginBottom = 4, fontSize = 11 }
             };
 
+            void Refresh()
+            {
+                summary.text = GetEntrySummary(node);
+                RefreshDialoguePreview(node, previewContainer);
+            }
+
+            Refresh();
+
             extensionContainer.Add(summary);
 
             Button editButton = new(() =>
             {
-                DialogueEntryEditorWindow.Open(node, editService, () =>
-                {
-                    summary.text = GetEntrySummary(node);
-                });
+                DialogueEntryEditorWindow.Open(node, editService, Refresh);
             })
             { text = "Edit Entries..." };
 
             extensionContainer.Add(editButton);
 
             AddOutputPort(NarrativeOutputKeys.Next, "Next");
+        }
+
+        /// <summary>
+        /// Shows Speaker / Portrait / Text / Emotion for the first Line
+        /// entry directly on the node, so an author can see roughly what
+        /// this beat looks like without opening the entry editor.
+        /// </summary>
+        private static void RefreshDialoguePreview(DialogueNodeData node, VisualElement container)
+        {
+            container.Clear();
+
+            NarrativeLineData firstLine = node.Entries
+                .Where(e => e.Type == NarrativeDialogueEntryType.Line && e.Line != null)
+                .Select(e => e.Line)
+                .FirstOrDefault();
+
+            if (firstLine == null)
+            {
+                return;
+            }
+
+            VisualElement row = new() { style = { flexDirection = FlexDirection.Row, marginTop = 4 } };
+
+            if (firstLine.Speaker != null)
+            {
+                Sprite portrait = firstLine.Speaker.Portraits
+                    .FirstOrDefault(p => p.Emotion == firstLine.Emotion)?.Portrait
+                    ?? firstLine.Speaker.Portraits.FirstOrDefault()?.Portrait;
+
+                if (portrait != null)
+                {
+                    Image portraitImage = new()
+                    {
+                        sprite = portrait,
+                        scaleMode = ScaleMode.ScaleToFit,
+                        style = { width = 32, height = 32, marginRight = 6, flexShrink = 0 }
+                    };
+
+                    row.Add(portraitImage);
+                }
+            }
+
+            VisualElement textColumn = new() { style = { flexGrow = 1 } };
+
+            string speakerName = firstLine.Speaker != null
+                ? firstLine.Speaker.DisplayName
+                : firstLine.SpeakerType.ToString();
+
+            textColumn.Add(new Label($"{speakerName} ({firstLine.Emotion})")
+            {
+                style = { unityFontStyleAndWeight = FontStyle.Bold, fontSize = 10 }
+            });
+
+            string preview = string.IsNullOrWhiteSpace(firstLine.Text)
+                ? "<no text>"
+                : firstLine.Text;
+
+            textColumn.Add(new Label(preview)
+            {
+                style = { whiteSpace = WhiteSpace.Normal, fontSize = 10 }
+            });
+
+            row.Add(textColumn);
+            container.Add(row);
         }
 
         private static string GetEntrySummary(DialogueNodeData node)

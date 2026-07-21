@@ -198,6 +198,11 @@ namespace Verdict.Editor.CaseEditor.Layout
             Dictionary<string, List<FlowGraphNode>> incoming,
             Dictionary<string, List<FlowGraphNode>> outgoing)
         {
+            if (layerNodes.Count == 0)
+            {
+                return;
+            }
+
             int minLayer = layerNodes.Keys.Min();
             int maxLayer = layerNodes.Keys.Max();
 

@@ -7,6 +7,7 @@ using Verdict.Data.Cases;
 using Verdict.Editor.CaseEditor.Hierarchy;
 using Verdict.Editor.CaseEditor.Service;
 using Verdict.Editor.CaseEditor.Validation;
+using Verdict.Editor.NarrativeEditor;
 using Verdict.Systems.Validation;
 
 namespace Verdict.Editor.CaseEditor
@@ -594,30 +595,44 @@ namespace Verdict.Editor.CaseEditor
         private void HandleValidationIssueSelected(
             ValidationIssue issue)
         {
-            if (string.IsNullOrWhiteSpace(
-                issue.ContextId))
+            if (string.IsNullOrWhiteSpace(issue.ContextId))
             {
                 return;
             }
 
-
-
-            if (!session.TryGetContext(
-                issue.ContextId,
-                out StatementContext context))
+            if (issue.Scope == ValidationScope.Narrative)
             {
+                // Narrative nodes live in a different tool - open it
+                // rather than silently doing nothing.
+                NarrativeEditorWindow.Open();
                 return;
             }
 
+            if (session.TryGetContext(issue.ContextId, out StatementContext statementContext))
+            {
+                session.Selection.SelectStatement(statementContext);
+                graphView.Select(statementContext.Statement.Id);
+                return;
+            }
 
+            if (session.TryGetContextForClaim(issue.ContextId, out StatementContext claimOwner))
+            {
+                session.Selection.SelectStatement(claimOwner);
+                graphView.Select(claimOwner.Statement.Id);
+                return;
+            }
 
-            session.Selection.SelectStatement(
-                context);
+            if (session.TryGetWitnessContext(issue.ContextId, out WitnessContext witnessContext))
+            {
+                session.Selection.SelectWitness(witnessContext);
+                return;
+            }
 
-
-
-            graphView.Select(
-                context.Statement.Id);
+            if (session.TryGetTestimonyContext(issue.ContextId, out TestimonyContext testimonyContext))
+            {
+                session.Selection.SelectTestimony(testimonyContext);
+                return;
+            }
         }
 
 

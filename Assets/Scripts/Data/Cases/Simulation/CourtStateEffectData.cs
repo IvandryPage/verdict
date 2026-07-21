@@ -42,5 +42,19 @@ namespace Verdict.Data.Cases
 
         public bool HasTarget =>
             !string.IsNullOrWhiteSpace(TargetId);
+
+        public void SetEffect(CourtStateEffect newEffect) => effect = newEffect;
+
+        public void SetTargetType(EffectTargetType newTargetType) => targetType = newTargetType;
+
+        public void SetTargetId(string newTargetId) => targetId = newTargetId;
+
+        public void SetCourtStat(CourtStat newStat) => courtStat = newStat;
+
+        public void SetOperation(StatOperation newOperation) => operation = newOperation;
+
+        public void SetCharacterStat(CharacterStat newStat) => characterStat = newStat;
+
+        public void SetValue(int newValue) => value = newValue;
     }
 }

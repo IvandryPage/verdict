@@ -219,6 +219,7 @@ MonoBehaviour:
           - action: 1
             conditions:
             - rid: 3510799383711973452
+            - rid: 3510799383711973480
             successEffects:
             - effect: 8
               targetType: 0
@@ -326,3 +327,10 @@ MonoBehaviour:
         nodeId: b0f235394bd04b5aa6a5ff51bc2b6d0c
         position: {x: 1360, y: 130.5}
         endingId: ending_justice
+    - rid: 3510799383711973480
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 87e3b180882784eaa972a917988a82c8, type: 2}
+        stat: 0
+        comparisonOperator: 1
+        value: 10

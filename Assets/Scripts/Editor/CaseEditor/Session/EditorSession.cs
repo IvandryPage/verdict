@@ -16,6 +16,9 @@ namespace Verdict.Editor.CaseEditor
         private readonly Dictionary<string, TestimonyContext> testimonyContexts =
             new();
 
+        private readonly Dictionary<string, string> claimToStatementId =
+            new();
+
         public CaseData CurrentCase { get; private set; }
 
         public FlowGraph FlowGraph { get; private set; }
@@ -41,6 +44,8 @@ namespace Verdict.Editor.CaseEditor
             witnessContexts.Clear();
 
             testimonyContexts.Clear();
+
+            claimToStatementId.Clear();
 
 
             for (int w = 0; w < caseData.Witnesses.Count; w++)
@@ -88,6 +93,14 @@ namespace Verdict.Editor.CaseEditor
                                 w,
                                 t,
                                 s));
+
+                        foreach (ClaimData claim in statement.Claims)
+                        {
+                            if (!string.IsNullOrWhiteSpace(claim.Id))
+                            {
+                                claimToStatementId[claim.Id] = statement.Id;
+                            }
+                        }
                     }
                 }
             }
@@ -223,6 +236,25 @@ namespace Verdict.Editor.CaseEditor
             return testimonyContexts.TryGetValue(
                 id,
                 out context);
+        }
+
+        /// <summary>
+        /// Finds the StatementContext owning a Claim - used to "focus"
+        /// validation issues whose ContextId is a Claim/Rule/Effect id
+        /// rather than a Statement id directly.
+        /// </summary>
+        public bool TryGetContextForClaim(
+            string claimId,
+            out StatementContext context)
+        {
+            if (!string.IsNullOrWhiteSpace(claimId) &&
+                claimToStatementId.TryGetValue(claimId, out string statementId))
+            {
+                return TryGetContext(statementId, out context);
+            }
+
+            context = null;
+            return false;
         }
     }
 }

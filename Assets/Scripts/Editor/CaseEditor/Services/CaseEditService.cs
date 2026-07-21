@@ -377,7 +377,8 @@ namespace Verdict.Editor.CaseEditor.Service
         }
 
         public CourtStateEffectData CreateSuccessEffect(
-            ArgumentRuleData rule)
+            ArgumentRuleData rule,
+            CourtStateEffect type = CourtStateEffect.None)
         {
             if (rule == null)
                 throw new ArgumentNullException(nameof(rule));
@@ -387,7 +388,7 @@ namespace Verdict.Editor.CaseEditor.Service
                 () =>
                 {
                     CourtStateEffectData effect =
-                        AuthoringFactory.CreateEffect();
+                        AuthoringFactory.CreateEffect(type);
 
                     rule.AddSuccessEffect(effect);
 
@@ -414,7 +415,8 @@ namespace Verdict.Editor.CaseEditor.Service
         }
 
         public CourtStateEffectData CreateFailureEffect(
-            ArgumentRuleData rule)
+            ArgumentRuleData rule,
+            CourtStateEffect type = CourtStateEffect.None)
         {
             if (rule == null)
                 throw new ArgumentNullException(nameof(rule));
@@ -424,7 +426,7 @@ namespace Verdict.Editor.CaseEditor.Service
                 () =>
                 {
                     CourtStateEffectData effect =
-                        AuthoringFactory.CreateEffect();
+                        AuthoringFactory.CreateEffect(type);
 
                     rule.AddFailureEffect(effect);
 

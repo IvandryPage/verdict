@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
@@ -6,6 +7,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Verdict.Data.Cases;
+using Verdict.Data.Narrative;
 using Verdict.Systems.Validation;
 
 namespace Verdict.Editor.NarrativeEditor
@@ -86,6 +88,7 @@ namespace Verdict.Editor.NarrativeEditor
 
             toolbar.Add(new ToolbarSpacer());
             toolbar.Add(new Button(Validate) { text = "Validate" });
+            toolbar.Add(new Button(Simulate) { text = "▶ Simulate" });
 
             toolbar.Add(new ToolbarSpacer());
             statusLabel = new Label { style = { unityTextAlign = TextAnchor.MiddleLeft, marginLeft = 8 } };
@@ -206,5 +209,100 @@ namespace Verdict.Editor.NarrativeEditor
                 summary.ToString(),
                 "OK");
         }
+        private void Simulate()
+        {
+            if (caseData == null)
+            {
+                return;
+            }
+
+            NarrativeGraphData graph = caseData.Narrative;
+
+            if (graph == null || string.IsNullOrWhiteSpace(graph.StartNodeId))
+            {
+                EditorUtility.DisplayDialog("Simulate", "No StartNodeId set - nothing to trace.", "OK");
+                return;
+            }
+
+            Dictionary<string, NarrativeNodeData> nodesById = graph.Nodes
+                .Where(n => !string.IsNullOrWhiteSpace(n.NodeId))
+                .ToDictionary(n => n.NodeId);
+
+            StringBuilder trace = new();
+            trace.Append("Start");
+
+            HashSet<string> visited = new();
+            string currentId = graph.StartNodeId;
+            int guard = 0;
+
+            while (!string.IsNullOrWhiteSpace(currentId) && guard++ < 500)
+            {
+                if (!nodesById.TryGetValue(currentId, out NarrativeNodeData node))
+                {
+                    trace.Append($"\n↓\n<missing node '{currentId}'>");
+                    break;
+                }
+
+                trace.Append($"\n↓\n{DescribeNode(node)}");
+
+                if (!visited.Add(currentId))
+                {
+                    trace.Append("\n↓\n<loop back to a visited node - stopping trace>");
+                    break;
+                }
+
+                currentId = GetDefaultNextId(node);
+            }
+
+            if (string.IsNullOrWhiteSpace(currentId) && guard < 500)
+            {
+                trace.Append("\n↓\nEnd of branch (no outgoing connection)");
+            }
+
+            EditorUtility.DisplayDialog(
+                "Simulate (dry-run trace, no game running)",
+                trace.ToString(),
+                "OK");
+        }
+
+        /// <summary>
+        /// Static preview only - Condition nodes always follow True,
+        /// Choice nodes always follow the first choice. This traces one
+        /// possible path through the graph, it does not evaluate any
+        /// real CourtState or claim.
+        /// </summary>
+        private static string GetDefaultNextId(NarrativeNodeData node)
+        {
+            return node switch
+            {
+                DialogueNodeData n => n.NextNodeId,
+                StatementNodeData n => n.NextNodeId,
+                JumpNodeData n => n.TargetNodeId,
+                GameplayNodeData n => n.NextNodeId,
+                ConditionNodeData n => n.TrueNodeId,
+                ChoiceNodeData n => n.Choices.Count > 0 ? n.Choices[0].NextNodeId : null,
+                _ => null
+            };
+        }
+
+        private static string DescribeNode(NarrativeNodeData node)
+        {
+            return node switch
+            {
+                DialogueNodeData => $"Dialogue ({ShortId(node.NodeId)})",
+                StatementNodeData statementNode => $"Statement ({ShortId(statementNode.StatementId)})",
+                ChoiceNodeData choiceNode => $"Choice ({choiceNode.Choices.Count} option(s), following #1)",
+                ConditionNodeData => "Branch (following True)",
+                JumpNodeData => $"Jump ({ShortId(node.NodeId)})",
+                EndNodeData endNode => string.IsNullOrWhiteSpace(endNode.EndingId)
+                    ? "End"
+                    : $"End ({endNode.EndingId})",
+                GameplayNodeData gameplayNode => $"Gameplay ({gameplayNode.GameplayEventId})",
+                _ => node.NodeId
+            };
+        }
+
+        private static string ShortId(string id) =>
+            string.IsNullOrWhiteSpace(id) ? "<none>" : (id.Length <= 6 ? id : id[..6]);
     }
 }
