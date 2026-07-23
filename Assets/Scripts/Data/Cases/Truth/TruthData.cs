@@ -11,5 +11,21 @@ namespace Verdict.Data.Cases
         private List<FactData> facts = new();
 
         public IReadOnlyList<FactData> Facts => facts;
+
+        public void AddFact(FactData fact)
+        {
+            if (fact == null)
+                throw new ArgumentNullException(nameof(fact));
+
+            facts.Add(fact);
+        }
+
+        public bool RemoveFact(FactData fact)
+        {
+            if (fact == null)
+                return false;
+
+            return facts.Remove(fact);
+        }
     }
 }

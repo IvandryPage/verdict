@@ -40,8 +40,8 @@ MonoBehaviour:
     initiallyUnlocked: 1
     canPresent: 1
   - evidence: {fileID: 11400000, guid: 0d3901043003b42498b74ad09b9da09b, type: 2}
-    initiallyUnlocked: 0
-    canPresent: 0
+    initiallyUnlocked: 1
+    canPresent: 1
   - evidence: {fileID: 11400000, guid: b0089379f40a14ba7b97787d63741518, type: 2}
     initiallyUnlocked: 0
     canPresent: 0
@@ -207,28 +207,19 @@ MonoBehaviour:
       description: ' Dr. Chen describes the events leading up to the discovery of
         the theft.'
       statements:
-      - id: 99e5bbd7972d4178ac31c51c815273f7
-        text: I arrived at the lab at 6 AM as usual. The prototype was on my desk
-          where I left it yesterday.
+      - id: f4fdf042f79d4511bbc604875937248b
+        text: Test Statement on Desk
         initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: b80a717ed8ad40a6a01047b0c5a93a72
+        - id: 12e2dad1ec7247888fc917a1b01ec057
           factId: fact_prototype_on_desk
           isTrue: 1
-          evaluationRules: []
-      - id: 77132c3c61b74aaebdc89104af2bc524
-        text: Around 8 AM, I stepped out to grab coffee. I was gone for maybe 10
-          minutes.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: 8c6bf91600ae4f8eacd0f574a9f85ec9
-          factId: fact_chen_left_lab
-          isTrue: 1
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
+          - action: 1
+            conditions:
+            - rid: 3510799383711973452
+            - rid: 3510799383711973480
             successEffects:
             - effect: 8
               targetType: 0
@@ -236,7 +227,14 @@ MonoBehaviour:
               courtStat: 0
               operation: 0
               characterStat: 0
-              value: 2
+              value: 80
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 1
+              value: 100
             failureEffects:
             - effect: 8
               targetType: 0
@@ -245,258 +243,27 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 1
-      - id: c523e8f1394542acbd28f0fad473583d
-        text: When I returned, the prototype was gone. I immediately checked with
-          Alex and Morgan, but neither had seen it.
+      - id: 5ba02f542c6c4720a8807d5817c20b32
+        text: Test 2
         initiallyVisible: 1
         nextStatementId: 
         claims:
-        - id: 03c623e1d20748a1bbda787e208ccf51
+        - id: 33ee91a7cc4a4a539368fcdd4c666cff
           factId: fact_prototype_missing
-          isTrue: 1
-          evaluationRules: []
-      - id: 777b0cae14e14920bd2c9255b7e7c458
-        text: Actually, I did see something suspicious. Morgan was near my desk earlier,
-          which was unusual.
-        initiallyVisible: 0
-        nextStatementId: 97cbb78e98ab40a2975d1c94367d6624
-        claims:
-        - id: ee7ff2ddf64e482cb00a78db19920e7b
-          factId: fact_morgan_near_desk
-          isTrue: 1
+          isTrue: 0
           evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 48f5c87311d4240f4a0d669c42fcd02e, type: 2}
+          - action: 2
+            conditions:
+            - rid: 3510799383711973488
             successEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 7
-              operation: 0
-              characterStat: 0
-              value: 2
-            failureEffects:
-            - effect: 8
-              targetType: 0
+            - effect: 9
+              targetType: 5
               targetId: 
               courtStat: 0
               operation: 1
               characterStat: 0
-              value: 2
-    - id: 09c00afe4ddc413a9f0b012c96ec6d95
-      title: The Backup Location
-      description: Dr. Chen reveals where backups and duplicates might be stored.
-      statements:
-      - id: 5fb526c5dadc45a4bcbb3f34ea7ae16d
-        text: There should be a backup prototype in Storage Room B. We always keep
-          duplicates for testing.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: ba8a3dc8c5aa4feda563a2ac2fb82af5
-          factId: fact_backup_exist
-          isTrue: 1
-          evaluationRules: []
-      - id: d153d61179de474a84f757672df2bb3d
-        text: I haven't checked if it's still there. With everything that happened,
-          it slipped my mind.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims: []
-    initiallyVisible: 1
-  - id: 7b25f7d950254b43b531d0f73d009dd4
-    character: {fileID: 11400000, guid: 87e3b180882784eaa972a917988a82c8, type: 2}
-    role: 2
-    description: Junior lab technician. Recently hired, still learning protocols.
-    testimonies:
-    - id: f3e4663c25664cc8912c59fefd35e9d4
-      title: Morning Schedule
-      description: Alex describes their activities during the morning.
-      statements:
-      - id: 166ccc09982c4753bee80e96bf13b0a5
-        text: I arrived at 7:30 AM and went straight to check the equipment calibration
-          logs.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: 7cd06f983afd419fb0af85970bbeb061
-          factId: fact_alex_checked_equipment
-          isTrue: 1
-          evaluationRules: []
-      - id: 2b097edd1b194559b34dfe943e8d5fe9
-        text: Dr. Chen asked me to retrieve some archived data files around 8 AM.
-          I was in the archive room for about 20 minutes."
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: 7a84ddbd8bbd4bbabaa816b0cd1f42c9
-          factId: fact_alex_in_archive
-          isTrue: 1
-          evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: 2c0d74d7ca190413a9e98fc4758fd5a7, type: 2}
-            successEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 2
-            failureEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 2
-      - id: 99626e8a81e340ae925f2dae16eb8bbe
-        text: I didn't see the prototype go missing. I was focused on my assigned
-          tasks."
-        initiallyVisible: 1
-        nextStatementId: 616412e0e7e34a2dbf77d4977cd4655a
-        claims:
-        - id: 6b31ddb32e434ca881423eb55318ba77
-          factId: fact_alex_didnt_see_theft
-          isTrue: 1
-          evaluationRules: []
-    - id: a6008c5eb3354cbb801883584a682cde
-      title: The Tool Request
-      description: Alex mentions a tool that went missing after the prototype disappeared.
-      statements:
-      - id: 616412e0e7e34a2dbf77d4977cd4655a
-        text: Wait, now that you mention it... Morgan asked me for a precision toolkit
-          around 8:15 AM. That's unusual because Morgan usually doesn't work with
-          lab equipment.
-        initiallyVisible: 0
-        nextStatementId: c03ede89f2b64ed99dfa2d82562d9fa3
-        claims:
-        - id: 456ad0fa777a4c468eceff4c779078da
-          factId: fact_morgan_requested_tools
-          isTrue: 1
-          evaluationRules:
-          - evaluationType: 0
-            requiredEvidence: {fileID: 11400000, guid: e40e99ad9f1024c4c85c7ab1dda8cbd1, type: 2}
-            successEffects:
-            - effect: 9
-              targetType: 5
-              targetId: char_morgan
-              courtStat: 0
-              operation: 1
-              characterStat: 0
-              value: 10
-            - effect: 9
-              targetType: 5
-              targetId: char_morgan
-              courtStat: 0
-              operation: 0
-              characterStat: 2
-              value: 10
-            failureEffects:
-            - effect: 9
-              targetType: 5
-              targetId: char_alex
-              courtStat: 0
-              operation: 1
-              characterStat: 1
-              value: 2
-    initiallyVisible: 1
-  - id: 3cd615131e494b898230f74ed1698b8f
-    character: {fileID: 11400000, guid: e3f3b40b8bdd94036a28e011c2fbd718, type: 2}
-    role: 0
-    description: 
-    testimonies:
-    - id: 71b80c5ad57545cc8485b6cd91bc2ae2
-      title: Security Rounds
-      description: Morgan describes the morning security patrol.
-      statements:
-      - id: f408a635f60d48bbbf50a2cdbe95ef89
-        text: I made my usual security rounds at 7 AM, 8 AM, and 9 AM. Everything
-          was normal.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: 09e69436201b47a282a22b5bb7096bbf
-          factId: fact_morgan_patrol
-          isTrue: 1
-          evaluationRules: []
-      - id: 40924b0c080547be87572e2fbbde16a0
-        text: I didn't go near Dr. Chen's desk at any point. I stick to the main
-          corridors during my rounds.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: bbfe63c64b3242d4bb9a5a5fa1871214
-          factId: fact_morgan_not_at_desk
-          isTrue: 1
-          evaluationRules:
-          - evaluationType: 2
-            requiredEvidence: {fileID: 0}
-            successEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 3
-            - effect: 1
-              targetType: 1
-              targetId: 777b0cae14e14920bd2c9255b7e7c458
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 0
-            failureEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 1
-              value: 3
-        - id: be5340184fca4e029abb08c59cdcf820
-          factId: 
-          isTrue: 1
-          evaluationRules: []
-      - id: eb598063d999428e98ae72ef8619062d
-        text: I never touched the prototype. I don't even know how to operate it.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: 539dd5d6bc0f4e41b2f16e0c2552f0b1
-          factId: fact_morgan_no_knowledge
-          isTrue: 1
-          evaluationRules: []
-    - id: d81b6c74db9845e38fd369fafe31971d
-      title: Morgan Discovery
-      description: Morgan reveals what happened after the theft was reported.
-      statements:
-      - id: 97cbb78e98ab40a2975d1c94367d6624
-        text: When Dr. Chen reported the theft, I checked the access logs and found
-          no unauthorized entries to the lab that morning.
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: c08cef0f07924a70b9267d2575db1672
-          factId: fact_no_unauthorized_access
-          isTrue: 1
-          evaluationRules: []
-      - id: c03ede89f2b64ed99dfa2d82562d9fa3
-        text: This means the person who took it had legitimate access to the building.
-          It wasn't an outsider."
-        initiallyVisible: 1
-        nextStatementId: 
-        claims:
-        - id: 98e6fb43e3664b45b3544de471bdd599
-          factId: fact_inside_job
-          isTrue: 1
-          evaluationRules: []
-        - id: 9f38780b754d4786a0cddc30ae5d39e5
-          factId: 
-          isTrue: 1
-          evaluationRules: []
+              value: 40
+            failureEffects: []
     initiallyVisible: 1
   endings:
   - id: ending_justice
@@ -518,3 +285,183 @@ MonoBehaviour:
       and your credibility is damaged.
     minimumJudgeTrust: 0
     maximumPenalty: 8
+  narrative:
+    startNodeId: 82f30d11e74e407c917ad8b84aed52ba
+    nodes:
+    - rid: 3510799383711973455
+    - rid: 3510799383711973456
+    - rid: 3510799383711973458
+    - rid: 3510799383711973482
+    - rid: 3510799383711973483
+    - rid: 3510799383711973484
+    - rid: 3510799383711973485
+    - rid: 3510799383711973486
+    - rid: 3510799383711973487
+  references:
+    version: 2
+    RefIds:
+    - rid: 3510799383711973452
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 0d3901043003b42498b74ad09b9da09b, type: 2}
+    - rid: 3510799383711973455
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 82f30d11e74e407c917ad8b84aed52ba
+        position: {x: 117, y: 196}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 51a4b5c23956d48788cc7f45d13c7555, type: 2}
+            Text: Welcome to Verdict!
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 87e3b180882784eaa972a917988a82c8, type: 2}
+            Text: Happy Mode
+            Emotion: 1
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3846df18ad4449139221b3db2b962c48
+    - rid: 3510799383711973456
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3846df18ad4449139221b3db2b962c48
+        position: {x: 312, y: -88}
+        statementId: f4fdf042f79d4511bbc604875937248b
+        nextNodeId: 01c1a16b6de84d01ab93c22047cf6401
+    - rid: 3510799383711973458
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 61ba1123d9614abf9f94283133380f54
+        position: {x: 1099.5, y: 34}
+        category: 3
+        gameplayEventId: 
+        nextNodeId: 
+    - rid: 3510799383711973480
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 87e3b180882784eaa972a917988a82c8, type: 2}
+        stat: 0
+        comparisonOperator: 1
+        value: 10
+    - rid: 3510799383711973482
+      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f3ab29ae48c8424790a883337e89cbc6
+        position: {x: 1462.5, y: 175.5}
+        targetNodeId: 765df35bbab5411f94840a65fc8ecf11
+    - rid: 3510799383711973483
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 01c1a16b6de84d01ab93c22047cf6401
+        position: {x: 844, y: 79}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 500
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 61ba1123d9614abf9f94283133380f54
+        falseNodeId: 4114afd6e4014ec2b0dd6fa65c14645e
+    - rid: 3510799383711973484
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 765df35bbab5411f94840a65fc8ecf11
+        position: {x: 2060, y: 315.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: The System has come to an end!
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Test again!
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 
+    - rid: 3510799383711973485
+      type: {class: ChoiceNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4114afd6e4014ec2b0dd6fa65c14645e
+        position: {x: 1145, y: 175.5}
+        choices:
+        - choiceId: 138361bb4cbf4685a5ff746f8e78b5f2
+          text: Jump
+          nextNodeId: f3ab29ae48c8424790a883337e89cbc6
+        - choiceId: bba4d12c494a4bc2a339b77b64b0451d
+          text: Examination
+          nextNodeId: 440e3198501f42a2a7637aaebf2e895b
+    - rid: 3510799383711973486
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 440e3198501f42a2a7637aaebf2e895b
+        position: {x: 1439.5, y: 609.5}
+        statementId: 5ba02f542c6c4720a8807d5817c20b32
+        nextNodeId: 3475220e925b40029c31b16f52e92bf5
+    - rid: 3510799383711973487
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3475220e925b40029c31b16f52e92bf5
+        position: {x: 2100, y: 583}
+        entries: []
+        nextNodeId: 
+    - rid: 3510799383711973488
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: afb5c64e1c6e34f40bd77f5375bfeaa4, type: 2}
+        stat: 0
+        comparisonOperator: 2
+        value: 50

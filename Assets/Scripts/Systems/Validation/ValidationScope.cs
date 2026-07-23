@@ -15,5 +15,6 @@ namespace Verdict.Systems.Validation
         Ending,
         Rule,
         Flow,
+        Narrative,
     }
 }

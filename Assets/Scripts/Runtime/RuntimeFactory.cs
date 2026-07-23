@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verdict.Data.Cases;
 using Verdict.Data.Evidence;
+using Verdict.Data.Narrative;
 using Verdict.Systems.Validation;
 
 namespace Verdict.Runtime
@@ -43,6 +44,12 @@ namespace Verdict.Runtime
             IReadOnlyDictionary<string, WitnessRuntime> witnessesById =
                 BuildWitnessLookup(witnesses);
 
+            IReadOnlyDictionary<string, string> statementNodeIds =
+                BuildStatementNodeLookup(data);
+
+            IReadOnlyDictionary<string, ClaimRuntime> claimsById =
+                BuildClaimLookup(witnesses);
+
             return new CaseRuntime(
                 data,
                 evidence,
@@ -50,7 +57,78 @@ namespace Verdict.Runtime
                 courtState,
                 statementsById,
                 testimoniesById,
-                witnessesById);
+                witnessesById,
+                statementNodeIds,
+                claimsById);
+        }
+
+        private static IReadOnlyDictionary<string, ClaimRuntime> BuildClaimLookup(
+            IReadOnlyList<WitnessRuntime> witnesses)
+        {
+            var map = new Dictionary<string, ClaimRuntime>(StringComparer.Ordinal);
+
+            foreach (WitnessRuntime witness in witnesses)
+            {
+                foreach (TestimonyRuntime testimony in witness.Testimonies)
+                {
+                    foreach (StatementRuntime statement in testimony.Statements)
+                    {
+                        foreach (ClaimRuntime claim in statement.Claims)
+                        {
+                            if (string.IsNullOrWhiteSpace(claim.Data.Id))
+                            {
+                                continue;
+                            }
+
+                            if (!map.ContainsKey(claim.Data.Id))
+                            {
+                                map.Add(claim.Data.Id, claim);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return map;
+        }
+
+        /// <summary>
+        /// Scans the case's narrative graph for StatementNodeData and
+        /// builds a statementId -> nodeId lookup. This is the only place
+        /// gameplay and narrative are connected.
+        /// </summary>
+        private static IReadOnlyDictionary<string, string> BuildStatementNodeLookup(
+            CaseData data)
+        {
+            var map = new Dictionary<string, string>(StringComparer.Ordinal);
+
+            IReadOnlyList<NarrativeNodeData> nodes =
+                data.Narrative?.Nodes;
+
+            if (nodes == null)
+            {
+                return map;
+            }
+
+            foreach (NarrativeNodeData node in nodes)
+            {
+                if (node is not StatementNodeData statementNode)
+                {
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(statementNode.StatementId))
+                {
+                    continue;
+                }
+
+                if (!map.ContainsKey(statementNode.StatementId))
+                {
+                    map.Add(statementNode.StatementId, statementNode.NodeId);
+                }
+            }
+
+            return map;
         }
 
         private static IReadOnlyList<EvidenceRuntime> CreateEvidence(
@@ -105,7 +183,14 @@ namespace Verdict.Runtime
         private static StatementRuntime CreateStatement(
             StatementData statement)
         {
-            return new StatementRuntime(statement)
+            IReadOnlyList<ClaimRuntime> claims =
+                statement.Claims
+                    .Select(c => new ClaimRuntime(c))
+                    .ToList();
+
+            return new StatementRuntime(
+                statement,
+                claims)
             {
                 IsVisible = statement.InitiallyVisible
             };

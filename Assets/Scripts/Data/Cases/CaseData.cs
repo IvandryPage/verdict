@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verdict.Data.Characters;
+using Verdict.Data.Narrative;
 using Verdict.Data.Evidence;
 
 namespace Verdict.Data.Cases
@@ -40,14 +41,19 @@ namespace Verdict.Data.Cases
         [SerializeField] private List<EvidenceEntryData> evidence = new();
 
         [Header("Truth")]
-        [SerializeField] private TruthData truth;
+        [SerializeField] private TruthData truth = new();
 
         [Header("Witnesses")]
         [SerializeField] private List<WitnessData> witnesses = new();
 
-
         [Header("Endings")]
         [SerializeField] private List<EndingData> endings = new();
+
+        [Header("Narrative")]
+        [SerializeField]
+        private NarrativeGraphData narrative = new();
+
+        public NarrativeGraphData Narrative => narrative;
 
         public string Id => id;
         public string Title => title;
