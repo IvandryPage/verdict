@@ -531,6 +531,20 @@ namespace Verdict.Editor.NarrativeEditor
 
         private void BuildGameplayBody(GameplayNodeData node)
         {
+            Label hint = new("Hook into your own gameplay systems (not camera/music - use Dialogue Events for those).")
+            {
+                style = { whiteSpace = WhiteSpace.Normal, fontSize = 10, marginBottom = 4, color = new Color(.6f, .6f, .6f) }
+            };
+
+            extensionContainer.Add(hint);
+
+            EnumField categoryField = new("Category", node.Category);
+
+            categoryField.RegisterValueChangedCallback(evt =>
+                editService.SetGameplayCategory(node, (GameplayEventCategory)evt.newValue));
+
+            extensionContainer.Add(categoryField);
+
             TextField field = new("Event Id") { value = node.GameplayEventId };
 
             field.RegisterValueChangedCallback(evt =>

@@ -54,7 +54,7 @@ namespace Verdict.Systems
         /// Raised when the graph reaches a GameplayNodeData. Fire-and-continue -
         /// the runner does not pause for this on its own.
         /// </summary>
-        public event Action<string> GameplayNodeReached;
+        public event Action<GameplayNodeData> GameplayNodeReached;
 
         public NarrativeRuntime Runtime { get; private set; }
 
@@ -207,7 +207,7 @@ namespace Verdict.Systems
 
                     case GameplayNodeData gameplayNode:
 
-                        GameplayNodeReached?.Invoke(gameplayNode.GameplayEventId);
+                        GameplayNodeReached?.Invoke(gameplayNode);
 
                         AdvanceTo(gameplayNode.NextNodeId, gameplayNode);
                         continue;

@@ -122,7 +122,7 @@ namespace Verdict.Editor.NarrativeEditor
         {
             return entry.Type == NarrativeDialogueEntryType.Line
                 ? LineHeight * 9 + RowPadding * 7
-                : LineHeight * 3 + RowPadding * 3;
+                : LineHeight * 4 + RowPadding * 4;
         }
 
         private static void DrawEntry(Rect rect, NarrativeDialogueEntryData entry)
@@ -176,8 +176,39 @@ namespace Verdict.Editor.NarrativeEditor
                 y += LineHeight + RowPadding;
 
                 entry.Event.Parameter = EditorGUI.TextField(
-                    new Rect(rect.x, y, width, LineHeight), "Parameter", entry.Event.Parameter);
+                    new Rect(rect.x, y, width, LineHeight), GetParameterLabel(entry.Event.Type), entry.Event.Parameter);
+                y += LineHeight + RowPadding;
+
+                entry.Event.Value = EditorGUI.FloatField(
+                    new Rect(rect.x, y, width, LineHeight), GetValueLabel(entry.Event.Type), entry.Event.Value);
             }
+        }
+
+        private static string GetParameterLabel(NarrativeEventType type)
+        {
+            return type switch
+            {
+                NarrativeEventType.PlayMusic => "Track Id",
+                NarrativeEventType.StopMusic => "Track Id (optional)",
+                NarrativeEventType.PlaySound => "SFX Clip Id",
+                NarrativeEventType.CameraMove => "Camera Preset",
+                NarrativeEventType.CameraShake => "Shake Preset",
+                NarrativeEventType.ScreenFade => "Fade Color (e.g. black)",
+                NarrativeEventType.ChangeBackground => "Background Id",
+                _ => "Parameter"
+            };
+        }
+
+        private static string GetValueLabel(NarrativeEventType type)
+        {
+            return type switch
+            {
+                NarrativeEventType.PlayMusic => "Volume (0-1)",
+                NarrativeEventType.CameraMove => "Duration (s)",
+                NarrativeEventType.CameraShake => "Intensity",
+                NarrativeEventType.ScreenFade => "Duration (s)",
+                _ => "Value"
+            };
         }
 
         private void OnDisable()

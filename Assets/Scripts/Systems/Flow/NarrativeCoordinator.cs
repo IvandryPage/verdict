@@ -81,6 +81,12 @@ namespace Verdict.Systems
             remove => runner.EventTriggered -= value;
         }
 
+        public event Action<GameplayNodeData> GameplayNodeReached
+        {
+            add => runner.GameplayNodeReached += value;
+            remove => runner.GameplayNodeReached -= value;
+        }
+
         public void Play(NarrativeGraphData graph)
         {
             if (graph == null)

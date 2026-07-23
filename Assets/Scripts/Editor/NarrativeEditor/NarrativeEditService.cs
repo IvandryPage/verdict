@@ -237,6 +237,11 @@ namespace Verdict.Editor.NarrativeEditor
             ExecuteField("Set Gameplay Event Id", () => node.SetGameplayEventId(eventId));
         }
 
+        public void SetGameplayCategory(GameplayNodeData node, GameplayEventCategory category)
+        {
+            ExecuteField("Set Gameplay Category", () => node.SetCategory(category));
+        }
+
         public void SetCourtStatCondition(ConditionNodeData node, CourtStat stat, NarrativeComparisonOperator op, int value)
         {
             ExecuteField("Edit Condition", () =>

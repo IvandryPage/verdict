@@ -78,6 +78,20 @@ namespace Verdict.Systems
         public event Action CaseRestarted;
         public event Action CaseFinished;
 
+        /// <summary>
+        /// A Dialogue node's Event entry fired (camera/music/sound cue -
+        /// pure presentation, nothing gameplay-related). Wire your AV
+        /// system to this.
+        /// </summary>
+        public event Action<NarrativeEventData> PresentationEventTriggered;
+
+        /// <summary>
+        /// The graph passed through a Gameplay node (unlock a feature,
+        /// start a minigame, mark a checkpoint - whatever your project
+        /// defines). Wire your gameplay systems to this.
+        /// </summary>
+        public event Action<GameplayNodeData> GameplayEventTriggered;
+
         public event Action<StatementRuntime> CurrentStatementChanged;
         public event Action<ResolverResult> ArgumentResolved;
         public event Action<EndingData> EndingTriggered;
@@ -307,12 +321,26 @@ namespace Verdict.Systems
             {
                 subscribedCoordinator.StatementReached -= HandleStatementReached;
                 subscribedCoordinator.EndingReached -= HandleEndingReached;
+                subscribedCoordinator.EventTriggered -= HandlePresentationEvent;
+                subscribedCoordinator.GameplayNodeReached -= HandleGameplayNodeReached;
             }
 
             coordinator.StatementReached += HandleStatementReached;
             coordinator.EndingReached += HandleEndingReached;
+            coordinator.EventTriggered += HandlePresentationEvent;
+            coordinator.GameplayNodeReached += HandleGameplayNodeReached;
 
             subscribedCoordinator = coordinator;
+        }
+
+        private void HandlePresentationEvent(NarrativeEventData eventData)
+        {
+            PresentationEventTriggered?.Invoke(eventData);
+        }
+
+        private void HandleGameplayNodeReached(GameplayNodeData node)
+        {
+            GameplayEventTriggered?.Invoke(node);
         }
 
         /// <summary>

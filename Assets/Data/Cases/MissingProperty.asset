@@ -243,6 +243,27 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 1
+      - id: 5ba02f542c6c4720a8807d5817c20b32
+        text: Test 2
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 33ee91a7cc4a4a539368fcdd4c666cff
+          factId: fact_prototype_missing
+          isTrue: 0
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 3510799383711973488
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: 
+              courtStat: 0
+              operation: 1
+              characterStat: 0
+              value: 40
+            failureEffects: []
     initiallyVisible: 1
   endings:
   - id: ending_justice
@@ -270,7 +291,12 @@ MonoBehaviour:
     - rid: 3510799383711973455
     - rid: 3510799383711973456
     - rid: 3510799383711973458
-    - rid: 3510799383711973459
+    - rid: 3510799383711973482
+    - rid: 3510799383711973483
+    - rid: 3510799383711973484
+    - rid: 3510799383711973485
+    - rid: 3510799383711973486
+    - rid: 3510799383711973487
   references:
     version: 2
     RefIds:
@@ -282,7 +308,7 @@ MonoBehaviour:
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 82f30d11e74e407c917ad8b84aed52ba
-        position: {x: 100, y: 100}
+        position: {x: 117, y: 196}
         entries:
         - Type: 0
           Line:
@@ -306,27 +332,32 @@ MonoBehaviour:
           Event:
             Type: 0
             Parameter: 
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
         nextNodeId: 3846df18ad4449139221b3db2b962c48
     - rid: 3510799383711973456
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 3846df18ad4449139221b3db2b962c48
-        position: {x: 397, y: 108.5}
+        position: {x: 312, y: -88}
         statementId: f4fdf042f79d4511bbc604875937248b
-        nextNodeId: 61ba1123d9614abf9f94283133380f54
+        nextNodeId: 01c1a16b6de84d01ab93c22047cf6401
     - rid: 3510799383711973458
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 61ba1123d9614abf9f94283133380f54
-        position: {x: 989.5, y: 130.5}
+        position: {x: 1099.5, y: 34}
         gameplayEventId: 1
-        nextNodeId: b0f235394bd04b5aa6a5ff51bc2b6d0c
-    - rid: 3510799383711973459
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: b0f235394bd04b5aa6a5ff51bc2b6d0c
-        position: {x: 1360, y: 130.5}
-        endingId: ending_justice
+        nextNodeId: 
     - rid: 3510799383711973480
       type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -334,3 +365,85 @@ MonoBehaviour:
         stat: 0
         comparisonOperator: 1
         value: 10
+    - rid: 3510799383711973482
+      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f3ab29ae48c8424790a883337e89cbc6
+        position: {x: 1462.5, y: 175.5}
+        targetNodeId: 765df35bbab5411f94840a65fc8ecf11
+    - rid: 3510799383711973483
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 01c1a16b6de84d01ab93c22047cf6401
+        position: {x: 844, y: 79}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 500
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 61ba1123d9614abf9f94283133380f54
+        falseNodeId: 4114afd6e4014ec2b0dd6fa65c14645e
+    - rid: 3510799383711973484
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 765df35bbab5411f94840a65fc8ecf11
+        position: {x: 2060, y: 315.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: The System has come to an end!
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Test again!
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+        nextNodeId: 
+    - rid: 3510799383711973485
+      type: {class: ChoiceNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4114afd6e4014ec2b0dd6fa65c14645e
+        position: {x: 1145, y: 175.5}
+        choices:
+        - choiceId: 138361bb4cbf4685a5ff746f8e78b5f2
+          text: Jump
+          nextNodeId: f3ab29ae48c8424790a883337e89cbc6
+        - choiceId: bba4d12c494a4bc2a339b77b64b0451d
+          text: Examination
+          nextNodeId: 440e3198501f42a2a7637aaebf2e895b
+    - rid: 3510799383711973486
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 440e3198501f42a2a7637aaebf2e895b
+        position: {x: 1439.5, y: 609.5}
+        statementId: 5ba02f542c6c4720a8807d5817c20b32
+        nextNodeId: 3475220e925b40029c31b16f52e92bf5
+    - rid: 3510799383711973487
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3475220e925b40029c31b16f52e92bf5
+        position: {x: 2100, y: 583}
+        entries: []
+        nextNodeId: 
+    - rid: 3510799383711973488
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: afb5c64e1c6e34f40bd77f5375bfeaa4, type: 2}
+        stat: 0
+        comparisonOperator: 2
+        value: 50

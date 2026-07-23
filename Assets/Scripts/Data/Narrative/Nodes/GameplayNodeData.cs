@@ -5,16 +5,43 @@ using UnityEngine;
 namespace Verdict.Data.Narrative
 {
     /// <summary>
-    /// Generic extensibility point for custom, non-dialogue gameplay hooks
-    /// (camera cues, timelines, sound triggers, future minigame modules,
-    /// etc). Fires GameplayEventId and immediately continues to
-    /// NextNodeId - it does not pause on its own. A specific future
-    /// module can listen for its GameplayEventId and pause externally if
-    /// it needs to.
+    /// Broad category for a Gameplay node, so it's self-documenting in
+    /// the editor instead of being an opaque free-text id. Pick Custom
+    /// when none of the built-in categories fit your project.
+    /// </summary>
+    public enum GameplayEventCategory
+    {
+        /// <summary>Anything project-specific - GameplayEventId's meaning is up to your own code.</summary>
+        Custom,
+
+        /// <summary>Unlocks a gameplay mechanic or UI feature (e.g. a new investigation tool) that isn't a CourtStateEffect.</summary>
+        UnlockFeature,
+
+        /// <summary>Launches a specific minigame or special interactive sequence.</summary>
+        StartMinigame,
+
+        /// <summary>Marks a save/checkpoint/milestone point your game code can react to.</summary>
+        Checkpoint
+    }
+
+    /// <summary>
+    /// Hook into your OWN gameplay systems - not presentation. Use
+    /// Dialogue Node Events for camera/music/sound; use this for things
+    /// like unlocking a mechanic, launching a minigame, or marking a
+    /// checkpoint. Fires GameplayEventId (plus Category, for context) and
+    /// immediately continues to NextNodeId - it does not pause on its
+    /// own. Note: a Statement node already announces itself when the
+    /// graph reaches it (via StatementReached), and a Choice node
+    /// already announces itself (via ChoiceRequested) - you don't need a
+    /// Gameplay node just to "signal a choice is coming"; use one when
+    /// you need to trigger something those nodes don't already cover.
     /// </summary>
     [Serializable]
     public sealed class GameplayNodeData : NarrativeNodeData
     {
+        [SerializeField]
+        private GameplayEventCategory category = GameplayEventCategory.Custom;
+
         [SerializeField]
         private string gameplayEventId;
 
@@ -30,9 +57,16 @@ namespace Verdict.Data.Narrative
         {
         }
 
+        public GameplayEventCategory Category => category;
+
         public string GameplayEventId => gameplayEventId;
 
         public string NextNodeId => nextNodeId;
+
+        public void SetCategory(GameplayEventCategory newCategory)
+        {
+            category = newCategory;
+        }
 
         public void SetGameplayEventId(string id)
         {
