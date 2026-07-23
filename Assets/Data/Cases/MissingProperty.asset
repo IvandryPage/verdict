@@ -321,6 +321,7 @@ MonoBehaviour:
           Event:
             Type: 0
             Parameter: 
+            Value: 0
         - Type: 0
           Line:
             SpeakerType: 0
@@ -332,6 +333,7 @@ MonoBehaviour:
           Event:
             Type: 0
             Parameter: 
+            Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
@@ -343,6 +345,7 @@ MonoBehaviour:
           Event:
             Type: 0
             Parameter: 
+            Value: 0
         nextNodeId: 3846df18ad4449139221b3db2b962c48
     - rid: 3510799383711973456
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
@@ -356,7 +359,8 @@ MonoBehaviour:
       data:
         nodeId: 61ba1123d9614abf9f94283133380f54
         position: {x: 1099.5, y: 34}
-        gameplayEventId: 1
+        category: 3
+        gameplayEventId: 
         nextNodeId: 
     - rid: 3510799383711973480
       type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
@@ -402,6 +406,7 @@ MonoBehaviour:
           Event:
             Type: 0
             Parameter: 
+            Value: 0
         - Type: 0
           Line:
             SpeakerType: 1
@@ -413,6 +418,19 @@ MonoBehaviour:
           Event:
             Type: 0
             Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
         nextNodeId: 
     - rid: 3510799383711973485
       type: {class: ChoiceNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
