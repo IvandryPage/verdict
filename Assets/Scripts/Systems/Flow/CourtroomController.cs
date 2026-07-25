@@ -95,6 +95,7 @@ namespace Verdict.Systems
         public event Action<StatementRuntime> CurrentStatementChanged;
         public event Action<ResolverResult> ArgumentResolved;
         public event Action<EndingData> EndingTriggered;
+        public event Action<NarrativeDialogueEntryData> NarrativeEntryChanged;
 
         public CourtroomController(
             CaseSessionManager caseSessionManager)
@@ -189,6 +190,11 @@ namespace Verdict.Systems
             }
 
             return success;
+        }
+
+        public bool ResumeNarrative()
+        {
+            return Narrative?.TryResume() ?? false;
         }
 
         public bool MovePreviousStatement()
@@ -323,12 +329,14 @@ namespace Verdict.Systems
                 subscribedCoordinator.EndingReached -= HandleEndingReached;
                 subscribedCoordinator.EventTriggered -= HandlePresentationEvent;
                 subscribedCoordinator.GameplayNodeReached -= HandleGameplayNodeReached;
+                subscribedCoordinator.EntryChanged -= HandleEntryChanged;
             }
 
             coordinator.StatementReached += HandleStatementReached;
             coordinator.EndingReached += HandleEndingReached;
             coordinator.EventTriggered += HandlePresentationEvent;
             coordinator.GameplayNodeReached += HandleGameplayNodeReached;
+            coordinator.EntryChanged += HandleEntryChanged;
 
             subscribedCoordinator = coordinator;
         }
@@ -341,6 +349,11 @@ namespace Verdict.Systems
         private void HandleGameplayNodeReached(GameplayNodeData node)
         {
             GameplayEventTriggered?.Invoke(node);
+        }
+
+        private void HandleEntryChanged(NarrativeDialogueEntryData entry)
+        {
+            NarrativeEntryChanged?.Invoke(entry);
         }
 
         /// <summary>

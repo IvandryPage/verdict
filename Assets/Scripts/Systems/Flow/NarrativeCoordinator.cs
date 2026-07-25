@@ -22,6 +22,7 @@ namespace Verdict.Systems
             runner.NarrativeFinished += HandleNarrativeFinished;
             runner.StatementReached += HandleStatementReached;
             runner.ChoiceRequested += HandleChoiceRequested;
+            runner.EntryChanged += HandleEntryChanged;
         }
 
         public NarrativeState State { get; private set; }
@@ -37,6 +38,7 @@ namespace Verdict.Systems
             State == NarrativeState.WaitingForChoice;
 
         public bool CanResume =>
+            State == NarrativeState.WaitingForDialogue ||
             State == NarrativeState.WaitingForStatement;
 
         public string CurrentStatementId { get; private set; }
@@ -69,12 +71,6 @@ namespace Verdict.Systems
             remove => runner.EndingReached -= value;
         }
 
-        public event Action<NarrativeDialogueEntryData> EntryChanged
-        {
-            add => runner.EntryChanged += value;
-            remove => runner.EntryChanged -= value;
-        }
-
         public event Action<NarrativeEventData> EventTriggered
         {
             add => runner.EventTriggered += value;
@@ -86,6 +82,8 @@ namespace Verdict.Systems
             add => runner.GameplayNodeReached += value;
             remove => runner.GameplayNodeReached -= value;
         }
+
+        public event Action<NarrativeDialogueEntryData> EntryChanged;
 
         public void Play(NarrativeGraphData graph)
         {
@@ -188,6 +186,8 @@ namespace Verdict.Systems
 
         private void HandleNarrativeStarted(NarrativeRuntime runtime)
         {
+            State = NarrativeState.Playing;
+
             NarrativeStarted?.Invoke();
         }
 
@@ -214,6 +214,13 @@ namespace Verdict.Systems
             CurrentChoice = choice;
 
             ChoiceRequested?.Invoke(choice);
+        }
+
+        private void HandleEntryChanged(NarrativeDialogueEntryData entry)
+        {
+            State = NarrativeState.WaitingForDialogue;
+
+            EntryChanged?.Invoke(entry);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Verdict.Systems
         Idle,
         Playing,
         WaitingForStatement,
+        WaitingForDialogue,
         WaitingForChoice,
         Finished
     }
