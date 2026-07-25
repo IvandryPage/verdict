@@ -256,13 +256,13 @@ MonoBehaviour:
             conditions:
             - rid: 3510799383711973488
             successEffects:
-            - effect: 9
-              targetType: 5
+            - effect: 8
+              targetType: 0
               targetId: 
               courtStat: 0
-              operation: 1
+              operation: 0
               characterStat: 0
-              value: 40
+              value: 10
             failureEffects: []
     initiallyVisible: 1
   endings:
