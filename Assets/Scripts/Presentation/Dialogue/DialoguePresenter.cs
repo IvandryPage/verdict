@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,12 @@ using Verdict.Systems;
 
 namespace Verdict.Presentation.Dialogue
 {
+    /// <summary>
+    /// The dialogue box: portrait, speaker name, typewriter text,
+    /// auto/manual continue (per-line WaitMode), and tap-to-skip typing.
+    /// Camera/music/sound cues are handled separately by
+    /// PresentationEventRouter - this class only shows text.
+    /// </summary>
     public sealed class DialoguePresenter : MonoBehaviour
     {
         [Header("Bootstrap")]
@@ -17,12 +24,18 @@ namespace Verdict.Presentation.Dialogue
         [Header("UI")]
         [SerializeField] private CanvasGroup root;
         [SerializeField] private TMP_Text speakerText;
-        [SerializeField] private TMP_Text dialogueText;
+        [SerializeField] private TypewriterText typewriter;
         [SerializeField] private Image portraitImage;
         [SerializeField] private Button continueButton;
+        [SerializeField] private GameObject continuePrompt;
+
+        [Header("Skip")]
+        [Tooltip("If on, holding/toggling this lets the player fast-forward through PlayerInput lines too.")]
+        [SerializeField] private Toggle skipModeToggle;
 
         private CourtroomController controller;
         private NarrativeDialogueEntryData currentEntry;
+        private Coroutine autoAdvanceRoutine;
 
         private void Awake()
         {
@@ -43,44 +56,52 @@ namespace Verdict.Presentation.Dialogue
 
             controller = bootstrap.Controller;
             controller.NarrativeEntryChanged += HandleNarrativeEntryChanged;
-            controller.PresentationEventTriggered += HandlePresentationEvent;
-            controller.GameplayEventTriggered += HandleGameplayEvent;
             controller.CurrentStatementChanged += HandleCurrentStatementChanged;
             controller.EndingTriggered += HandleEndingTriggered;
+            controller.ChoiceRequested += HandleChoiceRequested;
+
+            if (typewriter != null)
+            {
+                typewriter.Completed += HandleTypewriterCompleted;
+            }
 
             RefreshFromController();
         }
 
         private void OnEnable()
         {
-            if (continueButton != null)
-            {
-                continueButton.onClick.AddListener(OnContinuePressed);
-            }
+            continueButton?.onClick.AddListener(OnContinuePressed);
         }
 
         private void OnDisable()
         {
-            if (continueButton != null)
-            {
-                continueButton.onClick.RemoveListener(OnContinuePressed);
-            }
+            continueButton?.onClick.RemoveListener(OnContinuePressed);
+            StopAutoAdvance();
         }
 
         private void OnDestroy()
         {
+            if (typewriter != null)
+            {
+                typewriter.Completed -= HandleTypewriterCompleted;
+            }
+
             if (controller == null)
             {
                 return;
             }
 
             controller.NarrativeEntryChanged -= HandleNarrativeEntryChanged;
-            controller.PresentationEventTriggered -= HandlePresentationEvent;
-            controller.GameplayEventTriggered -= HandleGameplayEvent;
             controller.CurrentStatementChanged -= HandleCurrentStatementChanged;
             controller.EndingTriggered -= HandleEndingTriggered;
+            controller.ChoiceRequested -= HandleChoiceRequested;
         }
 
+        /// <summary>
+        /// Classic VN behaviour: first tap skips the typewriter to the
+        /// end of the line; a second tap (or a tap once already fully
+        /// shown) advances the narrative.
+        /// </summary>
         public void OnContinuePressed()
         {
             if (controller == null)
@@ -88,6 +109,13 @@ namespace Verdict.Presentation.Dialogue
                 return;
             }
 
+            if (typewriter != null && typewriter.IsPlaying)
+            {
+                typewriter.SkipToEnd();
+                return;
+            }
+
+            StopAutoAdvance();
             controller.ResumeNarrative();
         }
 
@@ -97,14 +125,10 @@ namespace Verdict.Presentation.Dialogue
             RefreshFromEntry(entry);
         }
 
-        private void HandlePresentationEvent(NarrativeEventData eventData)
+        private void HandleChoiceRequested(ChoiceNodeData choice)
         {
-            // hook for camera/audio/VFX later
-        }
-
-        private void HandleGameplayEvent(GameplayNodeData node)
-        {
-            // hook for gameplay transitions later
+            // The choice panel takes over from here.
+            SetVisible(false);
         }
 
         private void HandleCurrentStatementChanged(StatementRuntime statement)
@@ -121,6 +145,16 @@ namespace Verdict.Presentation.Dialogue
             SetVisible(false);
         }
 
+        private void HandleTypewriterCompleted()
+        {
+            if (continuePrompt != null)
+            {
+                continuePrompt.SetActive(true);
+            }
+
+            TryScheduleAutoAdvance();
+        }
+
         private void RefreshFromController()
         {
             RefreshFromEntry(controller?.CurrentNarrativeEntry);
@@ -128,6 +162,8 @@ namespace Verdict.Presentation.Dialogue
 
         private void RefreshFromEntry(NarrativeDialogueEntryData entry)
         {
+            StopAutoAdvance();
+
             if (entry == null || entry.Type != NarrativeDialogueEntryType.Line || entry.Line == null)
             {
                 SetVisible(false);
@@ -142,19 +178,80 @@ namespace Verdict.Presentation.Dialogue
                 speakerText.text = GetSpeakerLabel(entry.Line);
             }
 
-            if (dialogueText != null)
-            {
-                dialogueText.text = entry.Line.Text ?? string.Empty;
-            }
-
             if (portraitImage != null)
             {
-                portraitImage.enabled = entry.Line.Speaker != null;
+                Sprite portrait = GetPortrait(entry.Line);
+                portraitImage.sprite = portrait;
+                portraitImage.enabled = portrait != null;
+            }
+
+            if (continuePrompt != null)
+            {
+                continuePrompt.SetActive(false);
             }
 
             if (continueButton != null)
             {
                 continueButton.interactable = true;
+            }
+
+            bool instant = entry.Line.WaitMode == NarrativeWaitMode.Instant;
+
+            if (typewriter != null && !instant)
+            {
+                typewriter.Play(entry.Line.Text ?? string.Empty);
+            }
+            else if (typewriter != null)
+            {
+                typewriter.Play(entry.Line.Text ?? string.Empty);
+                typewriter.SkipToEnd();
+            }
+        }
+
+        /// <summary>
+        /// WaitMode.Auto lines advance themselves after AutoAdvanceDelay
+        /// once fully typed out. WaitMode.Instant lines behave the same
+        /// but skip the typewriter (handled in RefreshFromEntry).
+        /// WaitMode.PlayerInput waits for a tap, unless skip mode is on.
+        /// </summary>
+        private void TryScheduleAutoAdvance()
+        {
+            if (currentEntry?.Line == null)
+            {
+                return;
+            }
+
+            bool shouldAutoAdvance =
+                currentEntry.Line.WaitMode == NarrativeWaitMode.Auto ||
+                currentEntry.Line.WaitMode == NarrativeWaitMode.Instant ||
+                (skipModeToggle != null && skipModeToggle.isOn);
+
+            if (!shouldAutoAdvance)
+            {
+                return;
+            }
+
+            float delay = currentEntry.Line.WaitMode == NarrativeWaitMode.Auto
+                ? Mathf.Max(0f, currentEntry.Line.AutoAdvanceDelay)
+                : 0.15f; // small beat even in skip mode, so it doesn't feel instant/jarring
+
+            autoAdvanceRoutine = StartCoroutine(AutoAdvanceRoutine(delay));
+        }
+
+        private IEnumerator AutoAdvanceRoutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            autoAdvanceRoutine = null;
+            controller?.ResumeNarrative();
+        }
+
+        private void StopAutoAdvance()
+        {
+            if (autoAdvanceRoutine != null)
+            {
+                StopCoroutine(autoAdvanceRoutine);
+                autoAdvanceRoutine = null;
             }
         }
 
@@ -165,9 +262,9 @@ namespace Verdict.Presentation.Dialogue
                 speakerText.text = string.Empty;
             }
 
-            if (dialogueText != null)
+            if (typewriter != null)
             {
-                dialogueText.text = string.Empty;
+                typewriter.Play(string.Empty);
             }
 
             if (portraitImage != null)
@@ -193,6 +290,26 @@ namespace Verdict.Presentation.Dialogue
             root.blocksRaycasts = visible;
         }
 
+        private static Sprite GetPortrait(NarrativeLineData line)
+        {
+            if (line?.Speaker == null)
+            {
+                return null;
+            }
+
+            foreach (var entry in line.Speaker.Portraits)
+            {
+                if (entry.Emotion == line.Emotion)
+                {
+                    return entry.Portrait;
+                }
+            }
+
+            return line.Speaker.Portraits.Count > 0
+                ? line.Speaker.Portraits[0].Portrait
+                : null;
+        }
+
         private static string GetSpeakerLabel(NarrativeLineData line)
         {
             if (line == null)
@@ -200,9 +317,9 @@ namespace Verdict.Presentation.Dialogue
                 return string.Empty;
             }
 
-            if (line.Speaker != null && !string.IsNullOrWhiteSpace(line.Speaker.name))
+            if (line.Speaker != null && !string.IsNullOrWhiteSpace(line.Speaker.DisplayName))
             {
-                return line.Speaker.name;
+                return line.Speaker.DisplayName;
             }
 
             return line.SpeakerType.ToString();

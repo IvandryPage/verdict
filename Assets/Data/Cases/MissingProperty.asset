@@ -334,18 +334,6 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        - Type: 1
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 0}
-            Text: 
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
         nextNodeId: 3846df18ad4449139221b3db2b962c48
     - rid: 3510799383711973456
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}

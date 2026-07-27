@@ -12,7 +12,7 @@ namespace Verdict.Presentation.Bootstrap
     {
         [Header("Startup")]
         [SerializeField]
-        private string firstScene = "02_Courtroom";
+        private string firstScene = "01_MainMenu";
 
         private async void Start()
         {
@@ -26,8 +26,9 @@ namespace Verdict.Presentation.Bootstrap
         private async Awaitable Initialize()
         {
             Debug.Log("———————Bootstrap—————————");
+            // GameSettings reads straight from PlayerPrefs on first
+            // access, so there's no explicit "load" step for it.
             // TODO
-            // Load Settings
             // Initialize Input
             // Initialize Audio
             // Initialize Save System

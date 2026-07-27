@@ -54,13 +54,14 @@ namespace Verdict.Systems
         /// True once the narrative graph has paused on the current
         /// statement's StatementNodeData (or has no narrative at all),
         /// and gameplay actions (Press, Question, PresentEvidence,
-        /// RemainSilent) are allowed.
+        /// RemainSilent) are allowed. Explicitly NOT true while dialogue
+        /// or a choice is still being shown - only WaitingForStatement
+        /// (or no narrative at all) counts.
         /// </summary>
         public bool CanInteract =>
             HasActiveCase &&
             (Narrative == null ||
-            Narrative.IsWaitingForStatement ||
-            !Narrative.IsPlaying);
+            Narrative.IsWaitingForStatement);
 
         public bool IsWaitingForChoice =>
             Narrative?.IsWaitingForChoice ?? false;
@@ -96,6 +97,7 @@ namespace Verdict.Systems
         public event Action<ResolverResult> ArgumentResolved;
         public event Action<EndingData> EndingTriggered;
         public event Action<NarrativeDialogueEntryData> NarrativeEntryChanged;
+        public event Action<ChoiceNodeData> ChoiceRequested;
 
         public CourtroomController(
             CaseSessionManager caseSessionManager)
@@ -330,6 +332,7 @@ namespace Verdict.Systems
                 subscribedCoordinator.EventTriggered -= HandlePresentationEvent;
                 subscribedCoordinator.GameplayNodeReached -= HandleGameplayNodeReached;
                 subscribedCoordinator.EntryChanged -= HandleEntryChanged;
+                subscribedCoordinator.ChoiceRequested -= HandleChoiceRequested;
             }
 
             coordinator.StatementReached += HandleStatementReached;
@@ -337,8 +340,14 @@ namespace Verdict.Systems
             coordinator.EventTriggered += HandlePresentationEvent;
             coordinator.GameplayNodeReached += HandleGameplayNodeReached;
             coordinator.EntryChanged += HandleEntryChanged;
+            coordinator.ChoiceRequested += HandleChoiceRequested;
 
             subscribedCoordinator = coordinator;
+        }
+
+        private void HandleChoiceRequested(ChoiceNodeData choice)
+        {
+            ChoiceRequested?.Invoke(choice);
         }
 
         private void HandlePresentationEvent(NarrativeEventData eventData)
