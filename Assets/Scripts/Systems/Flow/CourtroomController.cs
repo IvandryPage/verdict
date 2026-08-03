@@ -349,7 +349,6 @@ namespace Verdict.Systems
         {
             ChoiceRequested?.Invoke(choice);
         }
-
         private void HandlePresentationEvent(NarrativeEventData eventData)
         {
             PresentationEventTriggered?.Invoke(eventData);
@@ -364,7 +363,6 @@ namespace Verdict.Systems
         {
             NarrativeEntryChanged?.Invoke(entry);
         }
-
         /// <summary>
         /// The graph reached a StatementNodeData on its own (natural
         /// progression, not a Flow-driven jump). Sync Flow to match so

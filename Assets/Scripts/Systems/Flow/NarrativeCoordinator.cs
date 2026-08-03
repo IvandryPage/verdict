@@ -71,6 +71,7 @@ namespace Verdict.Systems
             remove => runner.EndingReached -= value;
         }
 
+
         public event Action<NarrativeEventData> EventTriggered
         {
             add => runner.EventTriggered += value;
@@ -84,7 +85,6 @@ namespace Verdict.Systems
         }
 
         public event Action<NarrativeDialogueEntryData> EntryChanged;
-
         public void Play(NarrativeGraphData graph)
         {
             if (graph == null)
@@ -187,7 +187,6 @@ namespace Verdict.Systems
         private void HandleNarrativeStarted(NarrativeRuntime runtime)
         {
             State = NarrativeState.Playing;
-
             NarrativeStarted?.Invoke();
         }
 
