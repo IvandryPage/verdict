@@ -76,9 +76,9 @@ MonoBehaviour:
   - evidence: {fileID: 11400000, guid: fe3a26f9f43e44e84b5d0847c31d637d, type: 2}
     initiallyUnlocked: 1
     canPresent: 1
-  - evidence: {fileID: 0}
-    initiallyUnlocked: 0
-    canPresent: 0
+  - evidence: {fileID: 11400000, guid: e8532284571704239a162677c14acc7f, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
   - evidence: {fileID: 11400000, guid: cbcae8272808f4e838d5aa78129bf63a, type: 2}
     initiallyUnlocked: 1
     canPresent: 1
@@ -149,7 +149,153 @@ MonoBehaviour:
     initiallyUnlocked: 1
     canPresent: 1
   truth:
-    facts: []
+    facts:
+    - id: fact_timestamp_mismatch
+      subject:
+        type: 1
+        value: ev_cctv_apartment
+      predicate: 15
+      object:
+        type: 1
+        value: ev_apartment_access_log
+      supportingEvidence:
+      - {fileID: 11400000, guid: 8167ce69610cb47e1b6e7fbbfeec9718, type: 2}
+      - {fileID: 11400000, guid: fe3a26f9f43e44e84b5d0847c31d637d, type: 2}
+    - id: fact_flashdisk_formatted_after_death
+      subject:
+        type: 1
+        value: ev_flashdisk_format_log
+      predicate: 16
+      object:
+        type: 3
+        value: waktu_kematian_ryan
+      supportingEvidence:
+      - {fileID: 11400000, guid: 996fb086cb6cb46b2917d0d97c1fe511, type: 2}
+      - {fileID: 11400000, guid: a64ffb1e736a7418fa20c2e8535dafd5, type: 2}
+    - id: fact_ryan_investigating_corruption
+      subject:
+        type: 0
+        value: ryan_pratama
+      predicate: 1
+      object:
+        type: 4
+        value: bukti_dugaan_korupsi_proyek_digitalisasi_pendidikan
+      supportingEvidence:
+      - {fileID: 11400000, guid: cbcae8272808f4e838d5aa78129bf63a, type: 2}
+      - {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
+      - {fileID: 11400000, guid: 791c3b84a17d54870a686a1bfe538757, type: 2}
+      - {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+    - id: fact_audit_report_altered
+      subject:
+        type: 0
+        value: dimas_haryanto
+      predicate: 13
+      object:
+        type: 4
+        value: laporan_audit_pernah_diminta_diubah
+      supportingEvidence:
+      - {fileID: 11400000, guid: 8391c8d086ac9474fa83e99985c33659, type: 2}
+      - {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
+    - id: fact_vendor_evaluation_manipulated
+      subject:
+        type: 1
+        value: ev_tender_revision_history
+      predicate: 18
+      object:
+        type: 4
+        value: perubahan_skor_evaluasi_vendor_di_menit_terakhir
+      supportingEvidence:
+      - {fileID: 11400000, guid: 791c3b84a17d54870a686a1bfe538757, type: 2}
+      - {fileID: 11400000, guid: b982eaef88dbd492092c952f21a3325c, type: 2}
+    - id: fact_adrian_denied_knowing_ryan
+      subject:
+        type: 0
+        value: adrian_wijaya
+      predicate: 13
+      object:
+        type: 4
+        value: hampir_tidak_mengenal_ryan
+      supportingEvidence: []
+    - id: fact_adrian_knows_ryan_closely
+      subject:
+        type: 0
+        value: adrian_wijaya
+      predicate: 21
+      object:
+        type: 0
+        value: ryan_pratama
+      supportingEvidence:
+      - {fileID: 11400000, guid: 4ab4e970030b04bce814c72b937232b2, type: 2}
+      - {fileID: 11400000, guid: 764b40d01e0cc4a7aba63ecb7cc2c709, type: 2}
+      - {fileID: 11400000, guid: 031e3636fa07f44a085b7ed7b5c05837, type: 2}
+      - {fileID: 11400000, guid: 549948bc0de744d3aba2b6a4b291cde0, type: 2}
+    - id: fact_ryan_cloud_sync
+      subject:
+        type: 0
+        value: ryan_pratama
+      predicate: 1
+      object:
+        type: 4
+        value: sistem_sinkronisasi_cloud_otomatis_24_jam
+      supportingEvidence:
+      - {fileID: 11400000, guid: f08f9fe6a250a4c5493ac32cace11fda, type: 2}
+    - id: fact_cloud_data_reveals_corruption
+      subject:
+        type: 1
+        value: ev_cloud_backup_data
+      predicate: 18
+      object:
+        type: 4
+        value: bukti_lengkap_rekayasa_tender_dan_aliran_dana
+      supportingEvidence:
+      - {fileID: 11400000, guid: f08f9fe6a250a4c5493ac32cace11fda, type: 2}
+      - {fileID: 11400000, guid: f8072fe2d699542f89ae1d43c2361673, type: 2}
+      - {fileID: 11400000, guid: c83dee07a8d504d19827371c8db6b30c, type: 2}
+    - id: fact_remote_deletion_from_ministry_network
+      subject:
+        type: 1
+        value: ev_remote_deletion_log
+      predicate: 3
+      object:
+        type: 2
+        value: jaringan_internal_kementerian
+      supportingEvidence:
+      - {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+      - {fileID: 11400000, guid: 031e3636fa07f44a085b7ed7b5c05837, type: 2}
+    - id: fact_transfer_to_officials
+      subject:
+        type: 1
+        value: ev_bank_transfer_proof
+      predicate: 21
+      object:
+        type: 4
+        value: sejumlah_pejabat_proyek
+      supportingEvidence:
+      - {fileID: 11400000, guid: f8072fe2d699542f89ae1d43c2361673, type: 2}
+      - {fileID: 11400000, guid: cb47b72843cb14678a6a9bd298a71216, type: 2}
+    - id: fact_arga_left_and_returned
+      subject:
+        type: 0
+        value: arga_mahendra
+      predicate: 5
+      object:
+        type: 2
+        value: apartemen_ryan_sebelum_kembali_lagi
+      supportingEvidence:
+      - {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
+      - {fileID: 11400000, guid: be1dab4631674483a843c050da0d4037, type: 2}
+    - id: fact_arga_has_alibi_window
+      subject:
+        type: 0
+        value: arga_mahendra
+      predicate: 22
+      object:
+        type: 5
+        value: true
+      supportingEvidence:
+      - {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
+      - {fileID: 11400000, guid: be1dab4631674483a843c050da0d4037, type: 2}
+      - {fileID: 11400000, guid: 7349a69bf3c1040ae97430ef77f37b43, type: 2}
   witnesses: []
   endings: []
   narrative:
