@@ -167,9 +167,9 @@ namespace Verdict.Editor.CaseEditor.Inspector
             if (fact == null)
                 return string.Empty;
 
-            string subject = fact.Subject?.ToString() ?? "?";
+            string subject = fact.Subject?.Value.ToString() ?? "?";
             string predicate = fact.Predicate.ToString();
-            string @object = fact.Object?.ToString() ?? "?";
+            string @object = fact.Object?.Value.ToString() ?? "?";
 
             return string.IsNullOrWhiteSpace(fact.Id)
                 ? $"{subject} {predicate} {@object}"

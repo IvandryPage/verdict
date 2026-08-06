@@ -296,8 +296,157 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
       - {fileID: 11400000, guid: be1dab4631674483a843c050da0d4037, type: 2}
       - {fileID: 11400000, guid: 7349a69bf3c1040ae97430ef77f37b43, type: 2}
-  witnesses: []
-  endings: []
+    - id: fact_yudi_arrival_time
+      subject:
+        type: 0
+        value: yudi_setiawan
+      predicate: 14
+      object:
+        type: 3
+        value: 22:15
+      supportingEvidence:
+      - {fileID: 11400000, guid: 5e311bfea6c9348acbb230499b77110e, type: 2}
+    - id: fact_arga_fingerprints_found
+      subject:
+        type: 0
+        value: arga_mahendra
+      predicate: 8
+      object:
+        type: 4
+        value: gagang_pintu_dan_meja_kerja_ryan
+      supportingEvidence:
+      - {fileID: 11400000, guid: 6cf25ca160af94d4ab875409a4f23994, type: 2}
+    - id: fact_whatsapp_argument_exists
+      subject:
+        type: 1
+        value: ev_whatsapp_chat
+      predicate: 18
+      object:
+        type: 4
+        value: pesan_bernada_pertengkaran_malam_kejadian
+      supportingEvidence:
+      - {fileID: 11400000, guid: e8532284571704239a162677c14acc7f, type: 2}
+    - id: fact_police_initial_alibi_assesment
+      subject:
+        type: 0
+        value: yudi_setiawan
+      predicate: 13
+      object:
+        type: 4
+        value: arga_tidak_punya_alibi_meyakinkan
+      supportingEvidence: []
+    - id: fact_laptop_data_partially_recovered
+      subject:
+        type: 0
+        value: nadia_putri
+      predicate: 1
+      object:
+        type: 4
+        value: data_terpulihkan_dari_laptop_ryan
+      supportingEvidence:
+      - {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+    - id: fact_additional_cctv_obtained
+      subject:
+        type: 0
+        value: yudi_setiawan
+      predicate: 1
+      object:
+        type: 4
+        value: rekaman_cctv_tambahan_gedung_apartemen
+      supportingEvidence:
+      - {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
+    - id: fact_adrian_claims_professional
+      subject:
+        type: 0
+        value: adrian_wijaya
+      predicate: 13
+      object:
+        type: 4
+        value: bekerja_professional_bersama_seluruh_tim
+      supportingEvidence:
+      - {fileID: 11400000, guid: 5e311bfea6c9348acbb230499b77110e, type: 2}
+    - id: fact_adrian_claims_routine_meetings
+      subject:
+        type: 0
+        value: adrian_wijaya
+      predicate: 13
+      object:
+        type: 4
+        value: pertemuan_dengan_ryan_hanya_rapat_rutin
+      supportingEvidence: []
+  witnesses:
+  - id: 7c1d58b5828c40609581d10ccabfaa29
+    character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+    role: 4
+    description: Penyidik utama yang menyusun kronologi awal kasus kematian Ryan
+      Pratama.
+    testimonies:
+    - id: f923ac6dbffa4f738d08f425dbcdc84e
+      title: Kronologi Penemuan Jenazah dan Bukti Awal
+      description: Kesaksian pembuka yang menjadi dasar dakwaan jaksa terhadap Arga
+        Mahendra.
+      statements:
+      - id: 23545e9101d04b7bae20853cf004cd8a
+        text: Saya tiba di lokasi pukul 22.15 setelah menerima laporan warga tentang
+          keributan di apartemen korban.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 225c3420770844cb9c38cbe3ee740149
+          factId: 
+          isTrue: 1
+          evaluationRules: []
+      - id: 8e481df44a8148c3ac1caf78dc172438
+        text: Sidik jari tersangka, Arga Mahendra, kami temukan di gagang pintu dan
+          meja kerja korban.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims: []
+      - id: 7c2d85980d1b4f0c829c82ab9bdc6649
+        text: Rekaman CCTV Lobi menunjukkan Arga memasuki apartemen pukul 21.40,
+          dan ia tidak pernah terlihat keluar hingga pagi hari.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: a1e8937912b745c294e534612e47f1aa
+          factId: fact_timestamp_mismatch
+          isTrue: 1
+          evaluationRules: []
+    initiallyVisible: 1
+  endings:
+  - id: end_bad_arga_convicted
+    title: Kambing Hitam
+    description: Bukti tidak cukup meyakinkan hakim. Arga Mahendra divonis bersalah
+      atas pembunuhan Ryan Pratama. Konspirasi di balik proyek digitalisasi pendidikan
+      tetap tersembunyi rapi, dan kasus ini ditutup sebagai 'pembunuhan akibat konflik
+      pribadi' persis seperti judul awal yang dibangun media.
+    minimumJudgeTrust: 0
+    maximumPenalty: 100
+  - id: end_neutral_partial_truth
+    title: Bebas, tapi Tidak Tuntas
+    description: Hakim menyatakan Arga tidak bersalah karena keraguan yang wajar.
+      Namun dalang sesungguhnya di balik kematian Ryan dan proyek Rp3,8 triliun yang
+      bermasalah itu belum juga tertangkap. Kasus ditutup, tapi pertanyaan besarnya
+      tetap menggantung.
+    minimumJudgeTrust: 55
+    maximumPenalty: 45
+  - id: end_good_conspiracy_exposed
+    title: Retak yang Menjalar
+    description: "Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap
+      di akhir persidangan cukup kuat untuk membuka penyelidikan resmi terhadap Adrian
+      Wijaya dan jaringan di sekitarnya. Ini baru permulaan \u2014 tapi untuk pertama
+      kalinya, konspirasi itu punya nama."
+    minimumJudgeTrust: 75
+    maximumPenalty: 30
+  - id: end_true_open_question
+    title: Mengapa Ryan Harus Dibunuh?
+    description: 'Seluruh bukti korupsi terbongkar sepenuhnya di depan pengadilan,
+      dan Arga bebas tanpa keraguan sedikit pun. Namun satu pertanyaan tetap tak
+      terjawab: siapa yang benar-benar memerintahkan pembunuhan itu, dan siapa yang
+      paling diuntungkan dari kematian Ryan? Kasus ini resmi ditutup investigasi
+      yang sesungguhnya baru saja dimulai.'
+    minimumJudgeTrust: 90
+    maximumPenalty: 10
   narrative:
     startNodeId: 
     nodes: []
