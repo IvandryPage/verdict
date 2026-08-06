@@ -24,6 +24,11 @@ namespace Verdict.Systems.Validation.Graph
             string id,
             out FlowGraphNode node)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                node = null;
+                return false;
+            }
             return _nodes.TryGetValue(id, out node);
         }
     }

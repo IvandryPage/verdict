@@ -155,6 +155,9 @@ namespace Verdict.Systems.Validation.Graph
             FlowGraph graph,
             CourtStateEffectData effect)
         {
+            if (effect == null)
+                return;
+
             FlowEdgeType? edgeType =
                 ConvertEffectToEdgeType(
                     effect.Effect);
@@ -165,6 +168,8 @@ namespace Verdict.Systems.Validation.Graph
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(effect.TargetId))
+                return;
 
             if (!graph.TryGetNode(
                     effect.TargetId,

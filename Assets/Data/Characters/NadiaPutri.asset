@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
-  m_Name: Player
+  m_Name: NadiaPutri
   m_EditorClassIdentifier: 
-  id: player
-  displayName: Player
-  occupation: 3
-  biography: Controlled character.
+  id: nadia_putri
+  displayName: Nadia Putri
+  occupation: 6
+  biography: 'Ahli forensik digital yang memulihkan data dari laptop dan flashdisk
+    Ryan: metadata dokumen, log server, riwayat revisi, serta percakapan yang sebelumnya
+    dihapus.'
   defaultCredibility: 100
   defaultTrust: 50
   defaultStress: 20
   defaultFear: 10
   defaultCooperation: 60
   defaultAffinity: 0
-  portraits: []
+  portraits:
+  - <Emotion>k__BackingField: 0
+    <Portrait>k__BackingField: {fileID: 0}
+  - <Emotion>k__BackingField: 2
+    <Portrait>k__BackingField: {fileID: 0}
+  - <Emotion>k__BackingField: 3
+    <Portrait>k__BackingField: {fileID: 0}

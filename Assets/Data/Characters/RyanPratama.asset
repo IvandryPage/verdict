@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
+  m_Name: RyanPratama
+  m_EditorClassIdentifier: 
+  id: ryan_pratama
+  displayName: RyanPratama
+  occupation: 7
+  biography: Staf pengadaan muda proyek digitalisasi pendidikan nasional. Menemukan
+    kejanggalan saat audit internal dan diam-diam mengumpulkan bukti dugaan korupsi
+    (email internal, metadata dokumen, log server, rekaman rapat). Korban pembunuhan;
+    ditemukan meninggal sehari sebelum rencana penyerahan bukti.
+  defaultCredibility: 100
+  defaultTrust: 50
+  defaultStress: 0
+  defaultFear: 0
+  defaultCooperation: 0
+  defaultAffinity: 0
+  portraits:
+  - <Emotion>k__BackingField: 0
+    <Portrait>k__BackingField: {fileID: 0}
+  - <Emotion>k__BackingField: 2
+    <Portrait>k__BackingField: {fileID: 0}
+  - <Emotion>k__BackingField: 6
+    <Portrait>k__BackingField: {fileID: 0}
