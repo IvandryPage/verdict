@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvInvoiceMarkup
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_invoice_markup
+  displayName: Invoice Bermasalah
+  description: Invoice pengadaan perangkat digital yang nilainya digelembungkan jauh
+    di atas harga pasar wajar.
+  type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}

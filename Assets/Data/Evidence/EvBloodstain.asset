@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvBloodstain
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
+  id: ev_bloodstain
+  displayName: Jejak Darah
+  description: Pola jejak darah di ruang tamu apartemen Ryan yang dianalisis tim
+    forensik.
   type: 0
   icon: {fileID: 0}
   artwork: {fileID: 0}

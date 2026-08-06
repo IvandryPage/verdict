@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvCallLog
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_call_log
+  displayName: Riwayat Panggilan Telepon
+  description: Catatan panggilan masuk dan keluar dari ponsel Ryan, termasuk panggilan
+    tak dikenal menjelang malam kejadian.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

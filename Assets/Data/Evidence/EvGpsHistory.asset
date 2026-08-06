@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvGpsHistory
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_gps_history
+  displayName: Riwayat GPS Ryan
+  description: Riwayat lokasi ponsel Ryan pada hari-hari terakhir sebelum kematiannya.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvPersonalEmailAdrian
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_personal_email_adrian
+  displayName: Email Pribadi Adrian-Ryan
+  description: Korespondensi pribadi (bukan email dinas) antara Adrian Wijaya dan
+    Ryan yang menunjukkan komunikasi lebih personal dari yang diakui Adrian.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

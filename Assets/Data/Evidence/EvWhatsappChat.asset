@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
-  m_Name: EvApartmentAccessLog
+  m_Name: EvWhatsappChat
   m_EditorClassIdentifier: 
-  id: ev_apartment_access_log
-  displayName: Log Akses Apartemen
-  description: Catatan digital kartu akses pintu apartemen Ryan, mencatat waktu masuk/keluar
-    secara elektronik.
+  id: ev_whatsapp_chat
+  displayName: Chat Whatsapp Ryan & Arga
+  description: Percakapan pribadi antara Ryan dan Arga pada malam kejadian, bernada
+    pertengkaran.
   type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

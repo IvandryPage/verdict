@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvDocumentMetadata
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_document_metadata
+  displayName: Metadata Dokumen Laporan
+  description: Metadata yang menunjukkan sejumlah laporan evaluasi diedit setelah
+    tanggal resmi persetujuannya.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

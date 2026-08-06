@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvOfficeCctv
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_office_cctv
+  displayName: CCTV Kantor Direktur
+  description: Rekaman CCTV koridor kantor Adrian Wijaya yang memperlihatkan pertemuan-pertemuan
+    dengan Ryan di luar jam kerja resmi.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

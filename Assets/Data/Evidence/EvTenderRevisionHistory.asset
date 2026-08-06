@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvTenderRevisionHistory
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_tender_revision_history
+  displayName: Riwayat Revisi Dokumen Tender
+  description: Log revisi dokumen tender yang memperlihatkan perubahan spesifikasi
+    dan skor evaluasi vendor di menit-menit akhir.
+  type: 1
   icon: {fileID: 0}
   artwork: {fileID: 0}

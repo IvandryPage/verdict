@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: EvInternalMail
   m_EditorClassIdentifier: 
   id: ev_internal_email
-  displayName: 
-  description: 
-  type: 0
+  displayName: Email Internal Pengadaan
+  description: Rangkaian email internal yang mengarahkan kemenangan tender ke vendor
+    tertentu.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

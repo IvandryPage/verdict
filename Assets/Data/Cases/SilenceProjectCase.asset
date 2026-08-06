@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3e117572c1d42ae8a11495666a174e, type: 3}
+  m_Name: SilenceProjectCase
+  m_EditorClassIdentifier: 
+  id: case_001
+  title: Project Silence
+  description: Ryan Pratama, staf pengadaan proyek digitalisasi pendidikan nasional
+    senilai Rp3,8 triliun, ditemukan tewas sehari sebelum menyerahkan bukti dugaan
+    korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, didakwa sebagai pembunuh
+    berdasarkan bukti yang tampak hampir sempurna. Pemain berperan sebagai pengacara
+    yang ditugaskan membelanya dan perlahan menemukan bahwa pembunuhan ini hanyalah
+    permukaan dari konspirasi nasional yang jauh lebih besar.
+  difficulty: 2
+  purpose: 2
+  tags:
+  - mystery
+  - courtroom
+  - corruption
+  - conspiracy
+  estimatedPlayTimeMinutes: 180
+  version: 1
+  author: Galang Ivandry
+  courtSetup:
+    judgeTrust: 60
+    penalty: 0
+    publicOpinion: 20
+    juryOpinion: 30
+    storyProgress: 0
+    caseProgress: 0
+  judge: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+  prosecutor: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+  defenseLawyer: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+  characterOverrides:
+  - character: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+    overrideCredibility: 1
+    credibility: 55
+    overrideTrust: 0
+    trust: 50
+    overrideStress: 1
+    stress: 75
+    overrideFear: 1
+    fear: 65
+    overrideCooperation: 0
+    cooperation: 60
+    overrideAffinity: 0
+    affinity: 0
+  evidence:
+  - evidence: {fileID: 11400000, guid: 4cc20ff09a37243c1bebf0eda3c2a67f, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 6cf25ca160af94d4ab875409a4f23994, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 996fb086cb6cb46b2917d0d97c1fe511, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 5e311bfea6c9348acbb230499b77110e, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 65b17e73099a747d0811df4bf9202f0a, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 8167ce69610cb47e1b6e7fbbfeec9718, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: fe3a26f9f43e44e84b5d0847c31d637d, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 0}
+    initiallyUnlocked: 0
+    canPresent: 0
+  - evidence: {fileID: 11400000, guid: cbcae8272808f4e838d5aa78129bf63a, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: c7ca24f93eee8446cbb3e85579d222ae, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: a64ffb1e736a7418fa20c2e8535dafd5, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 791c3b84a17d54870a686a1bfe538757, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: f08f9fe6a250a4c5493ac32cace11fda, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: be1dab4631674483a843c050da0d4037, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 7349a69bf3c1040ae97430ef77f37b43, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 99843e55837ff49fea173e7886fd714e, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 4ab4e970030b04bce814c72b937232b2, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 031e3636fa07f44a085b7ed7b5c05837, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 549948bc0de744d3aba2b6a4b291cde0, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 764b40d01e0cc4a7aba63ecb7cc2c709, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: b982eaef88dbd492092c952f21a3325c, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: f8072fe2d699542f89ae1d43c2361673, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: cb47b72843cb14678a6a9bd298a71216, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: c83dee07a8d504d19827371c8db6b30c, type: 2}
+    initiallyUnlocked: 0
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 06b8e7b8cbbc549c3bcde0481d85aa67, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 6d7ec78c91df5443db16d306ebd09d8a, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 8391c8d086ac9474fa83e99985c33659, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  - evidence: {fileID: 11400000, guid: 22b3f7f6c04c34f4cb5ad38f4aac8631, type: 2}
+    initiallyUnlocked: 1
+    canPresent: 1
+  truth:
+    facts: []
+  witnesses: []
+  endings: []
+  narrative:
+    startNodeId: 
+    nodes: []
+  references:
+    version: 2
+    RefIds: []

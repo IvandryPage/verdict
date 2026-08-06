@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvRemoteDeletionLog
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_remote_deletion_log
+  displayName: 'Log Server: Penghapusan Jejak Jarak Jauh'
+  description: Log server yang mencatat aktivitas penghapusan data dari jarak jauh
+    terhadap sejumlah dokumen milik Ryan.
+  type: 3
   icon: {fileID: 0}
   artwork: {fileID: 0}

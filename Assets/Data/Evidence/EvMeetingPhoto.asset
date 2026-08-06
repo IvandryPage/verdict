@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2facb33b410af459ab63242837607eab, type: 3}
   m_Name: EvMeetingPhoto
   m_EditorClassIdentifier: 
-  id: 
-  displayName: 
-  description: 
-  type: 0
+  id: ev_meeting_photo
+  displayName: Foto Rapat Internal
+  description: Foto-foto rapat resmi proyek yang memperlihatkan Ryan dan Adrian Wijaya
+    duduk berdampingan dan berdiskusi langsung.
+  type: 2
   icon: {fileID: 0}
   artwork: {fileID: 0}
