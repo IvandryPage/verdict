@@ -393,15 +393,43 @@ MonoBehaviour:
         nextStatementId: 
         claims:
         - id: 225c3420770844cb9c38cbe3ee740149
-          factId: 
+          factId: fact_yudi_arrival_time
           isTrue: 1
-          evaluationRules: []
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526640768909312
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 4
+              value: 2
+            failureEffects: []
       - id: 8e481df44a8148c3ac1caf78dc172438
         text: Sidik jari tersangka, Arga Mahendra, kami temukan di gagang pintu dan
           meja kerja korban.
         initiallyVisible: 1
         nextStatementId: 
-        claims: []
+        claims:
+        - id: 134b7087685e4854833631676b338e5b
+          factId: fact_arga_fingerprints_found
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526640768909313
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            failureEffects: []
       - id: 7c2d85980d1b4f0c829c82ab9bdc6649
         text: Rekaman CCTV Lobi menunjukkan Arga memasuki apartemen pukul 21.40,
           dan ia tidak pernah terlihat keluar hingga pagi hari.
@@ -411,7 +439,1244 @@ MonoBehaviour:
         - id: a1e8937912b745c294e534612e47f1aa
           factId: fact_timestamp_mismatch
           isTrue: 1
-          evaluationRules: []
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526634879057988
+            - rid: 1763526634879057989
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 1
+              targetType: 1
+              targetId: 720136b33bc8414e9c91558768ca514d
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 1
+              characterStat: 0
+              value: 5
+          - action: 2
+            conditions:
+            - rid: 1763526655240044544
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+      - id: dbb03e4def1d4127bd806a68036a3623
+        text: Ponsel korban berisi riwayat pesan dengan Arga yang bernada pertengkaran
+          pada malam kejadian.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 256e98d8075043a2b8790019fd7ccc59
+          factId: fact_whatsapp_argument_exists
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526640768909314
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 3
+            failureEffects: []
+      - id: 720136b33bc8414e9c91558768ca514d
+        text: Sejauh pemeriksaan kami, tersangka tidak dapat memberikan alibi yang
+          meyakinkan untuk malam itu.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: 0bdf6df6c53849e68abbedfe5d5f7129
+          factId: fact_police_initial_alibi_assesment
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526640768909315
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+    initiallyVisible: 1
+  - id: 95c8fd71d8754414a30665d878b35e66
+    character: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+    role: 1
+    description: Ahli forensik digital yang memaparkan hasil pemulihan data dari
+      laptop Ryan.
+    testimonies:
+    - id: 079fad1635b24d32a8e62a62e285a4b8
+      title: Jejak Digital dari Laptop Korban
+      description: Pemaparan data yang membuktikan Ryan sedang menyelidiki dugaan
+        korupsi proyek pengadaan nasional.
+      statements:
+      - id: aa954c9f49e14d36a82e71a5726495ff
+        text: Kami berhasil memulihkan sebagian data dari laptop korban yang sempat
+          coba dihapus.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 20881cc576b042cf891602f157f84be5
+          factId: fact_laptop_data_partially_recovered
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526640768909316
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            failureEffects: []
+      - id: ccf95d4da5394a4d9b381e121a8b686f
+        text: Data tersebut memuat rangkaian email internal yang secara halus mengarahkan
+          kemenangan tender ke satu vendor tertentu.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 1f0fbededf474d7a9e502afa4abd2859
+          factId: fact_ryan_investigating_corruption
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526640768909317
+            - rid: 1763526640768909318
+            successEffects:
+            - effect: 4
+              targetType: 4
+              targetId: ev_tender_revision_history
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 3
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 2
+      - id: 3a512f1139554c8785db258ad4732d56
+        text: Metadata pada beberapa laporan evaluasi menunjukkan dokumen tersebut
+          diedit setelah tanggal resmi persetujuannya.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 97c3fd11a8e147ae8367cfcf8d7d1021
+          factId: fact_ryan_investigating_corruption
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526640768909319
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
+      - id: 1ad44dfd0e3a4f67b76237a324e14037
+        text: Kami juga menemukan log server yang mencatat adanya penghapusan data
+          dari jarak jauh terhadap file-file korban.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 520b92480dd34b2c9bd6448908ec4afd
+          factId: fact_remote_deletion_from_ministry_network
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526640768909320
+            successEffects:
+            - effect: 4
+              targetType: 4
+              targetId: ev_building_access_log
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 10
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
+    initiallyVisible: 1
+  - id: 284a9241bb5b40bcaf1d062c7862e5ce
+    character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+    role: 0
+    description: Auditor internal kementerian yang awalnya menyangkal, lalu mengubah
+      keterangannya setelah dihadapkan bukti.
+    testimonies:
+    - id: 64de20925ce34b249ed31ddefd2af226
+      title: Kesaksian Auditor Internal (Awal)
+      description: Dimas awalnya menyangkal seluruh dugaan manipulasi dokumen.
+      statements:
+      - id: cc7a4e98e9a748ec8edba7f9facbce27
+        text: Saya tidak tahu-menahu soal dugaan manipulasi laporan audit. Semua
+          sudah sesuai prosedur.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 36c9118954b744c19f95f8654814c3f9
+          factId: fact_audit_report_altered
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526640768909321
+            - rid: 1763526640768909322
+            successEffects:
+            - effect: 2
+              targetType: 2
+              targetId: b1fbb6469a7a41afb9cc3a22027d9c23
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 12
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 5
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+          - action: 2
+            conditions:
+            - rid: 1763526655240044545
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+      - id: 8917154301f24d7f9f3925d64216c032
+        text: Evaluasi vendor juga sudah melalui proses yang wajar, tidak ada yang
+          saya ubah.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: b8c8647af8c7448b848e7e6f3d9ceef8
+          factId: fact_vendor_evaluation_manipulated
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526640768909323
+            - rid: 1763526640768909324
+            successEffects:
+            - effect: 2
+              targetType: 2
+              targetId: b1fbb6469a7a41afb9cc3a22027d9c23
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 8
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 1
+              characterStat: 0
+              value: 5
+          - action: 2
+            conditions:
+            - rid: 1763526655240044546
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+    - id: b1fbb6469a7a41afb9cc3a22027d9c23
+      title: Kesaksian Auditor Internal (Setelah Dikonfrontasi)
+      description: Terungkap setelah pemain menunjukkan metadata dokumen dan histori
+        komunikasi internal.
+      statements:
+      - id: 3f173597a7104c56920145d6406e3764
+        text: Baik... saya akui, laporan audit itu pernah diminta untuk diubah sebelum
+          akhirnya disahkan.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: c501153f2eaa42d0a406479a4d6b2d9c
+          factId: fact_audit_report_altered
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526640768909325
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            failureEffects: []
+      - id: a17389a14d6c4767a4b6553dfb76cd41
+        text: Evaluasi vendor juga memang tidak sepenuhnya sesuai fakta di lapangan.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 68640b22ce6f41f699340b195eb16fb1
+          factId: fact_vendor_evaluation_manipulated
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526641932828741
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            failureEffects: []
+      - id: a804aa36ee8a4af9bf5e7d32d6f90f4e
+        text: Beberapa pejabat meminta saya menandatangani dokumen yang sebenarnya
+          belum selesai. Tapi saya bersumpah, saya tidak tahu siapa yang membunuh
+          Ryan.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: a03e33fbdd7e44048e60408115ab14ec
+          factId: fact_ryan_investigating_corruption
+          isTrue: 0
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526641932828742
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+    initiallyVisible: 1
+  - id: c4743051538943e7b00cd34fef895417
+    character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+    role: 4
+    description: Yudi kembali bersaksi setelah bukti-bukti baru (CCTV tambahan, GPS,
+      log panggilan, transfer, foto rapat) ditemukan.
+    testimonies:
+    - id: f3faaadaecaf491f9a24c295288f0d11
+      title: 'Kesaksian Lanjutan: Bukti Tambahan'
+      description: Kronologi awal mulai retak lebih jauh; kini ada celah waktu yang
+        membuka kemungkinan pelaku lain.
+      statements:
+      - id: 09f833a0b798473b9d8740a6eebdb696
+        text: Kami memperoleh rekaman CCTV tambahan dari kamera lain di gedung apartemen.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: b9418c0246e5416bad9cf389e083646c
+          factId: fact_additional_cctv_obtained
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526641932828743
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            failureEffects: []
+      - id: 308b428202414436b823e506c495832d
+        text: Setelah ditelusuri ulang... rekaman itu menunjukkan Arga sempat keluar
+          apartemen sekitar pukul 23.10, dan baru kembali menjelang subuh.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: f639e471373d4400b21015334ef10e1f
+          factId: fact_arga_left_and_returned
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526641932828744
+            - rid: 1763526641932828745
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 8
+            failureEffects: []
+          - action: 2
+            conditions:
+            - rid: 1763526655240044547
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 8
+            failureEffects: []
+      - id: 9299a251ba41461c87d05f5083398924
+        text: Riwayat GPS dan panggilan telepon korban pada rentang waktu itu juga
+          belum sepenuhnya kami telusuri saat penyelidikan awal
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 280d909ebd8e471795fbc9c75558f8d6
+          factId: fact_arga_has_alibi_window
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044549
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+          - action: 9
+            conditions:
+            - rid: 1763526655240044550
+            - rid: 1763526655240044551
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 10
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 4
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 1
+              characterStat: 0
+              value: 3
+    initiallyVisible: 1
+  - id: 68a5c30d546d49cf98e38cb0ac0c020e
+    character: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+    role: 3
+    description: Direktur proyek yang tampil tenang dan meyakinkan, namun mulai kehilangan
+      kendali saat hubungannya dengan Ryan dipertanyakan.
+    testimonies:
+    - id: 7ab79fe6bce04e13ab0794f2408bcc11
+      title: Kesaksian Direktur Proyek
+      description: Adrian membantah mengenal Ryan secara dekat sampai bukti membuktikan
+        sebaliknya
+      statements:
+      - id: 271339cb1b2742b8a7bde31c51bf057c
+        text: Saya adalah direktur proyek ini, dan saya bekerja secara profesional
+          bersama seluruh tim.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 9e3b0c8339a6488aa642d5e052e236dd
+          factId: fact_adrian_claims_professional
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044552
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 2
+            failureEffects: []
+      - id: 0410f5d53f394361927d804aad10dae3
+        text: Ryan? Terus terang saya hampir tidak mengenalnya. Ia hanya salah satu
+          staf pengadaan di antara puluhan lainnya.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 5e8a409bce7947a2acd8d0abb58e2d50
+          factId: fact_adrian_denied_knowing_ryan
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044553
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+          - action: 1
+            conditions:
+            - rid: 1763526655240044554
+            - rid: 1763526655240044555
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 25
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 5
+            - effect: 1
+              targetType: 1
+              targetId: dac30fd93fd245aa83d811342d865d74
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+          - action: 1
+            conditions:
+            - rid: 1763526655240044556
+            - rid: 1763526655240044557
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 25
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 5
+            - effect: 1
+              targetType: 1
+              targetId: 284edbd1cd794d47b6219ae44b8eb77e
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+      - id: 284edbd1cd794d47b6219ae44b8eb77e
+        text: Kalau ada foto atau catatan pertemuan, itu mungkin sekadar rapat rutin
+          proyek. Tidak lebih.
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 0b72aabf154c4f81b9d53e69f5c435e2
+          factId: fact_adrian_claims_routine_meetings
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044558
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            failureEffects: []
+      - id: 7b54ec10b75f44a392ddb2f4960083dd
+        text: .....Baiklah. Kami memang beberapa kali bertemu di luar rapat resmi.
+          Tapi itu tidak ada hubungannya dengan kematiannya.
+        initiallyVisible: 0
+        nextStatementId: 
+        claims:
+        - id: dac30fd93fd245aa83d811342d865d74
+          factId: fact_adrian_knows_ryan_closely
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044559
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 3
+              targetType: 3
+              targetId: e632b70008544ccd8ab7320f76175c91
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+    initiallyVisible: 1
+  - id: e632b70008544ccd8ab7320f76175c91
+    character: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
+    role: 0
+    description: Asisten pribadi Adrian Wijaya. Hanya berani bersaksi jika ia sudah
+      melihat Adrian kehilangan kendali di persidangan sebelumnya.
+    testimonies:
+    - id: e69c9d120063492d83d65d4cc9bb0a36
+      title: 'Kesaksian Dadakan: Sang Asisten Pribadi'
+      description: Akhirnya berani buka suara setelah melihat Adrian goyah di Bab
+        6
+      statements:
+      - id: efb56c13637c44a4bc8279d05dda442d
+        text: Saya bekerja sebagai asisten pribadi Pak Adrian selama tiga tahun terakhir
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: de0d94bbf10d4b649cb923ff7537f7b8
+          factId: fact_adrian_claims_professional
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044560
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: melati_wulandari
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            failureEffects: []
+      - id: 05cf76c70d8f4b4c90ac71269e3fd5a7
+        text: Malam sebelum Ryan ditemukan meninggal... saya dengar Pak Adrian menelepon
+          seseorang. Katanya, 'pastikan semua jejak di server dan flashdisk itu hilang
+          total.'
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 5a1e7a18d7b94ee6b1a3db20a42fd1fe
+          factId: fact_remote_deletion_from_ministry_network
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526655240044561
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: melati_wulandari
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+          - action: 1
+            conditions:
+            - rid: 1763526655240044562
+            - rid: 1763526655240044563
+            - rid: 1763526655240044564
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 10
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
     initiallyVisible: 1
   endings:
   - id: end_bad_arga_convicted
@@ -422,6 +1687,12 @@ MonoBehaviour:
       pribadi' persis seperti judul awal yang dibangun media.
     minimumJudgeTrust: 0
     maximumPenalty: 100
+    minimumPublicOpinion: 0
+    minimumCaseProgress: 0
+    minimumStoryProgress: 0
+    minimumJuryTrust: 0
+    minimumDefenseConfidence: 0
+    maximumProsecutorPressure: 100
   - id: end_neutral_partial_truth
     title: Bebas, tapi Tidak Tuntas
     description: Hakim menyatakan Arga tidak bersalah karena keraguan yang wajar.
@@ -430,6 +1701,12 @@ MonoBehaviour:
       tetap menggantung.
     minimumJudgeTrust: 55
     maximumPenalty: 45
+    minimumPublicOpinion: 20
+    minimumCaseProgress: 20
+    minimumStoryProgress: 0
+    minimumJuryTrust: 0
+    minimumDefenseConfidence: 0
+    maximumProsecutorPressure: 100
   - id: end_good_conspiracy_exposed
     title: Retak yang Menjalar
     description: "Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap
@@ -438,6 +1715,12 @@ MonoBehaviour:
       kalinya, konspirasi itu punya nama."
     minimumJudgeTrust: 75
     maximumPenalty: 30
+    minimumPublicOpinion: 55
+    minimumCaseProgress: 45
+    minimumStoryProgress: 0
+    minimumJuryTrust: 40
+    minimumDefenseConfidence: 40
+    maximumProsecutorPressure: 40
   - id: end_true_open_question
     title: Mengapa Ryan Harus Dibunuh?
     description: 'Seluruh bukti korupsi terbongkar sepenuhnya di depan pengadilan,
@@ -447,9 +1730,224 @@ MonoBehaviour:
       yang sesungguhnya baru saja dimulai.'
     minimumJudgeTrust: 90
     maximumPenalty: 10
+    minimumPublicOpinion: 65
+    minimumCaseProgress: 70
+    minimumStoryProgress: 100
+    minimumJuryTrust: 50
+    minimumDefenseConfidence: 50
+    maximumProsecutorPressure: 15
   narrative:
     startNodeId: 
     nodes: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1763526634879057988
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: fe3a26f9f43e44e84b5d0847c31d637d, type: 2}
+    - rid: 1763526634879057989
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_timestamp_mismatch
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526640768909312
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526640768909313
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526640768909314
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526640768909315
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526640768909316
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526640768909317
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_ryan_investigating_corruption
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526640768909318
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: cbcae8272808f4e838d5aa78129bf63a, type: 2}
+    - rid: 1763526640768909319
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
+    - rid: 1763526640768909320
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+    - rid: 1763526640768909321
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_audit_report_altered
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526640768909322
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
+    - rid: 1763526640768909323
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 791c3b84a17d54870a686a1bfe538757, type: 2}
+    - rid: 1763526640768909324
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_vendor_evaluation_manipulated
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526640768909325
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526641932828741
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526641932828742
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 2
+    - rid: 1763526641932828743
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 2
+    - rid: 1763526641932828744
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_arga_left_and_returned
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526641932828745
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
+    - rid: 1763526655240044544
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 6
+        comparisonOperator: 0
+        value: 40
+    - rid: 1763526655240044545
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+        stat: 0
+        comparisonOperator: 2
+        value: 60
+    - rid: 1763526655240044546
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+        stat: 0
+        comparisonOperator: 2
+        value: 60
+    - rid: 1763526655240044547
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044549
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044550
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: be1dab4631674483a843c050da0d4037, type: 2}
+    - rid: 1763526655240044551
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 7349a69bf3c1040ae97430ef77f37b43, type: 2}
+    - rid: 1763526655240044552
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044553
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044554
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 4ab4e970030b04bce814c72b937232b2, type: 2}
+    - rid: 1763526655240044555
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_adrian_knows_ryan_closely
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526655240044556
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 764b40d01e0cc4a7aba63ecb7cc2c709, type: 2}
+    - rid: 1763526655240044557
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_adrian_knows_ryan_closely
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526655240044558
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044559
+      type: {class: ClaimConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        claimId: 5e8a409bce7947a2acd8d0abb58e2d50
+        requiredState: 1
+    - rid: 1763526655240044560
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044561
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526655240044562
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: f08f9fe6a250a4c5493ac32cace11fda, type: 2}
+    - rid: 1763526655240044563
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+    - rid: 1763526655240044564
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_remote_deletion_from_ministry_network
+        requireSupportingEvidencePresented: 1

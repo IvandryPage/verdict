@@ -43,7 +43,40 @@ namespace Verdict.Data.Cases
         public bool HasTarget =>
             !string.IsNullOrWhiteSpace(TargetId);
 
-        public void SetEffect(CourtStateEffect newEffect) => effect = newEffect;
+        public void SetEffect(CourtStateEffect effect)
+        {
+            this.effect = effect;
+
+            switch (effect)
+            {
+                case CourtStateEffect.ModifyCharacterStat:
+                    SetTargetType(EffectTargetType.Character);
+                    break;
+
+                case CourtStateEffect.UnlockEvidence:
+                    SetTargetType(EffectTargetType.Evidence);
+                    break;
+
+                case CourtStateEffect.RevealStatement:
+                case CourtStateEffect.JumpStatement:
+                    SetTargetType(EffectTargetType.Statement);
+                    break;
+
+                case CourtStateEffect.RevealWitness:
+                case CourtStateEffect.JumpWitness:
+                    SetTargetType(EffectTargetType.Witness);
+                    break;
+
+                case CourtStateEffect.RevealTestimony:
+                case CourtStateEffect.JumpTestimony:
+                    SetTargetType(EffectTargetType.Testimony);
+                    break;
+
+                default:
+                    SetTargetType(EffectTargetType.None);
+                    break;
+            }
+        }
 
         public void SetTargetType(EffectTargetType newTargetType) => targetType = newTargetType;
 
