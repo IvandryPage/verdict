@@ -2666,7 +2666,75 @@ MonoBehaviour:
     - rid: 1763526658047344653
     - rid: 1763526658047344654
     - rid: 1763526658047344655
-    - rid: 1763526658047344656
+    - rid: 1763526658047344810
+    - rid: 1763526658047344811
+    - rid: 1763526658047344812
+    - rid: 1763526658047344813
+    - rid: 1763526658047344814
+    - rid: 1763526658047344815
+    - rid: 1763526658047344816
+    - rid: 1763526658047344817
+    - rid: 1763526658047344818
+    - rid: 1763526658047344819
+    - rid: 1763526658047344820
+    - rid: 1763526658047344821
+    - rid: 1763526658047344822
+    - rid: 1763526658047344823
+    - rid: 1763526658047344824
+    - rid: 1763526658047344825
+    - rid: 1763526658047344826
+    - rid: 1763526658047344827
+    - rid: 1763526658047344828
+    - rid: 1763526658047344829
+    - rid: 1763526658047344830
+    - rid: 1763526658047344831
+    - rid: 1763526658047344832
+    - rid: 1763526658047344833
+    - rid: 1763526658047344834
+    - rid: 1763526658047344835
+    - rid: 1763526658047344836
+    - rid: 1763526658047344837
+    - rid: 1763526658047344838
+    - rid: 1763526658047344839
+    - rid: 1763526658047344840
+    - rid: 1763526658047344841
+    - rid: 1763526658047344842
+    - rid: 1763526658047344843
+    - rid: 1763526658047344844
+    - rid: 1763526658047344845
+    - rid: 1763526658047344846
+    - rid: 1763526658047344847
+    - rid: 1763526658047344848
+    - rid: 1763526658047344850
+    - rid: 1763526658047344851
+    - rid: 1763526658047344852
+    - rid: 1763526658047344853
+    - rid: 1763526658047344854
+    - rid: 1763526658047344855
+    - rid: 1763526658047344856
+    - rid: 1763526658047344857
+    - rid: 1763526658047344858
+    - rid: 1763526658047344859
+    - rid: 1763526658047344860
+    - rid: 1763526658047344861
+    - rid: 1763526658047344862
+    - rid: 1763526658047344863
+    - rid: 1763526658047344864
+    - rid: 1763526658047344865
+    - rid: 1763526658047344866
+    - rid: 1763526658047344867
+    - rid: 1763526658047344868
+    - rid: 1763526658047344869
+    - rid: 1763526658047344870
+    - rid: 1763526658047344872
+    - rid: 1763526658047344873
+    - rid: 1763526658047344874
+    - rid: 1763526658047344875
+    - rid: 1763526658047344876
+    - rid: 1763526658047344877
+    - rid: 1763526658047344878
+    - rid: 1763526658047344879
+    - rid: 1763526658047344880
   references:
     version: 2
     RefIds:
@@ -2923,7 +2991,7 @@ MonoBehaviour:
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: a4b071d141eb41bab58eb9e071078fd5
-        position: {x: 683, y: 270}
+        position: {x: 709.5, y: 270}
         entries:
         - Type: 0
           Line:
@@ -3234,14 +3302,7 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 5c165b975c8f4ba9bddf3f8840a362ab
-    - rid: 1763526658047344656
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 5c165b975c8f4ba9bddf3f8840a362ab
-        position: {x: 10555, y: 280}
-        statementId: 720136b33bc8414e9c91558768ca514d
-        nextNodeId: 
+        nextNodeId: bcb0ebfeeccc4653a986c769c3240b9f
     - rid: 1763526658047344758
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -3465,3 +3526,1018 @@ MonoBehaviour:
       data:
         factId: fact_melati_witnessed_deletion_order
         requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344810
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: bcb0ebfeeccc4653a986c769c3240b9f
+        position: {x: 10542.5, y: 278.5}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_document_metadata
+        nextNodeId: a515fb78cd1e4e7ebae06e3c298c8de8
+    - rid: 1763526658047344811
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a515fb78cd1e4e7ebae06e3c298c8de8
+        position: {x: 11106.5, y: 280}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_remote_deletion_log
+        nextNodeId: fb17186d5cff4da7baa3bc444838a21d
+    - rid: 1763526658047344812
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: fb17186d5cff4da7baa3bc444838a21d
+        position: {x: 11771, y: 280}
+        statementId: aa954c9f49e14d36a82e71a5726495ff
+        nextNodeId: 9e23ceea88f84ea38f82e61a8d000e40
+    - rid: 1763526658047344813
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 9e23ceea88f84ea38f82e61a8d000e40
+        position: {x: 12586, y: 278.5}
+        statementId: ccf95d4da5394a4d9b381e121a8b686f
+        nextNodeId: ba18a33b98394b29916cf1f5b515e830
+    - rid: 1763526658047344814
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ba18a33b98394b29916cf1f5b515e830
+        position: {x: 13384.5, y: 280}
+        statementId: 3a512f1139554c8785db258ad4732d56
+        nextNodeId: e6ebc6efede94cf5ae7dd2c940342e62
+    - rid: 1763526658047344815
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: e6ebc6efede94cf5ae7dd2c940342e62
+        position: {x: 14205.5, y: 280}
+        statementId: 1ad44dfd0e3a4f67b76237a324e14037
+        nextNodeId: 7d127f8214fc45619fcf4ea4eec2bf4e
+    - rid: 1763526658047344816
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 7d127f8214fc45619fcf4ea4eec2bf4e
+        position: {x: 15010, y: 280}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Ryan memang sedang menyelidiki proyek pengadaanRyan memang sedang
+              menyelidiki proyek pengadaan nasional ini... nasional ini...
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Pembunuhan Ryan mungkin bukan akhir dari cerita ini. Melainkan
+              konsekuensi dari sesuatu yang jauh lebih besar
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: f702a80b65ab454c9bef54d627b6223a
+    - rid: 1763526658047344817
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f702a80b65ab454c9bef54d627b6223a
+        position: {x: 15773, y: 280}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan memanggil auditor internal kementerian, Dimas Haryanto
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+            Text: S-saya siap memberikan keterangan, Yang Mulia.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3ddf99d88cf14478be731784127f4c93
+    - rid: 1763526658047344818
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3ddf99d88cf14478be731784127f4c93
+        position: {x: 16177.5, y: 280}
+        statementId: cc7a4e98e9a748ec8edba7f9facbce27
+        nextNodeId: eee2b58a125f46e9bce2c705b1641f40
+    - rid: 1763526658047344819
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: eee2b58a125f46e9bce2c705b1641f40
+        position: {x: 17019.5, y: 280}
+        statementId: 8917154301f24d7f9f3925d64216c032
+        nextNodeId: a80cda3325f34fc480980e76b815700a
+    - rid: 1763526658047344820
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a80cda3325f34fc480980e76b815700a
+        position: {x: 17775.5, y: 250.5}
+        condition:
+          mode: 1
+          stat: 0
+          comparisonOperator: 4
+          value: 0
+          claimId: b8c8647af8c7448b848e7e6f3d9ceef8
+          requireSuccessful: 1
+        trueNodeId: f35379fff7a949d0a794d28c5117bc44
+        falseNodeId: a5dcd855a6bb405495b964edb6569060
+    - rid: 1763526658047344821
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a5dcd855a6bb405495b964edb6569060
+        position: {x: 18597.5, y: 376.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pembela, argumen Anda masih memiliki celah. Silakan cari bukti
+              yang lebih kuat.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 7b68340a0b7a40c0935a27beeede6ba5
+    - rid: 1763526658047344822
+      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 7b68340a0b7a40c0935a27beeede6ba5
+        position: {x: 18764, y: 658.5}
+        targetNodeId: eee2b58a125f46e9bce2c705b1641f40
+    - rid: 1763526658047344823
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f35379fff7a949d0a794d28c5117bc44
+        position: {x: 18654, y: 157}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+            Text: (diam lama, tangannya gemetar)
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Saksi, pengadilan menunggu jawaban Anda.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: ec84488f84524ad1818b7b0fe93a1c32
+    - rid: 1763526658047344824
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ec84488f84524ad1818b7b0fe93a1c32
+        position: {x: 19016, y: 157}
+        statementId: 3f173597a7104c56920145d6406e3764
+        nextNodeId: 2e4256fc73c8438cbec0db5c1f629efa
+    - rid: 1763526658047344825
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 2e4256fc73c8438cbec0db5c1f629efa
+        position: {x: 19943, y: 157}
+        statementId: a17389a14d6c4767a4b6553dfb76cd41
+        nextNodeId: fb511ed05a0d4b5b987f2e77a47aec45
+    - rid: 1763526658047344826
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: fb511ed05a0d4b5b987f2e77a47aec45
+        position: {x: 20967, y: 157}
+        statementId: a804aa36ee8a4af9bf5e7d32d6f90f4e
+        nextNodeId: ba5ce17fe94644848e2e1fc0e127a0ab
+    - rid: 1763526658047344827
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ba5ce17fe94644848e2e1fc0e127a0ab
+        position: {x: 21849.5, y: 157}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Dimas tidak tahu siapa pembunuhnya. Tapi ia baru saja membuka pintu
+              menuju sesuatu yang jauh lebih besar dari sekadar satu kasus pembunuhan.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3bcebedc3d974ca98fcde8f3f13fdd41
+    - rid: 1763526658047344828
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3bcebedc3d974ca98fcde8f3f13fdd41
+        position: {x: 22726.5, y: 157}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: 'Pemain mulai memahami: pembunuhan bukanlah tujuan utama. Tujuan
+              sebenarnya adalah menghentikan Ryan sebelum bukti korupsi tersebar.'
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: 'Persidangan ini sekarang punya dua lapis: membuktikan Arga tak
+              bersalah, dan membuktikan Ryan dibunuh karena yang ia ketahui.'
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 1346101383d54360bf9e3958a18f8a18
+    - rid: 1763526658047344829
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1346101383d54360bf9e3958a18f8a18
+        position: {x: 23473.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_additional_cctv
+        nextNodeId: 49a53246fcf94049b032c4619924e413
+    - rid: 1763526658047344830
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 49a53246fcf94049b032c4619924e413
+        position: {x: 23974.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_gps_history
+        nextNodeId: 1e15d23bbe314ac59aa7d014592f2205
+    - rid: 1763526658047344831
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1e15d23bbe314ac59aa7d014592f2205
+        position: {x: 24463.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_call_log
+        nextNodeId: a7f1e17a17004c32872a47d0245db6a9
+    - rid: 1763526658047344832
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a7f1e17a17004c32872a47d0245db6a9
+        position: {x: 25064.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_bank_transfer_proof
+        nextNodeId: 744950db92574372a0384c7838d48d71
+    - rid: 1763526658047344833
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 744950db92574372a0384c7838d48d71
+        position: {x: 25596, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_meeting_photo
+        nextNodeId: 3845a92ac87d4e54a2e316e66bfb0f0c
+    - rid: 1763526658047344834
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3845a92ac87d4e54a2e316e66bfb0f0c
+        position: {x: 26106, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_cut_audio_recording
+        nextNodeId: a12613251f5b411389f2c6f296dbecf5
+    - rid: 1763526658047344835
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a12613251f5b411389f2c6f296dbecf5
+        position: {x: 26617.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_office_cctv
+        nextNodeId: c2bc976c208c40c49f999d93b7be061b
+    - rid: 1763526658047344836
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: c2bc976c208c40c49f999d93b7be061b
+        position: {x: 27100.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_personal_email_adrian
+        nextNodeId: e0c03308d19c460d9ef52eadbbc48db8
+    - rid: 1763526658047344837
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: e0c03308d19c460d9ef52eadbbc48db8
+        position: {x: 27577, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_bank_account_record
+        nextNodeId: 6ebe8df187144443a750ece41b07a0ef
+    - rid: 1763526658047344838
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 6ebe8df187144443a750ece41b07a0ef
+        position: {x: 28064.5, y: 157}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_payment_report
+        nextNodeId: 2b259513aac7428e93d79e8eeb566719
+    - rid: 1763526658047344839
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 2b259513aac7428e93d79e8eeb566719
+        position: {x: 28612.5, y: 157}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Penyidik dipanggil kembali sehubungan dengan bukti-bukti baru yang
+              ditemukan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: f4dbbca924004ed7870d4c342f3073f3
+    - rid: 1763526658047344840
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f4dbbca924004ed7870d4c342f3073f3
+        position: {x: 29141, y: 157}
+        statementId: 09f833a0b798473b9d8740a6eebdb696
+        nextNodeId: f5713694d84b4501a055fe838a9e7a18
+    - rid: 1763526658047344841
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f5713694d84b4501a055fe838a9e7a18
+        position: {x: 30124, y: 157}
+        statementId: 308b428202414436b823e506c495832d
+        nextNodeId: 12e0ab644b63466ab39033c4bf021d99
+    - rid: 1763526658047344842
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 12e0ab644b63466ab39033c4bf021d99
+        position: {x: 31087.5, y: 157}
+        statementId: 9299a251ba41461c87d05f5083398924
+        nextNodeId: 97f6e528a3794fbb8c21e82920f2ca6f
+    - rid: 1763526658047344843
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 97f6e528a3794fbb8c21e82920f2ca6f
+        position: {x: 31938, y: 130.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Seluruh bukti baru ini mulai membentuk hubungan antar karakter
+              yang sebelumnya tak pernah kami lihat.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 907bca10113f442ba6b303c59bec37c9
+    - rid: 1763526658047344844
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 907bca10113f442ba6b303c59bec37c9
+        position: {x: 32550, y: 130.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan memanggil Direktur Proyek Digitalisasi Pendidikan Nasional,
+              Adrian Wijaya.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: Terima kasih, Yang Mulia. Saya akan menjawab dengan sejujur-jujurnya.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 96fc0a287582402ba80bdeb16a160b4b
+    - rid: 1763526658047344845
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 96fc0a287582402ba80bdeb16a160b4b
+        position: {x: 33061.5, y: 148.5}
+        statementId: 271339cb1b2742b8a7bde31c51bf057c
+        nextNodeId: 336b127919a042b8af22176413bb362e
+    - rid: 1763526658047344846
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 336b127919a042b8af22176413bb362e
+        position: {x: 33839.5, y: 148.5}
+        statementId: 0410f5d53f394361927d804aad10dae3
+        nextNodeId: d7cebc840fb449538fa513eafbe90cb9
+    - rid: 1763526658047344847
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d7cebc840fb449538fa513eafbe90cb9
+        position: {x: 34571.5, y: 130.5}
+        condition:
+          mode: 1
+          stat: 0
+          comparisonOperator: 0
+          value: 0
+          claimId: 5e8a409bce7947a2acd8d0abb58e2d50
+          requireSuccessful: 1
+        trueNodeId: 8f3fa5196e5b457395896536c968f8f3
+        falseNodeId: 336aea9ec8e9419380018c94f3ea20b5
+    - rid: 1763526658047344848
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 336aea9ec8e9419380018c94f3ea20b5
+        position: {x: 35348, y: 226}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: "Seperti yang saya katakan \u2014 itu hanya rapat rutin. Tidak
+              lebih."
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: d25a169cadef4ff39d13c901fd919076
+    - rid: 1763526658047344850
+      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d25a169cadef4ff39d13c901fd919076
+        position: {x: 35093.5, y: 494.5}
+        targetNodeId: 336b127919a042b8af22176413bb362e
+    - rid: 1763526658047344851
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8f3fa5196e5b457395896536c968f8f3
+        position: {x: 35448, y: 34}
+        statementId: 7b54ec10b75f44a392ddb2f4960083dd
+        nextNodeId: 6ab4a72a4ccd44c89f7cad243783742a
+    - rid: 1763526658047344852
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 6ab4a72a4ccd44c89f7cad243783742a
+        position: {x: 36405.5, y: 7.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: Tapi itu tidak ada hubungannya dengan kematiannya. Saya bersumpah.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Kepercayaan publik terhadap Adrian mulai runtuh. Tapi belum ada
+              bukti yang secara langsung menghubungkannya dengan pembunuhan itu sendiri.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 609fcbfb160d4c058003294a58b375d5
+    - rid: 1763526658047344853
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 609fcbfb160d4c058003294a58b375d5
+        position: {x: 36959.5, y: 7.5}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 7
+            Parameter: bg_courtroom_climax
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: bgm_final_revelation
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Selama ini semua orang percaya flashdisk adalah satu-satunya tempat
+              penyimpanan bukti Ryan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: "Tapi Ryan sudah mengantisipasi kemungkinan dirinya dibungkam.
+              Ia membuat sistem sinkronisasi otomatis ke cloud pribadi \u2014 aktif
+              hanya jika laptopnya tidak digunakan selama 24 jam."
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 093be50641ee40cb94389dee2902cc8c
+    - rid: 1763526658047344854
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 093be50641ee40cb94389dee2902cc8c
+        position: {x: 37567, y: -1}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_cloud_backup_data
+        nextNodeId: b84d7d1f4f274bdaa3159541380d4af1
+    - rid: 1763526658047344855
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: b84d7d1f4f274bdaa3159541380d4af1
+        position: {x: 38146.5, y: -21.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Seluruh data berhasil dipulihkan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Data ini membuktikan rekayasa tender, penggelembungan harga, manipulasi
+              spesifikasi barang, perubahan laporan evaluasi, dan aliran dana kepada
+              sejumlah pihak.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pembunuhan Ryan Pratama ternyata hanyalah bagian kecil dari sebuah
+              konspirasi yang jauh lebih besar.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: 'Tapi masih ada satu pertanyaan yang belum terjawab: siapa yang
+              memerintahkan pembunuhan itu? Dan siapa yang paling diuntungkan dari
+              kematian Ryan?'
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 1e53ea7850614fb4931aae0dfe28f19a
+    - rid: 1763526658047344856
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1e53ea7850614fb4931aae0dfe28f19a
+        position: {x: 38461, y: -1}
+        condition:
+          mode: 1
+          stat: 0
+          comparisonOperator: 0
+          value: 0
+          claimId: dac30fd93fd245aa83d811342d865d74
+          requireSuccessful: 1
+        trueNodeId: 659d373278ff489e9512f28d806b107c
+        falseNodeId: 3f19b428f27245b79238602d5a742716
+    - rid: 1763526658047344857
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 659d373278ff489e9512f28d806b107c
+        position: {x: 39186.5, y: -98}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Tiba-tiba, seseorang dari bangku pengunjung mengangkat tangan dan
+              berdiri.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
+            Text: Yang Mulia... saya punya sesuatu yang harus saya sampaikan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan mengizinkan Anda maju sebagai saksi. Silakan perkenalkan
+              diri Anda.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: effb28f6e506482dbdee101a87855e7b
+    - rid: 1763526658047344858
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: effb28f6e506482dbdee101a87855e7b
+        position: {x: 39759.5, y: -97.5}
+        statementId: efb56c13637c44a4bc8279d05dda442d
+        nextNodeId: 229153a8f2af421eb1a04e8bbef27e9c
+    - rid: 1763526658047344859
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 229153a8f2af421eb1a04e8bbef27e9c
+        position: {x: 40655.5, y: -98}
+        statementId: 05cf76c70d8f4b4c90ac71269e3fd5a7
+        nextNodeId: c9c417c3703b4a2ba2b1e8345af7e921
+    - rid: 1763526658047344860
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: c9c417c3703b4a2ba2b1e8345af7e921
+        position: {x: 41516, y: -124.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: "I-itu tidak benar! Dia hanya asisten biasa, dia tidak tahu apa-apa
+              soal\u2014"
+            Emotion: 4
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Duduk, Saudara Adrian. Pengadilan yang akan menilai keterangan
+              ini.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Untuk pertama kalinya sejak persidangan dimulai, Adrian benar-benar
+              kehilangan kendali.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3f19b428f27245b79238602d5a742716
+    - rid: 1763526658047344861
+      type: {class: ChoiceNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3f19b428f27245b79238602d5a742716
+        position: {x: 42186.5, y: 319}
+        choices:
+        - choiceId: 7a5c75b0238949cba8f27ef1ed1d8e99
+          text: Tuduh Adrian Wijaya sebagai dalang utama di balik semuanya.
+          nextNodeId: 04d8e95ebcb54dc78bd9b572a6c1e665
+        - choiceId: 6cd21817c8d14325a0761f9de38567f3
+          text: Nyatakan bahwa dalang sesungguhnya masih belum diketahui, dan konspirasi
+            ini harus terus diselidiki.
+          nextNodeId: 626e331db7cc40a090dcd6b24f304e3f
+        - choiceId: 665ba4e171fd4fc4b4372e7630b2ee86
+          text: Fokus hanya membebaskan Arga, tanpa membongkar lebih jauh isu korupsi
+            ini.
+          nextNodeId: 8775b8f304fa453190a895eb90981a0e
+    - rid: 1763526658047344862
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 04d8e95ebcb54dc78bd9b572a6c1e665
+        position: {x: 43076, y: 143}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 1
+          value: 90
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 10705c9707a343cfbe229d162f2c4201
+        falseNodeId: b1c89b4328064b34abedecad4eb2b7ce
+    - rid: 1763526658047344863
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 10705c9707a343cfbe229d162f2c4201
+        position: {x: 43419.5, y: 55}
+        condition:
+          mode: 0
+          stat: 4
+          comparisonOperator: 1
+          value: 70
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 7409dac8ab754db2b0b60ac45a3e1594
+        falseNodeId: b1c89b4328064b34abedecad4eb2b7ce
+    - rid: 1763526658047344864
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 7409dac8ab754db2b0b60ac45a3e1594
+        position: {x: 43741, y: -33}
+        condition:
+          mode: 0
+          stat: 2
+          comparisonOperator: 0
+          value: 64
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 495ab1fa0f184205b1f2d07c1632c31c
+        falseNodeId: b1c89b4328064b34abedecad4eb2b7ce
+    - rid: 1763526658047344865
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 495ab1fa0f184205b1f2d07c1632c31c
+        position: {x: 44060, y: -102}
+        condition:
+          mode: 0
+          stat: 3
+          comparisonOperator: 1
+          value: 100
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: eadcde9e86be4234b082fec48746dcbf
+        falseNodeId: 019f7ee67a8d485bb173174bdf94ff1b
+    - rid: 1763526658047344866
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: b1c89b4328064b34abedecad4eb2b7ce
+        position: {x: 43938.5, y: 369}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 1
+          value: 75
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 81a3de447ed0474bb02e314646b57fe0
+        falseNodeId: 8fe04e25d532428e8ec60e52c9b15607
+    - rid: 1763526658047344867
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 019f7ee67a8d485bb173174bdf94ff1b
+        position: {x: 45024.5, y: 26}
+        endingId: end_good_conspiracy_exposed
+    - rid: 1763526658047344868
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 235ed286a1644bb6a684080c0881a23d
+        position: {x: 45501.5, y: 740.5}
+        endingId: end_neutral_partial_truth
+    - rid: 1763526658047344869
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: eadcde9e86be4234b082fec48746dcbf
+        position: {x: 44498, y: -129.5}
+        endingId: end_true_open_question
+    - rid: 1763526658047344870
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 81a3de447ed0474bb02e314646b57fe0
+        position: {x: 44220.5, y: 184.5}
+        condition:
+          mode: 0
+          stat: 4
+          comparisonOperator: 1
+          value: 45
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 18c5577c29354f798977ce409d7676d4
+        falseNodeId: 8fe04e25d532428e8ec60e52c9b15607
+    - rid: 1763526658047344872
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8fe04e25d532428e8ec60e52c9b15607
+        position: {x: 45076, y: 599}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 1
+          value: 55
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 235ed286a1644bb6a684080c0881a23d
+        falseNodeId: 0df4ad923872439f83befd5916dc7284
+    - rid: 1763526658047344873
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 18c5577c29354f798977ce409d7676d4
+        position: {x: 44758.5, y: 281}
+        condition:
+          mode: 0
+          stat: 5
+          comparisonOperator: 1
+          value: 50
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 019f7ee67a8d485bb173174bdf94ff1b
+        falseNodeId: 8fe04e25d532428e8ec60e52c9b15607
+    - rid: 1763526658047344874
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0df4ad923872439f83befd5916dc7284
+        position: {x: 45501.5, y: 996.5}
+        endingId: end_bad_arga_convicted
+    - rid: 1763526658047344875
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 626e331db7cc40a090dcd6b24f304e3f
+        position: {x: 43041.5, y: 749}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 1
+          value: 80
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: e8ce33f241ac4621ac745017046a9007
+        falseNodeId: 691f5f24d0b342478be05ebaf62e56bd
+    - rid: 1763526658047344876
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: e8ce33f241ac4621ac745017046a9007
+        position: {x: 43419.5, y: 661}
+        condition:
+          mode: 0
+          stat: 2
+          comparisonOperator: 1
+          value: 60
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: f9c69bbf17924b0b83cd16645cfb73e1
+        falseNodeId: 691f5f24d0b342478be05ebaf62e56bd
+    - rid: 1763526658047344877
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f9c69bbf17924b0b83cd16645cfb73e1
+        position: {x: 43837, y: 599}
+        condition:
+          mode: 0
+          stat: 6
+          comparisonOperator: 1
+          value: 50
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 019f7ee67a8d485bb173174bdf94ff1b
+        falseNodeId: 691f5f24d0b342478be05ebaf62e56bd
+    - rid: 1763526658047344878
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 691f5f24d0b342478be05ebaf62e56bd
+        position: {x: 44099, y: 1241.5}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 1
+          value: 55
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 235ed286a1644bb6a684080c0881a23d
+        falseNodeId: 0df4ad923872439f83befd5916dc7284
+    - rid: 1763526658047344879
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8775b8f304fa453190a895eb90981a0e
+        position: {x: 42929, y: 1093}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 0
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: a35f00498eb84007acf32c23ce1b8ddc
+        falseNodeId: 0df4ad923872439f83befd5916dc7284
+    - rid: 1763526658047344880
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a35f00498eb84007acf32c23ce1b8ddc
+        position: {x: 43419.5, y: 1241.5}
+        condition:
+          mode: 0
+          stat: 7
+          comparisonOperator: 0
+          value: 20
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 235ed286a1644bb6a684080c0881a23d
+        falseNodeId: 0df4ad923872439f83befd5916dc7284
