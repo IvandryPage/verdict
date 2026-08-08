@@ -115,7 +115,7 @@ namespace Verdict.Editor.NarrativeEditor
         private Vector2 NextSpawnPosition()
         {
             Vector2 position = nextSpawnPosition;
-            nextSpawnPosition += new Vector2(40, 40);
+            nextSpawnPosition = caseData.Narrative.Nodes[caseData.Narrative.Nodes.Count-1].Position + new Vector2(100, 100);
             return position;
         }
 

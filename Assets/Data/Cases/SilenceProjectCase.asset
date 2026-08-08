@@ -374,6 +374,56 @@ MonoBehaviour:
         type: 4
         value: pertemuan_dengan_ryan_hanya_rapat_rutin
       supportingEvidence: []
+    - id: fact_melati_worked_for_adrian
+      subject:
+        type: 0
+        value: melati_wulandari
+      predicate: 21
+      object:
+        type: 0
+        value: adrian_wijaya
+      supportingEvidence: []
+    - id: fact_melati_witnessed_deletion_order
+      subject:
+        type: 0
+        value: melati_wulandari
+      predicate: 11
+      object:
+        type: 4
+        value: instruksi_penghapusan_jejak_server_dan_flashdisk_ryan
+      supportingEvidence:
+      - {fileID: 11400000, guid: f08f9fe6a250a4c5493ac32cace11fda, type: 2}
+      - {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+      - {fileID: 11400000, guid: f8072fe2d699542f89ae1d43c2361673, type: 2}
+      - {fileID: 11400000, guid: 031e3636fa07f44a085b7ed7b5c05837, type: 2}
+      - {fileID: 11400000, guid: cb47b72843cb14678a6a9bd298a71216, type: 2}
+      - {fileID: 11400000, guid: c83dee07a8d504d19827371c8db6b30c, type: 2}
+      - {fileID: 11400000, guid: 99843e55837ff49fea173e7886fd714e, type: 2}
+    - id: fact_bloodstain_inconsistent_with_official_theory
+      subject:
+        type: 1
+        value: ev_bloodstain_evidence
+      predicate: 18
+      object:
+        type: 4
+        value: pola_yang_tidak_sesuai_dengan_teori_perkelahian_singkat
+      supportingEvidence:
+      - {fileID: 11400000, guid: 65b17e73099a747d0811df4bf9202f0a, type: 2}
+      - {fileID: 11400000, guid: 5e311bfea6c9348acbb230499b77110e, type: 2}
+      - {fileID: 11400000, guid: 4cc20ff09a37243c1bebf0eda3c2a67f, type: 2}
+    - id: fact_paper_trail_confirms_fraud
+      subject:
+        type: 4
+        value: dokumen_tender_kontrak_dan_berita_acara_proyek
+      predicate: 18
+      object:
+        type: 4
+        value: bukti_kertas_lengkap_rekayasa_pengadaan
+      supportingEvidence:
+      - {fileID: 11400000, guid: b982eaef88dbd492092c952f21a3325c, type: 2}
+      - {fileID: 11400000, guid: 06b8e7b8cbbc549c3bcde0481d85aa67, type: 2}
+      - {fileID: 11400000, guid: 6d7ec78c91df5443db16d306ebd09d8a, type: 2}
+      - {fileID: 11400000, guid: 22b3f7f6c04c34f4cb5ad38f4aac8631, type: 2}
   witnesses:
   - id: 7c1d58b5828c40609581d10ccabfaa29
     character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
@@ -1737,8 +1787,24 @@ MonoBehaviour:
     minimumDefenseConfidence: 50
     maximumProsecutorPressure: 15
   narrative:
-    startNodeId: 
-    nodes: []
+    startNodeId: 141442834f0f426ea201cd2a3a6e18ac
+    nodes:
+    - rid: 1763526658047344640
+    - rid: 1763526658047344641
+    - rid: 1763526658047344643
+    - rid: 1763526658047344644
+    - rid: 1763526658047344645
+    - rid: 1763526658047344646
+    - rid: 1763526658047344647
+    - rid: 1763526658047344648
+    - rid: 1763526658047344649
+    - rid: 1763526658047344650
+    - rid: 1763526658047344651
+    - rid: 1763526658047344652
+    - rid: 1763526658047344653
+    - rid: 1763526658047344654
+    - rid: 1763526658047344655
+    - rid: 1763526658047344656
   references:
     version: 2
     RefIds:
@@ -1951,3 +2017,395 @@ MonoBehaviour:
       data:
         factId: fact_remote_deletion_from_ministry_network
         requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344640
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 141442834f0f426ea201cd2a3a6e18ac
+        position: {x: 105, y: 270}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 7
+            Parameter: bg_courtroom_main
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: bgm_courtroom_tension
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: "Sebuah persidangan yang akan menentukan nasib seorang sahabat
+              \u2014 dan mungkin, jauh lebih dari itu"
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Sidang untuk kasus pembunuhan Ryan Pratama, dengan terdakwa Arga
+              Mahendra, saya nyatakan dibuka.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Jaksa penuntut umum, silakan sampaikan dakwaan Anda.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: a4b071d141eb41bab58eb9e071078fd5
+    - rid: 1763526658047344641
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a4b071d141eb41bab58eb9e071078fd5
+        position: {x: 683, y: 270}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, kami akan membuktikan bahwa terdakwa, Arga Mahendra,
+              membunuh sahabatnya sendiri, Ryan Pratama, dalam sebuah pertengkaran
+              pribadi yang berujung fatal.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: "Seluruh bukti yang kami miliki \u2014 sidik jari, rekaman CCTV,
+              riwayat pesan \u2014 mengarah pada satu kesimpulan yang sama."
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Kronologinya nyaris sempurna. Bahkan aku sendiri sempat ragu...
+              apa benar Arga tidak bersalah?)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
+    - rid: 1763526658047344643
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
+        position: {x: 1603.5, y: 270}
+        category: 3
+        gameplayEventId: chapter:1
+        nextNodeId: 6488016964b542818466f1a3f29a5d61
+    - rid: 1763526658047344644
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 6488016964b542818466f1a3f29a5d61
+        position: {x: 2140.5, y: 270}
+        statementId: 23545e9101d04b7bae20853cf004cd8a
+        nextNodeId: 3abe821eb6104aa8804f79062ab6304c
+    - rid: 1763526658047344645
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3abe821eb6104aa8804f79062ab6304c
+        position: {x: 3077.5, y: 270}
+        statementId: 8e481df44a8148c3ac1caf78dc172438
+        nextNodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
+    - rid: 1763526658047344646
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
+        position: {x: 4000, y: 270}
+        statementId: 7c2d85980d1b4f0c829c82ab9bdc6649
+        nextNodeId: a35b2afc83984a5d8014b23702c7f290
+    - rid: 1763526658047344647
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a35b2afc83984a5d8014b23702c7f290
+        position: {x: 4948, y: 270}
+        statementId: dbb03e4def1d4127bd806a68036a3623
+        nextNodeId: 3a414ab6651d49e4b03762b90cfb340d
+    - rid: 1763526658047344648
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3a414ab6651d49e4b03762b90cfb340d
+        position: {x: 5848.5, y: 270}
+        statementId: 720136b33bc8414e9c91558768ca514d
+        nextNodeId: 3becb05bf7ce4eb681d5045b1e9c33da
+    - rid: 1763526658047344649
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3becb05bf7ce4eb681d5045b1e9c33da
+        position: {x: 6781.5, y: 270}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: "Menarik. Selisih waktu yang kecil ini bisa jadi tidak berarti
+              apa-apa \u2014 atau bisa jadi awal dari sesuatu yang lebih besar."
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Retakan pertama pada narasi resmi baru saja muncul.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: e6c85055d0094f239fa6d0b92e5cb5da
+    - rid: 1763526658047344650
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: e6c85055d0094f239fa6d0b92e5cb5da
+        position: {x: 7462.5, y: 278.5}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 7
+            Parameter: bg_evidence_room
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Di ruang penyimpanan barang bukti, ditemukan sebuah flashdisk milik
+              Ryan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Kalau isinya benar bukti korupsi yang ia kumpulkan... ini bisa
+              mengubah segalanya.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: c8f05b75d67c4f4a85707f09d9f63d30
+    - rid: 1763526658047344651
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: c8f05b75d67c4f4a85707f09d9f63d30
+        position: {x: 7965.5, y: 278.5}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_flashdisk_empty
+        nextNodeId: 1abfb2e8a0fc48beb51b1c1617a83626
+    - rid: 1763526658047344652
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1abfb2e8a0fc48beb51b1c1617a83626
+        position: {x: 8608, y: 270}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Namun ketika dibuka... seluruh isinya kosong.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Ini membuktikan isu korupsi yang selama ini didengungkan hanyalah
+              dugaan tanpa dasar, Yang Mulia.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Tunggu dulu. Sebuah flashdisk yang penting tidak mungkin kosong
+              begitu saja...)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
+    - rid: 1763526658047344653
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
+        position: {x: 9001.5, y: 278.5}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_flashdisk_format_log
+        nextNodeId: d14138d3f8f246ab8ad2711e69a93e68
+    - rid: 1763526658047344654
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d14138d3f8f246ab8ad2711e69a93e68
+        position: {x: 9537.5, y: 278.5}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Flashdisk ini diformat beberapa jam SETELAH Ryan meninggal, Yang
+              Mulia.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: (...) Pertanyaannya bukan lagi 'apa isi flashdisk ini'.
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Tapi siapa yang menghapusnya?
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 8a217617d75c4983a994d023c79a6aff
+    - rid: 1763526658047344655
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8a217617d75c4983a994d023c79a6aff
+        position: {x: 10047, y: 280}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 7
+            Parameter: bg_courtroom_witness_stand
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan memanggil ahli forensik digital untuk memberikan keterangan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+            Text: Terima kasih, Yang Mulia. Izinkan saya memaparkan apa yang berhasil
+              kami pulihkan dari laptop korban.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 5c165b975c8f4ba9bddf3f8840a362ab
+    - rid: 1763526658047344656
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 5c165b975c8f4ba9bddf3f8840a362ab
+        position: {x: 10555, y: 280}
+        statementId: 
+        nextNodeId: 
