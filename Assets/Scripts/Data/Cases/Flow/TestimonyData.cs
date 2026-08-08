@@ -15,13 +15,19 @@ namespace Verdict.Data.Cases
         [TextArea(2, 4)]
         [SerializeField] private string description;
 
+        [SerializeField]
+        private bool initiallyVisible = true;
+
         [SerializeField] private List<StatementData> statements = new();
+
 
         public string Id => id;
 
         public string Title => title;
 
         public string Description => description;
+
+        public bool InitiallyVisible => initiallyVisible;
 
         public IReadOnlyList<StatementData> Statements => statements;
 

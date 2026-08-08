@@ -73,13 +73,18 @@ namespace Verdict.Editor.CaseEditor.Inspector
             PropertyField description =
                 new(testimony.FindPropertyRelative("description"));
 
+            PropertyField initiallyVisible =
+                new(testimony.FindPropertyRelative("initiallyVisible"));
+
             id.Bind(so);
             title.Bind(so);
             description.Bind(so);
+            initiallyVisible.Bind(so);
 
             Add(id);
             Add(title);
             Add(description);
+            Add(initiallyVisible);
         }
 
         private void DrawStatements()

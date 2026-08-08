@@ -435,6 +435,7 @@ MonoBehaviour:
       title: Kronologi Penemuan Jenazah dan Bukti Awal
       description: Kesaksian pembuka yang menjadi dasar dakwaan jaksa terhadap Arga
         Mahendra.
+      initiallyVisible: 1
       statements:
       - id: 23545e9101d04b7bae20853cf004cd8a
         text: Saya tiba di lokasi pukul 22.15 setelah menerima laporan warga tentang
@@ -480,6 +481,70 @@ MonoBehaviour:
               characterStat: 0
               value: 1
             failureEffects: []
+        - id: e9a6ec89e83f4c13ad272fb03aff6a30
+          factId: fact_arga_fingerprints_found
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526658047344758
+            - rid: 1763526658047344759
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
+        - id: ffdc5b0f9be34460a6f24bc0d88faf9e
+          factId: fact_bloodstain_inconsistent_with_official_theory
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526658047344760
+            - rid: 1763526658047344761
+            - rid: 1763526658047344762
+            - rid: 1763526658047344763
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
       - id: 7c2d85980d1b4f0c829c82ab9bdc6649
         text: Rekaman CCTV Lobi menunjukkan Arga memasuki apartemen pukul 21.40,
           dan ia tidak pernah terlihat keluar hingga pagi hari.
@@ -561,7 +626,47 @@ MonoBehaviour:
               value: 5
           - action: 2
             conditions:
-            - rid: 1763526655240044544
+            - rid: 1763526658047344764
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 3
+            - effect: 1
+              targetType: 1
+              targetId: 720136b33bc8414e9c91558768ca514d
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects: []
+          - action: 2
+            conditions:
+            - rid: 1763526658047344765
             successEffects:
             - effect: 9
               targetType: 5
@@ -573,18 +678,153 @@ MonoBehaviour:
             - effect: 8
               targetType: 0
               targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            - effect: 8
+              targetType: 0
+              targetId: 
               courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            failureEffects: []
+          - action: 7
+            conditions:
+            - rid: 1763526658047344766
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
               targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 3
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
+              value: 4
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+          - action: 4
+            conditions:
+            - rid: 1763526658047344767
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
               value: 2
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
             failureEffects: []
+          - action: 1
+            conditions:
+            - rid: 1763526658047344768
+            - rid: 1763526658047344769
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 1
+              targetType: 1
+              targetId: 720136b33bc8414e9c91558768ca514d
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 1
+              characterStat: 0
+              value: 5
       - id: dbb03e4def1d4127bd806a68036a3623
         text: Ponsel korban berisi riwayat pesan dengan Arga yang bernada pertengkaran
           pada malam kejadian.
@@ -607,6 +847,33 @@ MonoBehaviour:
               characterStat: 2
               value: 3
             failureEffects: []
+          - action: 1
+            conditions:
+            - rid: 1763526658047344770
+            - rid: 1763526658047344771
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 2
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 1
+              value: 5
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
       - id: 720136b33bc8414e9c91558768ca514d
         text: Sejauh pemeriksaan kami, tersangka tidak dapat memberikan alibi yang
           meyakinkan untuk malam itu.
@@ -623,7 +890,7 @@ MonoBehaviour:
             successEffects:
             - effect: 9
               targetType: 5
-              targetId: yudi_setiawan
+              targetId: arga_mahendra
               courtStat: 0
               operation: 0
               characterStat: 2
@@ -636,6 +903,18 @@ MonoBehaviour:
               characterStat: 0
               value: 2
             failureEffects: []
+          - action: 3
+            conditions:
+            - rid: 1763526658047344772
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            failureEffects: []
     initiallyVisible: 1
   - id: 95c8fd71d8754414a30665d878b35e66
     character: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
@@ -647,6 +926,7 @@ MonoBehaviour:
       title: Jejak Digital dari Laptop Korban
       description: Pemaparan data yang membuktikan Ryan sedang menyelidiki dugaan
         korupsi proyek pengadaan nasional.
+      initiallyVisible: 1
       statements:
       - id: aa954c9f49e14d36a82e71a5726495ff
         text: Kami berhasil memulihkan sebagian data dari laptop korban yang sempat
@@ -661,6 +941,25 @@ MonoBehaviour:
           - action: 2
             conditions:
             - rid: 1763526640768909316
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            - effect: 9
+              targetType: 5
+              targetId: nadia_putri
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 2
+            failureEffects: []
+          - action: 3
+            conditions:
+            - rid: 1763526658047344773
             successEffects:
             - effect: 8
               targetType: 0
@@ -828,6 +1127,104 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 3
+        - id: 993eea92c16b4583abe557c08913b500
+          factId: fact_flashdisk_formatted_after_death
+          isTrue: 1
+          evaluationRules:
+          - action: 1
+            conditions:
+            - rid: 1763526658047344774
+            - rid: 1763526658047344775
+            - rid: 1763526658047344776
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+      - id: 1164a46095fe479f88edf3a667d05ea7
+        text: "Selain itu, kami menelusuri dokumen administratif proyek \u2014 tender,
+          kontrak, hingga berita acara serah terimanya."
+        initiallyVisible: 1
+        nextStatementId: 
+        claims:
+        - id: 02c03122a9e54201aeab877ffbe6280f
+          factId: fact_paper_trail_confirms_fraud
+          isTrue: 1
+          evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526658047344777
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            failureEffects: []
+          - action: 1
+            conditions:
+            - rid: 1763526658047344779
+            - rid: 1763526658047344780
+            - rid: 1763526658047344781
+            - rid: 1763526658047344782
+            - rid: 1763526658047344783
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 5
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
     initiallyVisible: 1
   - id: 284a9241bb5b40bcaf1d062c7862e5ce
     character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
@@ -838,6 +1235,7 @@ MonoBehaviour:
     - id: 64de20925ce34b249ed31ddefd2af226
       title: Kesaksian Auditor Internal (Awal)
       description: Dimas awalnya menyangkal seluruh dugaan manipulasi dokumen.
+      initiallyVisible: 1
       statements:
       - id: cc7a4e98e9a748ec8edba7f9facbce27
         text: Saya tidak tahu-menahu soal dugaan manipulasi laporan audit. Semua
@@ -849,10 +1247,158 @@ MonoBehaviour:
           factId: fact_audit_report_altered
           isTrue: 1
           evaluationRules:
+          - action: 2
+            conditions:
+            - rid: 1763526658047344784
+            successEffects:
+            - effect: 2
+              targetType: 2
+              targetId: b1fbb6469a7a41afb9cc3a22027d9c23
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 4
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 1
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 2
+            failureEffects: []
+          - action: 2
+            conditions:
+            - rid: 1763526658047344786
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 3
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
+          - action: 6
+            conditions:
+            - rid: 1763526658047344787
+            successEffects:
+            - effect: 2
+              targetType: 2
+              targetId: b1fbb6469a7a41afb9cc3a22027d9c23
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 30
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 1
+              characterStat: 5
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 1
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 1
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 5
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 1
+              characterStat: 5
+              value: 10
           - action: 1
             conditions:
-            - rid: 1763526640768909321
-            - rid: 1763526640768909322
+            - rid: 1763526658047344788
+            - rid: 1763526658047344789
             successEffects:
             - effect: 2
               targetType: 2
@@ -874,7 +1420,7 @@ MonoBehaviour:
               courtStat: 0
               operation: 0
               characterStat: 0
-              value: 12
+              value: 8
             - effect: 8
               targetType: 0
               targetId: 
@@ -885,7 +1431,7 @@ MonoBehaviour:
             - effect: 8
               targetType: 0
               targetId: 
-              courtStat: 2
+              courtStat: 6
               operation: 0
               characterStat: 0
               value: 3
@@ -895,7 +1441,7 @@ MonoBehaviour:
               courtStat: 7
               operation: 1
               characterStat: 0
-              value: 5
+              value: 3
             failureEffects:
             - effect: 8
               targetType: 0
@@ -910,33 +1456,7 @@ MonoBehaviour:
               courtStat: 7
               operation: 0
               characterStat: 0
-              value: 5
-          - action: 2
-            conditions:
-            - rid: 1763526655240044545
-            successEffects:
-            - effect: 9
-              targetType: 5
-              targetId: dimas_haryanto
-              courtStat: 0
-              operation: 0
-              characterStat: 2
-              value: 10
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 7
-              operation: 0
-              characterStat: 0
-              value: 3
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 2
-            failureEffects: []
+              value: 0
       - id: 8917154301f24d7f9f3925d64216c032
         text: Evaluasi vendor juga sudah melalui proses yang wajar, tidak ada yang
           saya ubah.
@@ -997,7 +1517,7 @@ MonoBehaviour:
               value: 5
           - action: 2
             conditions:
-            - rid: 1763526655240044546
+            - rid: 1763526658047344792
             successEffects:
             - effect: 9
               targetType: 5
@@ -1021,10 +1541,56 @@ MonoBehaviour:
               characterStat: 0
               value: 2
             failureEffects: []
+          - action: 2
+            conditions:
+            - rid: 1763526658047344790
+            successEffects:
+            - effect: 2
+              targetType: 2
+              targetId: b1fbb6469a7a41afb9cc3a22027d9c23
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 4
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 4
+            failureEffects: []
+          - action: 3
+            conditions:
+            - rid: 1763526658047344791
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects: []
     - id: b1fbb6469a7a41afb9cc3a22027d9c23
       title: Kesaksian Auditor Internal (Setelah Dikonfrontasi)
       description: Terungkap setelah pemain menunjukkan metadata dokumen dan histori
         komunikasi internal.
+      initiallyVisible: 0
       statements:
       - id: 3f173597a7104c56920145d6406e3764
         text: Baik... saya akui, laporan audit itu pernah diminta untuk diubah sebelum
@@ -1117,6 +1683,7 @@ MonoBehaviour:
       title: 'Kesaksian Lanjutan: Bukti Tambahan'
       description: Kronologi awal mulai retak lebih jauh; kini ada celah waktu yang
         membuka kemungkinan pelaku lain.
+      initiallyVisible: 1
       statements:
       - id: 09f833a0b798473b9d8740a6eebdb696
         text: Kami memperoleh rekaman CCTV tambahan dari kamera lain di gedung apartemen.
@@ -1216,6 +1783,72 @@ MonoBehaviour:
               characterStat: 2
               value: 8
             failureEffects: []
+          - action: 2
+            conditions:
+            - rid: 1763526658047344795
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 4
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 4
+            failureEffects: []
+          - action: 8
+            conditions:
+            - rid: 1763526658047344796
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 4
       - id: 9299a251ba41461c87d05f5083398924
         text: Riwayat GPS dan panggilan telepon korban pada rentang waktu itu juga
           belum sepenuhnya kami telusuri saat penyelidikan awal
@@ -1307,6 +1940,44 @@ MonoBehaviour:
               operation: 1
               characterStat: 0
               value: 3
+          - action: 3
+            conditions:
+            - rid: 1763526658047344797
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 1
+            failureEffects: []
+          - action: 2
+            conditions:
+            - rid: 1763526658047344798
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 3
+            failureEffects: []
     initiallyVisible: 1
   - id: 68a5c30d546d49cf98e38cb0ac0c020e
     character: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
@@ -1318,6 +1989,7 @@ MonoBehaviour:
       title: Kesaksian Direktur Proyek
       description: Adrian membantah mengenal Ryan secara dekat sampai bukti membuktikan
         sebaliknya
+      initiallyVisible: 1
       statements:
       - id: 271339cb1b2742b8a7bde31c51bf057c
         text: Saya adalah direktur proyek ini, dan saya bekerja secara profesional
@@ -1515,6 +2187,74 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 5
+          - action: 5
+            conditions:
+            - rid: 1763526658047344800
+            successEffects:
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 6
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 1
+              targetType: 1
+              targetId: 7b54ec10b75f44a392ddb2f4960083dd
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 1
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 10
       - id: 284edbd1cd794d47b6219ae44b8eb77e
         text: Kalau ada foto atau catatan pertemuan, itu mungkin sekadar rapat rutin
           proyek. Tidak lebih.
@@ -1537,6 +2277,46 @@ MonoBehaviour:
               characterStat: 2
               value: 5
             failureEffects: []
+          - action: 7
+            conditions:
+            - rid: 1763526658047344801
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 2
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 2
+            - effect: 9
+              targetType: 5
+              targetId: adrian_wijaya
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 8
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 4
       - id: 7b54ec10b75f44a392ddb2f4960083dd
         text: .....Baiklah. Kami memang beberapa kali bertemu di luar rapat resmi.
           Tapi itu tidak ada hubungannya dengan kematiannya.
@@ -1598,6 +2378,7 @@ MonoBehaviour:
       title: 'Kesaksian Dadakan: Sang Asisten Pribadi'
       description: Akhirnya berani buka suara setelah melihat Adrian goyah di Bab
         6
+      initiallyVisible: 1
       statements:
       - id: efb56c13637c44a4bc8279d05dda442d
         text: Saya bekerja sebagai asisten pribadi Pak Adrian selama tiga tahun terakhir
@@ -1605,7 +2386,7 @@ MonoBehaviour:
         nextStatementId: 
         claims:
         - id: de0d94bbf10d4b649cb923ff7537f7b8
-          factId: fact_adrian_claims_professional
+          factId: fact_melati_worked_for_adrian
           isTrue: 1
           evaluationRules:
           - action: 2
@@ -1628,7 +2409,7 @@ MonoBehaviour:
         nextStatementId: 
         claims:
         - id: 5a1e7a18d7b94ee6b1a3db20a42fd1fe
-          factId: fact_remote_deletion_from_ministry_network
+          factId: fact_melati_witnessed_deletion_order
           isTrue: 1
           evaluationRules:
           - action: 2
@@ -1727,7 +2508,88 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 5
+          - action: 1
+            conditions:
+            - rid: 1763526658047344802
+            - rid: 1763526658047344803
+            - rid: 1763526658047344804
+            - rid: 1763526658047344805
+            - rid: 1763526658047344806
+            - rid: 1763526658047344807
+            - rid: 1763526658047344808
+            - rid: 1763526658047344809
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 0
+              characterStat: 0
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 3
+              operation: 0
+              characterStat: 0
+              value: 25
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 15
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 1
+              characterStat: 0
+              value: 15
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 10
     initiallyVisible: 1
+  - id: 001c345688a9410ba77325bcbfd1bd0f
+    character: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+    role: 0
+    description: 
+    testimonies: []
+    initiallyVisible: 0
   endings:
   - id: end_bad_arga_convicted
     title: Kambing Hitam
@@ -1864,15 +2726,6 @@ MonoBehaviour:
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
         requiredEvidence: {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
-    - rid: 1763526640768909321
-      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        factId: fact_audit_report_altered
-        requireSupportingEvidencePresented: 1
-    - rid: 1763526640768909322
-      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        requiredEvidence: {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
     - rid: 1763526640768909323
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -1911,26 +2764,6 @@ MonoBehaviour:
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
         requiredEvidence: {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
-    - rid: 1763526655240044544
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 6
-        comparisonOperator: 0
-        value: 40
-    - rid: 1763526655240044545
-      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
-        stat: 0
-        comparisonOperator: 2
-        value: 60
-    - rid: 1763526655240044546
-      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
-        stat: 0
-        comparisonOperator: 2
-        value: 60
     - rid: 1763526655240044547
       type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -2015,7 +2848,7 @@ MonoBehaviour:
     - rid: 1763526655240044564
       type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        factId: fact_remote_deletion_from_ministry_network
+        factId: fact_melati_witnessed_deletion_order
         requireSupportingEvidencePresented: 1
     - rid: 1763526658047344640
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
@@ -2407,5 +3240,228 @@ MonoBehaviour:
       data:
         nodeId: 5c165b975c8f4ba9bddf3f8840a362ab
         position: {x: 10555, y: 280}
-        statementId: 
+        statementId: 720136b33bc8414e9c91558768ca514d
         nextNodeId: 
+    - rid: 1763526658047344758
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 6cf25ca160af94d4ab875409a4f23994, type: 2}
+    - rid: 1763526658047344759
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_arga_fingerprints_found
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344760
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 4cc20ff09a37243c1bebf0eda3c2a67f, type: 2}
+    - rid: 1763526658047344761
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 65b17e73099a747d0811df4bf9202f0a, type: 2}
+    - rid: 1763526658047344762
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 5e311bfea6c9348acbb230499b77110e, type: 2}
+    - rid: 1763526658047344763
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_bloodstain_inconsistent_with_official_theory
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344764
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+        stat: 2
+        comparisonOperator: 1
+        value: 36
+    - rid: 1763526658047344765
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 0
+        comparisonOperator: 1
+        value: 0
+    - rid: 1763526658047344766
+      type: {class: ArgumentContextConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        contextKey: objection_timing
+        requiredValue: immediate
+    - rid: 1763526658047344767
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 4
+    - rid: 1763526658047344768
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: fe3a26f9f43e44e84b5d0847c31d637d, type: 2}
+    - rid: 1763526658047344769
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_timestamp_mismatch
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344770
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: e8532284571704239a162677c14acc7f, type: 2}
+    - rid: 1763526658047344771
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_whatsapp_argument_exists
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344772
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 3
+    - rid: 1763526658047344773
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 3
+    - rid: 1763526658047344774
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: c7ca24f93eee8446cbb3e85579d222ae, type: 2}
+    - rid: 1763526658047344775
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: a64ffb1e736a7418fa20c2e8535dafd5, type: 2}
+    - rid: 1763526658047344776
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_flashdisk_formatted_after_death
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344777
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 2
+    - rid: 1763526658047344779
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_paper_trail_confirms_fraud
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344780
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: b982eaef88dbd492092c952f21a3325c, type: 2}
+    - rid: 1763526658047344781
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 06b8e7b8cbbc549c3bcde0481d85aa67, type: 2}
+    - rid: 1763526658047344782
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 6d7ec78c91df5443db16d306ebd09d8a, type: 2}
+    - rid: 1763526658047344783
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 22b3f7f6c04c34f4cb5ad38f4aac8631, type: 2}
+    - rid: 1763526658047344784
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+        stat: 2
+        comparisonOperator: 1
+        value: 90
+    - rid: 1763526658047344786
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 2
+    - rid: 1763526658047344787
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+        stat: 3
+        comparisonOperator: 1
+        value: 85
+    - rid: 1763526658047344788
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_audit_report_altered
+        requireSupportingEvidencePresented: 1
+    - rid: 1763526658047344789
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 4f63cefc582fc43398a55461368a4907, type: 2}
+    - rid: 1763526658047344790
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+        stat: 2
+        comparisonOperator: 1
+        value: 90
+    - rid: 1763526658047344791
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 3
+    - rid: 1763526658047344792
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 2
+    - rid: 1763526658047344795
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+        stat: 2
+        comparisonOperator: 1
+        value: 50
+    - rid: 1763526658047344796
+      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        stat: 4
+        comparisonOperator: 0
+        value: 30
+    - rid: 1763526658047344797
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 3
+    - rid: 1763526658047344798
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+        stat: 2
+        comparisonOperator: 1
+        value: 55
+    - rid: 1763526658047344800
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        character: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+        stat: 2
+        comparisonOperator: 0
+        value: 35
+    - rid: 1763526658047344801
+      type: {class: ArgumentContextConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        contextKey: objection_timing
+        requiredValue: immediate
+    - rid: 1763526658047344802
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: f08f9fe6a250a4c5493ac32cace11fda, type: 2}
+    - rid: 1763526658047344803
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 61c10d3c63391483ba0f3eaa71cfbcb5, type: 2}
+    - rid: 1763526658047344804
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: f8072fe2d699542f89ae1d43c2361673, type: 2}
+    - rid: 1763526658047344805
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 031e3636fa07f44a085b7ed7b5c05837, type: 2}
+    - rid: 1763526658047344806
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: cb47b72843cb14678a6a9bd298a71216, type: 2}
+    - rid: 1763526658047344807
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: c83dee07a8d504d19827371c8db6b30c, type: 2}
+    - rid: 1763526658047344808
+      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredEvidence: {fileID: 11400000, guid: 99843e55837ff49fea173e7886fd714e, type: 2}
+    - rid: 1763526658047344809
+      type: {class: FactConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        factId: fact_melati_witnessed_deletion_order
+        requireSupportingEvidencePresented: 1

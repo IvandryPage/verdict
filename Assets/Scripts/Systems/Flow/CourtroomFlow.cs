@@ -278,8 +278,65 @@ namespace Verdict.Systems
                 return false;
             }
 
+            // Target statement harus visible.
+            if (!IsStatementVisible(target))
+            {
+                return false;
+            }
+
+            // Jika target berada di testimony lain,
+            // testimony tersebut juga harus memiliki statement yang visible.
+            if (!IsTestimonyVisible(target.WitnessIndex, target.TestimonyIndex))
+            {
+                return false;
+            }
+
             SetCurrentLocation(target);
             return true;
+        }
+
+        private bool IsTestimonyVisible(int witnessIndex, int testimonyIndex)
+        {
+            return FindFirstVisibleStatementInTestimony(
+                witnessIndex,
+                testimonyIndex
+            ).HasValue;
+        }
+
+        private StatementLocation? FindFirstVisibleStatementInTestimony(
+            int witnessIndex,
+            int testimonyIndex)
+        {
+            if (witnessIndex < 0 ||
+                witnessIndex >= runtime.Witnesses.Count)
+            {
+                return null;
+            }
+
+            IReadOnlyList<TestimonyRuntime> testimonies =
+                runtime.Witnesses[witnessIndex].Testimonies;
+
+            if (testimonyIndex < 0 ||
+                testimonyIndex >= testimonies.Count)
+            {
+                return null;
+            }
+
+            IReadOnlyList<StatementRuntime> statements =
+                testimonies[testimonyIndex].Statements;
+
+            for (int statement = 0; statement < statements.Count; statement++)
+            {
+                if (statements[statement].IsVisible)
+                {
+                    return new StatementLocation(
+                        witnessIndex,
+                        testimonyIndex,
+                        statement);
+                }
+            }
+
+            return null;
         }
 
         private bool HasNextVisibleStatement()

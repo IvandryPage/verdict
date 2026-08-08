@@ -173,6 +173,8 @@ namespace Verdict.Systems
                 return;
             }
 
+            testimony.IsVisible = true;
+            
             foreach (StatementRuntime statement in testimony.Statements)
             {
                 statement.IsVisible = true;

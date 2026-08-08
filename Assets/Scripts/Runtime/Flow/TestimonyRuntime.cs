@@ -18,5 +18,6 @@ namespace Verdict.Runtime
         public IReadOnlyList<StatementRuntime> Statements { get; }
 
         public bool IsCompleted { get; set; }
+        public bool IsVisible { get; set; }
     }
 }

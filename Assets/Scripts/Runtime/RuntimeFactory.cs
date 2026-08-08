@@ -177,7 +177,10 @@ namespace Verdict.Runtime
 
             return new TestimonyRuntime(
                 testimony,
-                statements);
+                statements)
+            {
+                IsVisible = testimony.InitiallyVisible
+            };
         }
 
         private static StatementRuntime CreateStatement(
