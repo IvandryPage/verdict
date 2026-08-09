@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Common/Constants.meta
 guid: 22e88861e28a9436c9bb0e94b4369762
-========
-guid: 5f9821776785b4ee591a582b891ab943
->>>>>>>> main:Assets/Scripts/Common/Collections.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
