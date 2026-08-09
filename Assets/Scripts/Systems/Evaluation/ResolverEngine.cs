@@ -3,101 +3,167 @@ using System.Collections.Generic;
 using System.Linq;
 using Verdict.Data.Cases;
 using Verdict.Runtime;
-using Verdict.Systems;
 
 namespace Verdict.Systems.Evaluation
 {
     /// <summary>
-    /// Evaluates a player argument against the claims it could apply to,
-    /// and returns a ResolverResult - it never modifies gameplay state
-    /// directly. CourtStateEffectProcessor applies GeneratedEffects (and
-    /// updates claim lifecycle) afterward.
+    /// Evaluates a player argument against the claims it could apply to.
     ///
-    /// Pipeline: PlayerArgument -> Find Statement -> Find Claims ->
-    /// Find Rules -> Evaluate Conditions -> Choose Matching Rules ->
-    /// Generate ResolverResult.
+    /// The ResolverEngine does not modify gameplay state directly.
+    /// It only determines whether an action succeeds or fails and
+    /// generates the effects that should be applied afterward.
+    ///
+    /// Pipeline:
+    ///
+    /// PlayerArgument
+    ///      ↓
+    /// Find Statement
+    ///      ↓
+    /// Find Claims
+    ///      ↓
+    /// Find Rule by PlayerAction
+    ///      ↓
+    /// Evaluate Conditions
+    ///      ↓
+    /// Generate ResolverResult
     /// </summary>
     public sealed class ResolverEngine
     {
         private readonly CourtroomFlow courtroomFlow;
 
-        public ResolverEngine(CourtroomFlow courtroomFlow)
+        public ResolverEngine(
+            CourtroomFlow courtroomFlow)
         {
             this.courtroomFlow =
                 courtroomFlow ??
-                throw new ArgumentNullException(nameof(courtroomFlow));
+                throw new ArgumentNullException(
+                    nameof(courtroomFlow));
         }
 
-        public ResolverResult Resolve(PlayerArgumentData argument)
+        public ResolverResult Resolve(
+            PlayerArgumentData argument)
         {
             if (argument == null)
             {
-                throw new ArgumentNullException(nameof(argument));
+                throw new ArgumentNullException(
+                    nameof(argument));
             }
 
-            CaseRuntime caseRuntime = courtroomFlow.Runtime;
+            CaseRuntime caseRuntime =
+                courtroomFlow.Runtime;
 
-            // Find Statement
-            StatementRuntime statement = FindStatement(caseRuntime, argument);
+            var diagnostics =
+                new List<string>();
 
-            var diagnostics = new List<string>();
+
+            StatementRuntime statement =
+                FindStatement(
+                    caseRuntime,
+                    argument);
 
             if (statement == null)
             {
-                diagnostics.Add("No statement to resolve against.");
-                return new ResolverResult(false, Array.Empty<ResolvedClaim>(), Array.Empty<CourtStateEffectData>(), diagnostics);
+                diagnostics.Add(
+                    "No statement to resolve against.");
+
+                return new ResolverResult(
+                    false,
+                    Array.Empty<ResolvedClaim>(),
+                    Array.Empty<CourtStateEffectData>(),
+                    diagnostics);
             }
 
-            ResolverContext context = new(caseRuntime, statement, argument);
 
-            // Find Claims (narrowed to a single claim if one was selected)
-            IEnumerable<ClaimRuntime> claims = FindClaims(statement, argument);
+            ResolverContext context =
+                new(
+                    caseRuntime,
+                    statement,
+                    argument);
 
-            var resolvedClaims = new List<ResolvedClaim>();
-            var generatedEffects = new List<CourtStateEffectData>();
+
+            IEnumerable<ClaimRuntime> claims =
+                FindClaims(
+                    statement,
+                    argument);
+
+            var resolvedClaims =
+                new List<ResolvedClaim>();
+
+            var generatedEffects =
+                new List<CourtStateEffectData>();
+
 
             foreach (ClaimRuntime claim in claims)
             {
                 if (!claim.CanResolve)
                 {
-                    diagnostics.Add($"Claim '{claim.Data.Id}' skipped - already resolved.");
+                    diagnostics.Add(
+                        $"Claim '{claim.Data.Id}' skipped - " +
+                        "already resolved.");
+
                     continue;
                 }
 
-                // Find Rules (matching this argument's action)
-                ArgumentRuleData rule = claim.Data.ArgumentRules
-                    .FirstOrDefault(r => r.Action == argument.Action);
+                ArgumentRuleData rule =
+                    claim.Data.ArgumentRules
+                        .FirstOrDefault(
+                            r => r.Action == argument.Action);
 
                 if (rule == null)
                 {
+                    diagnostics.Add(
+                        $"Claim '{claim.Data.Id}' has no rule " +
+                        $"for action '{argument.Action}'.");
+
                     continue;
                 }
 
-                // Evaluate Conditions
-                bool success = ResolverUtilities.EvaluateAll(rule.Conditions, context);
+                bool success =
+                    ResolverUtilities.EvaluateAll(
+                        rule.Conditions,
+                        context);
 
                 diagnostics.Add(
                     success
-                        ? $"Claim '{claim.Data.Id}': rule matched, all {rule.Conditions.Count} condition(s) passed."
-                        : $"Claim '{claim.Data.Id}': rule action matched but conditions failed.");
+                        ? $"Claim '{claim.Data.Id}': " +
+                          $"action '{argument.Action}' matched " +
+                          $"and all {rule.Conditions.Count} " +
+                          "condition(s) passed."
+                        : $"Claim '{claim.Data.Id}': " +
+                          $"action '{argument.Action}' matched " +
+                          "but conditions failed.");
 
-                // Choose Matching Rule for this claim
-                resolvedClaims.Add(new ResolvedClaim(claim, rule, success));
+                resolvedClaims.Add(
+                    new ResolvedClaim(
+                        claim,
+                        rule,
+                        success));
 
                 IReadOnlyList<CourtStateEffectData> effects =
-                    success ? rule.SuccessEffects : rule.FailureEffects;
+                    success
+                        ? rule.SuccessEffects
+                        : rule.FailureEffects;
 
-                generatedEffects.AddRange(effects);
+                if (effects != null)
+                {
+                    generatedEffects.AddRange(
+                        effects);
+                }
             }
+
 
             if (resolvedClaims.Count == 0)
             {
-                diagnostics.Add("No claim had a rule matching this action.");
+                diagnostics.Add(
+                    $"No claim had a rule matching " +
+                    $"action '{argument.Action}'.");
             }
 
-            bool overallSuccess = resolvedClaims.Any(rc => rc.IsSuccess);
+            bool overallSuccess =
+                resolvedClaims.Any(
+                    rc => rc.IsSuccess);
 
-            // Generate ResolverResult
+
             return new ResolverResult(
                 overallSuccess,
                 resolvedClaims,
@@ -110,7 +176,9 @@ namespace Verdict.Systems.Evaluation
             PlayerArgumentData argument)
         {
             if (argument.SelectedStatement != null &&
-                caseRuntime.TryGetStatement(argument.SelectedStatement.Id, out StatementRuntime selected))
+                caseRuntime.TryGetStatement(
+                    argument.SelectedStatement.Id,
+                    out StatementRuntime selected))
             {
                 return selected;
             }
@@ -124,8 +192,9 @@ namespace Verdict.Systems.Evaluation
         {
             if (argument.SelectedClaim != null)
             {
-                ClaimRuntime match = statement.Claims
-                    .FirstOrDefault(c => c.Data == argument.SelectedClaim);
+                ClaimRuntime match =
+                    statement.Claims.FirstOrDefault(
+                        c => c.Data == argument.SelectedClaim);
 
                 if (match != null)
                 {

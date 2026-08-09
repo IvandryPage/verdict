@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Verdict.Data.Cases;
 using Verdict.Data.Evidence;
@@ -8,11 +9,11 @@ using Verdict.Runtime;
 namespace Verdict.Systems
 {
     /// <summary>
-    /// Coordinates gameplay flow and narrative playback.
-    /// No longer owns narrative logic - it only reacts to
-    /// NarrativeCoordinator events (a statement was reached, the graph
-    /// ended) and tells it when to resume or jump. Controller only knows
-    /// Gameplay, Flow, Evaluation and CourtState.
+    /// Coordinates courtroom gameplay, narrative playback,
+    /// player actions, evaluation and flow.
+    ///
+    /// CourtroomController does not decide whether an action is
+    /// correct. ResolverEngine owns that responsibility.
     /// </summary>
     public sealed class CourtroomController
     {
@@ -20,11 +21,18 @@ namespace Verdict.Systems
 
         private NarrativeCoordinator subscribedCoordinator;
 
+        private CourtroomState courtroomState =
+            CourtroomState.None;
+
+        private readonly List<EvidenceData> selectedEvidence = new();
+
         private CaseSession Session =>
             caseSessionManager.CurrentSession;
 
         private NarrativeCoordinator Narrative =>
             Session?.NarrativeCoordinator;
+
+        // Current runtime data
 
         public StatementRuntime CurrentStatement =>
             Session?.Flow.CurrentStatement;
@@ -38,33 +46,30 @@ namespace Verdict.Systems
         public CourtStateRuntime CourtState =>
             Session?.Runtime.CourtState;
 
+        // State
+
+        public CourtroomState CourtroomState =>
+            courtroomState;
+
+        public IReadOnlyList<EvidenceData> SelectedEvidence =>
+            selectedEvidence;
+
         public bool HasActiveCase =>
             caseSessionManager.HasActiveSession;
 
-        public bool CanMoveNextStatement =>
-            Session?.Flow.CanMoveNextStatement ?? false;
-
-        public bool CanMovePreviousStatement =>
-            Session?.Flow.CanMovePreviousStatement ?? false;
-
-        public bool IsLastStatement =>
-            Session?.Flow.IsLastStatement ?? true;
-
-        /// <summary>
-        /// True once the narrative graph has paused on the current
-        /// statement's StatementNodeData (or has no narrative at all),
-        /// and gameplay actions (Press, Question, PresentEvidence,
-        /// RemainSilent) are allowed. Explicitly NOT true while dialogue
-        /// or a choice is still being shown - only WaitingForStatement
-        /// (or no narrative at all) counts.
-        /// </summary>
         public bool CanInteract =>
             HasActiveCase &&
+            courtroomState == CourtroomState.Statement &&
             (Narrative == null ||
-            Narrative.IsWaitingForStatement);
+             Narrative.IsWaitingForStatement);
+
+        public bool CanPresentSelectedEvidence =>
+            selectedEvidence.Count > 0;
 
         public bool IsWaitingForChoice =>
             Narrative?.IsWaitingForChoice ?? false;
+
+        // Narrative data
 
         public NarrativeDialogueEntryData CurrentNarrativeEntry =>
             Narrative?.CurrentEntry;
@@ -75,37 +80,62 @@ namespace Verdict.Systems
         public ChoiceNodeData CurrentChoice =>
             Narrative?.CurrentChoice;
 
+        // Flow
+
+        public bool CanMoveNextStatement =>
+            Session?.Flow.CanMoveNextStatement ?? false;
+
+        public bool CanMovePreviousStatement =>
+            Session?.Flow.CanMovePreviousStatement ?? false;
+
+        public bool IsLastStatement =>
+            Session?.Flow.IsLastStatement ?? true;
+
+        // Events
+
         public event Action CaseStarted;
         public event Action CaseRestarted;
         public event Action CaseFinished;
 
-        /// <summary>
-        /// A Dialogue node's Event entry fired (camera/music/sound cue -
-        /// pure presentation, nothing gameplay-related). Wire your AV
-        /// system to this.
-        /// </summary>
-        public event Action<NarrativeEventData> PresentationEventTriggered;
+        public event Action<StatementRuntime>
+            CurrentStatementChanged;
 
-        /// <summary>
-        /// The graph passed through a Gameplay node (unlock a feature,
-        /// start a minigame, mark a checkpoint - whatever your project
-        /// defines). Wire your gameplay systems to this.
-        /// </summary>
-        public event Action<GameplayNodeData> GameplayEventTriggered;
+        public event Action<ResolverResult>
+            ArgumentResolved;
 
-        public event Action<StatementRuntime> CurrentStatementChanged;
-        public event Action<ResolverResult> ArgumentResolved;
-        public event Action<EndingData> EndingTriggered;
-        public event Action<NarrativeDialogueEntryData> NarrativeEntryChanged;
-        public event Action<ChoiceNodeData> ChoiceRequested;
+        public event Action<EndingData>
+            EndingTriggered;
+
+        public event Action<NarrativeDialogueEntryData>
+            NarrativeEntryChanged;
+
+        public event Action<ChoiceNodeData>
+            ChoiceRequested;
+
+        public event Action<NarrativeEventData>
+            PresentationEventTriggered;
+
+        public event Action<GameplayNodeData>
+            GameplayEventTriggered;
+
+        public event Action<CourtroomState>
+            CourtroomStateChanged;
+
+        public event Action<IReadOnlyList<EvidenceData>>
+            EvidenceSelectionChanged;
+
+        // Constructor
 
         public CourtroomController(
             CaseSessionManager caseSessionManager)
         {
             this.caseSessionManager =
                 caseSessionManager ??
-                throw new ArgumentNullException(nameof(caseSessionManager));
+                throw new ArgumentNullException(
+                    nameof(caseSessionManager));
         }
+
+        // CASE
 
         public void BeginCase()
         {
@@ -117,11 +147,18 @@ namespace Verdict.Systems
 
             Session.Flow.Reset();
 
+            ClearSelectedEvidence();
+
+            SetCourtroomState(
+                CourtroomState.None);
+
             EnsureNarrativeSubscribed();
 
-            CurrentStatementChanged?.Invoke(CurrentStatement);
+            CurrentStatementChanged?.Invoke(
+                CurrentStatement);
 
-            Narrative.TryPlay(Session.Runtime.Data.Narrative);
+            Narrative?.TryPlay(
+                Session.Runtime.Data.Narrative);
 
             CaseStarted?.Invoke();
         }
@@ -132,54 +169,172 @@ namespace Verdict.Systems
 
             Session.Flow.Reset();
 
+            ClearSelectedEvidence();
+
+            SetCourtroomState(
+                CourtroomState.None);
+
             EnsureNarrativeSubscribed();
 
-            CurrentStatementChanged?.Invoke(CurrentStatement);
+            CurrentStatementChanged?.Invoke(
+                CurrentStatement);
 
-            Narrative.TryPlay(Session.Runtime.Data.Narrative);
+            Narrative?.TryPlay(
+                Session.Runtime.Data.Narrative);
 
             CaseRestarted?.Invoke();
         }
 
         public void EndCase()
         {
+            SetCourtroomState(
+                CourtroomState.None);
+
             CaseFinished?.Invoke();
         }
 
-        public ResolverResult PresentEvidence(
-            EvidenceData evidence)
+        // PLAYER ACTIONS
+
+        public void BeginPress()
         {
-            return Execute(
-                PlayerArgumentData.PresentEvidence(
-                    evidence,
-                    CurrentStatement?.Data));
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.Pressing);
         }
 
-        public ResolverResult Press()
+        public ResolverResult ResolvePress()
         {
-            return Execute(
+            EnsureState(
+                CourtroomState.Pressing);
+
+            return ExecuteArgument(
                 PlayerArgumentData.Press(
                     CurrentStatement?.Data));
         }
 
-        public ResolverResult Question()
+        public void BeginQuestion()
         {
-            return Execute(
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.Questioning);
+        }
+
+        public ResolverResult ResolveQuestion()
+        {
+            EnsureState(
+                CourtroomState.Questioning);
+
+            return ExecuteArgument(
                 PlayerArgumentData.Question(
                     CurrentStatement?.Data));
         }
 
         public ResolverResult RemainSilent()
         {
-            return Execute(
+            EnsureStatementInteraction();
+
+            return ExecuteArgument(
                 PlayerArgumentData.RemainSilent(
                     CurrentStatement?.Data));
         }
 
+        // EVIDENCE
+
+        public void BeginEvidenceSelection()
+        {
+            EnsureStatementInteraction();
+
+            ClearSelectedEvidence();
+
+            SetCourtroomState(
+                CourtroomState.EvidenceSelection);
+        }
+
+        public void ToggleEvidenceSelection(
+            EvidenceData evidence)
+        {
+            EnsureState(
+                CourtroomState.EvidenceSelection);
+
+            if (evidence == null)
+            {
+                throw new ArgumentNullException(
+                    nameof(evidence));
+            }
+
+            if (selectedEvidence.Contains(evidence))
+            {
+                selectedEvidence.Remove(evidence);
+            }
+            else
+            {
+                selectedEvidence.Add(evidence);
+            }
+
+            EvidenceSelectionChanged?.Invoke(
+                SelectedEvidence);
+        }
+
+        public void ReviewSelectedEvidence()
+        {
+            EnsureState(
+                CourtroomState.EvidenceSelection);
+
+            if (selectedEvidence.Count == 0)
+            {
+                throw new InvalidOperationException(
+                    "At least one evidence item must be selected.");
+            }
+
+            SetCourtroomState(
+                CourtroomState.EvidenceInspection);
+        }
+
+        public ResolverResult PresentSelectedEvidence()
+        {
+            EnsureState(
+                CourtroomState.EvidenceInspection);
+
+            if (selectedEvidence.Count == 0)
+            {
+                throw new InvalidOperationException(
+                    "No evidence selected.");
+            }
+
+            return ExecuteArgument(
+                PlayerArgumentData.PresentEvidence(
+                    selectedEvidence,
+                    CurrentStatement?.Data));
+        }
+
+        // RESULT
+
+        public bool ContinueFromResult()
+        {
+            EnsureState(
+                CourtroomState.Result);
+
+            ClearSelectedEvidence();
+
+            return ResumeNarrative();
+        }
+
+        // NARRATIVE
+
         public bool SelectChoice(int choiceIndex)
         {
-            return Narrative?.SelectChoice(choiceIndex) ?? false;
+            return Narrative?.SelectChoice(
+                choiceIndex) ?? false;
         }
+
+        public bool ResumeNarrative()
+        {
+            return Narrative?.TryResume() ?? false;
+        }
+
+        // STATEMENT NAVIGATION
 
         public bool Continue()
         {
@@ -192,11 +347,6 @@ namespace Verdict.Systems
             }
 
             return success;
-        }
-
-        public bool ResumeNarrative()
-        {
-            return Narrative?.TryResume() ?? false;
         }
 
         public bool MovePreviousStatement()
@@ -212,42 +362,49 @@ namespace Verdict.Systems
             return success;
         }
 
-        private ResolverResult Execute(
+        // ARGUMENT EXECUTION
+
+        private ResolverResult ExecuteArgument(
             PlayerArgumentData argument)
         {
-            if (!CanInteract)
+            if (!HasActiveCase)
             {
                 throw new InvalidOperationException(
-                    "Cannot interact while narrative is playing.");
+                    "No active case.");
             }
 
+            SetCourtroomState(
+                CourtroomState.Evaluating);
+
+            // Resolver decides whether the action succeeds.
             ResolverResult result =
-                Session.ResolverEngine.Resolve(argument);
+                Session.ResolverEngine.Resolve(
+                    argument);
 
+            // Successful/failed consequences are handled here.
             CourtStateEffectProcessingResult effectResult =
-                Session.EffectProcessor.Apply(result);
+                Session.EffectProcessor.Apply(
+                    result);
 
-            bool jumped = HandleFlowIntents(effectResult);
+            bool jumped =
+                HandleFlowIntents(
+                    effectResult);
 
-            if (!jumped)
+            ArgumentResolved?.Invoke(
+                result);
+
+            if (jumped)
             {
-                ResumeNarrativeAfterEvaluation();
+                return result;
             }
 
-            ArgumentResolved?.Invoke(result);
+            SetCourtroomState(
+                CourtroomState.Result);
 
             return result;
         }
 
-        /// <summary>
-        /// If the graph is paused at the current statement's node and
-        /// evaluation didn't jump elsewhere, resume it so any reaction/
-        /// consequence content after the statement node gets played.
-        /// </summary>
-        private void ResumeNarrativeAfterEvaluation()
-        {
-            Narrative?.TryResume();
-        }
+        // FLOW INTENTS
 
         private bool HandleFlowIntents(
             CourtStateEffectProcessingResult effectResult)
@@ -257,7 +414,8 @@ namespace Verdict.Systems
                 return false;
             }
 
-            foreach (CourtStateEffectIntent intent in effectResult.Intents)
+            foreach (CourtStateEffectIntent intent
+                in effectResult.Intents)
             {
                 switch (intent.Effect)
                 {
@@ -267,6 +425,7 @@ namespace Verdict.Systems
                             intent.TargetId);
 
                         SyncNarrativeToCurrentStatement();
+
                         return true;
 
                     case CourtStateEffect.JumpTestimony:
@@ -275,6 +434,7 @@ namespace Verdict.Systems
                             intent.TargetId);
 
                         SyncNarrativeToCurrentStatement();
+
                         return true;
 
                     case CourtStateEffect.JumpWitness:
@@ -283,6 +443,7 @@ namespace Verdict.Systems
                             intent.TargetId);
 
                         SyncNarrativeToCurrentStatement();
+
                         return true;
                 }
             }
@@ -290,15 +451,138 @@ namespace Verdict.Systems
             return false;
         }
 
-        /// <summary>
-        /// Called whenever Flow moves to a different statement on its own
-        /// (Continue/MovePreviousStatement/effect-driven jumps). Notifies
-        /// listeners and, if the narrative graph has a node bound to this
-        /// statement, jumps the graph there too so presentation stays in
-        /// sync with gameplay navigation.
-        /// </summary>
+        // NARRATIVE EVENTS
+
+        private void EnsureNarrativeSubscribed()
+        {
+            NarrativeCoordinator coordinator =
+                Narrative;
+
+            if (coordinator == null ||
+                ReferenceEquals(
+                    coordinator,
+                    subscribedCoordinator))
+            {
+                return;
+            }
+
+            if (subscribedCoordinator != null)
+            {
+                subscribedCoordinator.StatementReached -=
+                    HandleStatementReached;
+
+                subscribedCoordinator.EndingReached -=
+                    HandleEndingReached;
+
+                subscribedCoordinator.EventTriggered -=
+                    HandlePresentationEvent;
+
+                subscribedCoordinator.GameplayNodeReached -=
+                    HandleGameplayNodeReached;
+
+                subscribedCoordinator.EntryChanged -=
+                    HandleEntryChanged;
+
+                subscribedCoordinator.ChoiceRequested -=
+                    HandleChoiceRequested;
+            }
+
+            coordinator.StatementReached +=
+                HandleStatementReached;
+
+            coordinator.EndingReached +=
+                HandleEndingReached;
+
+            coordinator.EventTriggered +=
+                HandlePresentationEvent;
+
+            coordinator.GameplayNodeReached +=
+                HandleGameplayNodeReached;
+
+            coordinator.EntryChanged +=
+                HandleEntryChanged;
+
+            coordinator.ChoiceRequested +=
+                HandleChoiceRequested;
+
+            subscribedCoordinator =
+                coordinator;
+        }
+
+        private void HandleStatementReached(
+            string statementId)
+        {
+            if (!string.IsNullOrWhiteSpace(
+                statementId))
+            {
+                Session.Flow.TryMoveToStatement(
+                    statementId);
+            }
+
+            ClearSelectedEvidence();
+
+            SetCourtroomState(
+                CourtroomState.Statement);
+
+            CurrentStatementChanged?.Invoke(
+                CurrentStatement);
+        }
+
+        private void HandleEndingReached(
+            string endingId)
+        {
+            if (!string.IsNullOrWhiteSpace(
+                endingId))
+            {
+                EndingData ending =
+                    Session.Runtime.Data.Endings
+                        .FirstOrDefault(
+                            e => e.Id == endingId);
+
+                if (ending != null)
+                {
+                    EndingTriggered?.Invoke(
+                        ending);
+                }
+            }
+
+            EndCase();
+        }
+
+        private void HandlePresentationEvent(
+            NarrativeEventData eventData)
+        {
+            PresentationEventTriggered?.Invoke(
+                eventData);
+        }
+
+        private void HandleGameplayNodeReached(
+            GameplayNodeData node)
+        {
+            GameplayEventTriggered?.Invoke(
+                node);
+        }
+
+        private void HandleEntryChanged(
+            NarrativeDialogueEntryData entry)
+        {
+            NarrativeEntryChanged?.Invoke(
+                entry);
+        }
+
+        private void HandleChoiceRequested(
+            ChoiceNodeData choice)
+        {
+            ChoiceRequested?.Invoke(
+                choice);
+        }
+
+        // STATEMENT / NARRATIVE SYNC
+
         private void SyncNarrativeToCurrentStatement()
         {
+            ClearSelectedEvidence();
+
             CurrentStatementChanged?.Invoke(
                 CurrentStatement);
 
@@ -311,88 +595,66 @@ namespace Verdict.Systems
                 CurrentStatement.Data.Id,
                 out string nodeId))
             {
-                Narrative.JumpToNode(nodeId);
+                Narrative?.JumpToNode(
+                    nodeId);
             }
         }
 
-        private void EnsureNarrativeSubscribed()
-        {
-            NarrativeCoordinator coordinator = Narrative;
+        // STATE
 
-            if (coordinator == null ||
-                ReferenceEquals(coordinator, subscribedCoordinator))
+        private void SetCourtroomState(
+            CourtroomState newState)
+        {
+            if (courtroomState == newState)
             {
                 return;
             }
 
-            if (subscribedCoordinator != null)
+            courtroomState =
+                newState;
+
+            CourtroomStateChanged?.Invoke(
+                courtroomState);
+        }
+
+        private void EnsureStatementInteraction()
+        {
+            if (!HasActiveCase)
             {
-                subscribedCoordinator.StatementReached -= HandleStatementReached;
-                subscribedCoordinator.EndingReached -= HandleEndingReached;
-                subscribedCoordinator.EventTriggered -= HandlePresentationEvent;
-                subscribedCoordinator.GameplayNodeReached -= HandleGameplayNodeReached;
-                subscribedCoordinator.EntryChanged -= HandleEntryChanged;
-                subscribedCoordinator.ChoiceRequested -= HandleChoiceRequested;
+                throw new InvalidOperationException(
+                    "No active case.");
             }
 
-            coordinator.StatementReached += HandleStatementReached;
-            coordinator.EndingReached += HandleEndingReached;
-            coordinator.EventTriggered += HandlePresentationEvent;
-            coordinator.GameplayNodeReached += HandleGameplayNodeReached;
-            coordinator.EntryChanged += HandleEntryChanged;
-            coordinator.ChoiceRequested += HandleChoiceRequested;
-
-            subscribedCoordinator = coordinator;
-        }
-
-        private void HandleChoiceRequested(ChoiceNodeData choice)
-        {
-            ChoiceRequested?.Invoke(choice);
-        }
-        private void HandlePresentationEvent(NarrativeEventData eventData)
-        {
-            PresentationEventTriggered?.Invoke(eventData);
-        }
-
-        private void HandleGameplayNodeReached(GameplayNodeData node)
-        {
-            GameplayEventTriggered?.Invoke(node);
-        }
-
-        private void HandleEntryChanged(NarrativeDialogueEntryData entry)
-        {
-            NarrativeEntryChanged?.Invoke(entry);
-        }
-        /// <summary>
-        /// The graph reached a StatementNodeData on its own (natural
-        /// progression, not a Flow-driven jump). Sync Flow to match so
-        /// ResolverEngine/EffectProcessor read the right statement.
-        /// </summary>
-        private void HandleStatementReached(string statementId)
-        {
-            if (!string.IsNullOrWhiteSpace(statementId))
+            if (!CanInteract)
             {
-                Session.Flow.TryMoveToStatement(statementId);
+                throw new InvalidOperationException(
+                    "Player cannot interact right now.");
+            }
+        }
+
+        private void EnsureState(
+            CourtroomState expectedState)
+        {
+            if (courtroomState != expectedState)
+            {
+                throw new InvalidOperationException(
+                    $"Expected courtroom state " +
+                    $"{expectedState}, but current state is " +
+                    $"{courtroomState}.");
+            }
+        }
+
+        private void ClearSelectedEvidence()
+        {
+            if (selectedEvidence.Count == 0)
+            {
+                return;
             }
 
-            CurrentStatementChanged?.Invoke(CurrentStatement);
-        }
+            selectedEvidence.Clear();
 
-        private void HandleEndingReached(string endingId)
-        {
-            if (!string.IsNullOrWhiteSpace(endingId))
-            {
-                EndingData ending =
-                    Session.Runtime.Data.Endings
-                        .FirstOrDefault(e => e.Id == endingId);
-
-                if (ending != null)
-                {
-                    EndingTriggered?.Invoke(ending);
-                }
-            }
-
-            EndCase();
+            EvidenceSelectionChanged?.Invoke(
+                SelectedEvidence);
         }
     }
 }
