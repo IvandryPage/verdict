@@ -324,12 +324,12 @@ namespace Verdict.UI.Narrative
                 statementText.text = statement.Data.Text ?? string.Empty;
             }
 
-            if (speakerNameText != null)
+            if (statementSpeaker != null)
             {
                 CharacterData character =
                     courtroomController.CurrentWitness?.Character?.Data;
 
-                speakerNameText.text =
+                statementSpeaker.text =
                     character?.DisplayName ?? string.Empty;
             }
         }
@@ -420,14 +420,12 @@ namespace Verdict.UI.Narrative
             }
 
             ExecuteAction(action);
+            HandleContinuePressed();
         }
 
         private void ExecuteAction(
             PlayerAction action)
         {
-            Debug.Log(
-                $"Executing PlayerAction: {action}");
-
             HideChoicePanel();
 
             switch (action)
@@ -524,6 +522,8 @@ namespace Verdict.UI.Narrative
 
         private void ShowChoicePanel()
         {
+            HideDialoguePanel();
+
             if (choicePanel != null)
             {
                 choicePanel.SetActive(true);
@@ -537,6 +537,14 @@ namespace Verdict.UI.Narrative
             if (choicePanel != null)
             {
                 choicePanel.SetActive(false);
+            }
+        }
+
+        private void HideDialoguePanel()
+        {
+            if (dialoguePanel != null)
+            {
+                dialoguePanel.SetActive(false);
             }
         }
 

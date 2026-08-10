@@ -3526,7 +3526,7 @@ GameObject:
   - component: {fileID: 1386811851}
   - component: {fileID: 1386811850}
   m_Layer: 5
-  m_Name: SpeakerName
+  m_Name: WitnessName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
