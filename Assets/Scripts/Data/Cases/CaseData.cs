@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verdict.Data.Characters;
-using Verdict.Data.Narrative;
 using Verdict.Data.Evidence;
+using Verdict.Data.Narrative;
 
 namespace Verdict.Data.Cases
 {
@@ -33,6 +33,8 @@ namespace Verdict.Data.Cases
         [SerializeField] private CharacterData judge;
         [SerializeField] private CharacterData prosecutor;
         [SerializeField] private CharacterData defenseLawyer;
+
+        [SerializeField] private List<CharacterData> characters = new();
 
         [Header("Character Overrides")]
         [SerializeField] private List<CharacterOverrideData> characterOverrides = new();
@@ -70,6 +72,8 @@ namespace Verdict.Data.Cases
         public CharacterData Judge => judge;
         public CharacterData Prosecutor => prosecutor;
         public CharacterData DefenseLawyer => defenseLawyer;
+
+        public List<CharacterData> Characters => characters;
 
         public IReadOnlyList<CharacterOverrideData> CharacterOverrides => characterOverrides;
 

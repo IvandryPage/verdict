@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verdict.Data.Cases;
+using Verdict.Data.Characters;
 using Verdict.Data.Evidence;
 using Verdict.Data.Narrative;
 using Verdict.Runtime;
@@ -655,6 +656,17 @@ namespace Verdict.Systems
 
             EvidenceSelectionChanged?.Invoke(
                 SelectedEvidence);
+        }
+
+        public CharacterData GetCharacter(string characterId)
+        {
+            if (string.IsNullOrWhiteSpace(characterId))
+            {
+                return null;
+            }
+
+            return Session?.Runtime.Data.Characters
+                .FirstOrDefault(c => c.Id == characterId);
         }
     }
 }
