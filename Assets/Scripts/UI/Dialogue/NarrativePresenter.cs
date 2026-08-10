@@ -57,6 +57,9 @@ namespace Verdict.UI.Narrative
         private TMP_Text statementText;
 
         [SerializeField]
+        private TMP_Text statementSpeaker;
+
+        [SerializeField]
         private Transform choiceOptionsContainer;
 
 
@@ -316,14 +319,18 @@ namespace Verdict.UI.Narrative
                 statementPanel.SetActive(true);
             }
 
-            /*
-             * Same reason as dialogue above:
-             * the actual display-text property of StatementData
-             * has not been provided yet.
-             */
             if (statementText != null)
             {
                 statementText.text = statement.Data.Text ?? string.Empty;
+            }
+
+            if (speakerNameText != null)
+            {
+                CharacterData character =
+                    courtroomController.CurrentWitness?.Character?.Data;
+
+                speakerNameText.text =
+                    character?.DisplayName ?? string.Empty;
             }
         }
 
@@ -337,6 +344,12 @@ namespace Verdict.UI.Narrative
 
             foreach (PlayerAction action in actions)
             {
+                if (action == PlayerAction.None ||
+                    action == PlayerAction.RemainSilent)
+                {
+                    continue;
+                }
+
                 ChoiceOptionView option =
                     Instantiate(
                         choiceOptionPrefab,
@@ -351,6 +364,20 @@ namespace Verdict.UI.Narrative
 
                 spawnedOptions.Add(option);
             }
+
+            ChoiceOptionView defaultOption =
+                    Instantiate(
+                        choiceOptionPrefab,
+                        choiceOptionsContainer);
+
+            defaultOption.SetText(
+                    GetDisplayText(PlayerAction.RemainSilent));
+
+            defaultOption.SetAction(
+                PlayerAction.RemainSilent,
+                HandleActionSelected);
+
+            spawnedOptions.Add(defaultOption);
         }
 
         /// <summary>
@@ -392,7 +419,70 @@ namespace Verdict.UI.Narrative
                 return;
             }
 
-            ActionRequested?.Invoke(action);
+            ExecuteAction(action);
+        }
+
+        private void ExecuteAction(
+            PlayerAction action)
+        {
+            Debug.Log(
+                $"Executing PlayerAction: {action}");
+
+            HideChoicePanel();
+
+            switch (action)
+            {
+                case PlayerAction.Press:
+                    courtroomController.BeginPress();
+                    courtroomController.ResolvePress();
+                    break;
+
+                case PlayerAction.Question:
+                    courtroomController.BeginQuestion();
+                    courtroomController.ResolveQuestion();
+                    break;
+
+                case PlayerAction.RemainSilent:
+                    courtroomController.RemainSilent();
+                    break;
+
+                case PlayerAction.PresentEvidence:
+                    courtroomController.BeginPresentEvidence();
+
+                    ActionRequested?.Invoke(action);
+                    break;
+
+                case PlayerAction.Bluff:
+                    courtroomController.BeginBluff();
+                    courtroomController.ResolveBluff();
+                    break;
+
+                case PlayerAction.Threaten:
+                    courtroomController.BeginThreaten();
+                    courtroomController.ResolveThreaten();
+                    break;
+
+                case PlayerAction.Object:
+                    courtroomController.BeginObject();
+                    courtroomController.ResolveObject();
+                    break;
+
+                case PlayerAction.Interrupt:
+                    courtroomController.BeginInterrupt();
+                    courtroomController.ResolveInterrupt();
+                    break;
+
+                case PlayerAction.CompareEvidence:
+                    courtroomController.BeginCompareEvidence();
+
+                    ActionRequested?.Invoke(action);
+                    break;
+
+                default:
+                    Debug.LogWarning(
+                        $"Unhandled PlayerAction: {action}");
+                    break;
+            }
         }
 
         private static string GetDisplayText(

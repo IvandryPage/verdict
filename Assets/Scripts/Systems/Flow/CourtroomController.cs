@@ -196,6 +196,8 @@ namespace Verdict.Systems
 
         // PLAYER ACTIONS
 
+        #region Press
+
         public void BeginPress()
         {
             EnsureStatementInteraction();
@@ -213,6 +215,11 @@ namespace Verdict.Systems
                 PlayerArgumentData.Press(
                     CurrentStatement?.Data));
         }
+
+        #endregion
+
+
+        #region Question
 
         public void BeginQuestion()
         {
@@ -232,6 +239,43 @@ namespace Verdict.Systems
                     CurrentStatement?.Data));
         }
 
+        #endregion
+
+
+        #region Present Evidence
+
+        public void BeginPresentEvidence()
+        {
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.EvidenceSelection);
+        }
+
+        public ResolverResult ResolvePresentEvidence(
+            IReadOnlyList<EvidenceData> evidences)
+        {
+            EnsureState(
+                CourtroomState.EvidenceSelection);
+
+            if (evidences == null || evidences.Count == 0)
+            {
+                throw new ArgumentException(
+                    "At least one evidence must be presented.",
+                    nameof(evidences));
+            }
+
+            return ExecuteArgument(
+                PlayerArgumentData.PresentEvidence(
+                    evidences,
+                    CurrentStatement?.Data));
+        }
+
+        #endregion
+
+
+        #region Remain Silent
+
         public ResolverResult RemainSilent()
         {
             EnsureStatementInteraction();
@@ -240,6 +284,133 @@ namespace Verdict.Systems
                 PlayerArgumentData.RemainSilent(
                     CurrentStatement?.Data));
         }
+
+        #endregion
+
+
+        #region Bluff
+
+        public void BeginBluff()
+        {
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.Statement);
+        }
+
+        public ResolverResult ResolveBluff()
+        {
+            EnsureState(
+                CourtroomState.Statement);
+
+            return ExecuteArgument(
+                new PlayerArgumentData(
+                    PlayerAction.Bluff,
+                    selectedStatement:
+                        CurrentStatement?.Data));
+        }
+
+        #endregion
+
+
+        #region Threaten
+
+        public void BeginThreaten()
+        {
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.Statement);
+        }
+
+        public ResolverResult ResolveThreaten()
+        {
+            EnsureState(
+                CourtroomState.Statement);
+
+            return ExecuteArgument(
+                new PlayerArgumentData(
+                    PlayerAction.Threaten,
+                    selectedStatement:
+                        CurrentStatement?.Data));
+        }
+
+        #endregion
+
+
+        #region Object
+
+        public void BeginObject()
+        {
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.Statement);
+        }
+
+        public ResolverResult ResolveObject()
+        {
+            EnsureState(
+                CourtroomState.Statement);
+
+            return ExecuteArgument(
+                new PlayerArgumentData(
+                    PlayerAction.Object,
+                    selectedStatement:
+                        CurrentStatement?.Data));
+        }
+
+        #endregion
+
+
+        #region Interrupt
+
+        public void BeginInterrupt()
+        {
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.Statement);
+        }
+
+        public ResolverResult ResolveInterrupt()
+        {
+            EnsureState(
+                CourtroomState.Statement);
+
+            return ExecuteArgument(
+                new PlayerArgumentData(
+                    PlayerAction.Interrupt,
+                    selectedStatement:
+                        CurrentStatement?.Data));
+        }
+
+        #endregion
+
+
+        #region Compare Evidence
+
+        public void BeginCompareEvidence()
+        {
+            EnsureStatementInteraction();
+
+            SetCourtroomState(
+                CourtroomState.EvidenceInspection);
+        }
+
+        public ResolverResult ResolveCompareEvidence(
+            IReadOnlyList<EvidenceData> evidence)
+        {
+            EnsureState(
+                CourtroomState.EvidenceInspection);
+
+            return ExecuteArgument(
+                PlayerArgumentData.CompareEvidence(
+                    evidence,
+                    CurrentStatement?.Data));
+        }
+
+        #endregion
 
         // EVIDENCE
 

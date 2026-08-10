@@ -16,11 +16,13 @@ namespace Verdict.Data.Cases
     /// </summary>
     public sealed class PlayerArgumentData
     {
-        private static readonly IReadOnlyList<EvidenceData> EmptyEvidence =
-            Array.Empty<EvidenceData>();
+        private static readonly IReadOnlyList<EvidenceData>
+            EmptyEvidence =
+                Array.Empty<EvidenceData>();
 
-        private static readonly IReadOnlyDictionary<string, string> EmptyContext =
-            new Dictionary<string, string>();
+        private static readonly IReadOnlyDictionary<string, string>
+            EmptyContext =
+                new Dictionary<string, string>();
 
         public PlayerArgumentData(
             PlayerAction action,
@@ -33,7 +35,8 @@ namespace Verdict.Data.Cases
             Evidence = evidence ?? EmptyEvidence;
             SelectedStatement = selectedStatement;
             SelectedClaim = selectedClaim;
-            AdditionalContext = additionalContext ?? EmptyContext;
+            AdditionalContext =
+                additionalContext ?? EmptyContext;
         }
 
         public PlayerAction Action { get; }
@@ -48,7 +51,10 @@ namespace Verdict.Data.Cases
 
         public ClaimData SelectedClaim { get; }
 
-        public IReadOnlyDictionary<string, string> AdditionalContext { get; }
+        public IReadOnlyDictionary<string, string>
+            AdditionalContext { get; }
+
+        // EVIDENCE
 
         public static PlayerArgumentData PresentEvidence(
             IEnumerable<EvidenceData> evidence,
@@ -56,7 +62,10 @@ namespace Verdict.Data.Cases
             ClaimData selectedClaim = null)
         {
             if (evidence == null)
-                throw new ArgumentNullException(nameof(evidence));
+            {
+                throw new ArgumentNullException(
+                    nameof(evidence));
+            }
 
             List<EvidenceData> evidenceList =
                 evidence
@@ -77,6 +86,8 @@ namespace Verdict.Data.Cases
                 statement,
                 selectedClaim);
         }
+
+        // BASIC COURTROOM ACTIONS
 
         public static PlayerArgumentData Press(
             StatementData statement,
@@ -99,5 +110,75 @@ namespace Verdict.Data.Cases
             new(
                 PlayerAction.RemainSilent,
                 selectedStatement: statement);
+
+        // SOCIAL / PRESSURE ACTIONS
+
+        public static PlayerArgumentData Bluff(
+            StatementData statement,
+            ClaimData selectedClaim = null) =>
+            new(
+                PlayerAction.Bluff,
+                selectedStatement: statement,
+                selectedClaim: selectedClaim);
+
+        public static PlayerArgumentData Threaten(
+            StatementData statement,
+            ClaimData selectedClaim = null) =>
+            new(
+                PlayerAction.Threaten,
+                selectedStatement: statement,
+                selectedClaim: selectedClaim);
+
+        // COURTROOM CONTROL ACTIONS
+
+        public static PlayerArgumentData Object(
+            StatementData statement,
+            ClaimData selectedClaim = null) =>
+            new(
+                PlayerAction.Object,
+                selectedStatement: statement,
+                selectedClaim: selectedClaim);
+
+        public static PlayerArgumentData Interrupt(
+            StatementData statement,
+            ClaimData selectedClaim = null) =>
+            new(
+                PlayerAction.Interrupt,
+                selectedStatement: statement,
+                selectedClaim: selectedClaim);
+
+        // EVIDENCE ACTION
+
+        public static PlayerArgumentData CompareEvidence(
+            IEnumerable<EvidenceData> evidence,
+            StatementData statement,
+            ClaimData selectedClaim = null)
+        {
+            if (evidence == null)
+            {
+                throw new ArgumentNullException(
+                    nameof(evidence));
+            }
+
+            List<EvidenceData> evidenceList =
+                evidence
+                    .Where(e => e != null)
+                    .Distinct()
+                    .ToList();
+
+            if (evidenceList.Count < 2)
+            {
+                throw new ArgumentException(
+                    "At least two evidence items are required " +
+                    "to compare evidence.",
+                    nameof(evidence));
+            }
+
+            return new PlayerArgumentData(
+                PlayerAction.CompareEvidence,
+                evidenceList,
+                statement,
+                selectedClaim);
+        }
     }
 }
