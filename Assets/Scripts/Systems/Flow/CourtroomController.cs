@@ -125,6 +125,8 @@ namespace Verdict.Systems
         public event Action<IReadOnlyList<EvidenceData>>
             EvidenceSelectionChanged;
 
+        private CourtroomState previousStateBeforeEvidenceSelection;
+
         // Constructor
 
         public CourtroomController(
@@ -248,26 +250,50 @@ namespace Verdict.Systems
         {
             EnsureStatementInteraction();
 
+            previousStateBeforeEvidenceSelection =
+                    courtroomState;
+
             SetCourtroomState(
                 CourtroomState.EvidenceSelection);
         }
 
-        public ResolverResult ResolvePresentEvidence(
-            IReadOnlyList<EvidenceData> evidences)
+        public void CancelEvidenceSelection()
         {
             EnsureState(
                 CourtroomState.EvidenceSelection);
 
-            if (evidences == null || evidences.Count == 0)
+            SetCourtroomState(
+                previousStateBeforeEvidenceSelection);
+        }
+
+        public ResolverResult ResolvePresentEvidence(
+            IEnumerable<EvidenceData> evidence)
+        {
+            EnsureState(
+                CourtroomState.EvidenceSelection);
+
+            if (evidence == null)
+            {
+                throw new ArgumentNullException(
+                    nameof(evidence));
+            }
+
+            List<EvidenceData> evidenceList =
+                evidence
+                    .Where(e => e != null)
+                    .Distinct()
+                    .ToList();
+
+            if (evidenceList.Count == 0)
             {
                 throw new ArgumentException(
-                    "At least one evidence must be presented.",
-                    nameof(evidences));
+                    "At least one evidence item must be presented.",
+                    nameof(evidence));
             }
 
             return ExecuteArgument(
                 PlayerArgumentData.PresentEvidence(
-                    evidences,
+                    evidenceList,
                     CurrentStatement?.Data));
         }
 
@@ -571,7 +597,7 @@ namespace Verdict.Systems
             }
 
             SetCourtroomState(
-                CourtroomState.Result);
+                CourtroomState.Statement);
 
             return result;
         }
@@ -838,6 +864,41 @@ namespace Verdict.Systems
 
             return Session?.Runtime.Data.Characters
                 .FirstOrDefault(c => c.Id == characterId);
+        }
+
+        public IReadOnlyList<EvidenceData> GetAvailableEvidence()
+        {
+            if (!HasActiveCase)
+            {
+                return Array.Empty<EvidenceData>();
+            }
+
+            return Session.Runtime.Evidence
+                .Where(evidence =>
+                    evidence != null &&
+                    evidence.Data != null &&
+                    evidence.IsUnlocked &&
+                    IsEvidencePresentable(evidence.Data))
+                .Select(evidence =>
+                    evidence.Data)
+                .ToList();
+        }
+
+        private bool IsEvidencePresentable(
+            EvidenceData evidence)
+        {
+            if (evidence == null)
+            {
+                return false;
+            }
+
+            EvidenceEntryData entry =
+                Session.Runtime.Data.Evidence
+                    .FirstOrDefault(
+                        e => e.Evidence == evidence);
+
+            return entry != null &&
+                   entry.CanPresent;
         }
     }
 }
