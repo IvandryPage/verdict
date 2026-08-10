@@ -6041,8 +6041,8 @@ MonoBehaviour:
   evidenceContainer: {fileID: 55674530}
   evidenceOptionPrefab: {fileID: 2125382139006115908, guid: ae4426d3471a8437ea74462c1886a08e, type: 3}
   evidenceDetailView: {fileID: 1932627123}
-  cancelButton: {fileID: 1585483599}
-  presentButton: {fileID: 468485042}
+  cancelButton: {fileID: 468485042}
+  presentButton: {fileID: 1585483599}
 --- !u!1 &1932627118
 GameObject:
   m_ObjectHideFlags: 0

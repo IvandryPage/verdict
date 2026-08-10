@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Log revisi dokumen tender yang memperlihatkan perubahan spesifikasi
     dan skor evaluasi vendor di menit-menit akhir.
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6cf469d55aea84dd2ad693b2de7a80e3, type: 3}
   artwork: {fileID: 0}

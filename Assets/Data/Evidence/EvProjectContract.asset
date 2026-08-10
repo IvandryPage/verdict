@@ -15,6 +15,6 @@ MonoBehaviour:
   id: ev_project_contract
   displayName: Kontrak Proyek Digitalisasi
   description: Kontrak resmi antara kementerian dan vendor pemenang tender.
-  type: 0
-  icon: {fileID: 0}
+  type: 1
+  icon: {fileID: 21300000, guid: 6cf469d55aea84dd2ad693b2de7a80e3, type: 3}
   artwork: {fileID: 0}

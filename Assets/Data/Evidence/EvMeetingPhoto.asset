@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Foto-foto rapat resmi proyek yang memperlihatkan Ryan dan Adrian Wijaya
     duduk berdampingan dan berdiskusi langsung.
   type: 2
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1984d87c9ec3e4cd3993eb84003d50fc, type: 3}
   artwork: {fileID: 0}

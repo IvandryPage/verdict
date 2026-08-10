@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Metadata yang menunjukkan sejumlah laporan evaluasi diedit setelah
     tanggal resmi persetujuannya.
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6cf469d55aea84dd2ad693b2de7a80e3, type: 3}
   artwork: {fileID: 0}

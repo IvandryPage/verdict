@@ -18,5 +18,5 @@ MonoBehaviour:
     Timestamp-nya belakangan diketahui berselisih beberapa menit dengan log akses
     apartemen.
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: cf92e81f79a15484fa9e26f1b38af1ea, type: 3}
   artwork: {fileID: 0}

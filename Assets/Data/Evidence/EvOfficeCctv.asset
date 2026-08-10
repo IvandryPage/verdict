@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Rekaman CCTV koridor kantor Adrian Wijaya yang memperlihatkan pertemuan-pertemuan
     dengan Ryan di luar jam kerja resmi.
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4851992e7a21a485481a7e48c801bc66, type: 3}
   artwork: {fileID: 0}

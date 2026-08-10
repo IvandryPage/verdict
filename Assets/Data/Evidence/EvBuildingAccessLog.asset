@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Catatan akses gedung yang menunjukkan Ryan berulang kali mengunjungi
     lantai kantor direktur proyek.
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 32cb9646e46c749bc9b84955bf7a23a0, type: 3}
   artwork: {fileID: 0}
