@@ -26,8 +26,8 @@ MonoBehaviour:
   defaultAffinity: 0
   portraits:
   - <Emotion>k__BackingField: 0
-    <Portrait>k__BackingField: {fileID: 0}
+    <Portrait>k__BackingField: {fileID: 21300000, guid: b71893b26fb614779a532e65007a6818, type: 3}
   - <Emotion>k__BackingField: 2
-    <Portrait>k__BackingField: {fileID: 0}
+    <Portrait>k__BackingField: {fileID: 21300000, guid: b71893b26fb614779a532e65007a6818, type: 3}
   - <Emotion>k__BackingField: 3
-    <Portrait>k__BackingField: {fileID: 0}
+    <Portrait>k__BackingField: {fileID: 21300000, guid: b71893b26fb614779a532e65007a6818, type: 3}

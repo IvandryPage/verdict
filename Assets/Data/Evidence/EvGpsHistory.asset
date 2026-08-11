@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: Riwayat GPS Ryan
   description: Riwayat lokasi ponsel Ryan pada hari-hari terakhir sebelum kematiannya.
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0039310f6a1a444ee970a68826cb7504, type: 3}
   artwork: {fileID: 0}

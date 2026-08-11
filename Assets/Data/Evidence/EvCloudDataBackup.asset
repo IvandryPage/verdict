@@ -18,5 +18,5 @@ MonoBehaviour:
     setiap kali laptopnya tidak digunakan selama 24 jam \u2014 berisi seluruh bukti
     korupsi yang ia kumpulkan."
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c20b45ae43b6c4c618c94e8c71a4f842, type: 3}
   artwork: {fileID: 0}
