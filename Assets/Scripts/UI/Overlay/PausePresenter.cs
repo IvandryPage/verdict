@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using Verdict.Input;
 using Verdict.Systems;
 
 namespace Verdict.UI.Overlay
@@ -20,6 +22,8 @@ namespace Verdict.UI.Overlay
 
         private CourtroomController courtroomController;
 
+        private VerdictInputActions inputActions;
+
         public event Action PauseOpened;
         public event Action PauseClosed;
 
@@ -27,6 +31,10 @@ namespace Verdict.UI.Overlay
 
         private void Awake()
         {
+            inputActions = new VerdictInputActions();
+            inputActions.Player.Pause.performed += HandlePauseInput;
+            inputActions.Player.Enable();
+
             if (pauseButton != null)
             {
                 pauseButton.clicked += HandlePausePressed;
@@ -72,6 +80,29 @@ namespace Verdict.UI.Overlay
 
             Show();
 
+            courtroomController.Pause();
+        }
+
+        private void HandlePauseInput(
+            InputAction.CallbackContext context)
+        {
+            if (!context.performed || courtroomController == null)
+            {
+                return;
+            }
+
+            if (IsPaused)
+            {
+                HandleResumePressed();
+                return;
+            }
+
+            if (!courtroomController.CanInteract)
+            {
+                return;
+            }
+
+            Show();
             courtroomController.Pause();
         }
 
@@ -123,6 +154,13 @@ namespace Verdict.UI.Overlay
             if (resumeButton != null)
             {
                 resumeButton.clicked -= HandleResumePressed;
+            }
+
+            if (inputActions != null)
+            {
+                inputActions.Player.Pause.performed -= HandlePauseInput;
+                inputActions.Dispose();
+                inputActions = null;
             }
         }
     }

@@ -755,8 +755,10 @@ namespace Verdict.Systems
                     Debug.Log(
                         "[Ending] Invoking EndingTriggered");
 
+                    SetCourtroomState(
+                        CourtroomState.Ending);
+
                     EndingTriggered?.Invoke(ending);
-                    EndCase();
                 }
             }
         }

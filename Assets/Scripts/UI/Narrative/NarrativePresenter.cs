@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -47,6 +48,16 @@ namespace Verdict.UI.Narrative
 
         [SerializeField]
         private Button dialoguePanelButton;
+
+        [Header("Dialogue Timing")]
+        [SerializeField]
+        private float wordRevealDelay = 0.025f;
+
+        private Coroutine dialogueRevealCoroutine;
+        private Coroutine statementRevealCoroutine;
+        private string currentDialogueText = string.Empty;
+        private string currentStatementText = string.Empty;
+        private bool isDialogueRevealing;
 
         [Header("Courtroom Choice")]
         [SerializeField]
@@ -188,6 +199,12 @@ namespace Verdict.UI.Narrative
                 return;
             }
 
+            if (isDialogueRevealing)
+            {
+                CompleteDialogueReveal();
+                return;
+            }
+
             if (courtroomController.CanInteract)
             {
                 return;
@@ -250,8 +267,7 @@ namespace Verdict.UI.Narrative
 
             if (dialogueText != null)
             {
-                dialogueText.text =
-                    entry.Line.Text ?? string.Empty;
+                StartDialogueReveal(entry.Line.Text ?? string.Empty);
             }
 
             bool isCharacter =
@@ -323,6 +339,9 @@ namespace Verdict.UI.Narrative
 
         private void ClearDialogueVisuals()
         {
+            StopDialogueReveal();
+            StopStatementReveal();
+
             if (dialogueText != null)
             {
                 dialogueText.text = string.Empty;
@@ -340,6 +359,130 @@ namespace Verdict.UI.Narrative
             }
         }
 
+        private void StartStatementReveal(string text)
+        {
+            StopStatementReveal();
+
+            currentStatementText = text;
+            statementText.text = string.Empty;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return;
+            }
+
+            statementRevealCoroutine = StartCoroutine(
+                RevealStatementText(text));
+        }
+
+        private void CompleteStatementReveal()
+        {
+            StopStatementReveal();
+
+            if (statementText != null)
+            {
+                statementText.text = currentStatementText;
+            }
+        }
+
+        private void StopStatementReveal()
+        {
+            if (statementRevealCoroutine != null)
+            {
+                StopCoroutine(statementRevealCoroutine);
+                statementRevealCoroutine = null;
+            }
+        }
+
+        private IEnumerator RevealStatementText(string text)
+        {
+            statementRevealCoroutine = null;
+            statementText.text = string.Empty;
+
+            string[] words = text.Split(
+                new[] { ' ' },
+                StringSplitOptions.None);
+
+            for (int index = 0; index < words.Length; index++)
+            {
+                statementText.text += words[index];
+
+                if (index < words.Length - 1)
+                {
+                    statementText.text += " ";
+                }
+
+                yield return new WaitForSeconds(wordRevealDelay);
+            }
+
+            statementRevealCoroutine = null;
+        }
+
+        private void StartDialogueReveal(string text)
+        {
+            StopDialogueReveal();
+
+            currentDialogueText = text;
+            dialogueText.text = string.Empty;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                isDialogueRevealing = false;
+                return;
+            }
+
+            dialogueRevealCoroutine = StartCoroutine(
+                RevealDialogueText(text));
+        }
+
+        private void CompleteDialogueReveal()
+        {
+            StopDialogueReveal();
+
+            if (dialogueText != null)
+            {
+                dialogueText.text = currentDialogueText;
+            }
+
+            isDialogueRevealing = false;
+        }
+
+        private void StopDialogueReveal()
+        {
+            if (dialogueRevealCoroutine != null)
+            {
+                StopCoroutine(dialogueRevealCoroutine);
+                dialogueRevealCoroutine = null;
+            }
+
+            isDialogueRevealing = false;
+        }
+
+        private IEnumerator RevealDialogueText(string text)
+        {
+            isDialogueRevealing = true;
+            dialogueText.text = string.Empty;
+
+            string[] words = text.Split(
+                new[] { ' ' },
+                StringSplitOptions.None);
+
+            for (int index = 0; index < words.Length; index++)
+            {
+                dialogueText.text += words[index];
+
+                if (index < words.Length - 1)
+                {
+                    dialogueText.text += " ";
+                }
+
+                yield return new WaitForSeconds(wordRevealDelay);
+            }
+
+            isDialogueRevealing = false;
+            dialogueRevealCoroutine = null;
+        }
+
         private void ShowStatement(
             StatementRuntime statement)
         {
@@ -350,7 +493,7 @@ namespace Verdict.UI.Narrative
 
             if (statementText != null)
             {
-                statementText.text = statement.Data.Text ?? string.Empty;
+                StartStatementReveal(statement.Data.Text ?? string.Empty);
             }
 
             if (statementSpeaker != null)
@@ -368,17 +511,22 @@ namespace Verdict.UI.Narrative
         {
             ClearActionOptions();
 
-            IReadOnlyList<PlayerAction> actions =
-                GetAvailableActions(statement);
+            List<PlayerAction> actions =
+                GetAvailableActions(statement)
+                    .Where(action => action != PlayerAction.None)
+                    .ToList();
 
-            foreach (PlayerAction action in actions)
+            if (!actions.Contains(PlayerAction.RemainSilent))
             {
-                if (action == PlayerAction.None ||
-                    action == PlayerAction.RemainSilent)
-                {
-                    continue;
-                }
+                actions.Add(PlayerAction.RemainSilent);
+            }
 
+            List<PlayerAction> randomizedActions =
+                actions.OrderBy(_ => UnityEngine.Random.value)
+                       .ToList();
+
+            foreach (PlayerAction action in randomizedActions)
+            {
                 ChoiceOptionView option =
                     Instantiate(
                         choiceOptionPrefab,
@@ -393,20 +541,6 @@ namespace Verdict.UI.Narrative
 
                 spawnedOptions.Add(option);
             }
-
-            ChoiceOptionView defaultOption =
-                    Instantiate(
-                        choiceOptionPrefab,
-                        choiceOptionsContainer);
-
-            defaultOption.SetText(
-                    GetDisplayText(PlayerAction.RemainSilent));
-
-            defaultOption.SetAction(
-                PlayerAction.RemainSilent,
-                HandleActionSelected);
-
-            spawnedOptions.Add(defaultOption);
         }
 
         /// <summary>
