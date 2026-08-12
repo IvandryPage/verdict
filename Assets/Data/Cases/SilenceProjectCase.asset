@@ -2746,6 +2746,7 @@ MonoBehaviour:
     - rid: 1763526658047344878
     - rid: 1763526658047344879
     - rid: 1763526658047344880
+    - rid: 2436170579486965823
   references:
     version: 2
     RefIds:
@@ -4552,3 +4553,11 @@ MonoBehaviour:
           requireSuccessful: 1
         trueNodeId: 235ed286a1644bb6a684080c0881a23d
         falseNodeId: 0df4ad923872439f83befd5916dc7284
+    - rid: 2436170579486965823
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ae02ff87dd22440e92dfae3407731fde
+        position: {x: 100, y: 100}
+        category: 0
+        gameplayEventId: 
+        nextNodeId: 
