@@ -5,6 +5,7 @@ using Verdict.Input;
 using Verdict.Presentation;
 using Verdict.Systems;
 using Verdict.Systems.Presentation;
+using Verdict.UI.Evidence;
 using Verdict.UI.Narrative;
 using Verdict.UI.Overlay;
 
@@ -25,6 +26,9 @@ namespace Verdict
 
         [SerializeField]
         private PausePresenter pausePresenter;
+
+        [SerializeField]
+        private EvidenceUnlockedPresenter evidenceUnlockedPresenter;
 
         [Header("Presentation")]
         [SerializeField]
@@ -107,6 +111,12 @@ namespace Verdict
                 pausePresenter.Bind(
                     courtroomController,
                     inputActions);
+            }
+
+            if (evidenceUnlockedPresenter != null)
+            {
+                evidenceUnlockedPresenter.Bind(
+                    courtroomController);
             }
         }
 

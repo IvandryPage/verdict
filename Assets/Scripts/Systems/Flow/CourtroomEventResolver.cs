@@ -205,14 +205,43 @@ namespace Verdict.Systems
                     break;
 
                 default:
-                    if (node.Category == GameplayEventCategory.UnlockFeature &&
-                        (payload == "unlock evidence" || payload == "unlockevidence"))
+                    if (node.Category == GameplayEventCategory.UnlockFeature)
                     {
-                        if (courtroomController.CanInteract)
+                        if (payload == "unlock evidence" || payload == "unlockevidence")
                         {
-                            courtroomController.BeginEvidenceSelection();
+                            if (courtroomController.CanInteract)
+                            {
+                                courtroomController.BeginEvidenceSelection();
+                            }
+
+                            return;
                         }
-                        return;
+
+                        if (payload.StartsWith("unlock_evidence:"))
+                        {
+                            string evidenceId = node.GameplayEventId.Substring(
+                                "unlock_evidence:".Length).Trim();
+
+                            if (!string.IsNullOrWhiteSpace(evidenceId))
+                            {
+                                courtroomController.UnlockEvidence(evidenceId);
+                            }
+
+                            return;
+                        }
+
+                        if (payload.StartsWith("unlockevidence "))
+                        {
+                            string evidenceId = node.GameplayEventId.Substring(
+                                "unlockevidence ".Length).Trim();
+
+                            if (!string.IsNullOrWhiteSpace(evidenceId))
+                            {
+                                courtroomController.UnlockEvidence(evidenceId);
+                            }
+
+                            return;
+                        }
                     }
 
                     Debug.Log(

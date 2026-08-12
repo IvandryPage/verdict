@@ -128,6 +128,9 @@ namespace Verdict.Systems
         public event Action<IReadOnlyList<EvidenceData>>
             EvidenceSelectionChanged;
 
+        public event Action<EvidenceData>
+            EvidenceUnlocked;
+
         private CourtroomState previousStateBeforeEvidenceSelection;
 
         // Constructor
@@ -451,6 +454,42 @@ namespace Verdict.Systems
 
             SetCourtroomState(
                 CourtroomState.EvidenceSelection);
+        }
+
+        public bool UnlockEvidence(
+            string evidenceId)
+        {
+            if (string.IsNullOrWhiteSpace(evidenceId))
+            {
+                return false;
+            }
+
+            if (!HasActiveCase)
+            {
+                return false;
+            }
+
+            EvidenceRuntime evidence = FindEvidenceRuntime(
+                evidenceId);
+
+            if (evidence == null)
+            {
+                Debug.LogWarning(
+                    $"[CourtroomController] Evidence not found: {evidenceId}");
+                return false;
+            }
+
+            if (evidence.IsUnlocked)
+            {
+                return false;
+            }
+
+            evidence.IsUnlocked = true;
+
+            EvidenceUnlocked?.Invoke(
+                evidence.Data);
+
+            return true;
         }
 
         public void ToggleEvidenceSelection(
@@ -923,6 +962,25 @@ namespace Verdict.Systems
                 .Select(evidence =>
                     evidence.Data)
                 .ToList();
+        }
+
+        private EvidenceRuntime FindEvidenceRuntime(
+            string evidenceId)
+        {
+            if (string.IsNullOrWhiteSpace(evidenceId) ||
+                !HasActiveCase)
+            {
+                return null;
+            }
+
+            return Session.Runtime.Evidence
+                .FirstOrDefault(evidence =>
+                    evidence != null &&
+                    evidence.Data != null &&
+                    string.Equals(
+                        evidence.Data.Id,
+                        evidenceId,
+                        StringComparison.OrdinalIgnoreCase));
         }
 
         private bool IsEvidencePresentable(

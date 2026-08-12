@@ -2605,7 +2605,7 @@ MonoBehaviour:
     minimumDefenseConfidence: 50
     maximumProsecutorPressure: 15
   narrative:
-    startNodeId: 141442834f0f426ea201cd2a3a6e18ac
+    startNodeId: e6c85055d0094f239fa6d0b92e5cb5da
     nodes:
     - rid: 1763526658047344640
     - rid: 1763526658047344641
@@ -3107,7 +3107,7 @@ MonoBehaviour:
       data:
         nodeId: c8f05b75d67c4f4a85707f09d9f63d30
         position: {x: 7965.5, y: 278.5}
-        category: 0
+        category: 1
         gameplayEventId: unlock_evidence:ev_flashdisk_empty
         nextNodeId: 1abfb2e8a0fc48beb51b1c1617a83626
     - rid: 1763526658047344652
@@ -3160,7 +3160,7 @@ MonoBehaviour:
       data:
         nodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
         position: {x: 9001.5, y: 278.5}
-        category: 0
+        category: 1
         gameplayEventId: unlock_evidence:ev_flashdisk_format_log
         nextNodeId: d14138d3f8f246ab8ad2711e69a93e68
     - rid: 1763526658047344654
