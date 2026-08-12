@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verdict.Data.Cases;
 using Verdict.Data.Characters;
 using Verdict.Data.Evidence;
@@ -24,6 +25,8 @@ namespace Verdict.Systems
 
         private CourtroomState courtroomState =
             CourtroomState.None;
+
+        private CourtroomState stateBeforePause;
 
         private readonly List<EvidenceData> selectedEvidence = new();
 
@@ -605,7 +608,7 @@ namespace Verdict.Systems
         // FLOW INTENTS
 
         private bool HandleFlowIntents(
-            CourtStateEffectProcessingResult effectResult)
+    CourtStateEffectProcessingResult effectResult)
         {
             if (effectResult == null)
             {
@@ -643,12 +646,18 @@ namespace Verdict.Systems
                         SyncNarrativeToCurrentStatement();
 
                         return true;
+
+                    case CourtStateEffect.TriggerEnding:
+
+                        HandleEndingReached(
+                            intent.TargetId);
+
+                        return true;
                 }
             }
 
             return false;
         }
-
         // NARRATIVE EVENTS
 
         private void EnsureNarrativeSubscribed()
@@ -729,22 +738,27 @@ namespace Verdict.Systems
         private void HandleEndingReached(
             string endingId)
         {
-            if (!string.IsNullOrWhiteSpace(
-                endingId))
+            Debug.Log(
+                $"[Ending] Reached ending ID: {endingId}");
+
+            if (!string.IsNullOrWhiteSpace(endingId))
             {
                 EndingData ending =
                     Session.Runtime.Data.Endings
-                        .FirstOrDefault(
-                            e => e.Id == endingId);
+                        .FirstOrDefault(e => e.Id == endingId);
+
+                Debug.Log(
+                    $"[Ending] Found EndingData: {ending?.Title}");
 
                 if (ending != null)
                 {
-                    EndingTriggered?.Invoke(
-                        ending);
+                    Debug.Log(
+                        "[Ending] Invoking EndingTriggered");
+
+                    EndingTriggered?.Invoke(ending);
+                    EndCase();
                 }
             }
-
-            EndCase();
         }
 
         private void HandlePresentationEvent(
@@ -899,6 +913,31 @@ namespace Verdict.Systems
 
             return entry != null &&
                    entry.CanPresent;
+        }
+
+        public void Pause()
+        {
+            if (courtroomState == CourtroomState.Paused ||
+                courtroomState == CourtroomState.Ending)
+            {
+                return;
+            }
+
+            stateBeforePause = courtroomState;
+
+            SetCourtroomState(
+                CourtroomState.Paused);
+        }
+
+        public void Resume()
+        {
+            if (courtroomState != CourtroomState.Paused)
+            {
+                return;
+            }
+
+            SetCourtroomState(
+                stateBeforePause);
         }
     }
 }

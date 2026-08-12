@@ -3,6 +3,7 @@ using UnityEngine;
 using Verdict.Data.Cases;
 using Verdict.Systems;
 using Verdict.UI.Narrative;
+using Verdict.UI.Overlay;
 
 namespace Verdict
 {
@@ -15,6 +16,12 @@ namespace Verdict
         [Header("UI")]
         [SerializeField]
         private NarrativePresenter narrativePresenter;
+
+        [SerializeField]
+        private EndingPresenter endingPresenter;
+
+        [SerializeField]
+        private PausePresenter pausePresenter;
 
         private CaseSessionManager caseSessionManager;
         private CourtroomController courtroomController;
@@ -55,6 +62,18 @@ namespace Verdict
             if (narrativePresenter != null)
             {
                 narrativePresenter.Bind(
+                    courtroomController);
+            }
+
+            if (endingPresenter != null)
+            {
+                endingPresenter.Bind(
+                    courtroomController);
+            }
+
+            if (pausePresenter != null)
+            {
+                pausePresenter.Bind(
                     courtroomController);
             }
         }

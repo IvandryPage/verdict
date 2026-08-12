@@ -14,6 +14,9 @@ namespace Verdict.Systems
         EvidencePresentation,
 
         Evaluating,
-        Result
+        Result,
+
+        Ending,
+        Paused,
     }
 }

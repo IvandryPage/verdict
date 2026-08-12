@@ -530,11 +530,11 @@ namespace Verdict.UI.Narrative
                     courtroomController.ResolveInterrupt();
                     break;
 
-                case PlayerAction.CompareEvidence:
-                    courtroomController.BeginCompareEvidence();
+                // case PlayerAction.CompareEvidence:
+                //     courtroomController.BeginCompareEvidence();
 
-                    ActionRequested?.Invoke(action);
-                    break;
+                //     ActionRequested?.Invoke(action);
+                //     break;
 
                 default:
                     Debug.LogWarning(
