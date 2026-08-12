@@ -119,7 +119,9 @@ namespace Verdict
             {
                 pausePresenter.Bind(
                     courtroomController,
-                    inputActions);
+                    inputActions,
+                    caseSessionManager,
+                    caseData);
             }
 
             if (evidenceUnlockedPresenter != null)

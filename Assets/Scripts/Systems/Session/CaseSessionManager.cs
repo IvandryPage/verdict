@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Verdict.Data.Cases;
 using Verdict.Runtime;
 using Verdict.Systems.Evaluation;
+using Verdict.Systems.Save;
 
 namespace Verdict.Systems
 {
@@ -113,6 +114,64 @@ namespace Verdict.Systems
 
             UnloadCase();
             LoadCase(data);
+        }
+
+        public bool SaveCurrentCase(
+            string fileName = "savegame.json")
+        {
+            if (!HasActiveSession)
+            {
+                return false;
+            }
+
+            GameSaveService service = new GameSaveService(fileName);
+            return service.Save(CurrentSession);
+        }
+
+        public GameSaveData LoadSavedGame(
+            string fileName = "savegame.json")
+        {
+            GameSaveService service = new GameSaveService(fileName);
+            return service.Load();
+        }
+
+        public bool RestoreFromSave(
+            GameSaveData saveData,
+            CaseData caseData,
+            string fileName = "savegame.json")
+        {
+            if (saveData == null || caseData == null)
+            {
+                return false;
+            }
+
+            if (HasActiveSession)
+            {
+                UnloadCase();
+            }
+
+            LoadCase(caseData);
+
+            GameSaveService service = new GameSaveService(fileName);
+            return service.Restore(CurrentSession, saveData);
+        }
+
+        public bool TryLoadSavedCase(
+            CaseData caseData,
+            string fileName = "savegame.json")
+        {
+            if (caseData == null)
+            {
+                return false;
+            }
+
+            GameSaveData saveData = LoadSavedGame(fileName);
+            if (saveData == null)
+            {
+                return false;
+            }
+
+            return RestoreFromSave(saveData, caseData, fileName);
         }
     }
 }

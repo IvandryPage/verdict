@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using Verdict.Data.Cases;
 using Verdict.Input;
 using Verdict.Systems;
+using Verdict.Systems.Save;
 
 namespace Verdict.UI.Overlay
 {
@@ -16,7 +19,19 @@ namespace Verdict.UI.Overlay
         [SerializeField]
         private CanvasGroup pauseGroup;
 
+        [Header("Buttons")]
+        [SerializeField]
+        private Button saveButton;
+
+        [SerializeField]
+        private Button loadButton;
+
+        [SerializeField]
+        private Button resumeButton;
+
         private CourtroomController courtroomController;
+        private CaseSessionManager caseSessionManager;
+        private CaseData activeCaseData;
 
         private VerdictInputActions inputActions;
 
@@ -36,17 +51,39 @@ namespace Verdict.UI.Overlay
                 }
             }
 
+            if (saveButton != null)
+            {
+                saveButton.onClick.RemoveListener(SaveGame);
+                saveButton.onClick.AddListener(SaveGame);
+            }
+
+            if (loadButton != null)
+            {
+                loadButton.onClick.RemoveListener(LoadGame);
+                loadButton.onClick.AddListener(LoadGame);
+            }
+
+            if (resumeButton != null)
+            {
+                resumeButton.onClick.RemoveListener(ResumeGame);
+                resumeButton.onClick.AddListener(ResumeGame);
+            }
+
             Hide();
         }
 
         public void Bind(
             CourtroomController controller,
-            VerdictInputActions inputActions)
+            VerdictInputActions inputActions,
+            CaseSessionManager sessionManager,
+            CaseData caseData)
         {
             Unbind();
 
             courtroomController = controller;
             this.inputActions = inputActions;
+            caseSessionManager = sessionManager;
+            activeCaseData = caseData;
 
             if (courtroomController == null)
             {
@@ -70,7 +107,24 @@ namespace Verdict.UI.Overlay
                 inputActions = null;
             }
 
+            if (saveButton != null)
+            {
+                saveButton.onClick.RemoveListener(SaveGame);
+            }
+
+            if (loadButton != null)
+            {
+                loadButton.onClick.RemoveListener(LoadGame);
+            }
+
+            if (resumeButton != null)
+            {
+                resumeButton.onClick.RemoveListener(ResumeGame);
+            }
+
             courtroomController = null;
+            caseSessionManager = null;
+            activeCaseData = null;
         }
 
         private void HandlePauseInput(
@@ -85,13 +139,83 @@ namespace Verdict.UI.Overlay
 
             if (IsPaused)
             {
-                Hide();
-                courtroomController.Resume();
+                ResumeGame();
                 return;
             }
 
             Show();
             courtroomController.Pause();
+        }
+
+        public void SaveGame()
+        {
+            if (caseSessionManager == null)
+            {
+                Debug.LogWarning("[PausePresenter] No active session manager bound for save.");
+                return;
+            }
+
+            bool saved = caseSessionManager.SaveCurrentCase();
+            if (saved)
+            {
+                Debug.Log("[PausePresenter] Game saved.");
+            }
+            else
+            {
+                Debug.LogWarning("[PausePresenter] Save failed: no active case session.");
+            }
+        }
+
+        public void LoadGame()
+        {
+            if (caseSessionManager == null)
+            {
+                Debug.LogWarning("[PausePresenter] No active session manager bound for load.");
+                return;
+            }
+
+            if (activeCaseData == null)
+            {
+                Debug.LogWarning("[PausePresenter] No active case data bound for load.");
+                return;
+            }
+
+            GameSaveData saveData = caseSessionManager.LoadSavedGame();
+            if (saveData == null)
+            {
+                Debug.LogWarning("[PausePresenter] No save file found to load.");
+                return;
+            }
+
+            bool restored = caseSessionManager.RestoreFromSave(
+                saveData,
+                activeCaseData);
+
+            if (restored)
+            {
+                Hide();
+                if (courtroomController != null)
+                {
+                    courtroomController.Resume();
+                }
+
+                Debug.Log("[PausePresenter] Game restored from save.");
+            }
+            else
+            {
+                Debug.LogWarning("[PausePresenter] Failed to restore save data.");
+            }
+        }
+
+        public void ResumeGame()
+        {
+            if (courtroomController == null)
+            {
+                return;
+            }
+
+            Hide();
+            courtroomController.Resume();
         }
 
         public void Show()

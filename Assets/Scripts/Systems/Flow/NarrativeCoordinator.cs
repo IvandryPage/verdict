@@ -44,6 +44,12 @@ namespace Verdict.Systems
 
         public string CurrentStatementId { get; private set; }
 
+        public string CurrentNodeId =>
+            runner.Runtime?.CurrentNodeId;
+
+        public int CurrentEntryIndex =>
+            runner.Runtime?.CurrentEntryIndex ?? 0;
+
         public ChoiceNodeData CurrentChoice { get; private set; }
 
         public NarrativeDialogueEntryData CurrentEntry =>
@@ -183,6 +189,22 @@ namespace Verdict.Systems
             }
 
             Stop();
+            return true;
+        }
+
+        public bool RestoreRuntimePosition(
+            string nodeId,
+            int entryIndex = 0)
+        {
+            if (runner.Runtime == null ||
+                string.IsNullOrWhiteSpace(nodeId) ||
+                !runner.Runtime.TryGetNode(nodeId, out _))
+            {
+                return false;
+            }
+
+            runner.Runtime.CurrentNodeId = nodeId;
+            runner.Runtime.CurrentEntryIndex = Math.Max(0, entryIndex);
             return true;
         }
 
