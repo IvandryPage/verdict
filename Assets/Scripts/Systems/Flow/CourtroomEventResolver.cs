@@ -1,8 +1,8 @@
 using System;
+using UnityEngine;
 using Verdict.Data.Narrative;
 using Verdict.Data.Presentation;
 using Verdict.Systems.Presentation;
-using UnityEngine;
 
 namespace Verdict.Systems
 {
@@ -10,18 +10,21 @@ namespace Verdict.Systems
     {
         private readonly CourtroomController courtroomController;
         private readonly CourtroomCameraController courtroomCameraController;
+        private readonly global::Verdict.NarrativeAudioController narrativeAudioController;
 
         public event Action<NarrativeEventData> PresentationEventReceived;
         public event Action<GameplayNodeData> GameplayEventReceived;
 
         public CourtroomEventResolver(
             CourtroomController courtroomController,
-            CourtroomCameraController courtroomCameraController = null)
+            CourtroomCameraController courtroomCameraController = null,
+            global::Verdict.NarrativeAudioController narrativeAudioController = null)
         {
             this.courtroomController = courtroomController ??
                 throw new ArgumentNullException(nameof(courtroomController));
 
             this.courtroomCameraController = courtroomCameraController;
+            this.narrativeAudioController = narrativeAudioController;
         }
 
         public void Bind()
@@ -97,18 +100,44 @@ namespace Verdict.Systems
                     break;
 
                 case NarrativeEventType.PlayMusic:
-                    Debug.Log(
-                        $"[EventResolver] Play music: {eventData.Parameter}");
+                    if (narrativeAudioController != null)
+                    {
+                        narrativeAudioController.PlayMusic(
+                            eventData.Parameter,
+                            Mathf.Clamp01(eventData.Value));
+                    }
+                    else
+                    {
+                        Debug.Log(
+                            $"[EventResolver] Play music: {eventData.Parameter}");
+                    }
                     break;
 
                 case NarrativeEventType.StopMusic:
-                    Debug.Log(
-                        $"[EventResolver] Stop music: {eventData.Parameter}");
+                    if (narrativeAudioController != null)
+                    {
+                        narrativeAudioController.StopMusic(
+                            eventData.Parameter);
+                    }
+                    else
+                    {
+                        Debug.Log(
+                            $"[EventResolver] Stop music: {eventData.Parameter}");
+                    }
                     break;
 
                 case NarrativeEventType.PlaySound:
-                    Debug.Log(
-                        $"[EventResolver] Play sound: {eventData.Parameter}");
+                    if (narrativeAudioController != null)
+                    {
+                        narrativeAudioController.PlaySound(
+                            eventData.Parameter,
+                            Mathf.Clamp01(eventData.Value));
+                    }
+                    else
+                    {
+                        Debug.Log(
+                            $"[EventResolver] Play sound: {eventData.Parameter}");
+                    }
                     break;
 
                 case NarrativeEventType.ScreenFade:

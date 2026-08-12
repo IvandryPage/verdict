@@ -16,8 +16,8 @@ MonoBehaviour:
   title: Project Silence
   description: Ryan Pratama, kepala tim pengadaan proyek digitalisasi pendidikan
     nasional senilai Rp3,8 triliun, ditemukan tewas sehari sebelum menyerahkan bukti
-    dugaan korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, ditangkap dan
-    didakwa sebagai pembunuh berdasarkan bukti permukaan yang tampak hampir sempurna.
+    dugaan korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, ditangkap
+    dan didakwa sebagai pembunuh berdasarkan bukti permukaan yang tampak hampir sempurna.
     Sebagai pengacara pembela, kamu harus menelusuri jejak bukti, menyelami saksi-
     saksi yang saling silang, dan membongkar konspirasi nasional yang menyamarkan
     kebenaran di balik ruang sidang.
@@ -1179,8 +1179,8 @@ MonoBehaviour:
               characterStat: 0
               value: 2
       - id: 1164a46095fe479f88edf3a667d05ea7
-        text: "Selain itu, kami menelusuri dokumen administratif proyek, tender,
-          kontrak, hingga berita acara serah terimanya."
+        text: Selain itu, kami menelusuri dokumen administratif proyek, tender, kontrak,
+          hingga berita acara serah terimanya.
         initiallyVisible: 1
         nextStatementId: 
         claims:
@@ -2578,10 +2578,10 @@ MonoBehaviour:
     maximumProsecutorPressure: 100
   - id: end_good_conspiracy_exposed
     title: Retak yang Menjalar
-    description: "Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap
-      di akhir persidangan cukup kuat untuk membuka penyelidikan resmi terhadap Adrian
-      Wijaya dan jaringan di sekitarnya. Ini baru permulaan, tapi untuk pertama
-      kalinya, konspirasi itu punya nama."
+    description: Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap di
+      akhir persidangan cukup kuat untuk membuka penyelidikan resmi terhadap Adrian
+      Wijaya dan jaringan di sekitarnya. Ini baru permulaan, tapi untuk pertama kalinya,
+      konspirasi itu punya nama.
     minimumJudgeTrust: 75
     maximumPenalty: 30
     minimumPublicOpinion: 55
@@ -2606,7 +2606,7 @@ MonoBehaviour:
     minimumDefenseConfidence: 50
     maximumProsecutorPressure: 15
   narrative:
-    startNodeId: e6c85055d0094f239fa6d0b92e5cb5da
+    startNodeId: 141442834f0f426ea201cd2a3a6e18ac
     nodes:
     - rid: 1763526658047344640
     - rid: 1763526658047344641
@@ -2901,8 +2901,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: "Di ruang sidang ini, nasib seorang sahabat, kebenaran, dan jaringan
-              korupsi yang selama ini tersembunyi akan diuji."
+            Text: Di ruang sidang ini, nasib seorang sahabat, kebenaran, dan jaringan
+              korupsi yang selama ini tersembunyi akan diuji.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -2947,8 +2947,8 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
             Text: Yang Mulia, bukti yang kami hadirkan akan menunjukkan bahwa Arga
-              Mahendra berada di pusat tragedi ini, namun motif yang sebenarnya
-              jauh lebih dalam dari sekadar kecemburuan.
+              Mahendra berada di pusat tragedi ini, namun motif yang sebenarnya jauh
+              lebih dalam dari sekadar kecemburuan.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -2960,8 +2960,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
-            Text: "Seluruh bukti yang kami miliki, sidik jari, rekaman CCTV,
-              riwayat pesan, mengarah pada satu kesimpulan yang sama."
+            Text: Seluruh bukti yang kami miliki, sidik jari, rekaman CCTV, riwayat
+              pesan, mengarah pada satu kesimpulan yang sama.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3036,8 +3036,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: "Menarik. Selisih waktu yang kecil ini bisa jadi tidak berarti
-              apa-apa, atau bisa jadi awal dari sesuatu yang lebih besar."
+            Text: Menarik. Selisih waktu yang kecil ini bisa jadi tidak berarti apa-apa,
+              atau bisa jadi awal dari sesuatu yang lebih besar.
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3121,8 +3121,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: Namun ketika kami membuka flashdisk itu, isinya tampak seperti baru
-              saja dihapus, kosong tanpa jejak.
+            Text: Namun ketika kami membuka flashdisk itu, isinya tampak seperti
+              baru saja dihapus, kosong tanpa jejak.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3147,8 +3147,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: (Tunggu dulu. Flashdisk penting ini tidak mungkin kosong tanpa alasan.
-              Ada tangan lain yang menghapusnya.)
+            Text: (Tunggu dulu. Flashdisk penting ini tidak mungkin kosong tanpa
+              alasan. Ada tangan lain yang menghapusnya.)
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3530,8 +3530,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: Ryan memang sedang menyelidiki proyek pengadaan nasional ini,
-              dan ada banyak pihak yang ingin penyelidikan itu berhenti.
+            Text: Ryan memang sedang menyelidiki proyek pengadaan nasional ini, dan
+              ada banyak pihak yang ingin penyelidikan itu berhenti.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3660,8 +3660,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Saksi, pengadilan menunggu pernyataan Anda yang dapat mengubah arah
-              kasus ini.
+            Text: Saksi, pengadilan menunggu pernyataan Anda yang dapat mengubah
+              arah kasus ini.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3834,8 +3834,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Penyidik dipanggil kembali ke bangku saksi setelah bukti baru
-              mengubah arah persidangan.
+            Text: Penyidik dipanggil kembali ke bangku saksi setelah bukti baru mengubah
+              arah persidangan.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3955,8 +3955,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
-            Text: "Seperti yang saya katakan, itu hanya rapat rutin. Tidak
-              lebih."
+            Text: Seperti yang saya katakan, itu hanya rapat rutin. Tidak lebih.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4057,9 +4056,9 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: "Tapi Ryan sudah mengantisipasi kemungkinan dirinya dibungkam.
-              Ia membuat sistem sinkronisasi otomatis ke cloud pribadi, aktif
-              hanya jika laptopnya tidak digunakan selama 24 jam."
+            Text: Tapi Ryan sudah mengantisipasi kemungkinan dirinya dibungkam. Ia
+              membuat sistem sinkronisasi otomatis ke cloud pribadi, aktif hanya
+              jika laptopnya tidak digunakan selama 24 jam.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4173,8 +4172,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
-            Text: Yang Mulia... saya baru saja menemukan informasi yang bisa
-              mengguncang jalannya persidangan.
+            Text: Yang Mulia... saya baru saja menemukan informasi yang bisa mengguncang
+              jalannya persidangan.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4220,8 +4219,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
-            Text: "I-itu tidak benar! Dia hanya asisten biasa, dia tidak tahu apa-apa
-              soal,"
+            Text: I-itu tidak benar! Dia hanya asisten biasa, dia tidak tahu apa-apa
+              soal,
             Emotion: 4
             WaitMode: 0
             AutoAdvanceDelay: 1

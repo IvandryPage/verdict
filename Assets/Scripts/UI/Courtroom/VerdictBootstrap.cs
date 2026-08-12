@@ -34,6 +34,10 @@ namespace Verdict
         [SerializeField]
         private CourtroomCameraRig courtroomCameraRig;
 
+        [Header("Audio")]
+        [SerializeField]
+        private global::Verdict.NarrativeAudioController narrativeAudioController;
+
         private CaseSessionManager caseSessionManager;
         private CourtroomController courtroomController;
         private CourtroomCameraController courtroomCameraController;
@@ -94,7 +98,8 @@ namespace Verdict
             courtroomEventResolver =
                 new CourtroomEventResolver(
                     courtroomController,
-                    courtroomCameraController);
+                    courtroomCameraController,
+                    narrativeAudioController);
 
             courtroomEventResolver.Bind();
 
