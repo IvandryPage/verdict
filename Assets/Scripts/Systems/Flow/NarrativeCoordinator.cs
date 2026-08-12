@@ -198,14 +198,51 @@ namespace Verdict.Systems
         {
             if (runner.Runtime == null ||
                 string.IsNullOrWhiteSpace(nodeId) ||
-                !runner.Runtime.TryGetNode(nodeId, out _))
+                !runner.Runtime.TryGetNode(nodeId, out NarrativeNodeData restoredNode))
             {
                 return false;
             }
 
             runner.Runtime.CurrentNodeId = nodeId;
             runner.Runtime.CurrentEntryIndex = Math.Max(0, entryIndex);
-            return true;
+
+            switch (restoredNode)
+            {
+                case DialogueNodeData dialogueNode:
+                    if (runner.Runtime.CurrentEntryIndex >= dialogueNode.Entries.Count)
+                    {
+                        runner.Runtime.CurrentEntryIndex = dialogueNode.Entries.Count - 1;
+                    }
+
+                    if (runner.Runtime.CurrentEntryIndex >= 0 &&
+                        runner.Runtime.CurrentEntryIndex < dialogueNode.Entries.Count)
+                    {
+                        State = NarrativeState.WaitingForDialogue;
+                        EntryChanged?.Invoke(
+                            dialogueNode.Entries[runner.Runtime.CurrentEntryIndex]);
+                    }
+                    else
+                    {
+                        State = NarrativeState.Playing;
+                    }
+                    return true;
+
+                case StatementNodeData statementNode:
+                    State = NarrativeState.WaitingForStatement;
+                    CurrentStatementId = statementNode.StatementId;
+                    StatementReached?.Invoke(statementNode.StatementId);
+                    return true;
+
+                case ChoiceNodeData choiceNode:
+                    State = NarrativeState.WaitingForChoice;
+                    CurrentChoice = choiceNode;
+                    ChoiceRequested?.Invoke(choiceNode);
+                    return true;
+
+                default:
+                    State = NarrativeState.Playing;
+                    return true;
+            }
         }
 
         private void HandleNarrativeStarted(NarrativeRuntime runtime)

@@ -1129,7 +1129,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2180,7 +2180,7 @@ GameObject:
   - component: {fileID: 444838023}
   - component: {fileID: 444838022}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Load
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2965,7 +2965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3914,7 +3914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Resume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4217,6 +4217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991493035}
+  - component: {fileID: 991493036}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -4232,8 +4233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991493034}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09165, y: 0, z: -21.83297}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.09164429, y: 0, z: -21.833008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4241,6 +4242,28 @@ Transform:
   - {fileID: 375267898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991493036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991493034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fddce4eae4b75bc4f84446fdd3b0f817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 165870745}
+  musicClips: []
+  sfxSource: {fileID: 375267899}
+  sfxClips:
+  - Id: ui_click
+    Clip: {fileID: 8300000, guid: e6c7518cbb1137f4580738f025441be9, type: 3}
+    Volume: 0
+    Pitch: 0
+  clickSoundId: ui_click
+  clickCooldownSeconds: 0.08
 --- !u!1001 &1002794028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4650,7 +4673,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1169134555}
   - component: {fileID: 1169134554}
-  - component: {fileID: 1169134556}
   m_Layer: 0
   m_Name: CourtroomBootstrap
   m_TagString: Untagged
@@ -4676,7 +4698,7 @@ MonoBehaviour:
   pausePresenter: {fileID: 1721352518}
   evidenceUnlockedPresenter: {fileID: 264586040}
   courtroomCameraRig: {fileID: 1622756529}
-  narrativeAudioController: {fileID: 1169134556}
+  narrativeAudioController: {fileID: 991493036}
 --- !u!4 &1169134555
 Transform:
   m_ObjectHideFlags: 0
@@ -4692,22 +4714,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1169134556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1169134553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fddce4eae4b75bc4f84446fdd3b0f817, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSource: {fileID: 165870745}
-  musicClips: []
-  sfxSource: {fileID: 375267899}
-  sfxClips: []
 --- !u!1 &1202456051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,8 +5993,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428378273}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0827114, y: -0.0104686245, z: 0.0008848948, w: 0.99651825}
-  m_LocalPosition: {x: 1.1173759, y: 1.2340283, z: -0.37954903}
+  m_LocalRotation: {x: 0.105113894, y: 0.005962319, z: -0.000616509, w: 0.99444216}
+  m_LocalPosition: {x: -1.0713865, y: 1.6532943, z: -4.4005113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6377,7 +6383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7296,6 +7302,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1721352514}
   pauseGroup: {fileID: 1721352519}
+  saveButton: {fileID: 444838022}
+  loadButton: {fileID: 1779876106}
+  resumeButton: {fileID: 1850487259}
+  exitToMainMenuButton: {fileID: 1620341214}
+  mainMenuSceneName: MainMenu
 --- !u!225 &1721352519
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7358,7 +7369,7 @@ GameObject:
   - component: {fileID: 1779876107}
   - component: {fileID: 1779876106}
   m_Layer: 5
-  m_Name: SettingsButton
+  m_Name: LoadButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8771,8 +8782,8 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1169134555}
   - {fileID: 991493035}
+  - {fileID: 1169134555}
   - {fileID: 1622756530}
   - {fileID: 1428378277}
   - {fileID: 1471858985}

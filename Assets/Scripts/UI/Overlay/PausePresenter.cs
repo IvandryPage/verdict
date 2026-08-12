@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Verdict.Data.Cases;
 using Verdict.Input;
@@ -28,6 +29,13 @@ namespace Verdict.UI.Overlay
 
         [SerializeField]
         private Button resumeButton;
+
+        [SerializeField]
+        private Button exitToMainMenuButton;
+
+        [SerializeField]
+        [Tooltip("Scene name to load when the player exits to main menu.")]
+        private string mainMenuSceneName = "MainMenu";
 
         private CourtroomController courtroomController;
         private CaseSessionManager caseSessionManager;
@@ -59,14 +67,20 @@ namespace Verdict.UI.Overlay
 
             if (loadButton != null)
             {
+                loadButton.gameObject.SetActive(false);
                 loadButton.onClick.RemoveListener(LoadGame);
-                loadButton.onClick.AddListener(LoadGame);
             }
 
             if (resumeButton != null)
             {
                 resumeButton.onClick.RemoveListener(ResumeGame);
                 resumeButton.onClick.AddListener(ResumeGame);
+            }
+
+            if (exitToMainMenuButton != null)
+            {
+                exitToMainMenuButton.onClick.RemoveListener(ExitToMainMenu);
+                exitToMainMenuButton.onClick.AddListener(ExitToMainMenu);
             }
 
             Hide();
@@ -120,6 +134,11 @@ namespace Verdict.UI.Overlay
             if (resumeButton != null)
             {
                 resumeButton.onClick.RemoveListener(ResumeGame);
+            }
+
+            if (exitToMainMenuButton != null)
+            {
+                exitToMainMenuButton.onClick.RemoveListener(ExitToMainMenu);
             }
 
             courtroomController = null;
@@ -216,6 +235,18 @@ namespace Verdict.UI.Overlay
 
             Hide();
             courtroomController.Resume();
+        }
+
+        public void ExitToMainMenu()
+        {
+            if (!string.IsNullOrWhiteSpace(mainMenuSceneName))
+            {
+                Debug.Log($"[PausePresenter] Loading main menu scene '{mainMenuSceneName}'");
+                SceneManager.LoadScene(mainMenuSceneName);
+                return;
+            }
+
+            Debug.LogWarning("[PausePresenter] No main menu scene name configured.");
         }
 
         public void Show()

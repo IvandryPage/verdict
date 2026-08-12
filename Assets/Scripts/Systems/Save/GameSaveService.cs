@@ -148,6 +148,12 @@ namespace Verdict.Systems.Save
                 session.Flow.Reset();
             }
 
+            if (session.NarrativeCoordinator != null &&
+                !session.NarrativeCoordinator.HasActiveNarrative)
+            {
+                session.NarrativeCoordinator.Play(session.Runtime.Data.Narrative);
+            }
+
             if (!string.IsNullOrWhiteSpace(data.CurrentNarrativeNodeId) &&
                 session.NarrativeCoordinator != null)
             {

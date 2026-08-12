@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Verdict
 {
@@ -32,6 +33,30 @@ namespace Verdict
 
         [SerializeField]
         private List<AudioCue> sfxClips = new();
+
+        [Header("UI Click")]
+        [SerializeField]
+        private string clickSoundId = "ui_click";
+
+        [SerializeField]
+        private float clickCooldownSeconds = 0.08f;
+
+        private float lastClickTime;
+
+        private void Update()
+        {
+            if (Mouse.current == null)
+            {
+                return;
+            }
+
+            if (Mouse.current.leftButton.wasPressedThisFrame &&
+                Time.unscaledTime - lastClickTime >= clickCooldownSeconds)
+            {
+                lastClickTime = Time.unscaledTime;
+                PlaySound(clickSoundId, 1f);
+            }
+        }
 
         public void PlayMusic(string musicId, float volume = 1f)
         {

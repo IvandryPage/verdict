@@ -5,6 +5,7 @@ using Verdict.Input;
 using Verdict.Presentation;
 using Verdict.Systems;
 using Verdict.Systems.Presentation;
+using Verdict.Systems.Save;
 using Verdict.UI.Evidence;
 using Verdict.UI.Narrative;
 using Verdict.UI.Overlay;
@@ -61,6 +62,10 @@ namespace Verdict
 
         private void Start()
         {
+            // Save/load resume is intentionally disabled while the runtime restore flow
+            // is still being validated. Automatically restoring from a stale save file
+            // prevents the narrative from starting normally and can leave the case in a
+            // blank state with no dialogue visible.
             BeginCase();
         }
 
