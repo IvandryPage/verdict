@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: case_001
   title: Project Silence
-  description: Ryan Pratama, staf pengadaan proyek digitalisasi pendidikan nasional
-    senilai Rp3,8 triliun, ditemukan tewas sehari sebelum menyerahkan bukti dugaan
-    korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, didakwa sebagai pembunuh
-    berdasarkan bukti yang tampak hampir sempurna. Pemain berperan sebagai pengacara
-    yang ditugaskan membelanya dan perlahan menemukan bahwa pembunuhan ini hanyalah
-    permukaan dari konspirasi nasional yang jauh lebih besar.
+  description: Ryan Pratama, kepala tim pengadaan proyek digitalisasi pendidikan
+    nasional senilai Rp3,8 triliun, ditemukan tewas sehari sebelum menyerahkan bukti
+    dugaan korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, ditangkap dan
+    didakwa sebagai pembunuh berdasarkan bukti permukaan yang tampak hampir sempurna.
+    Sebagai pengacara pembela, kamu harus menelusuri jejak bukti, menyelami saksi-
+    saksi yang saling silang, dan membongkar konspirasi nasional yang menyamarkan
+    kebenaran di balik ruang sidang.
   difficulty: 2
   purpose: 2
   tags:
@@ -439,18 +440,18 @@ MonoBehaviour:
   - id: 7c1d58b5828c40609581d10ccabfaa29
     character: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
     role: 4
-    description: Penyidik utama yang menyusun kronologi awal kasus kematian Ryan
-      Pratama.
+    description: Penyidik utama yang membuka jalur penyelidikan, merangkai kronologi
+      kasus, dan membangun narasi dakwaan awal terhadap Arga Mahendra.
     testimonies:
     - id: f923ac6dbffa4f738d08f425dbcdc84e
-      title: Kronologi Penemuan Jenazah dan Bukti Awal
-      description: Kesaksian pembuka yang menjadi dasar dakwaan jaksa terhadap Arga
-        Mahendra.
+      title: Pencarian Jenazah dan Jejak Awal
+      description: Kesaksian pembuka yang menjelaskan detik-detik pertama peristiwa,
+        temuan di TKP, dan bukti awal yang membentuk kerangka dakwaan.
       initiallyVisible: 1
       statements:
       - id: 23545e9101d04b7bae20853cf004cd8a
-        text: Saya tiba di lokasi pukul 22.15 setelah menerima laporan warga tentang
-          keributan di apartemen korban.
+        text: Saya tiba di lokasi pada pukul 22.15 setelah menerima laporan warga
+          tentang keributan di apartemen korban.
         initiallyVisible: 1
         nextStatementId: 
         claims:
@@ -471,7 +472,7 @@ MonoBehaviour:
               value: 2
             failureEffects: []
       - id: 8e481df44a8148c3ac1caf78dc172438
-        text: Sidik jari tersangka, Arga Mahendra, kami temukan di gagang pintu dan
+        text: Sidik jari tersangka, Arga Mahendra, ditemukan pada gagang pintu dan
           meja kerja korban.
         initiallyVisible: 1
         nextStatementId: 
@@ -557,8 +558,8 @@ MonoBehaviour:
               characterStat: 0
               value: 3
       - id: 7c2d85980d1b4f0c829c82ab9bdc6649
-        text: Rekaman CCTV Lobi menunjukkan Arga memasuki apartemen pukul 21.40,
-          dan ia tidak pernah terlihat keluar hingga pagi hari.
+        text: Rekaman CCTV lobi menunjukkan Arga memasuki apartemen pukul 21.40,
+          lalu tidak terlihat keluar sampai pagi hari.
         initiallyVisible: 1
         nextStatementId: 
         claims:
@@ -930,13 +931,13 @@ MonoBehaviour:
   - id: 95c8fd71d8754414a30665d878b35e66
     character: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
     role: 1
-    description: Ahli forensik digital yang memaparkan hasil pemulihan data dari
-      laptop Ryan.
+    description: Ahli forensik digital yang memaparkan hasil pemulihan data korban
+      dan jejak elektronik yang menjelaskan motif serta manipulasi bukti.
     testimonies:
     - id: 079fad1635b24d32a8e62a62e285a4b8
       title: Jejak Digital dari Laptop Korban
-      description: Pemaparan data yang membuktikan Ryan sedang menyelidiki dugaan
-        korupsi proyek pengadaan nasional.
+      description: Pemaparan data yang memetakan aktivitas Ryan, dugaan korupsi,
+        dan rekayasa informasi yang mengarah pada motif pembunuhan.
       initiallyVisible: 1
       statements:
       - id: aa954c9f49e14d36a82e71a5726495ff
@@ -1178,7 +1179,7 @@ MonoBehaviour:
               characterStat: 0
               value: 2
       - id: 1164a46095fe479f88edf3a667d05ea7
-        text: "Selain itu, kami menelusuri dokumen administratif proyek \u2014 tender,
+        text: "Selain itu, kami menelusuri dokumen administratif proyek, tender,
           kontrak, hingga berita acara serah terimanya."
         initiallyVisible: 1
         nextStatementId: 
@@ -2579,7 +2580,7 @@ MonoBehaviour:
     title: Retak yang Menjalar
     description: "Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap
       di akhir persidangan cukup kuat untuk membuka penyelidikan resmi terhadap Adrian
-      Wijaya dan jaringan di sekitarnya. Ini baru permulaan \u2014 tapi untuk pertama
+      Wijaya dan jaringan di sekitarnya. Ini baru permulaan, tapi untuk pertama
       kalinya, konspirasi itu punya nama."
     minimumJudgeTrust: 75
     maximumPenalty: 30
@@ -2900,8 +2901,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: "Sebuah persidangan yang akan menentukan nasib seorang sahabat
-              \u2014 dan mungkin, jauh lebih dari itu"
+            Text: "Di ruang sidang ini, nasib seorang sahabat, kebenaran, dan jaringan
+              korupsi yang selama ini tersembunyi akan diuji."
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -2945,9 +2946,9 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
-            Text: Yang Mulia, kami akan membuktikan bahwa terdakwa, Arga Mahendra,
-              membunuh sahabatnya sendiri, Ryan Pratama, dalam sebuah pertengkaran
-              pribadi yang berujung fatal.
+            Text: Yang Mulia, bukti yang kami hadirkan akan menunjukkan bahwa Arga
+              Mahendra berada di pusat tragedi ini, namun motif yang sebenarnya
+              jauh lebih dalam dari sekadar kecemburuan.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -2959,8 +2960,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
-            Text: "Seluruh bukti yang kami miliki \u2014 sidik jari, rekaman CCTV,
-              riwayat pesan \u2014 mengarah pada satu kesimpulan yang sama."
+            Text: "Seluruh bukti yang kami miliki, sidik jari, rekaman CCTV,
+              riwayat pesan, mengarah pada satu kesimpulan yang sama."
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -2972,8 +2973,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: (Kronologinya nyaris sempurna. Bahkan aku sendiri sempat ragu...
-              apa benar Arga tidak bersalah?)
+            Text: (Narasi jaksa terasa rapih, tapi ada celah kecil yang menggantung.
+              Jika saya bisa menemukannya, ini bisa menjadi titik balik.)
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3036,7 +3037,7 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
             Text: "Menarik. Selisih waktu yang kecil ini bisa jadi tidak berarti
-              apa-apa \u2014 atau bisa jadi awal dari sesuatu yang lebih besar."
+              apa-apa, atau bisa jadi awal dari sesuatu yang lebih besar."
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3120,7 +3121,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: Namun ketika dibuka... seluruh isinya kosong.
+            Text: Namun ketika kami membuka flashdisk itu, isinya tampak seperti baru
+              saja dihapus, kosong tanpa jejak.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3145,8 +3147,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: (Tunggu dulu. Sebuah flashdisk yang penting tidak mungkin kosong
-              begitu saja...)
+            Text: (Tunggu dulu. Flashdisk penting ini tidak mungkin kosong tanpa alasan.
+              Ada tangan lain yang menghapusnya.)
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3173,8 +3175,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: Flashdisk ini diformat beberapa jam SETELAH Ryan meninggal, Yang
-              Mulia.
+            Text: Flashdisk ini diformat beberapa jam setelah Ryan meninggal, seolah
+              seseorang berusaha menghapus bukti yang paling penting.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3528,8 +3530,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: Ryan memang sedang menyelidiki proyek pengadaanRyan memang sedang
-              menyelidiki proyek pengadaan nasional ini... nasional ini...
+            Text: Ryan memang sedang menyelidiki proyek pengadaan nasional ini,
+              dan ada banyak pihak yang ingin penyelidikan itu berhenti.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3635,7 +3637,7 @@ MonoBehaviour:
       data:
         nodeId: 7b68340a0b7a40c0935a27beeede6ba5
         position: {x: 18764, y: 658.5}
-        targetNodeId: eee2b58a125f46e9bce2c705b1641f40
+        targetNodeId: 6ab4a72a4ccd44c89f7cad243783742a
     - rid: 1763526658047344823
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
@@ -3658,7 +3660,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Saksi, pengadilan menunggu jawaban Anda.
+            Text: Saksi, pengadilan menunggu pernyataan Anda yang dapat mengubah arah
+              kasus ini.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3831,8 +3834,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Penyidik dipanggil kembali sehubungan dengan bukti-bukti baru yang
-              ditemukan.
+            Text: Penyidik dipanggil kembali ke bangku saksi setelah bukti baru
+              mengubah arah persidangan.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3952,7 +3955,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
-            Text: "Seperti yang saya katakan \u2014 itu hanya rapat rutin. Tidak
+            Text: "Seperti yang saya katakan, itu hanya rapat rutin. Tidak
               lebih."
             Emotion: 0
             WaitMode: 0
@@ -4055,7 +4058,7 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
             Text: "Tapi Ryan sudah mengantisipasi kemungkinan dirinya dibungkam.
-              Ia membuat sistem sinkronisasi otomatis ke cloud pribadi \u2014 aktif
+              Ia membuat sistem sinkronisasi otomatis ke cloud pribadi, aktif
               hanya jika laptopnya tidak digunakan selama 24 jam."
             Emotion: 2
             WaitMode: 0
@@ -4083,7 +4086,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: Seluruh data berhasil dipulihkan.
+            Text: Seluruh data cloud berhasil dipulihkan. Atmosfer persidangan berubah
+              menjadi tegang.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4122,9 +4126,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: 'Tapi masih ada satu pertanyaan yang belum terjawab: siapa yang
-              memerintahkan pembunuhan itu? Dan siapa yang paling diuntungkan dari
-              kematian Ryan?'
+            Text: 'Masih ada satu pertanyaan besar: siapa yang memerintahkan pembunuhan
+              ini? Dan siapa yang diuntungkan dari kematian Ryan?'
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4146,7 +4149,7 @@ MonoBehaviour:
           claimId: dac30fd93fd245aa83d811342d865d74
           requireSuccessful: 1
         trueNodeId: 659d373278ff489e9512f28d806b107c
-        falseNodeId: 3f19b428f27245b79238602d5a742716
+        falseNodeId: 235ed286a1644bb6a684080c0881a23d
     - rid: 1763526658047344857
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
@@ -4170,7 +4173,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
-            Text: Yang Mulia... saya punya sesuatu yang harus saya sampaikan.
+            Text: Yang Mulia... saya baru saja menemukan informasi yang bisa
+              mengguncang jalannya persidangan.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4217,7 +4221,7 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
             Text: "I-itu tidak benar! Dia hanya asisten biasa, dia tidak tahu apa-apa
-              soal\u2014"
+              soal,"
             Emotion: 4
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4259,15 +4263,15 @@ MonoBehaviour:
         position: {x: 42186.5, y: 319}
         choices:
         - choiceId: 7a5c75b0238949cba8f27ef1ed1d8e99
-          text: Tuduh Adrian Wijaya sebagai dalang utama di balik semuanya.
+          text: Tuduh Adrian Wijaya sebagai arsitek konspirasi dan tuntut pengadilan
+            mengungkap bukti korupsi yang ia pimpin.
           nextNodeId: 04d8e95ebcb54dc78bd9b572a6c1e665
         - choiceId: 6cd21817c8d14325a0761f9de38567f3
-          text: Nyatakan bahwa dalang sesungguhnya masih belum diketahui, dan konspirasi
-            ini harus terus diselidiki.
+          text: Akui bahwa dalang utama masih belum jelas, dan dorong penyelidikan
+            lebih dalam tanpa mengambil kesimpulan prematur.
           nextNodeId: 626e331db7cc40a090dcd6b24f304e3f
         - choiceId: 665ba4e171fd4fc4b4372e7630b2ee86
-          text: Fokus hanya membebaskan Arga, tanpa membongkar lebih jauh isu korupsi
-            ini.
+          text: Prioritaskan pembebasan Arga sekarang; buka kasus korupsi nanti.
           nextNodeId: 8775b8f304fa453190a895eb90981a0e
     - rid: 1763526658047344862
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}

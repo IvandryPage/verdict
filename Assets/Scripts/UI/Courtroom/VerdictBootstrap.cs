@@ -51,6 +51,10 @@ namespace Verdict
             Initialize();
         }
 
+        private void OnDestroy() {
+            inputActions.Player.Disable();
+        }
+
         private void Start()
         {
             BeginCase();
