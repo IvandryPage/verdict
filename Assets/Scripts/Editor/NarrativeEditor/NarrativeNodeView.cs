@@ -538,6 +538,13 @@ namespace Verdict.Editor.NarrativeEditor
 
             extensionContainer.Add(hint);
 
+            Label unlockHint = new("Unlock evidence syntax: unlock_evidence:<evidenceId> or unlock evidence to open the evidence chooser.")
+            {
+                style = { whiteSpace = WhiteSpace.Normal, fontSize = 10, marginBottom = 8, color = new Color(.5f, .7f, .5f) }
+            };
+
+            extensionContainer.Add(unlockHint);
+
             EnumField categoryField = new("Category", node.Category);
 
             categoryField.RegisterValueChangedCallback(evt =>
@@ -547,6 +554,7 @@ namespace Verdict.Editor.NarrativeEditor
 
             TextField field = new("Event Id") { value = node.GameplayEventId };
 
+            field.tooltip = "Example: unlock_evidence:knife_evidence or unlock evidence";
             field.RegisterValueChangedCallback(evt =>
                 editService.SetGameplayEventId(node, evt.newValue));
 

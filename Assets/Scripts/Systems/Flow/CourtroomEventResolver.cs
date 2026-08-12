@@ -217,29 +217,12 @@ namespace Verdict.Systems
                             return;
                         }
 
-                        if (payload.StartsWith("unlock_evidence:"))
+                        if (TryParseUnlockEvidenceEventId(
+                            payload,
+                            node.GameplayEventId,
+                            out string evidenceId))
                         {
-                            string evidenceId = node.GameplayEventId.Substring(
-                                "unlock_evidence:".Length).Trim();
-
-                            if (!string.IsNullOrWhiteSpace(evidenceId))
-                            {
-                                courtroomController.UnlockEvidence(evidenceId);
-                            }
-
-                            return;
-                        }
-
-                        if (payload.StartsWith("unlockevidence "))
-                        {
-                            string evidenceId = node.GameplayEventId.Substring(
-                                "unlockevidence ".Length).Trim();
-
-                            if (!string.IsNullOrWhiteSpace(evidenceId))
-                            {
-                                courtroomController.UnlockEvidence(evidenceId);
-                            }
-
+                            courtroomController.UnlockEvidence(evidenceId);
                             return;
                         }
                     }
@@ -248,6 +231,47 @@ namespace Verdict.Systems
                         $"[EventResolver] Gameplay event not mapped: {node.GameplayEventId}");
                     break;
             }
+        }
+
+        private static bool TryParseUnlockEvidenceEventId(
+            string payload,
+            string originalEventId,
+            out string evidenceId)
+        {
+            evidenceId = null;
+
+            if (string.IsNullOrWhiteSpace(payload) ||
+                string.IsNullOrWhiteSpace(originalEventId))
+            {
+                return false;
+            }
+
+            const string underscorePrefix = "unlock_evidence:";
+            const string spacePrefix = "unlock evidence ";
+            const string noSpacePrefix = "unlockevidence ";
+
+            int prefixLength = -1;
+
+            if (payload.StartsWith(underscorePrefix))
+            {
+                prefixLength = underscorePrefix.Length;
+            }
+            else if (payload.StartsWith(spacePrefix))
+            {
+                prefixLength = spacePrefix.Length;
+            }
+            else if (payload.StartsWith(noSpacePrefix))
+            {
+                prefixLength = noSpacePrefix.Length;
+            }
+
+            if (prefixLength < 0)
+            {
+                return false;
+            }
+
+            evidenceId = originalEventId.Substring(prefixLength).Trim();
+            return !string.IsNullOrWhiteSpace(evidenceId);
         }
 
         private static bool TryParseCameraCue(

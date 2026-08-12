@@ -30,7 +30,10 @@ namespace Verdict.Data.Narrative
     /// like unlocking a mechanic, launching a minigame, or marking a
     /// checkpoint. Fires GameplayEventId (plus Category, for context) and
     /// immediately continues to NextNodeId - it does not pause on its
-    /// own. Note: a Statement node already announces itself when the
+    /// own. For evidence unlocks, use Category=UnlockFeature and
+    /// GameplayEventId="unlock_evidence:<evidenceId>" or
+    /// "unlock evidence" to open the evidence chooser.
+    /// Note: a Statement node already announces itself when the
     /// graph reaches it (via StatementReached), and a Choice node
     /// already announces itself (via ChoiceRequested) - you don't need a
     /// Gameplay node just to "signal a choice is coming"; use one when
