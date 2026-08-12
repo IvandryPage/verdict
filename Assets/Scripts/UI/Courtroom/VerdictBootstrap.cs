@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Verdict.Data.Cases;
+using Verdict.Input;
 using Verdict.Presentation;
 using Verdict.Systems;
 using Verdict.Systems.Presentation;
@@ -32,6 +33,8 @@ namespace Verdict
         private CaseSessionManager caseSessionManager;
         private CourtroomController courtroomController;
         private CourtroomCameraController courtroomCameraController;
+        private Verdict.Systems.CourtroomEventResolver courtroomEventResolver;
+        private VerdictInputActions inputActions;
 
         public CaseSessionManager CaseSessionManager =>
             caseSessionManager;
@@ -66,6 +69,9 @@ namespace Verdict
                 new CourtroomController(
                     caseSessionManager);
 
+            inputActions = new VerdictInputActions();
+            inputActions.Player.Enable();
+
             if (courtroomCameraRig != null)
             {
                 courtroomCameraController =
@@ -76,6 +82,13 @@ namespace Verdict
                 courtroomCameraRig.Bind(
                     courtroomCameraController);
             }
+
+            courtroomEventResolver =
+                new CourtroomEventResolver(
+                    courtroomController,
+                    courtroomCameraController);
+
+            courtroomEventResolver.Bind();
 
             if (narrativePresenter != null)
             {
@@ -92,7 +105,8 @@ namespace Verdict
             if (pausePresenter != null)
             {
                 pausePresenter.Bind(
-                    courtroomController);
+                    courtroomController,
+                    inputActions);
             }
         }
 

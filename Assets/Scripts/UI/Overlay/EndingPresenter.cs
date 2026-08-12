@@ -28,6 +28,9 @@ namespace Verdict.UI.Overlay
         [SerializeField]
         private GameObject panel;
 
+        [SerializeField]
+        private GameObject backdrop;
+
         [Header("Content")]
         [SerializeField]
         private TMP_Text titleText;
@@ -60,6 +63,23 @@ namespace Verdict.UI.Overlay
                 continueButton.onClick.AddListener(
                     HandleContinuePressed);
             }
+            else
+            {
+                Debug.LogWarning(
+                    "EndingPresenter.Awake: continueButton is not assigned.");
+            }
+
+            if (panel == null)
+            {
+                Debug.LogWarning(
+                    "EndingPresenter.Awake: panel reference is not assigned.");
+            }
+
+            if (backdrop == null)
+            {
+                Debug.LogWarning(
+                    "EndingPresenter.Awake: backdrop reference is not assigned.");
+            }
 
             Hide();
         }
@@ -76,11 +96,16 @@ namespace Verdict.UI.Overlay
 
             if (courtroomController == null)
             {
+                Debug.LogWarning(
+                    "EndingPresenter.Bind called with a null controller.");
                 return;
             }
 
             courtroomController.EndingTriggered +=
                 HandleEndingTriggered;
+
+            Debug.Log(
+                "EndingPresenter bound to CourtroomController.");
         }
 
         /// <summary>
@@ -113,6 +138,9 @@ namespace Verdict.UI.Overlay
                 return;
             }
 
+            Debug.Log(
+                $"EndingPresenter received ending '{ending.Title}'. Showing panel.");
+
             Show(ending);
         }
 
@@ -139,7 +167,18 @@ namespace Verdict.UI.Overlay
                     ending.Description ?? string.Empty;
             }
 
+            if (panel == null)
+            {
+                Debug.LogWarning(
+                    "EndingPresenter.Show called but the panel reference is not assigned.");
+            }
+
             isShowing = true;
+
+            if (backdrop != null)
+            {
+                backdrop.SetActive(true);
+            }
 
             if (panel != null)
             {
@@ -164,6 +203,11 @@ namespace Verdict.UI.Overlay
         {
             isShowing = false;
 
+            if (backdrop != null)
+            {
+                backdrop.SetActive(false);
+            }
+
             if (panel != null)
             {
                 panel.SetActive(false);
@@ -176,6 +220,8 @@ namespace Verdict.UI.Overlay
             {
                 return;
             }
+
+            Debug.Log("EndingPresenter: continue button pressed.");
 
             // Prevent double-clicks from triggering EndCase twice.
             isShowing = false;
@@ -192,6 +238,11 @@ namespace Verdict.UI.Overlay
             if (courtroomController != null)
             {
                 courtroomController.EndCase();
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "EndingPresenter: no courtroomController assigned when continue was pressed.");
             }
         }
 

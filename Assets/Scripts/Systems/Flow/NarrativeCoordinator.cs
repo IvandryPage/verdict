@@ -23,6 +23,7 @@ namespace Verdict.Systems
             runner.StatementReached += HandleStatementReached;
             runner.ChoiceRequested += HandleChoiceRequested;
             runner.EntryChanged += HandleEntryChanged;
+            runner.ConditionEvaluated += HandleConditionEvaluated;
         }
 
         public NarrativeState State { get; private set; }
@@ -65,12 +66,13 @@ namespace Verdict.Systems
 
         public event Action<ChoiceNodeData> ChoiceRequested;
 
+        public event Action<ConditionNodeData, bool> ConditionEvaluated;
+
         public event Action<string> EndingReached
         {
             add => runner.EndingReached += value;
             remove => runner.EndingReached -= value;
         }
-
 
         public event Action<NarrativeEventData> EventTriggered
         {
@@ -220,6 +222,13 @@ namespace Verdict.Systems
             State = NarrativeState.WaitingForDialogue;
 
             EntryChanged?.Invoke(entry);
+        }
+
+        private void HandleConditionEvaluated(
+            ConditionNodeData condition,
+            bool result)
+        {
+            ConditionEvaluated?.Invoke(condition, result);
         }
     }
 }

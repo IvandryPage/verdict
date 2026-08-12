@@ -687,6 +687,9 @@ namespace Verdict.Systems
                 subscribedCoordinator.GameplayNodeReached -=
                     HandleGameplayNodeReached;
 
+                subscribedCoordinator.ConditionEvaluated -=
+                    HandleConditionEvaluated;
+
                 subscribedCoordinator.EntryChanged -=
                     HandleEntryChanged;
 
@@ -705,6 +708,9 @@ namespace Verdict.Systems
 
             coordinator.GameplayNodeReached +=
                 HandleGameplayNodeReached;
+
+            coordinator.ConditionEvaluated +=
+                HandleConditionEvaluated;
 
             coordinator.EntryChanged +=
                 HandleEntryChanged;
@@ -741,26 +747,35 @@ namespace Verdict.Systems
             Debug.Log(
                 $"[Ending] Reached ending ID: {endingId}");
 
-            if (!string.IsNullOrWhiteSpace(endingId))
+            if (string.IsNullOrWhiteSpace(endingId))
             {
-                EndingData ending =
-                    Session.Runtime.Data.Endings
-                        .FirstOrDefault(e => e.Id == endingId);
-
-                Debug.Log(
-                    $"[Ending] Found EndingData: {ending?.Title}");
-
-                if (ending != null)
-                {
-                    Debug.Log(
-                        "[Ending] Invoking EndingTriggered");
-
-                    SetCourtroomState(
-                        CourtroomState.Ending);
-
-                    EndingTriggered?.Invoke(ending);
-                }
+                Debug.LogWarning(
+                    "[Ending] Ending node reached with empty or missing ending ID.");
+                return;
             }
+
+            EndingData ending =
+                Session.Runtime.Data.Endings
+                    .FirstOrDefault(e => e.Id == endingId);
+
+            Debug.Log(
+                $"[Ending] Found EndingData: {ending?.Title ?? "<null>"}");
+
+            if (ending == null)
+            {
+                Debug.LogWarning(
+                    $"[Ending] No EndingData found matching ID '{endingId}'. " +
+                    "Check the ending node ID and the case data.");
+                return;
+            }
+
+            Debug.Log(
+                "[Ending] Invoking EndingTriggered");
+
+            SetCourtroomState(
+                CourtroomState.Ending);
+
+            EndingTriggered?.Invoke(ending);
         }
 
         private void HandlePresentationEvent(
@@ -775,6 +790,16 @@ namespace Verdict.Systems
         {
             GameplayEventTriggered?.Invoke(
                 node);
+        }
+
+        private void HandleConditionEvaluated(
+            ConditionNodeData condition,
+            bool result)
+        {
+            Debug.Log(
+                $"[Condition] Node {condition?.NodeId ?? "<unknown>"} evaluated " +
+                $"{(result ? "TRUE" : "FALSE")}. Next => " +
+                $"{(result ? condition?.TrueNodeId : condition?.FalseNodeId)}");
         }
 
         private void HandleEntryChanged(

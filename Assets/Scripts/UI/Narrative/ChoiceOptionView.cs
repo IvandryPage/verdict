@@ -16,6 +16,8 @@ namespace Verdict.UI.Narrative
 
         private PlayerAction action;
         private Action<PlayerAction> callback;
+        private int choiceIndex;
+        private Action<int> choiceCallback;
 
         public void SetText(string text)
         {
@@ -31,6 +33,29 @@ namespace Verdict.UI.Narrative
         {
             this.action = action;
             this.callback = callback;
+            this.choiceCallback = null;
+
+            if (button == null)
+            {
+                return;
+            }
+
+            button.onClick.RemoveAllListeners();
+
+            button.onClick.AddListener(
+                HandleClicked);
+        }
+
+        public void SetChoice(
+            string text,
+            int choiceIndex,
+            Action<int> callback)
+        {
+            SetText(text);
+
+            this.choiceIndex = choiceIndex;
+            this.choiceCallback = callback;
+            this.callback = null;
 
             if (button == null)
             {
@@ -45,6 +70,12 @@ namespace Verdict.UI.Narrative
 
         private void HandleClicked()
         {
+            if (choiceCallback != null)
+            {
+                choiceCallback(choiceIndex);
+                return;
+            }
+
             callback?.Invoke(action);
         }
 
@@ -57,3 +88,4 @@ namespace Verdict.UI.Narrative
         }
     }
 }
+

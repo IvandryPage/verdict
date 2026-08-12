@@ -132,6 +132,12 @@ namespace Verdict.UI.Narrative
                     HandleEvidencePresented;
             }
 
+            courtroomController.CourtroomStateChanged +=
+                HandleCourtroomStateChanged;
+
+            courtroomController.ChoiceRequested +=
+                HandleChoiceRequested;
+
             Refresh();
         }
 
@@ -153,6 +159,12 @@ namespace Verdict.UI.Narrative
 
             courtroomController.ArgumentResolved -=
                 HandleArgumentResolved;
+
+            courtroomController.CourtroomStateChanged -=
+                HandleCourtroomStateChanged;
+
+            courtroomController.ChoiceRequested -=
+                HandleChoiceRequested;
 
             if (dialoguePanelButton != null)
             {
@@ -186,6 +198,15 @@ namespace Verdict.UI.Narrative
             if (courtroomController == null)
             {
                 HideAll();
+                return;
+            }
+
+            if (courtroomController.IsWaitingForChoice)
+            {
+                BuildNarrativeChoiceOptions(
+                    courtroomController.CurrentChoice);
+
+                ShowChoicePanel();
                 return;
             }
 
@@ -225,6 +246,36 @@ namespace Verdict.UI.Narrative
             StatementRuntime statement)
         {
             RefreshStatementAndActions();
+        }
+
+        private void HandleChoiceRequested(
+            ChoiceNodeData choice)
+        {
+            if (choice == null)
+            {
+                return;
+            }
+
+            ClearActionOptions();
+
+            if (statementPanel != null)
+            {
+                statementPanel.SetActive(false);
+            }
+
+            HideDialoguePanel();
+
+            BuildNarrativeChoiceOptions(choice);
+            ShowChoicePanel();
+        }
+
+        private void HandleCourtroomStateChanged(
+            CourtroomState state)
+        {
+            if (state == CourtroomState.EvidenceSelection)
+            {
+                OpenEvidencePanel();
+            }
         }
 
         private void RefreshStatementAndActions()
@@ -540,6 +591,58 @@ namespace Verdict.UI.Narrative
                     HandleActionSelected);
 
                 spawnedOptions.Add(option);
+            }
+        }
+
+        private void BuildNarrativeChoiceOptions(
+            ChoiceNodeData choice)
+        {
+            ClearActionOptions();
+
+            if (choice == null || choice.Choices == null ||
+                choice.Choices.Count == 0)
+            {
+                return;
+            }
+
+            List<int> choiceOrder =
+                Enumerable.Range(0, choice.Choices.Count)
+                          .OrderBy(_ => UnityEngine.Random.value)
+                          .ToList();
+
+            foreach (int choiceIndex in choiceOrder)
+            {
+                NarrativeChoiceOptionData choiceOption =
+                    choice.Choices[choiceIndex];
+
+                ChoiceOptionView option =
+                    Instantiate(
+                        choiceOptionPrefab,
+                        choiceOptionsContainer);
+
+                option.SetChoice(
+                    choiceOption?.Text ?? string.Empty,
+                    choiceIndex,
+                    HandleNarrativeChoiceSelected);
+
+                spawnedOptions.Add(option);
+            }
+        }
+
+        private void HandleNarrativeChoiceSelected(
+            int choiceIndex)
+        {
+            if (courtroomController == null)
+            {
+                return;
+            }
+
+            HideChoicePanel();
+
+            if (!courtroomController.SelectChoice(choiceIndex))
+            {
+                Debug.LogWarning(
+                    $"NarrativePresenter: Invalid choice index {choiceIndex}.");
             }
         }
 

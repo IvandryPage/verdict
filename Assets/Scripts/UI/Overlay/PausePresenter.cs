@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Verdict.Input;
 using Verdict.Systems;
 
@@ -12,13 +11,6 @@ namespace Verdict.UI.Overlay
         [Header("Panel")]
         [SerializeField]
         private GameObject pausePanel;
-
-        [Header("Controls")]
-        [SerializeField]
-        private Button pauseButton;
-
-        [SerializeField]
-        private Button resumeButton;
 
         private CourtroomController courtroomController;
 
@@ -31,56 +23,40 @@ namespace Verdict.UI.Overlay
 
         private void Awake()
         {
-            inputActions = new VerdictInputActions();
-            inputActions.Player.Pause.performed += HandlePauseInput;
-            inputActions.Player.Enable();
-
-            if (pauseButton != null)
-            {
-                pauseButton.clicked += HandlePausePressed;
-            }
-
-            if (resumeButton != null)
-            {
-                resumeButton.clicked += HandleResumePressed;
-            }
-
             Hide();
         }
 
         public void Bind(
-            CourtroomController controller)
+            CourtroomController controller,
+            VerdictInputActions inputActions)
         {
             Unbind();
 
             courtroomController = controller;
+            this.inputActions = inputActions;
 
             if (courtroomController == null)
             {
                 return;
+            }
+
+            if (this.inputActions != null)
+            {
+                this.inputActions.Player.Pause.performed +=
+                    HandlePauseInput;
             }
         }
 
         public void Unbind()
         {
+            if (inputActions != null)
+            {
+                inputActions.Player.Pause.performed -=
+                    HandlePauseInput;
+                inputActions = null;
+            }
+
             courtroomController = null;
-        }
-
-        private void HandlePausePressed()
-        {
-            if (courtroomController == null)
-            {
-                return;
-            }
-
-            if (!courtroomController.CanInteract)
-            {
-                return;
-            }
-
-            Show();
-
-            courtroomController.Pause();
         }
 
         private void HandlePauseInput(
@@ -93,7 +69,8 @@ namespace Verdict.UI.Overlay
 
             if (IsPaused)
             {
-                HandleResumePressed();
+                Hide();
+                courtroomController.Resume();
                 return;
             }
 
@@ -104,18 +81,6 @@ namespace Verdict.UI.Overlay
 
             Show();
             courtroomController.Pause();
-        }
-
-        private void HandleResumePressed()
-        {
-            if (courtroomController == null)
-            {
-                return;
-            }
-
-            Hide();
-
-            courtroomController.Resume();
         }
 
         public void Show()
@@ -145,23 +110,6 @@ namespace Verdict.UI.Overlay
         private void OnDestroy()
         {
             Unbind();
-
-            if (pauseButton != null)
-            {
-                pauseButton.clicked -= HandlePausePressed;
-            }
-
-            if (resumeButton != null)
-            {
-                resumeButton.clicked -= HandleResumePressed;
-            }
-
-            if (inputActions != null)
-            {
-                inputActions.Player.Pause.performed -= HandlePauseInput;
-                inputActions.Dispose();
-                inputActions = null;
-            }
         }
     }
 }

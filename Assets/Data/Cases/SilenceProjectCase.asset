@@ -1896,61 +1896,6 @@ MonoBehaviour:
               characterStat: 0
               value: 2
             failureEffects: []
-          - action: 9
-            conditions:
-            - rid: 1763526655240044550
-            - rid: 1763526655240044551
-            successEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 8
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 4
-              operation: 0
-              characterStat: 0
-              value: 5
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 0
-              operation: 0
-              characterStat: 0
-              value: 5
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 6
-              operation: 0
-              characterStat: 0
-              value: 5
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 3
-              operation: 0
-              characterStat: 0
-              value: 10
-            failureEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 4
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 6
-              operation: 1
-              characterStat: 0
-              value: 3
           - action: 3
             conditions:
             - rid: 1763526658047344797
@@ -2746,7 +2691,6 @@ MonoBehaviour:
     - rid: 1763526658047344878
     - rid: 1763526658047344879
     - rid: 1763526658047344880
-    - rid: 2436170579486965823
   references:
     version: 2
     RefIds:
@@ -2856,14 +2800,6 @@ MonoBehaviour:
         stat: 0
         comparisonOperator: 1
         value: 0
-    - rid: 1763526655240044550
-      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        requiredEvidence: {fileID: 11400000, guid: be1dab4631674483a843c050da0d4037, type: 2}
-    - rid: 1763526655240044551
-      type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        requiredEvidence: {fileID: 11400000, guid: 7349a69bf3c1040ae97430ef77f37b43, type: 2}
     - rid: 1763526655240044552
       type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -4553,11 +4489,3 @@ MonoBehaviour:
           requireSuccessful: 1
         trueNodeId: 235ed286a1644bb6a684080c0881a23d
         falseNodeId: 0df4ad923872439f83befd5916dc7284
-    - rid: 2436170579486965823
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: ae02ff87dd22440e92dfae3407731fde
-        position: {x: 100, y: 100}
-        category: 0
-        gameplayEventId: 
-        nextNodeId: 
