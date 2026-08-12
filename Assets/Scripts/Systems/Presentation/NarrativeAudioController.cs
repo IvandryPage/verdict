@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Verdict.Data.Cases;
+using Verdict.Data.Narrative;
+using Verdict.Runtime;
+using Verdict.Systems;
 
 namespace Verdict
 {
@@ -34,14 +38,27 @@ namespace Verdict
         [SerializeField]
         private List<AudioCue> sfxClips = new();
 
-        [Header("UI Click")]
+        [Header("UI & Gameplay SFX")]
         [SerializeField]
         private string clickSoundId = "ui_click";
+
+        [SerializeField]
+        private string statementSoundId = "statement_enter";
+
+        [SerializeField]
+        private string dialogueSoundId = "dialogue_appear";
+
+        [SerializeField]
+        private string choiceSoundId = "choice_open";
+
+        [SerializeField]
+        private string caseStartSoundId = "case_start";
 
         [SerializeField]
         private float clickCooldownSeconds = 0.08f;
 
         private float lastClickTime;
+        private CourtroomController boundController;
 
         private void Update()
         {
@@ -56,6 +73,100 @@ namespace Verdict
                 lastClickTime = Time.unscaledTime;
                 PlaySound(clickSoundId, 1f);
             }
+        }
+
+        public void Bind(CourtroomController controller)
+        {
+            Unbind();
+
+            boundController = controller;
+            if (boundController == null)
+            {
+                return;
+            }
+
+            boundController.CaseStarted += HandleCaseStarted;
+            boundController.CurrentStatementChanged += HandleCurrentStatementChanged;
+            boundController.NarrativeEntryChanged += HandleNarrativeEntryChanged;
+            boundController.ChoiceRequested += HandleChoiceRequested;
+            boundController.ArgumentResolved += HandleArgumentResolved;
+            boundController.EndingTriggered += HandleEndingTriggered;
+        }
+
+        public void Unbind()
+        {
+            if (boundController == null)
+            {
+                return;
+            }
+
+            boundController.CaseStarted -= HandleCaseStarted;
+            boundController.CurrentStatementChanged -= HandleCurrentStatementChanged;
+            boundController.NarrativeEntryChanged -= HandleNarrativeEntryChanged;
+            boundController.ChoiceRequested -= HandleChoiceRequested;
+            boundController.ArgumentResolved -= HandleArgumentResolved;
+            boundController.EndingTriggered -= HandleEndingTriggered;
+            boundController = null;
+        }
+
+        private void HandleCaseStarted()
+        {
+            PlaySound(caseStartSoundId, 0.8f);
+        }
+
+        private void HandleCurrentStatementChanged(StatementRuntime statement)
+        {
+            if (statement == null)
+            {
+                return;
+            }
+
+            PlaySound(statementSoundId, 0.75f);
+        }
+
+        private void HandleNarrativeEntryChanged(NarrativeDialogueEntryData entry)
+        {
+            if (entry == null)
+            {
+                return;
+            }
+
+            PlaySound(dialogueSoundId, 0.7f);
+        }
+
+        private void HandleChoiceRequested(ChoiceNodeData choice)
+        {
+            if (choice == null)
+            {
+                return;
+            }
+
+            PlaySound(choiceSoundId, 0.7f);
+        }
+
+        private void HandleArgumentResolved(ResolverResult result)
+        {
+            if (result == null)
+            {
+                return;
+            }
+
+            PlaySound("argument_resolve", 0.8f);
+        }
+
+        private void HandleEndingTriggered(EndingData ending)
+        {
+            if (ending == null)
+            {
+                return;
+            }
+
+            PlaySound("ending_appear", 0.9f);
+        }
+
+        private void OnDestroy()
+        {
+            Unbind();
         }
 
         public void PlayMusic(string musicId, float volume = 1f)

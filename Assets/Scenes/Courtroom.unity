@@ -4260,9 +4260,25 @@ MonoBehaviour:
   sfxClips:
   - Id: ui_click
     Clip: {fileID: 8300000, guid: e6c7518cbb1137f4580738f025441be9, type: 3}
-    Volume: 0
+    Volume: 1
+    Pitch: 0
+  - Id: statement_enter
+    Clip: {fileID: 8300000, guid: d8f9bff7a78eb214893a632b4d4a557b, type: 3}
+    Volume: 1
+    Pitch: 0
+  - Id: dialogue_appear
+    Clip: {fileID: 8300000, guid: 428af267a67cb684aae5e763b9982300, type: 3}
+    Volume: 1
+    Pitch: 0
+  - Id: choice_open
+    Clip: {fileID: 8300000, guid: d8f9bff7a78eb214893a632b4d4a557b, type: 3}
+    Volume: 1
     Pitch: 0
   clickSoundId: ui_click
+  statementSoundId: statement_enter
+  dialogueSoundId: dialogue_appear
+  choiceSoundId: choice_open
+  caseStartSoundId: case_start
   clickCooldownSeconds: 0.08
 --- !u!1001 &1002794028
 PrefabInstance:
@@ -8782,8 +8798,8 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 991493035}
   - {fileID: 1169134555}
+  - {fileID: 991493035}
   - {fileID: 1622756530}
   - {fileID: 1428378277}
   - {fileID: 1471858985}

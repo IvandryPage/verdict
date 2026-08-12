@@ -108,6 +108,12 @@ namespace Verdict
 
             courtroomEventResolver.Bind();
 
+            if (narrativeAudioController != null)
+            {
+                narrativeAudioController.Bind(
+                    courtroomController);
+            }
+
             if (narrativePresenter != null)
             {
                 narrativePresenter.Bind(
