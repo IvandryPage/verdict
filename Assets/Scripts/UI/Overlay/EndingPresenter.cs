@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Verdict.Data.Cases;
 using Verdict.Systems;
 
@@ -31,6 +32,16 @@ namespace Verdict.UI.Overlay
         [SerializeField]
         private GameObject backdrop;
 
+        [Header("Canvas Groups")]
+        [SerializeField]
+        // Optional: assign a CanvasGroup for the panel. If left null the
+        // presenter will try to get/add one at runtime and fall back to
+        // SetActive on the GameObject for compatibility.
+        private CanvasGroup panelGroup;
+
+        [SerializeField]
+        private CanvasGroup backdropGroup;
+
         [Header("Content")]
         [SerializeField]
         private TMP_Text titleText;
@@ -41,6 +52,10 @@ namespace Verdict.UI.Overlay
         [Header("Controls")]
         [SerializeField]
         private Button continueButton;
+
+        [SerializeField]
+        [Tooltip("Optional: scene name to load when the player acknowledges the ending.")]
+        private string mainMenuSceneName;
 
         private CourtroomController courtroomController;
 
@@ -81,6 +96,31 @@ namespace Verdict.UI.Overlay
                     "EndingPresenter.Awake: backdrop reference is not assigned.");
             }
 
+            // If canvas groups weren't assigned in the inspector, try to
+            // locate them on the provided GameObjects. Adding a CanvasGroup
+            // is safe at runtime even if the object is inactive, but note
+            // that the presenter must itself be enabled to run Awake/Start.
+            if (panel != null && panelGroup == null)
+            {
+                panelGroup = panel.GetComponent<CanvasGroup>();
+                if (panelGroup == null)
+                {
+                    panelGroup = panel.AddComponent<CanvasGroup>();
+                }
+            }
+
+            if (backdrop != null && backdropGroup == null)
+            {
+                backdropGroup = backdrop.GetComponent<CanvasGroup>();
+                if (backdropGroup == null)
+                {
+                    backdropGroup = backdrop.AddComponent<CanvasGroup>();
+                }
+            }
+
+            // Start hidden by making alpha 0 / non-interactable. This avoids
+            // toggling GameObject.active which breaks presenters attached
+            // to those same GameObjects.
             Hide();
         }
 
@@ -175,12 +215,26 @@ namespace Verdict.UI.Overlay
 
             isShowing = true;
 
-            if (backdrop != null)
+            // Prefer CanvasGroup alpha toggles. If unavailable fall back to
+            // GameObject.SetActive so older setups keep working.
+            if (backdropGroup != null)
+            {
+                backdropGroup.alpha = 1f;
+                backdropGroup.interactable = true;
+                backdropGroup.blocksRaycasts = true;
+            }
+            else if (backdrop != null)
             {
                 backdrop.SetActive(true);
             }
 
-            if (panel != null)
+            if (panelGroup != null)
+            {
+                panelGroup.alpha = 1f;
+                panelGroup.interactable = true;
+                panelGroup.blocksRaycasts = true;
+            }
+            else if (panel != null)
             {
                 panel.SetActive(true);
             }
@@ -203,12 +257,26 @@ namespace Verdict.UI.Overlay
         {
             isShowing = false;
 
-            if (backdrop != null)
+            // Mirror the Show() logic: prefer CanvasGroup transitions and
+            // otherwise fall back to SetActive(false).
+            if (backdropGroup != null)
+            {
+                backdropGroup.alpha = 0f;
+                backdropGroup.interactable = false;
+                backdropGroup.blocksRaycasts = false;
+            }
+            else if (backdrop != null)
             {
                 backdrop.SetActive(false);
             }
 
-            if (panel != null)
+            if (panelGroup != null)
+            {
+                panelGroup.alpha = 0f;
+                panelGroup.interactable = false;
+                panelGroup.blocksRaycasts = false;
+            }
+            else if (panel != null)
             {
                 panel.SetActive(false);
             }
@@ -243,6 +311,12 @@ namespace Verdict.UI.Overlay
             {
                 Debug.LogWarning(
                     "EndingPresenter: no courtroomController assigned when continue was pressed.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(mainMenuSceneName))
+            {
+                Debug.Log($"EndingPresenter: loading main menu scene '{mainMenuSceneName}'");
+                SceneManager.LoadScene(mainMenuSceneName);
             }
         }
 

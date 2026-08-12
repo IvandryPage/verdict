@@ -62,7 +62,7 @@ namespace Verdict.Systems
             caseSessionManager.HasActiveSession;
 
         public bool CanInteract =>
-            HasActiveCase &&
+            courtroomState != CourtroomState.Paused && HasActiveCase &&
             courtroomState == CourtroomState.Statement &&
             (Narrative == null ||
              Narrative.IsWaitingForStatement);

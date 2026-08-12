@@ -12,6 +12,10 @@ namespace Verdict.UI.Overlay
         [SerializeField]
         private GameObject pausePanel;
 
+        [Header("Canvas Groups")]
+        [SerializeField]
+        private CanvasGroup pauseGroup;
+
         private CourtroomController courtroomController;
 
         private VerdictInputActions inputActions;
@@ -23,6 +27,15 @@ namespace Verdict.UI.Overlay
 
         private void Awake()
         {
+            if (pausePanel != null && pauseGroup == null)
+            {
+                pauseGroup = pausePanel.GetComponent<CanvasGroup>();
+                if (pauseGroup == null)
+                {
+                    pauseGroup = pausePanel.AddComponent<CanvasGroup>();
+                }
+            }
+
             Hide();
         }
 
@@ -44,6 +57,7 @@ namespace Verdict.UI.Overlay
             {
                 this.inputActions.Player.Pause.performed +=
                     HandlePauseInput;
+                Debug.Log("[PausePresenter] Bound to input actions");
             }
         }
 
@@ -62,6 +76,8 @@ namespace Verdict.UI.Overlay
         private void HandlePauseInput(
             InputAction.CallbackContext context)
         {
+            Debug.Log($"[PausePresenter] Pause input performed. performed={context.performed}, IsPaused={IsPaused}, CanInteract={(courtroomController != null ? courtroomController.CanInteract.ToString() : "null")}");
+
             if (!context.performed || courtroomController == null)
             {
                 return;
@@ -74,11 +90,6 @@ namespace Verdict.UI.Overlay
                 return;
             }
 
-            if (!courtroomController.CanInteract)
-            {
-                return;
-            }
-
             Show();
             courtroomController.Pause();
         }
@@ -87,7 +98,13 @@ namespace Verdict.UI.Overlay
         {
             IsPaused = true;
 
-            if (pausePanel != null)
+            if (pauseGroup != null)
+            {
+                pauseGroup.alpha = 1f;
+                pauseGroup.interactable = true;
+                pauseGroup.blocksRaycasts = true;
+            }
+            else if (pausePanel != null)
             {
                 pausePanel.SetActive(true);
             }
@@ -99,7 +116,13 @@ namespace Verdict.UI.Overlay
         {
             IsPaused = false;
 
-            if (pausePanel != null)
+            if (pauseGroup != null)
+            {
+                pauseGroup.alpha = 0f;
+                pauseGroup.interactable = false;
+                pauseGroup.blocksRaycasts = false;
+            }
+            else if (pausePanel != null)
             {
                 pausePanel.SetActive(false);
             }
