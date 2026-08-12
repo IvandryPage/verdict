@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23065c9a6e72e403480fe0dcffa9b243, type: 3}
-  m_Name: RatnaPrameswari
+  m_Name: PraptoPrameswara
   m_EditorClassIdentifier: 
-  id: ratna_prameswari
-  displayName: Ratna Prameswari
+  id: prapto_prameswara
+  displayName: PraptoPrameswara
   occupation: 2
   biography: Jaksa yang menangani kasus ini. Bukan tokoh antagonis. Ia benar-benar
     meyakini dakwaan terhadap Arga berdasarkan bukti yang tersedia, dan hanya akan

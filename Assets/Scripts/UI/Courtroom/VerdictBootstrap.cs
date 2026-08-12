@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
 using Verdict.Data.Cases;
+using Verdict.Presentation;
 using Verdict.Systems;
+using Verdict.Systems.Presentation;
 using Verdict.UI.Narrative;
 using Verdict.UI.Overlay;
 
@@ -23,8 +25,13 @@ namespace Verdict
         [SerializeField]
         private PausePresenter pausePresenter;
 
+        [Header("Presentation")]
+        [SerializeField]
+        private CourtroomCameraRig courtroomCameraRig;
+
         private CaseSessionManager caseSessionManager;
         private CourtroomController courtroomController;
+        private CourtroomCameraController courtroomCameraController;
 
         public CaseSessionManager CaseSessionManager =>
             caseSessionManager;
@@ -58,6 +65,17 @@ namespace Verdict
             courtroomController =
                 new CourtroomController(
                     caseSessionManager);
+
+            if (courtroomCameraRig != null)
+            {
+                courtroomCameraController =
+                    new CourtroomCameraController(
+                        courtroomController);
+
+                courtroomCameraController.Bind();
+                courtroomCameraRig.Bind(
+                    courtroomCameraController);
+            }
 
             if (narrativePresenter != null)
             {
