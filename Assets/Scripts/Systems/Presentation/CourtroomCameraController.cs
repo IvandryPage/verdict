@@ -1,4 +1,5 @@
 using System;
+using Verdict.Data.Cases;
 using Verdict.Data.Narrative;
 using Verdict.Data.Presentation;
 using Verdict.Runtime;
@@ -54,6 +55,7 @@ namespace Verdict.Systems.Presentation
             courtroomController.NarrativeEntryChanged += HandleNarrativeEntryChanged;
             courtroomController.CurrentStatementChanged += HandleCurrentStatementChanged;
             courtroomController.CourtroomStateChanged += HandleCourtroomStateChanged;
+            courtroomController.CourtStateStatChanged += HandleCourtStateStatChanged;
             courtroomController.ArgumentResolved += HandleArgumentResolved;
 
             Trigger(new CourtroomCameraRequest(
@@ -72,6 +74,7 @@ namespace Verdict.Systems.Presentation
             courtroomController.NarrativeEntryChanged -= HandleNarrativeEntryChanged;
             courtroomController.CurrentStatementChanged -= HandleCurrentStatementChanged;
             courtroomController.CourtroomStateChanged -= HandleCourtroomStateChanged;
+            courtroomController.CourtStateStatChanged -= HandleCourtStateStatChanged;
             courtroomController.ArgumentResolved -= HandleArgumentResolved;
         }
 
@@ -168,6 +171,44 @@ namespace Verdict.Systems.Presentation
                 result.IsSuccess
                     ? CourtroomCameraCue.Reaction
                     : CourtroomCameraCue.Witness,
+                courtroomController.CurrentWitness?.Character?.Data?.Id,
+                NarrativeSpeakerType.Character));
+        }
+
+        private void HandleCourtStateStatChanged(
+            CourtStat stat,
+            int previousValue,
+            int newValue)
+        {
+            if (courtroomController == null ||
+                courtroomController.CourtroomState == CourtroomState.None ||
+                courtroomController.CourtroomState == CourtroomState.Ending)
+            {
+                return;
+            }
+
+            if (stat == CourtStat.Penalty && newValue >= 60)
+            {
+                Trigger(new CourtroomCameraRequest(
+                    CourtroomCameraCue.Witness,
+                    courtroomController.CurrentWitness?.Character?.Data?.Id,
+                    NarrativeSpeakerType.Character));
+                return;
+            }
+
+            if ((stat == CourtStat.JudgeTrust && newValue >= 80) ||
+                (stat == CourtStat.PublicOpinion && newValue >= 70) ||
+                (stat == CourtStat.DefenseConfidence && newValue >= 75))
+            {
+                Trigger(new CourtroomCameraRequest(
+                    CourtroomCameraCue.Reaction,
+                    courtroomController.CurrentWitness?.Character?.Data?.Id,
+                    NarrativeSpeakerType.Character));
+                return;
+            }
+
+            Trigger(new CourtroomCameraRequest(
+                CourtroomCameraCue.Default,
                 courtroomController.CurrentWitness?.Character?.Data?.Id,
                 NarrativeSpeakerType.Character));
         }

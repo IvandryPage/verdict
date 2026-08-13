@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Verdict.Runtime;
 
 namespace Verdict.Data.Cases
 {
@@ -82,6 +83,43 @@ namespace Verdict.Data.Cases
                 && juryTrust >= minimumJuryTrust
                 && defenseConfidence >= minimumDefenseConfidence
                 && prosecutorPressure <= maximumProsecutorPressure;
+        }
+
+        public bool IsSatisfiedBy(CourtStateRuntime runtime)
+        {
+            if (runtime == null)
+            {
+                return false;
+            }
+
+            return IsSatisfiedBy(
+                runtime.GetCourtStat(CourtStat.JudgeTrust),
+                runtime.GetCourtStat(CourtStat.Penalty),
+                runtime.GetCourtStat(CourtStat.PublicOpinion),
+                runtime.GetCourtStat(CourtStat.CaseProgress),
+                runtime.GetCourtStat(CourtStat.StoryProgress),
+                runtime.GetCourtStat(CourtStat.JuryTrust),
+                runtime.GetCourtStat(CourtStat.DefenseConfidence),
+                runtime.GetCourtStat(CourtStat.ProsecutorPressure));
+        }
+
+        public int GetScore(CourtStateRuntime runtime)
+        {
+            if (runtime == null)
+            {
+                return int.MinValue;
+            }
+
+            int score = 0;
+            score += runtime.GetCourtStat(CourtStat.JudgeTrust);
+            score += runtime.GetCourtStat(CourtStat.PublicOpinion);
+            score += runtime.GetCourtStat(CourtStat.JuryTrust);
+            score += runtime.GetCourtStat(CourtStat.DefenseConfidence);
+            score += runtime.GetCourtStat(CourtStat.CaseProgress);
+            score += runtime.GetCourtStat(CourtStat.StoryProgress);
+            score -= runtime.GetCourtStat(CourtStat.Penalty);
+            score -= runtime.GetCourtStat(CourtStat.ProsecutorPressure);
+            return score;
         }
     }
 }

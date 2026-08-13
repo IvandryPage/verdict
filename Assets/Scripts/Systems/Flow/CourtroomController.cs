@@ -107,6 +107,9 @@ namespace Verdict.Systems
         public event Action<ResolverResult>
             ArgumentResolved;
 
+        public event Action<CourtStat, int, int>
+            CourtStateStatChanged;
+
         public event Action<EndingData>
             EndingTriggered;
 
@@ -132,6 +135,7 @@ namespace Verdict.Systems
             EvidenceUnlocked;
 
         private CourtroomState previousStateBeforeEvidenceSelection;
+        private CourtStateRuntime boundCourtState;
 
         // Constructor
 
@@ -158,6 +162,8 @@ namespace Verdict.Systems
 
             ClearSelectedEvidence();
 
+            BindCourtStateRuntime();
+
             SetCourtroomState(
                 CourtroomState.None);
 
@@ -180,6 +186,8 @@ namespace Verdict.Systems
 
             ClearSelectedEvidence();
 
+            BindCourtStateRuntime();
+
             SetCourtroomState(
                 CourtroomState.None);
 
@@ -196,6 +204,8 @@ namespace Verdict.Systems
 
         public void EndCase()
         {
+            UnbindCourtStateRuntime();
+
             SetCourtroomState(
                 CourtroomState.None);
 
@@ -558,6 +568,11 @@ namespace Verdict.Systems
 
             ClearSelectedEvidence();
 
+            if (Session?.Flow?.IsComplete == true)
+            {
+                return TryTriggerBestEnding();
+            }
+
             return ResumeNarrative();
         }
 
@@ -820,30 +835,29 @@ namespace Verdict.Systems
             Debug.Log(
                 $"[Ending] Reached ending ID: {endingId}");
 
-            if (string.IsNullOrWhiteSpace(endingId))
+            EndingData ending = null;
+
+            if (!string.IsNullOrWhiteSpace(endingId))
             {
-                Debug.LogWarning(
-                    "[Ending] Ending node reached with empty or missing ending ID.");
-                return;
+                ending =
+                    Session.Runtime.Data.Endings
+                        .FirstOrDefault(e => e.Id == endingId);
             }
 
-            EndingData ending =
-                Session.Runtime.Data.Endings
-                    .FirstOrDefault(e => e.Id == endingId);
-
-            Debug.Log(
-                $"[Ending] Found EndingData: {ending?.Title ?? "<null>"}");
+            if (ending == null)
+            {
+                ending = EvaluateBestEnding();
+            }
 
             if (ending == null)
             {
                 Debug.LogWarning(
-                    $"[Ending] No EndingData found matching ID '{endingId}'. " +
-                    "Check the ending node ID and the case data.");
+                    "[Ending] Ending node reached without a matching ending ID or valid stat-based ending.");
                 return;
             }
 
             Debug.Log(
-                "[Ending] Invoking EndingTriggered");
+                $"[Ending] Found EndingData: {ending.Title ?? "<null>"}");
 
             SetCourtroomState(
                 CourtroomState.Ending);
@@ -887,6 +901,92 @@ namespace Verdict.Systems
         {
             ChoiceRequested?.Invoke(
                 choice);
+        }
+
+        public EndingData EvaluateBestEnding()
+        {
+            if (Session?.Runtime?.Data?.Endings == null ||
+                Session.Runtime.Data.Endings.Count == 0 ||
+                CourtState == null)
+            {
+                return null;
+            }
+
+            EndingData bestEnding = null;
+            int bestScore = int.MinValue;
+
+            foreach (EndingData ending in Session.Runtime.Data.Endings)
+            {
+                if (ending == null)
+                {
+                    continue;
+                }
+
+                if (!ending.IsSatisfiedBy(CourtState))
+                {
+                    continue;
+                }
+
+                int score = ending.GetScore(CourtState);
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestEnding = ending;
+                }
+            }
+
+            if (bestEnding != null)
+            {
+                return bestEnding;
+            }
+
+            return Session.Runtime.Data.Endings
+                .Where(e => e != null)
+                .OrderByDescending(e => e.GetScore(CourtState))
+                .FirstOrDefault();
+        }
+
+        public bool TryTriggerBestEnding()
+        {
+            EndingData ending = EvaluateBestEnding();
+            if (ending == null)
+            {
+                return false;
+            }
+
+            HandleEndingReached(ending.Id);
+            return true;
+        }
+
+        private void BindCourtStateRuntime()
+        {
+            if (Session?.Runtime?.CourtState == null)
+            {
+                return;
+            }
+
+            UnbindCourtStateRuntime();
+            boundCourtState = Session.Runtime.CourtState;
+            boundCourtState.StatChanged += HandleCourtStateStatChanged;
+        }
+
+        private void UnbindCourtStateRuntime()
+        {
+            if (boundCourtState == null)
+            {
+                return;
+            }
+
+            boundCourtState.StatChanged -= HandleCourtStateStatChanged;
+            boundCourtState = null;
+        }
+
+        private void HandleCourtStateStatChanged(
+            CourtStat stat,
+            int previousValue,
+            int newValue)
+        {
+            CourtStateStatChanged?.Invoke(stat, previousValue, newValue);
         }
 
         // STATEMENT / NARRATIVE SYNC

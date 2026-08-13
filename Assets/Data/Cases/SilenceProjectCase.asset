@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: case_001
   title: Project Silence
-  description: Ryan Pratama, kepala tim pengadaan proyek digitalisasi pendidikan
-    nasional senilai Rp3,8 triliun, ditemukan tewas sehari sebelum menyerahkan bukti
-    dugaan korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, ditangkap
-    dan didakwa sebagai pembunuh berdasarkan bukti permukaan yang tampak hampir sempurna.
-    Sebagai pengacara pembela, kamu harus menelusuri jejak bukti, menyelami saksi-
-    saksi yang saling silang, dan membongkar konspirasi nasional yang menyamarkan
-    kebenaran di balik ruang sidang.
+  description: Ryan Pratama, staf pengadaan proyek digitalisasi pendidikan nasional
+    senilai Rp3,8 triliun, ditemukan tewas sehari sebelum menyerahkan bukti dugaan
+    korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, didakwa sebagai pembunuh
+    berdasarkan bukti yang tampak hampir sempurna. Pemain berperan sebagai pengacara
+    yang ditugaskan membelanya, dan perlahan menemukan bahwa pembunuhan ini hanyalah
+    permukaan dari konspirasi nasional yang jauh lebih besar.
   difficulty: 2
   purpose: 2
   tags:
@@ -461,7 +460,7 @@ MonoBehaviour:
           evaluationRules:
           - action: 2
             conditions:
-            - rid: 1763526640768909312
+            - rid: 2436170619896463423
             successEffects:
             - effect: 9
               targetType: 5
@@ -483,7 +482,7 @@ MonoBehaviour:
           evaluationRules:
           - action: 2
             conditions:
-            - rid: 1763526640768909313
+            - rid: 2436170619896463424
             successEffects:
             - effect: 8
               targetType: 0
@@ -675,11 +674,7 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 0
-            failureEffects: []
-          - action: 2
-            conditions:
-            - rid: 1763526658047344765
-            successEffects:
+            failureEffects:
             - effect: 9
               targetType: 5
               targetId: yudi_setiawan
@@ -690,18 +685,17 @@ MonoBehaviour:
             - effect: 8
               targetType: 0
               targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 2
-            - effect: 8
-              targetType: 0
-              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
-            failureEffects: []
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
           - action: 7
             conditions:
             - rid: 1763526658047344766
@@ -849,11 +843,11 @@ MonoBehaviour:
           evaluationRules:
           - action: 2
             conditions:
-            - rid: 1763526640768909314
+            - rid: 2436170619896463426
             successEffects:
             - effect: 9
               targetType: 5
-              targetId: yudi_setiawan
+              targetId: arga_mahendra
               courtStat: 0
               operation: 0
               characterStat: 2
@@ -873,10 +867,10 @@ MonoBehaviour:
               value: 2
             - effect: 9
               targetType: 5
-              targetId: yudi_setiawan
+              targetId: arga_mahendra
               courtStat: 0
               operation: 0
-              characterStat: 1
+              characterStat: 2
               value: 5
             failureEffects:
             - effect: 8
@@ -1138,7 +1132,7 @@ MonoBehaviour:
               courtStat: 1
               operation: 0
               characterStat: 0
-              value: 3
+              value: 5
         - id: 993eea92c16b4583abe557c08913b500
           factId: fact_flashdisk_formatted_after_death
           isTrue: 1
@@ -1177,7 +1171,7 @@ MonoBehaviour:
               courtStat: 1
               operation: 0
               characterStat: 0
-              value: 2
+              value: 3
       - id: 1164a46095fe479f88edf3a667d05ea7
         text: Selain itu, kami menelusuri dokumen administratif proyek, tender, kontrak,
           hingga berita acara serah terimanya.
@@ -1305,11 +1299,7 @@ MonoBehaviour:
               operation: 1
               characterStat: 0
               value: 2
-            failureEffects: []
-          - action: 2
-            conditions:
-            - rid: 1763526658047344786
-            successEffects:
+            failureEffects:
             - effect: 9
               targetType: 5
               targetId: dimas_haryanto
@@ -1323,7 +1313,7 @@ MonoBehaviour:
               courtStat: 0
               operation: 0
               characterStat: 3
-              value: 5
+              value: 10
             - effect: 8
               targetType: 0
               targetId: 
@@ -1338,7 +1328,6 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 2
-            failureEffects: []
           - action: 6
             conditions:
             - rid: 1763526658047344787
@@ -1382,7 +1371,7 @@ MonoBehaviour:
               targetType: 0
               targetId: 
               courtStat: 7
-              operation: 0
+              operation: 1
               characterStat: 0
               value: 5
             failureEffects:
@@ -1443,7 +1432,7 @@ MonoBehaviour:
             - effect: 8
               targetType: 0
               targetId: 
-              courtStat: 6
+              courtStat: 2
               operation: 0
               characterStat: 0
               value: 3
@@ -1453,7 +1442,7 @@ MonoBehaviour:
               courtStat: 7
               operation: 1
               characterStat: 0
-              value: 3
+              value: 5
             failureEffects:
             - effect: 8
               targetType: 0
@@ -1468,7 +1457,7 @@ MonoBehaviour:
               courtStat: 7
               operation: 0
               characterStat: 0
-              value: 0
+              value: 5
       - id: 8917154301f24d7f9f3925d64216c032
         text: Evaluasi vendor juga sudah melalui proses yang wajar, tidak ada yang
           saya ubah.
@@ -1529,32 +1518,6 @@ MonoBehaviour:
               value: 5
           - action: 2
             conditions:
-            - rid: 1763526658047344792
-            successEffects:
-            - effect: 9
-              targetType: 5
-              targetId: dimas_haryanto
-              courtStat: 0
-              operation: 0
-              characterStat: 2
-              value: 10
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 7
-              operation: 0
-              characterStat: 0
-              value: 3
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 2
-            failureEffects: []
-          - action: 2
-            conditions:
             - rid: 1763526658047344790
             successEffects:
             - effect: 2
@@ -1585,7 +1548,28 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 4
-            failureEffects: []
+            failureEffects:
+            - effect: 9
+              targetType: 5
+              targetId: dimas_haryanto
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 2
           - action: 3
             conditions:
             - rid: 1763526658047344791
@@ -1768,18 +1752,14 @@ MonoBehaviour:
               operation: 1
               characterStat: 0
               value: 8
-            failureEffects: []
-          - action: 2
-            conditions:
-            - rid: 1763526655240044547
-            successEffects:
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 7
+            - effect: 4
+              targetType: 4
+              targetId: ev_gps_history
+              courtStat: 0
               operation: 0
               characterStat: 0
-              value: 3
+              value: 0
+            failureEffects:
             - effect: 8
               targetType: 0
               targetId: 
@@ -1787,14 +1767,20 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 5
-            - effect: 9
-              targetType: 5
-              targetId: yudi_setiawan
-              courtStat: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
               operation: 0
-              characterStat: 2
-              value: 8
-            failureEffects: []
+              characterStat: 0
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 1
+              characterStat: 0
+              value: 5
           - action: 2
             conditions:
             - rid: 1763526658047344795
@@ -1827,7 +1813,28 @@ MonoBehaviour:
               operation: 1
               characterStat: 0
               value: 4
-            failureEffects: []
+            failureEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 3
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 3
           - action: 8
             conditions:
             - rid: 1763526658047344796
@@ -1871,32 +1878,6 @@ MonoBehaviour:
           factId: fact_arga_has_alibi_window
           isTrue: 1
           evaluationRules:
-          - action: 2
-            conditions:
-            - rid: 1763526655240044549
-            successEffects:
-            - effect: 9
-              targetType: 5
-              targetId: yudi_setiawan
-              courtStat: 0
-              operation: 0
-              characterStat: 2
-              value: 5
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 7
-              operation: 0
-              characterStat: 0
-              value: 3
-            - effect: 8
-              targetType: 0
-              targetId: 
-              courtStat: 1
-              operation: 0
-              characterStat: 0
-              value: 2
-            failureEffects: []
           - action: 3
             conditions:
             - rid: 1763526658047344797
@@ -1934,7 +1915,28 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 3
-            failureEffects: []
+            failureEffects:
+            - effect: 9
+              targetType: 5
+              targetId: yudi_setiawan
+              courtStat: 0
+              operation: 0
+              characterStat: 2
+              value: 5
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 2
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 1
     initiallyVisible: 1
   - id: 68a5c30d546d49cf98e38cb0ac0c020e
     character: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
@@ -1960,7 +1962,7 @@ MonoBehaviour:
           evaluationRules:
           - action: 2
             conditions:
-            - rid: 1763526655240044552
+            - rid: 2436170619896463427
             successEffects:
             - effect: 9
               targetType: 5
@@ -1982,8 +1984,23 @@ MonoBehaviour:
           evaluationRules:
           - action: 2
             conditions:
-            - rid: 1763526655240044553
+            - rid: 2436170619896463561
             successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 2
+              value: 2
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 6
+              operation: 0
+              characterStat: 0
+              value: 2
+            failureEffects:
             - effect: 9
               targetType: 5
               targetId: adrian_wijaya
@@ -2005,7 +2022,6 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 2
-            failureEffects: []
           - action: 1
             conditions:
             - rid: 1763526655240044554
@@ -2124,7 +2140,7 @@ MonoBehaviour:
               value: 5
             - effect: 1
               targetType: 1
-              targetId: 284edbd1cd794d47b6219ae44b8eb77e
+              targetId: 7b54ec10b75f44a392ddb2f4960083dd
               courtStat: 0
               operation: 0
               characterStat: 0
@@ -2186,6 +2202,13 @@ MonoBehaviour:
             - effect: 1
               targetType: 1
               targetId: 7b54ec10b75f44a392ddb2f4960083dd
+              courtStat: 0
+              operation: 0
+              characterStat: 0
+              value: 0
+            - effect: 8
+              targetType: 0
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
@@ -2348,7 +2371,7 @@ MonoBehaviour:
           evaluationRules:
           - action: 2
             conditions:
-            - rid: 1763526655240044560
+            - rid: 2436170619896463429
             successEffects:
             - effect: 9
               targetType: 5
@@ -2482,28 +2505,28 @@ MonoBehaviour:
               courtStat: 0
               operation: 0
               characterStat: 0
-              value: 20
+              value: 15
             - effect: 8
               targetType: 0
               targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
-              value: 20
+              value: 15
             - effect: 8
               targetType: 0
               targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
-              value: 20
+              value: 15
             - effect: 8
               targetType: 0
               targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
-              value: 25
+              value: 20
             - effect: 8
               targetType: 0
               targetId: 
@@ -2517,14 +2540,28 @@ MonoBehaviour:
               courtStat: 6
               operation: 0
               characterStat: 0
-              value: 15
+              value: 10
             - effect: 8
               targetType: 0
               targetId: 
-              courtStat: 7
+              courtStat: 2
               operation: 1
               characterStat: 0
+              value: 20
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 5
+              operation: 0
+              characterStat: 0
               value: 15
+            - effect: 9
+              targetType: 5
+              targetId: melati_wulandari
+              courtStat: 0
+              operation: 1
+              characterStat: 5
+              value: 30
             failureEffects:
             - effect: 8
               targetType: 0
@@ -2540,20 +2577,67 @@ MonoBehaviour:
               operation: 0
               characterStat: 0
               value: 10
+          - action: 6
+            conditions:
+            - rid: 2436170619896463430
+            successEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 4
+              operation: 0
+              characterStat: 0
+              value: 8
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 2
+              operation: 1
+              characterStat: 0
+              value: 20
+            - effect: 9
+              targetType: 5
+              targetId: melati_wulandari
+              courtStat: 0
+              operation: 1
+              characterStat: 5
+              value: 20
+            failureEffects:
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 1
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 8
+              targetType: 0
+              targetId: 
+              courtStat: 7
+              operation: 0
+              characterStat: 0
+              value: 10
+            - effect: 9
+              targetType: 5
+              targetId: melati_wulandari
+              courtStat: 0
+              operation: 1
+              characterStat: 5
+              value: 20
     initiallyVisible: 1
-  - id: 001c345688a9410ba77325bcbfd1bd0f
+  - id: 5caac3026acb4abd8838cbe562acfd19
     character: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
     role: 0
     description: 
     testimonies: []
-    initiallyVisible: 0
+    initiallyVisible: 1
   endings:
   - id: end_bad_arga_convicted
     title: Kambing Hitam
     description: Bukti tidak cukup meyakinkan hakim. Arga Mahendra divonis bersalah
       atas pembunuhan Ryan Pratama. Konspirasi di balik proyek digitalisasi pendidikan
       tetap tersembunyi rapi, dan kasus ini ditutup sebagai 'pembunuhan akibat konflik
-      pribadi' persis seperti judul awal yang dibangun media.
+      pribadi', persis seperti judul awal yang dibangun media.
     minimumJudgeTrust: 0
     maximumPenalty: 100
     minimumPublicOpinion: 0
@@ -2595,7 +2679,7 @@ MonoBehaviour:
     description: 'Seluruh bukti korupsi terbongkar sepenuhnya di depan pengadilan,
       dan Arga bebas tanpa keraguan sedikit pun. Namun satu pertanyaan tetap tak
       terjawab: siapa yang benar-benar memerintahkan pembunuhan itu, dan siapa yang
-      paling diuntungkan dari kematian Ryan? Kasus ini resmi ditutup investigasi
+      paling diuntungkan dari kematian Ryan? Kasus ini resmi ditutup, investigasi
       yang sesungguhnya baru saja dimulai.'
     minimumJudgeTrust: 90
     maximumPenalty: 10
@@ -2615,83 +2699,133 @@ MonoBehaviour:
     - rid: 1763526658047344645
     - rid: 1763526658047344646
     - rid: 1763526658047344647
-    - rid: 1763526658047344648
-    - rid: 1763526658047344649
-    - rid: 1763526658047344650
     - rid: 1763526658047344651
-    - rid: 1763526658047344652
     - rid: 1763526658047344653
-    - rid: 1763526658047344654
-    - rid: 1763526658047344655
-    - rid: 1763526658047344810
-    - rid: 1763526658047344811
-    - rid: 1763526658047344812
-    - rid: 1763526658047344813
-    - rid: 1763526658047344814
-    - rid: 1763526658047344815
-    - rid: 1763526658047344816
-    - rid: 1763526658047344817
-    - rid: 1763526658047344818
-    - rid: 1763526658047344819
-    - rid: 1763526658047344820
-    - rid: 1763526658047344821
-    - rid: 1763526658047344822
-    - rid: 1763526658047344823
-    - rid: 1763526658047344824
-    - rid: 1763526658047344825
-    - rid: 1763526658047344826
-    - rid: 1763526658047344827
-    - rid: 1763526658047344828
-    - rid: 1763526658047344829
-    - rid: 1763526658047344830
-    - rid: 1763526658047344831
-    - rid: 1763526658047344832
-    - rid: 1763526658047344833
-    - rid: 1763526658047344834
-    - rid: 1763526658047344835
-    - rid: 1763526658047344836
-    - rid: 1763526658047344837
-    - rid: 1763526658047344838
-    - rid: 1763526658047344839
-    - rid: 1763526658047344840
-    - rid: 1763526658047344841
-    - rid: 1763526658047344842
-    - rid: 1763526658047344843
-    - rid: 1763526658047344844
-    - rid: 1763526658047344845
-    - rid: 1763526658047344846
-    - rid: 1763526658047344847
-    - rid: 1763526658047344848
-    - rid: 1763526658047344850
-    - rid: 1763526658047344851
-    - rid: 1763526658047344852
-    - rid: 1763526658047344853
-    - rid: 1763526658047344854
-    - rid: 1763526658047344855
-    - rid: 1763526658047344856
-    - rid: 1763526658047344857
-    - rid: 1763526658047344858
-    - rid: 1763526658047344859
-    - rid: 1763526658047344860
-    - rid: 1763526658047344861
-    - rid: 1763526658047344862
-    - rid: 1763526658047344863
-    - rid: 1763526658047344864
-    - rid: 1763526658047344865
-    - rid: 1763526658047344866
-    - rid: 1763526658047344867
-    - rid: 1763526658047344868
-    - rid: 1763526658047344869
-    - rid: 1763526658047344870
-    - rid: 1763526658047344872
-    - rid: 1763526658047344873
-    - rid: 1763526658047344874
-    - rid: 1763526658047344875
-    - rid: 1763526658047344876
-    - rid: 1763526658047344877
-    - rid: 1763526658047344878
-    - rid: 1763526658047344879
-    - rid: 1763526658047344880
+    - rid: 2436170619896463431
+    - rid: 2436170619896463432
+    - rid: 2436170619896463433
+    - rid: 2436170619896463434
+    - rid: 2436170619896463435
+    - rid: 2436170619896463436
+    - rid: 2436170619896463437
+    - rid: 2436170619896463439
+    - rid: 2436170619896463440
+    - rid: 2436170619896463441
+    - rid: 2436170619896463442
+    - rid: 2436170619896463443
+    - rid: 2436170619896463444
+    - rid: 2436170619896463445
+    - rid: 2436170619896463446
+    - rid: 2436170619896463448
+    - rid: 2436170619896463449
+    - rid: 2436170619896463450
+    - rid: 2436170619896463451
+    - rid: 2436170619896463452
+    - rid: 2436170619896463453
+    - rid: 2436170619896463454
+    - rid: 2436170619896463455
+    - rid: 2436170619896463456
+    - rid: 2436170619896463457
+    - rid: 2436170619896463458
+    - rid: 2436170619896463459
+    - rid: 2436170619896463460
+    - rid: 2436170619896463461
+    - rid: 2436170619896463462
+    - rid: 2436170619896463463
+    - rid: 2436170619896463464
+    - rid: 2436170619896463465
+    - rid: 2436170619896463466
+    - rid: 2436170619896463467
+    - rid: 2436170619896463468
+    - rid: 2436170619896463469
+    - rid: 2436170619896463470
+    - rid: 2436170619896463471
+    - rid: 2436170619896463472
+    - rid: 2436170619896463473
+    - rid: 2436170619896463474
+    - rid: 2436170619896463475
+    - rid: 2436170619896463476
+    - rid: 2436170619896463477
+    - rid: 2436170619896463478
+    - rid: 2436170619896463479
+    - rid: 2436170619896463480
+    - rid: 2436170619896463481
+    - rid: 2436170619896463482
+    - rid: 2436170619896463483
+    - rid: 2436170619896463484
+    - rid: 2436170619896463485
+    - rid: 2436170619896463486
+    - rid: 2436170619896463487
+    - rid: 2436170619896463488
+    - rid: 2436170619896463489
+    - rid: 2436170619896463490
+    - rid: 2436170619896463491
+    - rid: 2436170619896463492
+    - rid: 2436170619896463493
+    - rid: 2436170619896463494
+    - rid: 2436170619896463495
+    - rid: 2436170619896463496
+    - rid: 2436170619896463497
+    - rid: 2436170619896463498
+    - rid: 2436170619896463499
+    - rid: 2436170619896463500
+    - rid: 2436170619896463501
+    - rid: 2436170619896463502
+    - rid: 2436170619896463503
+    - rid: 2436170619896463505
+    - rid: 2436170619896463506
+    - rid: 2436170619896463507
+    - rid: 2436170619896463508
+    - rid: 2436170619896463509
+    - rid: 2436170619896463510
+    - rid: 2436170619896463511
+    - rid: 2436170619896463512
+    - rid: 2436170619896463513
+    - rid: 2436170619896463514
+    - rid: 2436170619896463515
+    - rid: 2436170619896463516
+    - rid: 2436170619896463517
+    - rid: 2436170619896463518
+    - rid: 2436170619896463519
+    - rid: 2436170619896463520
+    - rid: 2436170619896463521
+    - rid: 2436170619896463522
+    - rid: 2436170619896463523
+    - rid: 2436170619896463524
+    - rid: 2436170619896463525
+    - rid: 2436170619896463526
+    - rid: 2436170619896463527
+    - rid: 2436170619896463528
+    - rid: 2436170619896463529
+    - rid: 2436170619896463530
+    - rid: 2436170619896463531
+    - rid: 2436170619896463532
+    - rid: 2436170619896463533
+    - rid: 2436170619896463534
+    - rid: 2436170619896463535
+    - rid: 2436170619896463537
+    - rid: 2436170619896463538
+    - rid: 2436170619896463540
+    - rid: 2436170619896463541
+    - rid: 2436170619896463542
+    - rid: 2436170619896463543
+    - rid: 2436170619896463544
+    - rid: 2436170619896463545
+    - rid: 2436170619896463546
+    - rid: 2436170619896463547
+    - rid: 2436170619896463548
+    - rid: 2436170619896463549
+    - rid: 2436170619896463550
+    - rid: 2436170619896463551
+    - rid: 2436170619896463552
+    - rid: 2436170619896463553
+    - rid: 2436170619896463554
+    - rid: 2436170619896463555
+    - rid: 2436170619896463556
+    - rid: 2436170619896463557
+    - rid: 2436170619896463558
+    - rid: 2436170619896463559
+    - rid: 2436170619896463560
   references:
     version: 2
     RefIds:
@@ -2704,24 +2838,6 @@ MonoBehaviour:
       data:
         factId: fact_timestamp_mismatch
         requireSupportingEvidencePresented: 1
-    - rid: 1763526640768909312
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
-    - rid: 1763526640768909313
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
-    - rid: 1763526640768909314
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
     - rid: 1763526640768909315
       type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -2789,30 +2905,6 @@ MonoBehaviour:
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
         requiredEvidence: {fileID: 11400000, guid: 3bc594702e7074261b52e763771c3a97, type: 2}
-    - rid: 1763526655240044547
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
-    - rid: 1763526655240044549
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
-    - rid: 1763526655240044552
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
-    - rid: 1763526655240044553
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
     - rid: 1763526655240044554
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -2841,13 +2933,7 @@ MonoBehaviour:
       type: {class: ClaimConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
         claimId: 5e8a409bce7947a2acd8d0abb58e2d50
-        requiredState: 1
-    - rid: 1763526655240044560
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
+        requiredState: 0
     - rid: 1763526655240044561
       type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -2871,7 +2957,7 @@ MonoBehaviour:
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 141442834f0f426ea201cd2a3a6e18ac
-        position: {x: 105, y: 270}
+        position: {x: -1288, y: 466}
         entries:
         - Type: 1
           Line:
@@ -2884,7 +2970,7 @@ MonoBehaviour:
           Event:
             Type: 6
             Parameter: black
-            Value: 0.25
+            Value: 0.8
         - Type: 1
           Line:
             SpeakerType: 0
@@ -2896,13 +2982,51 @@ MonoBehaviour:
           Event:
             Type: 1
             Parameter: bgm_courtroom_tension
+            Value: 0.8
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 3
+            Parameter: sfx_gavel_single
+            Value: 0.9
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_courtroom_wide
+            Value: 2
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Ruang sidang penuh sesak. Bangku pengunjung dipadati wartawan yang
+              sejak pagi mengantre demi satu kursi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: Di ruang sidang ini, nasib seorang sahabat, kebenaran, dan jaringan
-              korupsi yang selama ini tersembunyi akan diuji.
+            Text: Kasus ini sudah jadi headline selama tiga minggu, proyek digitalisasi
+              pendidikan senilai Rp3,8 triliun, dan seorang staf pengadaan muda yang
+              ditemukan tak bernyawa sehari sebelum ia berencana bicara.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -2912,25 +3036,13 @@ MonoBehaviour:
             Value: 0
         - Type: 0
           Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Sidang untuk kasus pembunuhan Ryan Pratama, dengan terdakwa Arga
-              Mahendra, saya nyatakan dibuka.
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Tapi hari ini, yang diadili bukan proyeknya. Yang diadili adalah
+              seorang sahabat.
             Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Jaksa penuntut umum, silakan sampaikan dakwaan Anda.
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
+            WaitMode: 1
+            AutoAdvanceDelay: 1.6
           Event:
             Type: 0
             Parameter: 
@@ -2940,16 +3052,27 @@ MonoBehaviour:
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: a4b071d141eb41bab58eb9e071078fd5
-        position: {x: 776, y: 469}
+        position: {x: -686, y: 632}
         entries:
-        - Type: 0
+        - Type: 1
           Line:
             SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
-            Text: Yang Mulia, bukti yang kami hadirkan akan menunjukkan bahwa Arga
-              Mahendra berada di pusat tragedi ini, namun motif yang sebenarnya jauh
-              lebih dalam dari sekadar kecemburuan.
-            Emotion: 2
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_defendant_table
+            Value: 1.2
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Di meja terdakwa, Arga Mahendra duduk kaku. Tangannya terus-menerus
+              meremas ujung lengan bajunya sendiri.
+            Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
@@ -2959,10 +3082,10 @@ MonoBehaviour:
         - Type: 0
           Line:
             SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
-            Text: Seluruh bukti yang kami miliki, sidik jari, rekaman CCTV, riwayat
-              pesan, mengarah pada satu kesimpulan yang sama.
-            Emotion: 2
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (...berbisik) Jeremy. Aku, aku beneran nggak ngerti kenapa semua
+              ini bisa terjadi.
+            Emotion: 6
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
@@ -2973,286 +3096,81 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: (Narasi jaksa terasa rapih, tapi ada celah kecil yang menggantung.
-              Jika saya bisa menemukannya, ini bisa menjadi titik balik.)
-            Emotion: 3
+            Text: Tarik napas. Biar aku yang bicara di sini. Kamu cuma perlu percaya
+              prosesnya.
+            Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: Gimana aku bisa percaya proses, kalau bukti-buktinya... semuanya
+              kayak ngearah ke aku, Far.
+            Emotion: 7
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: b85532ff00864ec0ab16b652e4eff725
     - rid: 1763526658047344643
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
-        position: {x: 1809, y: 871}
-        category: 0
-        gameplayEventId: chapter_1:Judul Chapter
-        nextNodeId: 6488016964b542818466f1a3f29a5d61
+        position: {x: 626, y: 393}
+        category: 3
+        gameplayEventId: chapter_1:Pemanggilan Saksi
+        nextNodeId: 74bd60792b9f4658b63a51c8edd3af9c
     - rid: 1763526658047344644
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 6488016964b542818466f1a3f29a5d61
-        position: {x: 2423, y: 532}
+        position: {x: 1853, y: 581}
         statementId: 23545e9101d04b7bae20853cf004cd8a
-        nextNodeId: 3abe821eb6104aa8804f79062ab6304c
+        nextNodeId: 32b91ad3a468493ab98b704effcf898a
     - rid: 1763526658047344645
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 3abe821eb6104aa8804f79062ab6304c
-        position: {x: 3244, y: 484}
+        position: {x: 3168, y: 476}
         statementId: 8e481df44a8148c3ac1caf78dc172438
-        nextNodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
+        nextNodeId: 2c94a2e72e8e4272843f141ee8ec652e
     - rid: 1763526658047344646
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
-        position: {x: 4003, y: 403}
+        position: {x: 3917, y: 1069}
         statementId: 7c2d85980d1b4f0c829c82ab9bdc6649
-        nextNodeId: a35b2afc83984a5d8014b23702c7f290
+        nextNodeId: 45f3effbc2c0451882a66ebc861c19a4
     - rid: 1763526658047344647
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: a35b2afc83984a5d8014b23702c7f290
-        position: {x: 4948, y: 270}
+        position: {x: 5674, y: 87}
         statementId: dbb03e4def1d4127bd806a68036a3623
-        nextNodeId: 3a414ab6651d49e4b03762b90cfb340d
-    - rid: 1763526658047344648
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 3a414ab6651d49e4b03762b90cfb340d
-        position: {x: 5848.5, y: 270}
-        statementId: 720136b33bc8414e9c91558768ca514d
-        nextNodeId: 3becb05bf7ce4eb681d5045b1e9c33da
-    - rid: 1763526658047344649
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 3becb05bf7ce4eb681d5045b1e9c33da
-        position: {x: 6781.5, y: 270}
-        entries:
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Menarik. Selisih waktu yang kecil ini bisa jadi tidak berarti apa-apa,
-              atau bisa jadi awal dari sesuatu yang lebih besar.
-            Emotion: 3
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 1
-            Speaker: {fileID: 0}
-            Text: Retakan pertama pada narasi resmi baru saja muncul.
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        nextNodeId: e6c85055d0094f239fa6d0b92e5cb5da
-    - rid: 1763526658047344650
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: e6c85055d0094f239fa6d0b92e5cb5da
-        position: {x: 7462.5, y: 278.5}
-        entries:
-        - Type: 1
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 0}
-            Text: 
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 7
-            Parameter: bg_evidence_room
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 1
-            Speaker: {fileID: 0}
-            Text: Di ruang penyimpanan barang bukti, ditemukan sebuah flashdisk milik
-              Ryan.
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: Kalau isinya benar bukti korupsi yang ia kumpulkan... ini bisa
-              mengubah segalanya.
-            Emotion: 2
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        nextNodeId: c8f05b75d67c4f4a85707f09d9f63d30
+        nextNodeId: d850621b630e41bab44a583afb176d1b
     - rid: 1763526658047344651
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: c8f05b75d67c4f4a85707f09d9f63d30
-        position: {x: 7921, y: 246}
+        position: {x: 8019, y: 1095}
         category: 1
         gameplayEventId: unlock_evidence:ev_flashdisk_empty
-        nextNodeId: 1abfb2e8a0fc48beb51b1c1617a83626
-    - rid: 1763526658047344652
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 1abfb2e8a0fc48beb51b1c1617a83626
-        position: {x: 8514, y: 218}
-        entries:
-        - Type: 0
-          Line:
-            SpeakerType: 1
-            Speaker: {fileID: 0}
-            Text: Namun ketika kami membuka flashdisk itu, isinya tampak seperti
-              baru saja dihapus, kosong tanpa jejak.
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
-            Text: Ini membuktikan isu korupsi yang selama ini didengungkan hanyalah
-              dugaan tanpa dasar, Yang Mulia.
-            Emotion: 2
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: (Tunggu dulu. Flashdisk penting ini tidak mungkin kosong tanpa
-              alasan. Ada tangan lain yang menghapusnya.)
-            Emotion: 3
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        nextNodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
+        nextNodeId: e596cf1604084c808f731971aadfcccc
     - rid: 1763526658047344653
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
-        position: {x: 9068, y: 501}
+        position: {x: 9733, y: 894}
         category: 1
         gameplayEventId: unlock_evidence:ev_flashdisk_format_log
-        nextNodeId: d14138d3f8f246ab8ad2711e69a93e68
-    - rid: 1763526658047344654
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: d14138d3f8f246ab8ad2711e69a93e68
-        position: {x: 9537.5, y: 278.5}
-        entries:
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: Flashdisk ini diformat beberapa jam setelah Ryan meninggal, seolah
-              seseorang berusaha menghapus bukti yang paling penting.
-            Emotion: 2
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: (...) Pertanyaannya bukan lagi 'apa isi flashdisk ini'.
-            Emotion: 3
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Tapi siapa yang menghapusnya?
-            Emotion: 2
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        nextNodeId: 8a217617d75c4983a994d023c79a6aff
-    - rid: 1763526658047344655
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 8a217617d75c4983a994d023c79a6aff
-        position: {x: 10047, y: 280}
-        entries:
-        - Type: 1
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 0}
-            Text: 
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 7
-            Parameter: bg_courtroom_witness_stand
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Pengadilan memanggil ahli forensik digital untuk memberikan keterangan.
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        - Type: 0
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
-            Text: Terima kasih, Yang Mulia. Izinkan saya memaparkan apa yang berhasil
-              kami pulihkan dari laptop korban.
-            Emotion: 2
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 0
-            Parameter: 
-            Value: 0
-        nextNodeId: bcb0ebfeeccc4653a986c769c3240b9f
+        nextNodeId: ffe40fb354c34e8c83e0d07860f36a43
     - rid: 1763526658047344758
       type: {class: EvidenceConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -3286,12 +3204,6 @@ MonoBehaviour:
         stat: 2
         comparisonOperator: 1
         value: 36
-    - rid: 1763526658047344765
-      type: {class: CourtStateConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        stat: 0
-        comparisonOperator: 1
-        value: 0
     - rid: 1763526658047344766
       type: {class: ArgumentContextConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -3372,10 +3284,6 @@ MonoBehaviour:
         stat: 2
         comparisonOperator: 1
         value: 90
-    - rid: 1763526658047344786
-      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        requiredAction: 2
     - rid: 1763526658047344787
       type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -3403,10 +3311,6 @@ MonoBehaviour:
       type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
         requiredAction: 3
-    - rid: 1763526658047344792
-      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
-      data:
-        requiredAction: 2
     - rid: 1763526658047344795
       type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -3436,7 +3340,7 @@ MonoBehaviour:
       data:
         character: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
         stat: 2
-        comparisonOperator: 0
+        comparisonOperator: 1
         value: 35
     - rid: 1763526658047344801
       type: {class: ArgumentContextConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
@@ -3476,62 +3380,141 @@ MonoBehaviour:
       data:
         factId: fact_melati_witnessed_deletion_order
         requireSupportingEvidencePresented: 1
-    - rid: 1763526658047344810
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+    - rid: 2436170619896463423
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        nodeId: bcb0ebfeeccc4653a986c769c3240b9f
-        position: {x: 10542.5, y: 278.5}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_document_metadata
-        nextNodeId: a515fb78cd1e4e7ebae06e3c298c8de8
-    - rid: 1763526658047344811
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+        requiredAction: 2
+    - rid: 2436170619896463424
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        nodeId: a515fb78cd1e4e7ebae06e3c298c8de8
-        position: {x: 11106.5, y: 280}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_remote_deletion_log
-        nextNodeId: fb17186d5cff4da7baa3bc444838a21d
-    - rid: 1763526658047344812
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+        requiredAction: 2
+    - rid: 2436170619896463426
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        nodeId: fb17186d5cff4da7baa3bc444838a21d
-        position: {x: 11771, y: 280}
-        statementId: aa954c9f49e14d36a82e71a5726495ff
-        nextNodeId: 9e23ceea88f84ea38f82e61a8d000e40
-    - rid: 1763526658047344813
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+        requiredAction: 2
+    - rid: 2436170619896463427
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        nodeId: 9e23ceea88f84ea38f82e61a8d000e40
-        position: {x: 12586, y: 278.5}
-        statementId: ccf95d4da5394a4d9b381e121a8b686f
-        nextNodeId: ba18a33b98394b29916cf1f5b515e830
-    - rid: 1763526658047344814
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+        requiredAction: 2
+    - rid: 2436170619896463429
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        nodeId: ba18a33b98394b29916cf1f5b515e830
-        position: {x: 13384.5, y: 280}
-        statementId: 3a512f1139554c8785db258ad4732d56
-        nextNodeId: e6ebc6efede94cf5ae7dd2c940342e62
-    - rid: 1763526658047344815
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+        requiredAction: 2
+    - rid: 2436170619896463430
+      type: {class: CharacterConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
-        nodeId: e6ebc6efede94cf5ae7dd2c940342e62
-        position: {x: 14205.5, y: 280}
-        statementId: 1ad44dfd0e3a4f67b76237a324e14037
-        nextNodeId: 7d127f8214fc45619fcf4ea4eec2bf4e
-    - rid: 1763526658047344816
+        character: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
+        stat: 3
+        comparisonOperator: 1
+        value: 70
+    - rid: 2436170619896463431
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 7d127f8214fc45619fcf4ea4eec2bf4e
-        position: {x: 15010, y: 280}
+        nodeId: b85532ff00864ec0ab16b652e4eff725
+        position: {x: -19, y: 786}
         entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_judge_bench
+            Value: 1
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 3
+            Parameter: sfx_gavel_single
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Sebuah persidangan yang akan menentukan nasib seorang sahabat,
+              dan mungkin, jauh lebih dari itu.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
         - Type: 0
           Line:
             SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: Ryan memang sedang menyelidiki proyek pengadaan nasional ini, dan
-              ada banyak pihak yang ingin penyelidikan itu berhenti.
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Sidang untuk kasus pembunuhan Ryan Pratama, dengan terdakwa Arga
+              Mahendra, saya nyatakan dibuka.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Jaksa penuntut umum, silakan sampaikan dakwaan Anda.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 81553987378a4c38a04f6a04c193d6bb
+    - rid: 2436170619896463432
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 81553987378a4c38a04f6a04c193d6bb
+        position: {x: 563, y: 940}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_prosecutor_table
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, kami akan membuktikan bahwa terdakwa, Arga Mahendra,
+              membunuh sahabatnya sendiri, Ryan Pratama, dalam sebuah pertengkaran
+              pribadi yang berujung fatal.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Seluruh bukti yang kami miliki, sidik jari, rekaman CCTV, riwayat
+              pesan, mengarah pada satu kesimpulan yang sama. Tidak ada ruang untuk
+              keraguan, Yang Mulia.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3543,8 +3526,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 1
             Speaker: {fileID: 0}
-            Text: Pembunuhan Ryan mungkin bukan akhir dari cerita ini. Melainkan
-              konsekuensi dari sesuatu yang jauh lebih besar
+            Text: Suara bisik-bisik pengunjung memenuhi ruangan sejenak sebelum hakim
+              mengetuk palu tanda ketertiban
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3552,18 +3535,1451 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: f702a80b65ab454c9bef54d627b6223a
-    - rid: 1763526658047344817
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 3
+            Parameter: sfx_gavel_single
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Kronologinya nyaris sempurna. Bahkan aku sendiri sempat ragu...
+              apa benar Arga tidak bersalah?)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 8df30fb90d804fd2b2f99ac10e8be7c4
+    - rid: 2436170619896463433
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: f702a80b65ab454c9bef54d627b6223a
-        position: {x: 15773, y: 280}
+        nodeId: 8df30fb90d804fd2b2f99ac10e8be7c4
+        position: {x: 1502, y: 971}
         entries:
         - Type: 0
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Pengadilan memanggil auditor internal kementerian, Dimas Haryanto
+            Text: Pembela, apakah Anda siap melanjutkan dengan pemeriksaan saksi
+              pertama?
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Kami siap, Yang Mulia.
+            Emotion: 2
+            WaitMode: 1
+            AutoAdvanceDelay: 0.6
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: (Satu per satu. Kalau memang ada yang janggal di sini, aku akan
+              menemukannya.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
+    - rid: 2436170619896463434
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 74bd60792b9f4658b63a51c8edd3af9c
+        position: {x: 1354, y: 484}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Jaksa, silakan panggil saksi pertama.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Penuntut umum memanggil AKP Yudi Setiawan, penyidik utama kasus
+              ini, ke mimbar saksi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_witness_stand
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Yudi berjalan mantap ke kursi saksi, map cokelat tebal terselip
+              di bawah lengannya. Ia sudah membawakan kesaksian seperti ini puluhan
+              kali.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Saksi, silakan menyampaikan keterangan Anda sejujur-jujurnya.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 6488016964b542818466f1a3f29a5d61
+    - rid: 2436170619896463435
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 32b91ad3a468493ab98b704effcf898a
+        position: {x: 2745, y: 678}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Silakan lanjutkan, Saksi. Sampaikan seluruh temuan Anda secara
+              runtut.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Yudi membuka map cokelatnya, mengecek satu per satu urutan berkas
+              sebelum melanjutkan.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 0.8
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3abe821eb6104aa8804f79062ab6304c
+    - rid: 2436170619896463436
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 2c94a2e72e8e4272843f141ee8ec652e
+        position: {x: 3816, y: 690}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_defendant_table
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (pelan, nyaris tak terdengar) ...jelas ada sidik jariku. Aku hampir
+              tiap minggu main ke apartemennya.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Beberapa pengunjung saling berbisik. Prapto melirik ke arah terdakwa
+              dengan ekspresi tenang, nyaris puas.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
+    - rid: 2436170619896463437
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 45f3effbc2c0451882a66ebc861c19a4
+        position: {x: 4457, y: 536}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Gumaman pelan menyebar di bangku pengunjung. Seorang wartawan buru-buru
+              mencoret sesuatu di buku catatannya.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pembela, apakah Anda ingin menanggapi keterangan ini?
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 7b8589fd35ef49eeae5a5023b88eaa71
+    - rid: 2436170619896463439
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 7b8589fd35ef49eeae5a5023b88eaa71
+        position: {x: 5120, y: 573}
+        condition:
+          mode: 1
+          stat: 0
+          comparisonOperator: 0
+          value: 0
+          claimId: a1e8937912b745c294e534612e47f1aa
+          requireSuccessful: 1
+        trueNodeId: a35b2afc83984a5d8014b23702c7f290
+        falseNodeId: 60def1e7d9c2453e925fce70ca0a14b0
+    - rid: 2436170619896463440
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d40b9a9d2d2f43e698cf562e9afc21e3
+        position: {x: 6143, y: 950}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pembela, pengadilan masih menunggu argumen yang benar-benar mematahkan
+              kronologi ini. Silakan lanjutkan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: c731a42f7a74405084132fe506665da5
+    - rid: 2436170619896463441
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 60def1e7d9c2453e925fce70ca0a14b0
+        position: {x: 5850, y: 790}
+        condition:
+          mode: 0
+          stat: 1
+          comparisonOperator: 1
+          value: 6
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: edc4e3fb50fd41e3a1ae1b10860e0260
+        falseNodeId: d40b9a9d2d2f43e698cf562e9afc21e3
+    - rid: 2436170619896463442
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: edc4e3fb50fd41e3a1ae1b10860e0260
+        position: {x: 6185, y: 738}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, pembela sepertinya kehabisan argumen. Saya mohon dakwaan
+              segera dilanjutkan.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Ditolak, jaksa. Pembela, ini kesempatan terakhir Anda untuk memperkuat
+              argumen sebelum saya lanjutkan ke keterangan berikutnya.
+            Emotion: 4
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (menunduk, nyaris berbisik) Jeremy, tolong...
+            Emotion: 7
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: c731a42f7a74405084132fe506665da5
+    - rid: 2436170619896463443
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4ec2ead05ef14fa898ef194dc577fc1c
+        position: {x: 7152, y: 419}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: bgm_investigation
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Sesi pemeriksaan barang bukti bersama, pembela dan jaksa hadir
+              untuk menyaksikan langsung setiap item dibuka dan dicatat.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: Silakan, Pembela. Semua sudah tercatat dalam berita acara. Tidak
+              ada yang disembunyikan dari pihak kami.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Di antara tumpukan kantong bukti, satu map kecil bertuliskan 'Barang
+              Pribadi, R. Pratama' menarik perhatian Jeremy.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Ini... flashdisk miliknya?
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: c6aaa963e0224b2eaedb4f49d65ccafa
+    - rid: 2436170619896463444
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: c6aaa963e0224b2eaedb4f49d65ccafa
+        position: {x: 7573, y: 655}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Kalau isinya benar bukti korupsi yang ia kumpulkan... ini bisa
+              mengubah segalanya. Semoga saja belum terlambat.)
+            Emotion: 3
+            WaitMode: 1
+            AutoAdvanceDelay: 1.3
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Tangannya sedikit gemetar saat menyambungkan flashdisk itu ke laptop
+              pemeriksaan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: c8f05b75d67c4f4a85707f09d9f63d30
+    - rid: 2436170619896463445
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: e596cf1604084c808f731971aadfcccc
+        position: {x: 8514, y: 1048}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: 'Layar menampilkan satu baris sederhana: 0 items. Namun ketika
+              dibuka... seluruh isinya kosong.'
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (...) Kosong?
+            Emotion: 5
+            WaitMode: 1
+            AutoAdvanceDelay: 0.8
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Ini membuktikan isu korupsi yang selama ini didengungkan hanyalah
+              dugaan tanpa dasar, Yang Mulia, maaf, Pembela.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Kalau memang ada bukti sekuat itu, seharusnya sudah ada di sini.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 639b0e457a6e459faa4bafe3f63caa3b
+    - rid: 2436170619896463446
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 639b0e457a6e459faa4bafe3f63caa3b
+        position: {x: 9144, y: 1140}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Tunggu dulu. Sebuah flashdisk sepenting ini tidak mungkin kosong
+              begitu saja. Ryan orang yang teliti, terlalu teliti untuk lupa menyimpan
+              sesuatu.)
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.2
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Jeremy meminta properti perangkat itu diperiksa lebih lanjut, alih-alih
+              menyerah pada kesimpulan yang tampak jelas.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Saya minta log sistem dari flashdisk ini turut diperiksa. Bukan
+              cuma isinya.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
+    - rid: 2436170619896463448
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ffe40fb354c34e8c83e0d07860f36a43
+        position: {x: 9887, y: 655}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Petugas forensik menggulir sebuah log kecil di pojok layar, nyaris
+              terlewat kalau saja Jeremy tidak memintanya.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (...tunggu.)
+            Emotion: 5
+            WaitMode: 1
+            AutoAdvanceDelay: 0.5
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 5
+            Parameter: 
+            Value: 0.15
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Flashdisk ini diformat pukul 04.12 dini hari, beberapa jam SETELAH
+              waktu kematian Ryan menurut hasil autopsi, Yang Mulia.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 0c4f0a004d7b4cf7a7c6e91bf26bec03
+    - rid: 2436170619896463449
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0c4f0a004d7b4cf7a7c6e91bf26bec03
+        position: {x: 10618, y: 419}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: (diam sesaat) ...Itu bisa saja kesalahan sistem, Yang Mulia.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: (...) Pertanyaannya bukan lagi 'apa isi flashdisk ini'.
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: Tapi siapa yang menghapusnya, dan mengapa harus secepat itu?
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 41ca8ac4c645495b9ccc880c6a90a47f
+    - rid: 2436170619896463450
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 41ca8ac4c645495b9ccc880c6a90a47f
+        position: {x: 11021, y: 578}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 6
+            Parameter: black
+            Value: 0.9
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Sidang lanjutan digelar tiga hari kemudian, setelah tim forensik
+              digital menyelesaikan analisis awal,
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.4
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: dce505b259d548949690e86e93ac31b7
+    - rid: 2436170619896463451
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: dce505b259d548949690e86e93ac31b7
+        position: {x: 11653, y: 649}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_judge_bench
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Sidang saya buka kembali. Pengadilan memanggil ahli forensik digital
+              untuk memberikan keterangan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_witness_stand
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Seorang perempuan berkacamata dengan laptop di pelukan berjalan
+              tenang ke mimbar saksi, Nadia Putri, kepala tim forensik digital kepolisian.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+            Text: Terima kasih, Yang Mulia. Izinkan saya memaparkan apa yang berhasil
+              kami pulihkan dari laptop korban.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 861809f7d30a46b19b0bf171695f45da
+    - rid: 2436170619896463452
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 861809f7d30a46b19b0bf171695f45da
+        position: {x: 12275, y: 579}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_document_metadata
+        nextNodeId: a8508db207a94b7a9c379cfbeb024fa3
+    - rid: 2436170619896463453
+      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: c731a42f7a74405084132fe506665da5
+        position: {x: 5739, y: 1445}
+        targetNodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
+    - rid: 2436170619896463454
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d850621b630e41bab44a583afb176d1b
+        position: {x: 6606, y: 60}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_defendant_table
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: Itu... itu cuma emosi sesaat. Orang bertengkar sama sahabatnya
+              sendiri itu wajar, kan?
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Pertengkaran biasa tidak sama dengan niat membunuh. Tapi di ruang
+              sidang, keduanya bisa terdengar sama saja kalau tidak dibedah pelan-pelan.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 0f518204e94f4b27b5e5d2ec9e75de47
+    - rid: 2436170619896463455
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0f518204e94f4b27b5e5d2ec9e75de47
+        position: {x: 7152, y: 12}
+        statementId: 720136b33bc8414e9c91558768ca514d
+        nextNodeId: 8f9c1291f392477a9bcda271a260c935
+    - rid: 2436170619896463456
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8f9c1291f392477a9bcda271a260c935
+        position: {x: 8014, y: 47}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Menarik. Selisih waktu yang kecil ini bisa jadi tidak berarti apa-apa,
+              atau bisa jadi awal dari sesuatu yang lebih besar.
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, satu kejanggalan kecil tidak mengubah keseluruhan gambaran.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: Retakan pertama pada narasi resmi baru saja muncul. Kecil. Tapi
+              cukup untuk membuat semua orang di ruangan itu terdiam sejenak.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.3
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: sfx_gavel_single
+            Value: 0.7
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Sidang diskors hingga besok pagi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 10502bbef53d4d839941ff45bff95755
+    - rid: 2436170619896463457
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 10502bbef53d4d839941ff45bff95755
+        position: {x: 8613, y: 306}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 6
+            Parameter: black
+            Value: 0.9
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 2
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Keesokan harinya, di ruang penyimpanan barang bukti kepolisian,
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.4
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 4ec2ead05ef14fa898ef194dc577fc1c
+    - rid: 2436170619896463458
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a8508db207a94b7a9c379cfbeb024fa3
+        position: {x: 12834, y: 295}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Layar proyektor menampilkan deretan metadata dokumen, waktu dibuat,
+              waktu diubah, nama pengguna yang mengaksesnya terakhir kali.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+            Text: Dokumen ini terakhir disunting dua hari sebelum korban meninggal,
+              dari akun yang terdaftar atas nama korban sendiri.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Jadi ini bukan dokumen lama yang kebetulan tersimpan. Ryan sedang
+              aktif mengerjakannya sampai hari-hari terakhir.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: eba2dbd89cf84514b7817f7765f3e3ee
+    - rid: 2436170619896463459
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: eba2dbd89cf84514b7817f7765f3e3ee
+        position: {x: 13624, y: 295}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_remote_deletion_log
+        nextNodeId: 41d9104e69074ec7932f0cbcf3d62f71
+    - rid: 2436170619896463460
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 41d9104e69074ec7932f0cbcf3d62f71
+        position: {x: 14261, y: 356}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Nadia menggulir ke bagian lain dari laporannya, nadanya sedikit
+              berubah, lebih hati-hati.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+            Text: Ada satu hal lagi. Kami menemukan log perintah penghapusan jarak
+              jauh, dikirim dari luar jaringan kantor.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Keberatan, Yang Mulia. Saksi belum menyampaikan sumber perintah
+              tersebut secara pasti.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Dicatat. Lanjutkan, saksi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 019386654495452d8b623d83033d2379
+    - rid: 2436170619896463461
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 019386654495452d8b623d83033d2379
+        position: {x: 14863, y: 384}
+        statementId: aa954c9f49e14d36a82e71a5726495ff
+        nextNodeId: 795b30e643b14ce5a916aeaafaa4fba2
+    - rid: 2436170619896463462
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 795b30e643b14ce5a916aeaafaa4fba2
+        position: {x: 15687, y: 448}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+            Text: Izinkan saya lanjutkan ke temuan berikutnya, Yang Mulia.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Beberapa pengunjung mencondongkan badan, penasaran dengan apa yang
+              akan ditampilkan berikutnya di layar.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 0.8
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 32849f03705c439aa8bde00be07c0acf
+    - rid: 2436170619896463463
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 32849f03705c439aa8bde00be07c0acf
+        position: {x: 16137, y: 481}
+        statementId: ccf95d4da5394a4d9b381e121a8b686f
+        nextNodeId: f51a61351e004ea583b6a0f4ba72fb81
+    - rid: 2436170619896463464
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f51a61351e004ea583b6a0f4ba72fb81
+        position: {x: 17012, y: 481}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (pelan, ke Jeremy) Ryan nggak pernah cerita soal ini ke aku. Sama
+              sekali.
+            Emotion: 7
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Mungkin justru karena itu ia dibunuh, bukan karena siapa yang
+              ia percaya, tapi karena siapa yang TIDAK ia beri tahu.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 13e97abf8ef2471caa458967ede5d56f
+    - rid: 2436170619896463465
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 13e97abf8ef2471caa458967ede5d56f
+        position: {x: 17468, y: 481}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, isi surel pribadi tidak serta-merta membuktikan adanya
+              niat jahat pihak lain.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Benar, tapi pengadilan berhak menilai konteksnya. Lanjutkan pemeriksaan,
+              Pembela.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3787654df0f1423489c3b855cf4b785a
+    - rid: 2436170619896463466
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3787654df0f1423489c3b855cf4b785a
+        position: {x: 17960, y: 481}
+        statementId: 3a512f1139554c8785db258ad4732d56
+        nextNodeId: 70ddc206c6a1461b86d3cf4cfce42f4d
+    - rid: 2436170619896463467
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 70ddc206c6a1461b86d3cf4cfce42f4d
+        position: {x: 18750, y: 516}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan mencatat keterangan ini. Lanjutkan, saksi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 2fcb5362c23634d1aa0de45037bed35c, type: 2}
+            Text: Baik, Yang Mulia.
+            Emotion: 2
+            WaitMode: 1
+            AutoAdvanceDelay: 0.6
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: dbe46c08db2f43c48339772dfb1a4ca7
+    - rid: 2436170619896463468
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: dbe46c08db2f43c48339772dfb1a4ca7
+        position: {x: 19115, y: 544}
+        statementId: 1ad44dfd0e3a4f67b76237a324e14037
+        nextNodeId: 9ba5cbf247854d3da0585ae2ea3be660
+    - rid: 2436170619896463469
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 9ba5cbf247854d3da0585ae2ea3be660
+        position: {x: 19903, y: 641}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: Ruang sidang mendadak riuh. Beberapa wartawan bergegas keluar,
+              menelepon redaksi masing-masing.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 0.9
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: sfx_gavel_single
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Harap tenang! Sidang ini masih berlangsung.
+            Emotion: 4
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: (mencatat sesuatu dengan raut wajah berubah) ...Yang Mulia, penuntut
+              umum meminta waktu untuk mempelajari perkembangan ini.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 49a6d561723d4aecbeff80b475f9ca86
+    - rid: 2436170619896463470
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 49a6d561723d4aecbeff80b475f9ca86
+        position: {x: 20346, y: 916}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_defendant_table
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (berbisik) Jer, ini... ini lebih besar dari yang aku kira, ya?
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (pelan) Mungkin. Tapi itu artinya ada lebih banyak orang yang bisa
+              membuktikan kamu tidak bersalah.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 2c9a8dd635684b6ea58ff8e7cc6c8d3a
+    - rid: 2436170619896463471
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 2c9a8dd635684b6ea58ff8e7cc6c8d3a
+        position: {x: 20825, y: 916}
+        statementId: 1164a46095fe479f88edf3a667d05ea7
+        nextNodeId: 4c9d559caa4b4a4895d6d4fb10f5e38e
+    - rid: 2436170619896463472
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4c9d559caa4b4a4895d6d4fb10f5e38e
+        position: {x: 21652, y: 1013}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Ryan memang sedang menyelidiki proyek pengadaan nasional ini, Yang
+              Mulia. Ia bukan korban acak.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Pembunuhan Ryan mungkin bukan akhir dari cerita ini, melainkan
+              konsekuensi dari sesuatu yang jauh lebih besar.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.3
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Sidang diskors. Kita lanjutkan minggu depan dengan pemeriksaan
+              saksi berikutnya.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 46077e8fc6fe450bbcecf652ae246b7c
+    - rid: 2436170619896463473
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 46077e8fc6fe450bbcecf652ae246b7c
+        position: {x: 22266, y: 1013}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 6
+            Parameter: black
+            Value: 0.9
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 2
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: "\u2014 Satu minggu kemudian,"
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.2
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: d42e0b65cc7a4ddc908fa25fe7cb34b2
+    - rid: 2436170619896463474
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d42e0b65cc7a4ddc908fa25fe7cb34b2
+        position: {x: 22612, y: 1034}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: bgm_courtroom_tension
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan memanggil auditor internal kementerian, Dimas Haryanto.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_witness_stand
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Seorang pria paruh baya berjalan gemetar ke kursi saksi, berulang
+              kali melirik ke arah bangku pengunjung seolah mencari seseorang.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3583,40 +4999,177 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 3ddf99d88cf14478be731784127f4c93
-    - rid: 1763526658047344818
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Dia jelas ketakutan. Tapi takut karena disumpah, atau takut karena
+              tahu sesuatu?)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: e344aecf0d174e989f3ea6fa16f5e7a1
+    - rid: 2436170619896463475
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 3ddf99d88cf14478be731784127f4c93
-        position: {x: 16177.5, y: 280}
+        nodeId: e344aecf0d174e989f3ea6fa16f5e7a1
+        position: {x: 23064, y: 1070}
         statementId: cc7a4e98e9a748ec8edba7f9facbce27
-        nextNodeId: eee2b58a125f46e9bce2c705b1641f40
-    - rid: 1763526658047344819
+        nextNodeId: 974a3244222340cd81440c67aa7b9302
+    - rid: 2436170619896463476
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 974a3244222340cd81440c67aa7b9302
+        position: {x: 23860, y: 1119}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Silakan lanjutkan, Saksi. Sampaikan sisa laporan Anda.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Dimas mengangguk cepat, sedikit terlalu cepat untuk terlihat tenang.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 0.7
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: aafef51926554354906f1d4a7d1b6a45
+    - rid: 2436170619896463477
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: eee2b58a125f46e9bce2c705b1641f40
-        position: {x: 17019.5, y: 280}
+        nodeId: aafef51926554354906f1d4a7d1b6a45
+        position: {x: 24284, y: 1119}
         statementId: 8917154301f24d7f9f3925d64216c032
-        nextNodeId: a80cda3325f34fc480980e76b815700a
-    - rid: 1763526658047344820
+        nextNodeId: 795572014c1246ebba0e11e33f4c5c54
+    - rid: 2436170619896463478
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 795572014c1246ebba0e11e33f4c5c54
+        position: {x: 25241, y: 1119}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Dimas menjilat bibirnya yang kering, matanya sekilas melirik ke
+              arah Adrian Wijaya yang duduk tenang di bangku pengunjung.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+            Text: S-saya... maksud saya, semuanya tercatat sesuai prosedur standar,
+              Yang Mulia.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Dia baru saja melirik seseorang sebelum menjawab. Itu bukan kebiasaan
+              orang yang jujur tanpa beban.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: cc4720d57a0a40689cc65f57e4ecbe76
+    - rid: 2436170619896463479
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: a80cda3325f34fc480980e76b815700a
-        position: {x: 17775.5, y: 250.5}
+        nodeId: cc4720d57a0a40689cc65f57e4ecbe76
+        position: {x: 26051, y: 1119}
         condition:
           mode: 1
           stat: 0
-          comparisonOperator: 4
+          comparisonOperator: 0
           value: 0
           claimId: b8c8647af8c7448b848e7e6f3d9ceef8
           requireSuccessful: 1
-        trueNodeId: f35379fff7a949d0a794d28c5117bc44
-        falseNodeId: a5dcd855a6bb405495b964edb6569060
-    - rid: 1763526658047344821
+        trueNodeId: e8da23660ad2437ca3a44cc015d43fab
+        falseNodeId: 902d0231394746438ce4556c3bf3ac46
+    - rid: 2436170619896463480
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 902d0231394746438ce4556c3bf3ac46
+        position: {x: 26879, y: 1232}
+        condition:
+          mode: 0
+          stat: 1
+          comparisonOperator: 1
+          value: 6
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 3b707f2db7654a42988d2d5bc0d1d5f3
+        falseNodeId: ad69a11ab4ae4b01ab97ac7db4b0f172
+    - rid: 2436170619896463481
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: a5dcd855a6bb405495b964edb6569060
-        position: {x: 18597.5, y: 376.5}
+        nodeId: 3b707f2db7654a42988d2d5bc0d1d5f3
+        position: {x: 27203, y: 1153}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+            Text: (buru-buru) S-seperti yang sudah saya katakan, semuanya sesuai
+              prosedur, Yang Mulia.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pembela, saya beri satu kesempatan lagi sebelum saya minta jaksa
+              melanjutkan ke saksi berikutnya.
+            Emotion: 4
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 76e78b00d03c407cb663efd918ab67c8
+    - rid: 2436170619896463482
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ad69a11ab4ae4b01ab97ac7db4b0f172
+        position: {x: 27267, y: 1348}
         entries:
         - Type: 0
           Line:
@@ -3631,27 +5184,52 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 7b68340a0b7a40c0935a27beeede6ba5
-    - rid: 1763526658047344822
+        nextNodeId: 76e78b00d03c407cb663efd918ab67c8
+    - rid: 2436170619896463483
       type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 7b68340a0b7a40c0935a27beeede6ba5
-        position: {x: 18764, y: 658.5}
-        targetNodeId: 6ab4a72a4ccd44c89f7cad243783742a
-    - rid: 1763526658047344823
+        nodeId: 76e78b00d03c407cb663efd918ab67c8
+        position: {x: 25732, y: 1879}
+        targetNodeId: aafef51926554354906f1d4a7d1b6a45
+    - rid: 2436170619896463484
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: f35379fff7a949d0a794d28c5117bc44
-        position: {x: 18654, y: 157}
+        nodeId: e8da23660ad2437ca3a44cc015d43fab
+        position: {x: 26819, y: 894}
         entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 5
+            Parameter: 
+            Value: 0.1
         - Type: 0
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
-            Text: (diam lama, tangannya gemetar)
+            Text: (diam lama, tangannya gemetar hebat)
             Emotion: 6
-            WaitMode: 0
-            AutoAdvanceDelay: 1
+            WaitMode: 1
+            AutoAdvanceDelay: 1.4
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Keheningan mencekam. Bahkan suara AC ruang sidang terasa lebih
+              keras dari biasanya.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.1
           Event:
             Type: 0
             Parameter: 
@@ -3660,8 +5238,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Saksi, pengadilan menunggu pernyataan Anda yang dapat mengubah
-              arah kasus ini.
+            Text: Saksi, pengadilan menunggu jawaban Anda.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3669,33 +5246,162 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: ec84488f84524ad1818b7b0fe93a1c32
-    - rid: 1763526658047344824
+        nextNodeId: 70319fc3238542309504c716c62c6f4c
+    - rid: 2436170619896463485
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: ec84488f84524ad1818b7b0fe93a1c32
-        position: {x: 19016, y: 157}
+        nodeId: 70319fc3238542309504c716c62c6f4c
+        position: {x: 27203, y: 846}
         statementId: 3f173597a7104c56920145d6406e3764
-        nextNodeId: 2e4256fc73c8438cbec0db5c1f629efa
-    - rid: 1763526658047344825
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 2e4256fc73c8438cbec0db5c1f629efa
-        position: {x: 19943, y: 157}
-        statementId: a17389a14d6c4767a4b6553dfb76cd41
-        nextNodeId: fb511ed05a0d4b5b987f2e77a47aec45
-    - rid: 1763526658047344826
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: fb511ed05a0d4b5b987f2e77a47aec45
-        position: {x: 20967, y: 157}
-        statementId: a804aa36ee8a4af9bf5e7d32d6f90f4e
-        nextNodeId: ba5ce17fe94644848e2e1fc0e127a0ab
-    - rid: 1763526658047344827
+        nextNodeId: 118dbf6c702d4e6f84affc1c6777e6b1
+    - rid: 2436170619896463486
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: ba5ce17fe94644848e2e1fc0e127a0ab
-        position: {x: 21849.5, y: 157}
+        nodeId: 118dbf6c702d4e6f84affc1c6777e6b1
+        position: {x: 28073, y: 819}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Dimas menarik napas panjang, seolah mengumpulkan sisa keberanian
+              yang masih tersisa.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 0.9
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Teruskan, Saksi. Pengadilan mendengarkan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 918ef006d4ed4adf8f59a8b06119e467
+    - rid: 2436170619896463487
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 918ef006d4ed4adf8f59a8b06119e467
+        position: {x: 28625, y: 784}
+        statementId: a17389a14d6c4767a4b6553dfb76cd41
+        nextNodeId: 11572f589b104e179e2add849cd72df0
+    - rid: 2436170619896463488
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 11572f589b104e179e2add849cd72df0
+        position: {x: 29488, y: 771}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 4a70e9b81c26641538e12311bd81d732, type: 2}
+            Text: (suaranya pecah) Saya cuma pegawai biasa. Saya cuma... saya cuma
+              ikut perintah atasan.
+            Emotion: 7
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Beberapa pengunjung terdiam. Prapto menatap catatannya sendiri,
+              tak lagi seyakin sebelumnya.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 4154107d40f044818d33c74f71e97579
+    - rid: 2436170619896463489
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4154107d40f044818d33c74f71e97579
+        position: {x: 30071, y: 771}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: 'Seorang wartawan di bangku belakang berbisik cukup keras hingga
+              terdengar sampai meja pembela: ''atasan siapa?'''
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: sfx_gavel_single
+            Value: 0.5
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Harap tenang di ruang sidang.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: ea20c53dfeb145879b864285c0a3d5e0
+    - rid: 2436170619896463490
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ea20c53dfeb145879b864285c0a3d5e0
+        position: {x: 30760, y: 796}
+        statementId: a804aa36ee8a4af9bf5e7d32d6f90f4e
+        nextNodeId: 1a66fffe2a2240469b12a337a63075bf
+    - rid: 2436170619896463491
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1a66fffe2a2240469b12a337a63075bf
+        position: {x: 31760, y: 771}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: (Dimas cuma pion. Tapi pion tidak pernah bergerak sendiri, selalu
+              ada tangan yang menggerakkannya dari belakang papan.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: a25c4e9a4b384e48a6f15721fa5b12e0
+    - rid: 2436170619896463492
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: a25c4e9a4b384e48a6f15721fa5b12e0
+        position: {x: 32457, y: 925}
         entries:
         - Type: 0
           Line:
@@ -3710,13 +5416,94 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 3bcebedc3d974ca98fcde8f3f13fdd41
-    - rid: 1763526658047344828
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (berbisik) Far... ini beneran soal Ryan doang, atau ada hal lain
+              yang lebih besar?
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (pelan) Aku juga baru mulai kepikiran hal yang sama.
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: feded6e200644e9eb980037a29dea701
+    - rid: 2436170619896463493
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 3bcebedc3d974ca98fcde8f3f13fdd41
-        position: {x: 22726.5, y: 157}
+        nodeId: feded6e200644e9eb980037a29dea701
+        position: {x: 33292, y: 961}
         entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 6
+            Parameter: black
+            Value: 0.9
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 2
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Tim pembela menghabiskan hari-hari berikutnya menelusuri setiap
+              benang yang tersisa,
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.4
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 1b4be7e45bee409284f44923413bd7bc
+    - rid: 2436170619896463494
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1b4be7e45bee409284f44923413bd7bc
+        position: {x: 33765, y: 946}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: bgm_investigation
+            Value: 0.5
         - Type: 0
           Line:
             SpeakerType: 1
@@ -3734,8 +5521,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
-            Text: 'Persidangan ini sekarang punya dua lapis: membuktikan Arga tak
-              bersalah, dan membuktikan Ryan dibunuh karena yang ia ketahui.'
+            Text: '(Persidangan ini sekarang punya dua lapis: membuktikan Arga tak
+              bersalah, dan membuktikan Ryan dibunuh karena yang ia ketahui.)'
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3743,99 +5530,11 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 1346101383d54360bf9e3958a18f8a18
-    - rid: 1763526658047344829
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 1346101383d54360bf9e3958a18f8a18
-        position: {x: 23473.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_additional_cctv
-        nextNodeId: 49a53246fcf94049b032c4619924e413
-    - rid: 1763526658047344830
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 49a53246fcf94049b032c4619924e413
-        position: {x: 23974.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_gps_history
-        nextNodeId: 1e15d23bbe314ac59aa7d014592f2205
-    - rid: 1763526658047344831
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 1e15d23bbe314ac59aa7d014592f2205
-        position: {x: 24463.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_call_log
-        nextNodeId: a7f1e17a17004c32872a47d0245db6a9
-    - rid: 1763526658047344832
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: a7f1e17a17004c32872a47d0245db6a9
-        position: {x: 25064.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_bank_transfer_proof
-        nextNodeId: 744950db92574372a0384c7838d48d71
-    - rid: 1763526658047344833
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 744950db92574372a0384c7838d48d71
-        position: {x: 25596, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_meeting_photo
-        nextNodeId: 3845a92ac87d4e54a2e316e66bfb0f0c
-    - rid: 1763526658047344834
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 3845a92ac87d4e54a2e316e66bfb0f0c
-        position: {x: 26106, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_cut_audio_recording
-        nextNodeId: a12613251f5b411389f2c6f296dbecf5
-    - rid: 1763526658047344835
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: a12613251f5b411389f2c6f296dbecf5
-        position: {x: 26617.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_office_cctv
-        nextNodeId: c2bc976c208c40c49f999d93b7be061b
-    - rid: 1763526658047344836
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: c2bc976c208c40c49f999d93b7be061b
-        position: {x: 27100.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_personal_email_adrian
-        nextNodeId: e0c03308d19c460d9ef52eadbbc48db8
-    - rid: 1763526658047344837
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: e0c03308d19c460d9ef52eadbbc48db8
-        position: {x: 27577, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_bank_account_record
-        nextNodeId: 6ebe8df187144443a750ece41b07a0ef
-    - rid: 1763526658047344838
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 6ebe8df187144443a750ece41b07a0ef
-        position: {x: 28064.5, y: 157}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_payment_report
-        nextNodeId: 2b259513aac7428e93d79e8eeb566719
-    - rid: 1763526658047344839
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 2b259513aac7428e93d79e8eeb566719
-        position: {x: 28612.5, y: 157}
-        entries:
         - Type: 0
           Line:
             SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Penyidik dipanggil kembali ke bangku saksi setelah bukti baru mengubah
-              arah persidangan.
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Kita mulai dari titik yang paling dekat, malam kejadian itu sendiri.)
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3843,33 +5542,441 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: f4dbbca924004ed7870d4c342f3073f3
-    - rid: 1763526658047344840
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: f4dbbca924004ed7870d4c342f3073f3
-        position: {x: 29141, y: 157}
-        statementId: 09f833a0b798473b9d8740a6eebdb696
-        nextNodeId: f5713694d84b4501a055fe838a9e7a18
-    - rid: 1763526658047344841
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: f5713694d84b4501a055fe838a9e7a18
-        position: {x: 30124, y: 157}
-        statementId: 308b428202414436b823e506c495832d
-        nextNodeId: 12e0ab644b63466ab39033c4bf021d99
-    - rid: 1763526658047344842
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 12e0ab644b63466ab39033c4bf021d99
-        position: {x: 31087.5, y: 157}
-        statementId: 9299a251ba41461c87d05f5083398924
-        nextNodeId: 97f6e528a3794fbb8c21e82920f2ca6f
-    - rid: 1763526658047344843
+        nextNodeId: 008efd4ee6e643e686b529205ec59daa
+    - rid: 2436170619896463495
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 97f6e528a3794fbb8c21e82920f2ca6f
-        position: {x: 31938, y: 130.5}
+        nodeId: 008efd4ee6e643e686b529205ec59daa
+        position: {x: 34522, y: 961}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Arga datang membawa dua kotak makanan, duduk diam di sudut ruangan
+              sambil memperhatikan Jeremy bekerja.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: Aku nggak bisa bantu banyak. Tapi setidaknya biar kamu makan malam
+              ini.
+            Emotion: 7
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: ed76c597f88c4169b99b989c6147a960
+    - rid: 2436170619896463496
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ed76c597f88c4169b99b989c6147a960
+        position: {x: 35135, y: 961}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_additional_cctv
+        nextNodeId: fb9a2f6069af48489053897fa47f5312
+    - rid: 2436170619896463497
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: fb9a2f6069af48489053897fa47f5312
+        position: {x: 35736, y: 961}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_call_log
+        nextNodeId: 4833215d1a44400ca1a42b373e5f71cb
+    - rid: 2436170619896463498
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4833215d1a44400ca1a42b373e5f71cb
+        position: {x: 36279, y: 991}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Rekaman CCTV tambahan, riwayat GPS, dan log panggilan tersusun
+              rapi di papan gabus, sebuah garis waktu baru mulai terbentuk.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Ada celah waktu yang tidak pernah ditelusuri penyidik. Celah yang
+              cukup lebar untuk seseorang lain masuk.)
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Kalau garis waktu ini benar, kita cuma butuh sedikit lagi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: cb9b257031a64715a1fb61b3c419c30c
+    - rid: 2436170619896463499
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: cb9b257031a64715a1fb61b3c419c30c
+        position: {x: 36974, y: 961}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_bank_transfer_proof
+        nextNodeId: 30bca597e1b84ff1aacaa14e17ff9f2b
+    - rid: 2436170619896463500
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 30bca597e1b84ff1aacaa14e17ff9f2b
+        position: {x: 37570, y: 961}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_meeting_photo
+        nextNodeId: 0d85997425bf413ea1dfb5788d66474e
+    - rid: 2436170619896463501
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0d85997425bf413ea1dfb5788d66474e
+        position: {x: 38148, y: 991}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Salinan bukti transfer dan sebuah foto rapat resmi proyek tergeletak
+              berdampingan di meja.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Uang mengalir ke mana-mana. Dan di setiap foto rapat penting...
+              ada satu wajah yang sama.)
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 3ed994d56d9c454b831c3ac083befdd7
+    - rid: 2436170619896463502
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 3ed994d56d9c454b831c3ac083befdd7
+        position: {x: 38635, y: 991}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_cut_audio_recording
+        nextNodeId: 9546f882dc1a406a8b487f5b085b3919
+    - rid: 2436170619896463503
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 9546f882dc1a406a8b487f5b085b3919
+        position: {x: 39141, y: 961}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_office_cctv
+        nextNodeId: e0a356d6f1cc497f901bb08b38f1902b
+    - rid: 2436170619896463505
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: e0a356d6f1cc497f901bb08b38f1902b
+        position: {x: 39683, y: 914}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_personal_email_adrian
+        nextNodeId: 8b28bb5cc29043498062f3b13ab25700
+    - rid: 2436170619896463506
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8b28bb5cc29043498062f3b13ab25700
+        position: {x: 40178, y: 961}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Rekaman rapat yang terpotong. CCTV koridor kantor di luar jam kerja.
+              Email pribadi yang seharusnya tak pernah ada.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Semua ini bukan kebetulan. Ini pola. Dan pola selalu punya pusat.)
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (menatap papan gabus, suaranya pelan) Itu... itu foto rapat kickoff
+              proyek. Aku ada di situ juga.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Kamu ada di situ karena kerjaan. Tapi satu orang lain di foto itu
+              ada di HAMPIR semua bukti yang kita kumpulkan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 10ed0041d33041269057017becce1cb9
+    - rid: 2436170619896463507
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 10ed0041d33041269057017becce1cb9
+        position: {x: 40793, y: 961}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_bank_account_record
+        nextNodeId: 9791e0e2222e46a1b23bbdaab58e613f
+    - rid: 2436170619896463508
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 9791e0e2222e46a1b23bbdaab58e613f
+        position: {x: 41307, y: 961}
+        category: 0
+        gameplayEventId: unlock_evidence:ev_payment_report
+        nextNodeId: 8e5373ad038244eb9029dc2c85a06630
+    - rid: 2436170619896463509
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8e5373ad038244eb9029dc2c85a06630
+        position: {x: 41864, y: 961}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: bgm_courtroom_tension
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Sidang dilanjutkan. Penyidik dipanggil kembali sehubungan dengan
+              bukti-bukti baru yang ditemukan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_witness_stand
+            Value: 0.7
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+            Text: (kembali ke mimbar saksi, raut mukanya lebih waspada dari sebelumnya)
+              Baik, Yang Mulia.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: cfb0755a3b7a4494aa609cdab1d0cc43
+    - rid: 2436170619896463510
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: cfb0755a3b7a4494aa609cdab1d0cc43
+        position: {x: 42507, y: 961}
+        statementId: 09f833a0b798473b9d8740a6eebdb696
+        nextNodeId: 84a2713a555a4ddfbf58c165df3b0c23
+    - rid: 2436170619896463511
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 84a2713a555a4ddfbf58c165df3b0c23
+        position: {x: 43459, y: 961}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Silakan lanjutkan, Penyidik. Jelaskan bagian selanjutnya dari temuan
+              baru ini.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Yudi melirik map di tangannya sejenak sebelum melanjutkan, jeda
+              yang sedikit lebih lama dari biasanya.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 0.8
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 63694328b5fb4d979857a5f6d3ebd46b
+    - rid: 2436170619896463512
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 63694328b5fb4d979857a5f6d3ebd46b
+        position: {x: 43969, y: 961}
+        statementId: 308b428202414436b823e506c495832d
+        nextNodeId: 6248dd787bd04cd5aa67f03e39e30a8d
+    - rid: 2436170619896463513
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 6248dd787bd04cd5aa67f03e39e30a8d
+        position: {x: 44757, y: 934}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_defendant_table
+            Value: 0.6
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
+            Text: (matanya berkaca-kaca) Itu... itu berarti bener kan, Jer? Ada celah
+              waktu yang belum diperiksa?
+            Emotion: 5
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Ada. Dan kita akan buktikan itu, satu per satu.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 4095182778c54bf5b1ffbc219f7e6939
+    - rid: 2436170619896463514
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 4095182778c54bf5b1ffbc219f7e6939
+        position: {x: 45354, y: 997}
+        statementId: 9299a251ba41461c87d05f5083398924
+        nextNodeId: 27781c61c01a484da6f33772830c16bc
+    - rid: 2436170619896463515
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 27781c61c01a484da6f33772830c16bc
+        position: {x: 46262, y: 970}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Yudi mengelap keringat di dahinya meski ruang sidang ber-AC dingin.
+              Ia mulai menjawab lebih pendek, lebih hati-hati.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 16cad1f17a99042ed93f6ab5994fc1ee, type: 2}
+            Text: Saya hanya bertugas sesuai laporan yang masuk, Yang Mulia. Bukan
+              wewenang saya menyimpulkan lebih jauh.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: f9e7b92610084309855d1434eca55deb
+    - rid: 2436170619896463516
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: f9e7b92610084309855d1434eca55deb
+        position: {x: 46947, y: 970}
         entries:
         - Type: 0
           Line:
@@ -3884,19 +5991,114 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 907bca10113f442ba6b303c59bec37c9
-    - rid: 1763526658047344844
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Di papan gabus itu, satu nama mulai muncul lebih sering daripada
+              yang lain.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 6110cfb6999f43fc9a1f8179b85e026d
+    - rid: 2436170619896463517
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 907bca10113f442ba6b303c59bec37c9
-        position: {x: 32550, y: 130.5}
+        nodeId: 6110cfb6999f43fc9a1f8179b85e026d
+        position: {x: 47625, y: 935}
         entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 6
+            Parameter: black
+            Value: 0.9
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 2
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Sidang berikutnya menghadirkan sosok yang selama ini tampil sebagai
+              wajah resmi proyek nasional itu,
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.5
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 33670ef3536b49dcb822332057225722
+    - rid: 2436170619896463518
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 33670ef3536b49dcb822332057225722
+        position: {x: 48175, y: 935}
+        entries:
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 1
+            Parameter: bgm_courtroom_tension
+            Value: 0.5
         - Type: 0
           Line:
             SpeakerType: 0
-            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
             Text: Pengadilan memanggil Direktur Proyek Digitalisasi Pendidikan Nasional,
               Adrian Wijaya.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: cam_witness_stand
+            Value: 0.9
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Seorang pria berjas rapi melangkah tenang ke mimbar saksi, tersenyum
+              tipis ke arah galeri seolah ini bukan ruang sidang, melainkan konferensi
+              pers.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3909,6 +6111,59 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
             Text: Terima kasih, Yang Mulia. Saya akan menjawab dengan sejujur-jujurnya.
+            Emotion: 1
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (Dia terlalu tenang. Orang yang benar-benar tidak punya apa-apa
+              untuk disembunyikan jarang setenang ini.)
+            Emotion: 3
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: ac5877418e2a43e7b6f457415c6c98dc
+    - rid: 2436170619896463519
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: ac5877418e2a43e7b6f457415c6c98dc
+        position: {x: 48704, y: 921}
+        statementId: 271339cb1b2742b8a7bde31c51bf057c
+        nextNodeId: 1d00ae5abfc042d3991f0f55eadf46cd
+    - rid: 2436170619896463520
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 1d00ae5abfc042d3991f0f55eadf46cd
+        position: {x: 49510, y: 894}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: Saya rasa siapa pun yang bekerja di proyek sebesar ini pasti mengenal
+              banyak staf, Yang Mulia. Itu wajar.
+            Emotion: 1
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Tepat sekali. Saksi ini justru salah satu figur paling kooperatif
+              dalam audit proyek ini.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3916,26 +6171,19 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 96fc0a287582402ba80bdeb16a160b4b
-    - rid: 1763526658047344845
+        nextNodeId: 657a957e08dd45b58bd9b48d088756f1
+    - rid: 2436170619896463521
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 96fc0a287582402ba80bdeb16a160b4b
-        position: {x: 33061.5, y: 148.5}
-        statementId: 271339cb1b2742b8a7bde31c51bf057c
-        nextNodeId: 336b127919a042b8af22176413bb362e
-    - rid: 1763526658047344846
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 336b127919a042b8af22176413bb362e
-        position: {x: 33839.5, y: 148.5}
+        nodeId: 657a957e08dd45b58bd9b48d088756f1
+        position: {x: 50124, y: 894}
         statementId: 0410f5d53f394361927d804aad10dae3
-        nextNodeId: d7cebc840fb449538fa513eafbe90cb9
-    - rid: 1763526658047344847
+        nextNodeId: 835d71a4423448a29c25aaf6b9f1f697
+    - rid: 2436170619896463522
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: d7cebc840fb449538fa513eafbe90cb9
-        position: {x: 34571.5, y: 130.5}
+        nodeId: 835d71a4423448a29c25aaf6b9f1f697
+        position: {x: 50946, y: 876}
         condition:
           mode: 1
           stat: 0
@@ -3943,13 +6191,34 @@ MonoBehaviour:
           value: 0
           claimId: 5e8a409bce7947a2acd8d0abb58e2d50
           requireSuccessful: 1
-        trueNodeId: 8f3fa5196e5b457395896536c968f8f3
-        falseNodeId: 336aea9ec8e9419380018c94f3ea20b5
-    - rid: 1763526658047344848
+        trueNodeId: 751487a981134df9aa73270b4f547529
+        falseNodeId: 850141e558304318861d6dce43d9a373
+    - rid: 2436170619896463523
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 850141e558304318861d6dce43d9a373
+        position: {x: 51809, y: 1015}
+        condition:
+          mode: 0
+          stat: 1
+          comparisonOperator: 1
+          value: 6
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 602cdfcaf65947eb8ab378928b23431a
+        falseNodeId: 1e3dd1abf671435a9c669a2c93370011
+    - rid: 2436170619896463524
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 751487a981134df9aa73270b4f547529
+        position: {x: 51765, y: 797}
+        statementId: 7b54ec10b75f44a392ddb2f4960083dd
+        nextNodeId: b617c294ac574992b4b10d6c4902269e
+    - rid: 2436170619896463525
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 336aea9ec8e9419380018c94f3ea20b5
-        position: {x: 35348, y: 226}
+        nodeId: 1e3dd1abf671435a9c669a2c93370011
+        position: {x: 52409, y: 1193}
         entries:
         - Type: 0
           Line:
@@ -3963,25 +6232,133 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: d25a169cadef4ff39d13c901fd919076
-    - rid: 1763526658047344850
-      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: d25a169cadef4ff39d13c901fd919076
-        position: {x: 35093.5, y: 494.5}
-        targetNodeId: 336b127919a042b8af22176413bb362e
-    - rid: 1763526658047344851
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 8f3fa5196e5b457395896536c968f8f3
-        position: {x: 35448, y: 34}
-        statementId: 7b54ec10b75f44a392ddb2f4960083dd
-        nextNodeId: 6ab4a72a4ccd44c89f7cad243783742a
-    - rid: 1763526658047344852
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, saya rasa keterangan saksi sudah cukup jelas.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Ditolak. Pembela masih berhak melanjutkan pemeriksaan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: edfaff4febf14f75a6e86515f4f7df42
+    - rid: 2436170619896463526
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 6ab4a72a4ccd44c89f7cad243783742a
-        position: {x: 36405.5, y: 7.5}
+        nodeId: 602cdfcaf65947eb8ab378928b23431a
+        position: {x: 52149, y: 910}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: (tersenyum tipis) Saya sudah menjawab ini, Yang Mulia. Saya rasa
+              tidak ada yang perlu ditambahkan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: Yang Mulia, pembela terus mengulang pertanyaan yang sama tanpa
+              bukti baru.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Ditolak, jaksa. Tapi ini kesempatan terakhir, Pembela, perkuat
+              argumen Anda atau saya lanjutkan pemeriksaan.
+            Emotion: 4
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: edfaff4febf14f75a6e86515f4f7df42
+    - rid: 2436170619896463527
+      type: {class: JumpNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: edfaff4febf14f75a6e86515f4f7df42
+        position: {x: 51384, y: 1526}
+        targetNodeId: 657a957e08dd45b58bd9b48d088756f1
+    - rid: 2436170619896463528
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: b617c294ac574992b4b10d6c4902269e
+        position: {x: 52675, y: 753}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Untuk pertama kalinya, senyum tipis Adrian menghilang. Jarinya
+              mengetuk-ngetuk meja saksi tanpa ia sadari.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
+            Text: (nadanya sedikit meninggi) Itu... itu tidak seperti yang Anda bayangkan.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
+            Text: Pengadilan hanya menilai apa yang tercatat, Saudara Adrian. Silakan
+              lanjutkan, Pembela.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: c67462381ce74c1ea20c91730cc7cfc6
+    - rid: 2436170619896463529
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: c67462381ce74c1ea20c91730cc7cfc6
+        position: {x: 53271, y: 848}
         entries:
         - Type: 0
           Line:
@@ -4008,12 +6385,25 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 609fcbfb160d4c058003294a58b375d5
-    - rid: 1763526658047344853
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Sidang diskors untuk hari itu. Di koridor pengadilan, Adrian sempat
+              menoleh sekilas ke arah Jeremy, tatapan yang tak lagi setenang di awal.
+            Emotion: 0
+            WaitMode: 1
+            AutoAdvanceDelay: 1.3
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 8d0d1d78cf0748bcb9f991673e4c2c71
+    - rid: 2436170619896463530
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 609fcbfb160d4c058003294a58b375d5
-        position: {x: 36959.5, y: 7.5}
+        nodeId: 8d0d1d78cf0748bcb9f991673e4c2c71
+        position: {x: 53765, y: 858}
         entries:
         - Type: 1
           Line:
@@ -4024,9 +6414,41 @@ MonoBehaviour:
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
-            Type: 7
-            Parameter: bg_courtroom_climax
+            Type: 6
+            Parameter: black
+            Value: 0.9
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 2
+            Parameter: 
             Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: Sidang puncak akan digelar dua hari lagi. Jeremy tahu, ini kesempatan
+              terakhir untuk membongkar semuanya,
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 0be21866753240fcadc053bae0d727aa
+    - rid: 2436170619896463531
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0be21866753240fcadc053bae0d727aa
+        position: {x: 54350, y: 858}
+        entries:
         - Type: 1
           Line:
             SpeakerType: 0
@@ -4038,7 +6460,7 @@ MonoBehaviour:
           Event:
             Type: 1
             Parameter: bgm_final_revelation
-            Value: 0
+            Value: 0.7
         - Type: 0
           Line:
             SpeakerType: 1
@@ -4066,28 +6488,13 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 093be50641ee40cb94389dee2902cc8c
-    - rid: 1763526658047344854
-      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 093be50641ee40cb94389dee2902cc8c
-        position: {x: 37567, y: -1}
-        category: 0
-        gameplayEventId: unlock_evidence:ev_cloud_backup_data
-        nextNodeId: b84d7d1f4f274bdaa3159541380d4af1
-    - rid: 1763526658047344855
-      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: b84d7d1f4f274bdaa3159541380d4af1
-        position: {x: 38146.5, y: -21.5}
-        entries:
         - Type: 0
           Line:
-            SpeakerType: 1
-            Speaker: {fileID: 0}
-            Text: Seluruh data cloud berhasil dipulihkan. Atmosfer persidangan berubah
-              menjadi tegang.
-            Emotion: 0
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
+            Text: (gelisah) Itu... itu klaim yang cukup besar untuk disampaikan tanpa
+              bukti, Pembela.
+            Emotion: 6
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
@@ -4098,10 +6505,86 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: Maka izinkan saya menunjukkannya, Yang Mulia.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 0b8968da57534343974cc5b1e770d21b
+    - rid: 2436170619896463532
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0b8968da57534343974cc5b1e770d21b
+        position: {x: 54945, y: 858}
+        category: 1
+        gameplayEventId: unlock_evidence:ev_cloud_backup_data
+        nextNodeId: dfa83b590b9b4e299d53d556f3336d55
+    - rid: 2436170619896463533
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: dfa83b590b9b4e299d53d556f3336d55
+        position: {x: 55481, y: 858}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Seluruh data berhasil dipulihkan.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_courtroom_wide
+            Value: 1
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 5
+            Parameter: 
+            Value: 0.1
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
             Text: Data ini membuktikan rekayasa tender, penggelembungan harga, manipulasi
               spesifikasi barang, perubahan laporan evaluasi, dan aliran dana kepada
               sejumlah pihak.
             Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Untuk pertama kalinya sejak sidang dimulai, seluruh ruangan benar-benar
+              hening.
+            Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
@@ -4125,8 +6608,9 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: 'Masih ada satu pertanyaan besar: siapa yang memerintahkan pembunuhan
-              ini? Dan siapa yang diuntungkan dari kematian Ryan?'
+            Text: 'Tapi masih ada satu pertanyaan yang belum terjawab: siapa yang
+              memerintahkan pembunuhan itu? Dan siapa yang paling diuntungkan dari
+              kematian Ryan?'
             Emotion: 3
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4134,12 +6618,24 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 1e53ea7850614fb4931aae0dfe28f19a
-    - rid: 1763526658047344856
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 215ed04ea73544f6a5188166610e85cb
+    - rid: 2436170619896463534
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 1e53ea7850614fb4931aae0dfe28f19a
-        position: {x: 38461, y: -1}
+        nodeId: 215ed04ea73544f6a5188166610e85cb
+        position: {x: 55807, y: 843}
         condition:
           mode: 1
           stat: 0
@@ -4147,13 +6643,13 @@ MonoBehaviour:
           value: 0
           claimId: dac30fd93fd245aa83d811342d865d74
           requireSuccessful: 1
-        trueNodeId: 659d373278ff489e9512f28d806b107c
-        falseNodeId: 235ed286a1644bb6a684080c0881a23d
-    - rid: 1763526658047344857
+        trueNodeId: 1bd5d290aae84c968da6a29ed7cc90e4
+        falseNodeId: 112a69715bf649aabc7460a94b59e2a3
+    - rid: 2436170619896463535
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 659d373278ff489e9512f28d806b107c
-        position: {x: 39186.5, y: -98}
+        nodeId: 1bd5d290aae84c968da6a29ed7cc90e4
+        position: {x: 56454, y: 719}
         entries:
         - Type: 0
           Line:
@@ -4172,9 +6668,8 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
-            Text: Yang Mulia... saya baru saja menemukan informasi yang bisa mengguncang
-              jalannya persidangan.
-            Emotion: 0
+            Text: Yang Mulia... saya punya sesuatu yang harus saya sampaikan.
+            Emotion: 6
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
@@ -4194,33 +6689,91 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: effb28f6e506482dbdee101a87855e7b
-    - rid: 1763526658047344858
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 4
+            Parameter: cam_witness_stand
+            Value: 0.8
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
+            Text: Nama saya Melati Wulandari. Saya asisten pribadi Pak Adrian selama
+              dua tahun terakhir.
+            Emotion: 6
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 
+    - rid: 2436170619896463537
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: effb28f6e506482dbdee101a87855e7b
-        position: {x: 39759.5, y: -97.5}
+        nodeId: 112a69715bf649aabc7460a94b59e2a3
+        position: {x: 56454, y: 979}
         statementId: efb56c13637c44a4bc8279d05dda442d
-        nextNodeId: 229153a8f2af421eb1a04e8bbef27e9c
-    - rid: 1763526658047344859
-      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 229153a8f2af421eb1a04e8bbef27e9c
-        position: {x: 40655.5, y: -98}
-        statementId: 05cf76c70d8f4b4c90ac71269e3fd5a7
-        nextNodeId: c9c417c3703b4a2ba2b1e8345af7e921
-    - rid: 1763526658047344860
+        nextNodeId: 8b4a17abdd5c4c95a7339869af979ba3
+    - rid: 2436170619896463538
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: c9c417c3703b4a2ba2b1e8345af7e921
-        position: {x: 41516, y: -124.5}
+        nodeId: 8b4a17abdd5c4c95a7339869af979ba3
+        position: {x: 57277, y: 979}
+        entries:
+        - Type: 0
+          Line:
+            SpeakerType: 1
+            Speaker: {fileID: 0}
+            Text: Tangan Melati gemetar memegang map kecil yang ia bawa. Sesekali
+              ia melirik ke arah Adrian, lalu buru-buru menunduk lagi.
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 8996332f3801948ccae6bf7c96dce3e8, type: 2}
+            Text: Saya... saya takut. Tapi saya nggak bisa terus diam setelah tahu
+              apa yang sebenarnya terjadi malam itu.
+            Emotion: 7
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: be634a920e1b4875999e5d04cbf1cfe0
+    - rid: 2436170619896463540
+      type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: be634a920e1b4875999e5d04cbf1cfe0
+        position: {x: 57950, y: 979}
+        statementId: 05cf76c70d8f4b4c90ac71269e3fd5a7
+        nextNodeId: cb73dda933d942e2b2c1397b3062720f
+    - rid: 2436170619896463541
+      type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: cb73dda933d942e2b2c1397b3062720f
+        position: {x: 58803, y: 979}
         entries:
         - Type: 0
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 323acac8dfbd849f3b6a33fcf0dbc13d, type: 2}
-            Text: I-itu tidak benar! Dia hanya asisten biasa, dia tidak tahu apa-apa
-              soal,
+            Text: "I-itu tidak benar! Dia hanya asisten biasa, dia tidak tahu apa-apa
+              soal\u2014"
             Emotion: 4
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4241,42 +6794,66 @@ MonoBehaviour:
             Type: 0
             Parameter: 
             Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 3
+            Parameter: sfx_gavel_single
+            Value: 0.7
         - Type: 0
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
             Text: (Untuk pertama kalinya sejak persidangan dimulai, Adrian benar-benar
               kehilangan kendali.)
-            Emotion: 3
+            Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 0
             Parameter: 
             Value: 0
-        nextNodeId: 3f19b428f27245b79238602d5a742716
-    - rid: 1763526658047344861
+        - Type: 0
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
+            Text: (menoleh sekilas) Hampir. Tinggal satu langkah lagi.
+            Emotion: 2
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 0
+            Parameter: 
+            Value: 0
+        nextNodeId: 5e8a7c55f78948eeb077f5e9b763040b
+    - rid: 2436170619896463542
       type: {class: ChoiceNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 3f19b428f27245b79238602d5a742716
-        position: {x: 42186.5, y: 319}
+        nodeId: 5e8a7c55f78948eeb077f5e9b763040b
+        position: {x: 59282, y: 1009}
         choices:
-        - choiceId: 7a5c75b0238949cba8f27ef1ed1d8e99
-          text: Tuduh Adrian Wijaya sebagai arsitek konspirasi dan tuntut pengadilan
-            mengungkap bukti korupsi yang ia pimpin.
-          nextNodeId: 04d8e95ebcb54dc78bd9b572a6c1e665
-        - choiceId: 6cd21817c8d14325a0761f9de38567f3
-          text: Akui bahwa dalang utama masih belum jelas, dan dorong penyelidikan
-            lebih dalam tanpa mengambil kesimpulan prematur.
-          nextNodeId: 626e331db7cc40a090dcd6b24f304e3f
-        - choiceId: 665ba4e171fd4fc4b4372e7630b2ee86
-          text: Prioritaskan pembebasan Arga sekarang; buka kasus korupsi nanti.
-          nextNodeId: 8775b8f304fa453190a895eb90981a0e
-    - rid: 1763526658047344862
+        - choiceId: 39cbd87e7235449591dc7347e37accee
+          text: Tuduh Adrian Wijaya sebagai dalang utama di balik semuanya.
+          nextNodeId: 206defc6cf6d49adac52f2a50584c5ae
+        - choiceId: 530380316f384f288e4a98f3323f13d6
+          text: Nyatakan bahwa dalang sesungguhnya masih belum diketahui, dan konspirasi
+            ini harus terus diselidiki.
+          nextNodeId: 16882fc093e34493ae04e759aa118d7e
+        - choiceId: 9ebae3f10f8a4842ade98e0b9467ce9c
+          text: Fokus hanya membebaskan Arga, tanpa membongkar lebih jauh isu korupsi
+            ini.
+          nextNodeId: 722a3765c7b7413fbd9f54242fcc5dc7
+    - rid: 2436170619896463543
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 04d8e95ebcb54dc78bd9b572a6c1e665
-        position: {x: 43076, y: 143}
+        nodeId: 206defc6cf6d49adac52f2a50584c5ae
+        position: {x: 59982, y: 736}
         condition:
           mode: 0
           stat: 0
@@ -4284,13 +6861,13 @@ MonoBehaviour:
           value: 90
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 10705c9707a343cfbe229d162f2c4201
-        falseNodeId: b1c89b4328064b34abedecad4eb2b7ce
-    - rid: 1763526658047344863
+        trueNodeId: 33f3927c3b8b4a3eb4782eb4795d31b5
+        falseNodeId: b4d50309134c45ad97fd1a45f248f95e
+    - rid: 2436170619896463544
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 10705c9707a343cfbe229d162f2c4201
-        position: {x: 43419.5, y: 55}
+        nodeId: 33f3927c3b8b4a3eb4782eb4795d31b5
+        position: {x: 60328, y: 591}
         condition:
           mode: 0
           stat: 4
@@ -4298,41 +6875,13 @@ MonoBehaviour:
           value: 70
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 7409dac8ab754db2b0b60ac45a3e1594
-        falseNodeId: b1c89b4328064b34abedecad4eb2b7ce
-    - rid: 1763526658047344864
+        trueNodeId: 8d6e3e99d5cd4f95ab014a9ea379698e
+        falseNodeId: b4d50309134c45ad97fd1a45f248f95e
+    - rid: 2436170619896463545
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 7409dac8ab754db2b0b60ac45a3e1594
-        position: {x: 43741, y: -33}
-        condition:
-          mode: 0
-          stat: 2
-          comparisonOperator: 0
-          value: 64
-          claimId: 
-          requireSuccessful: 1
-        trueNodeId: 495ab1fa0f184205b1f2d07c1632c31c
-        falseNodeId: b1c89b4328064b34abedecad4eb2b7ce
-    - rid: 1763526658047344865
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 495ab1fa0f184205b1f2d07c1632c31c
-        position: {x: 44060, y: -102}
-        condition:
-          mode: 0
-          stat: 3
-          comparisonOperator: 1
-          value: 100
-          claimId: 
-          requireSuccessful: 1
-        trueNodeId: eadcde9e86be4234b082fec48746dcbf
-        falseNodeId: 019f7ee67a8d485bb173174bdf94ff1b
-    - rid: 1763526658047344866
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: b1c89b4328064b34abedecad4eb2b7ce
-        position: {x: 43938.5, y: 369}
+        nodeId: b4d50309134c45ad97fd1a45f248f95e
+        position: {x: 60582, y: 876}
         condition:
           mode: 0
           stat: 0
@@ -4340,31 +6889,53 @@ MonoBehaviour:
           value: 75
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 81a3de447ed0474bb02e314646b57fe0
-        falseNodeId: 8fe04e25d532428e8ec60e52c9b15607
-    - rid: 1763526658047344867
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 019f7ee67a8d485bb173174bdf94ff1b
-        position: {x: 45024.5, y: 26}
-        endingId: end_good_conspiracy_exposed
-    - rid: 1763526658047344868
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 235ed286a1644bb6a684080c0881a23d
-        position: {x: 45501.5, y: 740.5}
-        endingId: end_neutral_partial_truth
-    - rid: 1763526658047344869
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: eadcde9e86be4234b082fec48746dcbf
-        position: {x: 44498, y: -129.5}
-        endingId: end_true_open_question
-    - rid: 1763526658047344870
+        trueNodeId: 0e03fca2ff684a6388e855a5c0063ca9
+        falseNodeId: a943c33c51134d7896ab325848808594
+    - rid: 2436170619896463546
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 81a3de447ed0474bb02e314646b57fe0
-        position: {x: 44220.5, y: 184.5}
+        nodeId: 8d6e3e99d5cd4f95ab014a9ea379698e
+        position: {x: 60694, y: 535}
+        condition:
+          mode: 0
+          stat: 2
+          comparisonOperator: 1
+          value: 65
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: d1f89ea205cf435783323e4f6b6387f2
+        falseNodeId: b4d50309134c45ad97fd1a45f248f95e
+    - rid: 2436170619896463547
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d1f89ea205cf435783323e4f6b6387f2
+        position: {x: 60986, y: 535}
+        condition:
+          mode: 0
+          stat: 3
+          comparisonOperator: 1
+          value: 100
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 07a9ba7e09c1445ba20a99bfdbbb48cb
+        falseNodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
+    - rid: 2436170619896463548
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 07a9ba7e09c1445ba20a99bfdbbb48cb
+        position: {x: 61289, y: 487}
+        endingId: end_true_open_question
+    - rid: 2436170619896463549
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
+        position: {x: 61488, y: 653}
+        endingId: end_good_conspiracy_exposed
+    - rid: 2436170619896463550
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0e03fca2ff684a6388e855a5c0063ca9
+        position: {x: 61047, y: 757}
         condition:
           mode: 0
           stat: 4
@@ -4372,27 +6943,13 @@ MonoBehaviour:
           value: 45
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 18c5577c29354f798977ce409d7676d4
-        falseNodeId: 8fe04e25d532428e8ec60e52c9b15607
-    - rid: 1763526658047344872
+        trueNodeId: 404eb911dc844bf0be2e8ec70bae3bac
+        falseNodeId: a943c33c51134d7896ab325848808594
+    - rid: 2436170619896463551
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 8fe04e25d532428e8ec60e52c9b15607
-        position: {x: 45076, y: 599}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 1
-          value: 55
-          claimId: 
-          requireSuccessful: 1
-        trueNodeId: 235ed286a1644bb6a684080c0881a23d
-        falseNodeId: 0df4ad923872439f83befd5916dc7284
-    - rid: 1763526658047344873
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 18c5577c29354f798977ce409d7676d4
-        position: {x: 44758.5, y: 281}
+        nodeId: 404eb911dc844bf0be2e8ec70bae3bac
+        position: {x: 61331, y: 889}
         condition:
           mode: 0
           stat: 5
@@ -4400,61 +6957,81 @@ MonoBehaviour:
           value: 50
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 019f7ee67a8d485bb173174bdf94ff1b
-        falseNodeId: 8fe04e25d532428e8ec60e52c9b15607
-    - rid: 1763526658047344874
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 0df4ad923872439f83befd5916dc7284
-        position: {x: 45501.5, y: 996.5}
-        endingId: end_bad_arga_convicted
-    - rid: 1763526658047344875
+        trueNodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
+        falseNodeId: a943c33c51134d7896ab325848808594
+    - rid: 2436170619896463552
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 626e331db7cc40a090dcd6b24f304e3f
-        position: {x: 43041.5, y: 749}
+        nodeId: a943c33c51134d7896ab325848808594
+        position: {x: 61309, y: 1237}
         condition:
           mode: 0
           stat: 0
-          comparisonOperator: 1
-          value: 80
+          comparisonOperator: 0
+          value: 54
           claimId: 
           requireSuccessful: 1
-        trueNodeId: e8ce33f241ac4621ac745017046a9007
-        falseNodeId: 691f5f24d0b342478be05ebaf62e56bd
-    - rid: 1763526658047344876
+        trueNodeId: 74dc8fc345ee4036ae7128fd50120873
+        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
+    - rid: 2436170619896463553
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 74dc8fc345ee4036ae7128fd50120873
+        position: {x: 61708, y: 1067}
+        endingId: end_neutral_partial_truth
+    - rid: 2436170619896463554
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 8d59ca20eabd4b5db0118019732b375a
+        position: {x: 61693, y: 1337}
+        endingId: end_bad_arga_convicted
+    - rid: 2436170619896463555
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: e8ce33f241ac4621ac745017046a9007
-        position: {x: 43419.5, y: 661}
+        nodeId: 16882fc093e34493ae04e759aa118d7e
+        position: {x: 60069, y: 1142}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 79
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: cef8c7e0d3724243a4ca971ec413112b
+        falseNodeId: ac2340c38d214be289c615a765aaf89e
+    - rid: 2436170619896463556
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: cef8c7e0d3724243a4ca971ec413112b
+        position: {x: 60454, y: 1104}
         condition:
           mode: 0
           stat: 2
-          comparisonOperator: 1
-          value: 60
+          comparisonOperator: 0
+          value: 59
           claimId: 
           requireSuccessful: 1
-        trueNodeId: f9c69bbf17924b0b83cd16645cfb73e1
-        falseNodeId: 691f5f24d0b342478be05ebaf62e56bd
-    - rid: 1763526658047344877
+        trueNodeId: 1f67da98a7c448d4bbf477777f661431
+        falseNodeId: ac2340c38d214be289c615a765aaf89e
+    - rid: 2436170619896463557
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: f9c69bbf17924b0b83cd16645cfb73e1
-        position: {x: 43837, y: 599}
+        nodeId: 1f67da98a7c448d4bbf477777f661431
+        position: {x: 60733, y: 1129}
         condition:
           mode: 0
           stat: 6
-          comparisonOperator: 1
-          value: 50
+          comparisonOperator: 0
+          value: 49
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 019f7ee67a8d485bb173174bdf94ff1b
-        falseNodeId: 691f5f24d0b342478be05ebaf62e56bd
-    - rid: 1763526658047344878
+        trueNodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
+        falseNodeId: ac2340c38d214be289c615a765aaf89e
+    - rid: 2436170619896463558
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 691f5f24d0b342478be05ebaf62e56bd
-        position: {x: 44099, y: 1241.5}
+        nodeId: ac2340c38d214be289c615a765aaf89e
+        position: {x: 60804, y: 1476}
         condition:
           mode: 0
           stat: 0
@@ -4462,33 +7039,37 @@ MonoBehaviour:
           value: 55
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 235ed286a1644bb6a684080c0881a23d
-        falseNodeId: 0df4ad923872439f83befd5916dc7284
-    - rid: 1763526658047344879
+        trueNodeId: 74dc8fc345ee4036ae7128fd50120873
+        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
+    - rid: 2436170619896463559
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: 8775b8f304fa453190a895eb90981a0e
-        position: {x: 42929, y: 1093}
+        nodeId: 722a3765c7b7413fbd9f54242fcc5dc7
+        position: {x: 60069, y: 1415}
         condition:
           mode: 0
           stat: 0
           comparisonOperator: 0
-          value: 0
+          value: 49
           claimId: 
           requireSuccessful: 1
-        trueNodeId: a35f00498eb84007acf32c23ce1b8ddc
-        falseNodeId: 0df4ad923872439f83befd5916dc7284
-    - rid: 1763526658047344880
+        trueNodeId: 6ac1816c705a478ab9fdfffab690c25f
+        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
+    - rid: 2436170619896463560
       type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
-        nodeId: a35f00498eb84007acf32c23ce1b8ddc
-        position: {x: 43419.5, y: 1241.5}
+        nodeId: 6ac1816c705a478ab9fdfffab690c25f
+        position: {x: 60479, y: 1438}
         condition:
           mode: 0
           stat: 7
-          comparisonOperator: 0
+          comparisonOperator: 3
           value: 20
           claimId: 
           requireSuccessful: 1
-        trueNodeId: 235ed286a1644bb6a684080c0881a23d
-        falseNodeId: 0df4ad923872439f83befd5916dc7284
+        trueNodeId: 74dc8fc345ee4036ae7128fd50120873
+        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
+    - rid: 2436170619896463561
+      type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
+      data:
+        requiredAction: 2

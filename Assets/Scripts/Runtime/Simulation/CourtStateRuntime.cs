@@ -6,6 +6,8 @@ namespace Verdict.Runtime
 {
     public sealed class CourtStateRuntime
     {
+        public event Action<CourtStat, int, int> StatChanged;
+
         private readonly HashSet<string> revealedStatementIds = new();
         private readonly HashSet<string> revealedTestimonyIds = new();
         private readonly HashSet<string> unlockedEvidenceIds = new();
@@ -91,7 +93,14 @@ namespace Verdict.Runtime
                 next = 0;
             }
 
-            courtStats[stat] = (int)next;
+            int previousValue = courtStats[stat];
+            int newValue = (int)next;
+            courtStats[stat] = newValue;
+
+            if (previousValue != newValue)
+            {
+                StatChanged?.Invoke(stat, previousValue, newValue);
+            }
         }
 
         public void EnsureStatExists(CourtStat stat)
