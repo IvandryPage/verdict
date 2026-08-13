@@ -335,6 +335,25 @@ namespace Verdict.UI.Narrative
                 return;
             }
 
+            if (entry.Line.Speaker == null)
+            {
+                Debug.LogWarning(
+                    "NarrativePresenter: Character dialogue has no speaker assigned.");
+
+                if (speakerNameText != null)
+                {
+                    speakerNameText.text = "Unknown Speaker";
+                }
+
+                if (speakerPortrait != null)
+                {
+                    speakerPortrait.enabled = false;
+                    speakerPortrait.sprite = null;
+                }
+
+                return;
+            }
+
             CharacterData character =
                 courtroomController.GetCharacter(
                     entry.Line.Speaker.Id);
@@ -343,7 +362,7 @@ namespace Verdict.UI.Narrative
             {
                 Debug.LogWarning(
                     $"NarrativePresenter: " +
-                    $"Character '{entry.Line.Speaker}' was not found.");
+                    $"Character '{entry.Line.Speaker.DisplayName ?? entry.Line.Speaker.Id ?? "<unknown>"}' was not found.");
 
                 if (speakerNameText != null)
                 {

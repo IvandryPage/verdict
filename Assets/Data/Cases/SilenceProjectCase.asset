@@ -19,7 +19,11 @@ MonoBehaviour:
     korupsi yang ia kumpulkan. Sahabat dekatnya, Arga Mahendra, didakwa sebagai pembunuh
     berdasarkan bukti yang tampak hampir sempurna. Pemain berperan sebagai pengacara
     yang ditugaskan membelanya, dan perlahan menemukan bahwa pembunuhan ini hanyalah
-    permukaan dari konspirasi nasional yang jauh lebih besar.
+    permukaan dari konspirasi nasional yang jauh lebih besar. Secara yuridis, dakwaan
+    utama berpusat pada Pasal 338 KUHP tentang pembunuhan, sementara dugaan keterlibatan
+    jaringan korupsi juga menyentuh Pasal 2 dan 3 UU Tipikor serta Pasal 55 ayat (1)
+    ke-1 KUHP sebagai kerangka pendukung hukum yang memperkuat konteks peristiwa, tanpa
+    menjadi inti mekanik permainan.
   difficulty: 2
   purpose: 2
   tags:
@@ -2635,9 +2639,11 @@ MonoBehaviour:
   - id: end_bad_arga_convicted
     title: Kambing Hitam
     description: Bukti tidak cukup meyakinkan hakim. Arga Mahendra divonis bersalah
-      atas pembunuhan Ryan Pratama. Konspirasi di balik proyek digitalisasi pendidikan
-      tetap tersembunyi rapi, dan kasus ini ditutup sebagai 'pembunuhan akibat konflik
-      pribadi', persis seperti judul awal yang dibangun media.
+      atas pembunuhan Ryan Pratama berdasarkan dakwaan yang dibangun pada Pasal 338
+      KUHP, sementara jejak korupsi dan persekongkolan tetap dibungkam di balik narasi
+      konflik pribadi yang disederhanakan media. Konspirasi di balik proyek digitalisasi
+      pendidikan tetap tersembunyi rapi, dan kasus ini ditutup sebagai 'pembunuhan akibat
+      konflik pribadi', persis seperti judul awal yang dibangun media.
     minimumJudgeTrust: 0
     maximumPenalty: 100
     minimumPublicOpinion: 0
@@ -3467,7 +3473,9 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
-            Text: Jaksa penuntut umum, silakan sampaikan dakwaan Anda.
+            Text: Jaksa penuntut umum, silakan sampaikan dakwaan Anda. Pengadilan
+              mencatat bahwa dakwaan ini akan dibangun dalam kerangka hukum yang relevan,
+              termasuk Pasal 338 KUHP serta pasal terkait tindak pidana korupsi.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3500,7 +3508,9 @@ MonoBehaviour:
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
             Text: Yang Mulia, kami akan membuktikan bahwa terdakwa, Arga Mahendra,
               membunuh sahabatnya sendiri, Ryan Pratama, dalam sebuah pertengkaran
-              pribadi yang berujung fatal.
+              pribadi yang berujung fatal. Dakwaan ini berangkat dari Pasal 338 KUHP
+              tentang pembunuhan, dan kami akan menempatkan seluruh fakta di bawah
+              kerangka hukum itu.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3514,7 +3524,9 @@ MonoBehaviour:
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
             Text: Seluruh bukti yang kami miliki, sidik jari, rekaman CCTV, riwayat
               pesan, mengarah pada satu kesimpulan yang sama. Tidak ada ruang untuk
-              keraguan, Yang Mulia.
+              keraguan, Yang Mulia. Dan bila diperlukan, jejak kerugian negara serta
+              persekongkolan dalam proyek ini juga dapat dikaitkan pada Pasal 2 dan
+              3 UU Tipikor serta Pasal 55 ayat (1) ke-1 KUHP.
             Emotion: 2
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3629,7 +3641,9 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
             Text: Penuntut umum memanggil AKP Yudi Setiawan, penyidik utama kasus
-              ini, ke mimbar saksi.
+              ini, ke mimbar saksi. Kesaksian yang akan disampaikan akan menegaskan
+              bahwa apa yang kita hadapi bukan hanya pembunuhan biasa, melainkan juga
+              permasalahan yang menyentuh Pasal 2 dan 3 UU Tipikor.
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
