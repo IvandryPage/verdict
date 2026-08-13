@@ -29,6 +29,9 @@ namespace Verdict.UI.MainMenu
         [SerializeField]
         private TMP_Text loadingText;
 
+        private Image spinnerImage;
+        private Coroutine spinnerCoroutine;
+
         [Header("Scenes")]
         [SerializeField]
         private string newGameSceneName = "Courtroom";
@@ -163,8 +166,15 @@ namespace Verdict.UI.MainMenu
                 saveFileName);
 
             bool hasSave = File.Exists(savePath);
-            continueButton.gameObject.SetActive(hasSave);
-            continueButton.interactable = hasSave;
+
+            continueButton.gameObject.SetActive(true);
+            continueButton.interactable = true;
+
+            TMP_Text buttonText = continueButton.GetComponentInChildren<TMP_Text>();
+            if (buttonText != null)
+            {
+                buttonText.text = hasSave ? "LANJUTKAN" : "MULAI";
+            }
         }
 
         private void EnsureLoadingOverlay()
@@ -176,19 +186,32 @@ namespace Verdict.UI.MainMenu
                     loadingText = loadingPanel.GetComponentInChildren<TMP_Text>();
                 }
 
+                spinnerImage = loadingPanel.transform.Find("Spinner")?.GetComponent<Image>();
                 return;
             }
 
-            GameObject root = new GameObject("MainMenuLoadingOverlay", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            GameObject root = new GameObject(
+                "MainMenuLoadingBadge",
+                typeof(Canvas),
+                typeof(CanvasScaler),
+                typeof(GraphicRaycaster));
+
             Canvas canvas = root.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 100;
 
+            RectTransform rootRect = root.GetComponent<RectTransform>();
+            rootRect.anchorMin = new Vector2(1f, 0f);
+            rootRect.anchorMax = new Vector2(1f, 0f);
+            rootRect.pivot = new Vector2(1f, 0f);
+            rootRect.sizeDelta = new Vector2(220f, 56f);
+            rootRect.anchoredPosition = new Vector2(-20f, 20f);
+
             GameObject panel = new GameObject("LoadingPanel", typeof(Image));
             panel.transform.SetParent(root.transform, false);
 
-            Image image = panel.GetComponent<Image>();
-            image.color = new Color(0f, 0f, 0f, 0.7f);
+            Image panelImage = panel.GetComponent<Image>();
+            panelImage.color = new Color(0.08f, 0.09f, 0.11f, 0.92f);
 
             RectTransform panelRect = panel.GetComponent<RectTransform>();
             panelRect.anchorMin = Vector2.zero;
@@ -196,19 +219,37 @@ namespace Verdict.UI.MainMenu
             panelRect.offsetMin = Vector2.zero;
             panelRect.offsetMax = Vector2.zero;
 
+            GameObject spinnerObject = new GameObject("Spinner", typeof(Image));
+            spinnerObject.transform.SetParent(panel.transform, false);
+
+            spinnerImage = spinnerObject.GetComponent<Image>();
+            spinnerImage.type = Image.Type.Filled;
+            spinnerImage.fillMethod = Image.FillMethod.Radial360;
+            spinnerImage.fillAmount = 0.75f;
+            spinnerImage.color = new Color(0.72f, 0.9f, 1f, 1f);
+
+            RectTransform spinnerRect = spinnerObject.GetComponent<RectTransform>();
+            spinnerRect.anchorMin = new Vector2(0f, 0.5f);
+            spinnerRect.anchorMax = new Vector2(0f, 0.5f);
+            spinnerRect.pivot = new Vector2(0.5f, 0.5f);
+            spinnerRect.sizeDelta = new Vector2(18f, 18f);
+            spinnerRect.anchoredPosition = new Vector2(16f, 0f);
+
             GameObject textObject = new GameObject("LoadingText", typeof(TextMeshProUGUI));
             textObject.transform.SetParent(panel.transform, false);
 
             loadingText = textObject.GetComponent<TMP_Text>();
             loadingText.text = "Memuat...";
-            loadingText.alignment = TextAlignmentOptions.Center;
+            loadingText.alignment = TextAlignmentOptions.Left;
+            loadingText.fontSize = 13;
             loadingText.color = Color.white;
 
             RectTransform textRect = textObject.GetComponent<RectTransform>();
-            textRect.anchorMin = Vector2.zero;
-            textRect.anchorMax = Vector2.one;
-            textRect.offsetMin = Vector2.zero;
-            textRect.offsetMax = Vector2.zero;
+            textRect.anchorMin = new Vector2(0f, 0.5f);
+            textRect.anchorMax = new Vector2(1f, 0.5f);
+            textRect.pivot = new Vector2(0.5f, 0.5f);
+            textRect.sizeDelta = new Vector2(-36f, 22f);
+            textRect.anchoredPosition = new Vector2(18f, 0f);
 
             loadingPanel = root;
             loadingPanel.SetActive(false);
@@ -216,9 +257,42 @@ namespace Verdict.UI.MainMenu
 
         private void SetLoadingVisible(bool visible)
         {
-            if (loadingPanel != null)
+            if (loadingPanel == null)
             {
-                loadingPanel.SetActive(visible);
+                return;
+            }
+
+            loadingPanel.SetActive(visible);
+
+            if (visible)
+            {
+                if (spinnerCoroutine == null)
+                {
+                    spinnerCoroutine = StartCoroutine(AnimateSpinner());
+                }
+            }
+            else if (spinnerCoroutine != null)
+            {
+                StopCoroutine(spinnerCoroutine);
+                spinnerCoroutine = null;
+
+                if (spinnerImage != null)
+                {
+                    spinnerImage.rectTransform.localRotation = Quaternion.identity;
+                }
+            }
+        }
+
+        private IEnumerator AnimateSpinner()
+        {
+            while (true)
+            {
+                if (spinnerImage != null)
+                {
+                    spinnerImage.rectTransform.Rotate(0f, 0f, -220f * Time.deltaTime);
+                }
+
+                yield return null;
             }
         }
 

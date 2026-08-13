@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Verdict.Data.Cases;
 using Verdict.Input;
@@ -88,6 +89,17 @@ namespace Verdict
                 MainMenuPresenter.ShouldLoadSavedGame = false;
             }
 
+            StartCoroutine(BeginCaseAfterDelay());
+        }
+
+        private IEnumerator BeginCaseAfterDelay()
+        {
+            if (screenFadePresenter != null)
+            {
+                screenFadePresenter.Trigger("black", 0.8f, 3.6f);
+            }
+
+            yield return new WaitForSeconds(5f);
             BeginCase();
         }
 

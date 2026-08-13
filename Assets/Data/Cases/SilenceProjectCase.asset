@@ -2658,14 +2658,14 @@ MonoBehaviour:
       Namun dalang sesungguhnya di balik kematian Ryan dan proyek Rp3,8 triliun yang
       bermasalah itu belum juga tertangkap. Kasus ditutup, tapi pertanyaan besarnya
       tetap menggantung.
-    minimumJudgeTrust: 38
-    maximumPenalty: 70
-    minimumPublicOpinion: 24
-    minimumCaseProgress: 10
+    minimumJudgeTrust: 28
+    maximumPenalty: 80
+    minimumPublicOpinion: 18
+    minimumCaseProgress: 6
     minimumStoryProgress: 0
-    minimumJuryTrust: 22
-    minimumDefenseConfidence: 24
-    maximumProsecutorPressure: 82
+    minimumJuryTrust: 16
+    minimumDefenseConfidence: 16
+    maximumProsecutorPressure: 88
   - id: end_good_conspiracy_exposed
     title: Retak yang Menjalar
     description: Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap di
