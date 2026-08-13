@@ -790,31 +790,31 @@ namespace Verdict.UI.Narrative
             return action switch
             {
                 PlayerAction.PresentEvidence =>
-                    "Sepertinya saya perlu memaparkan bukti ini.",
+                    "Saya ingin menempatkan bukti ini dalam konteks yang benar.",
 
                 PlayerAction.Press =>
-                    "Saya perlu menekan kesaksiannya lebih lanjut.",
+                    "Saya ingin menuntun saksi ke inti kebenaran yang sebenarnya.",
 
                 PlayerAction.Question =>
-                    "Saya perlu menanyakan ulang terkait hal ini.",
+                    "Saya perlu mengklarifikasi beberapa poin yang masih tidak konsisten.",
 
                 PlayerAction.RemainSilent =>
-                    "Untuk saat ini, lebih baik saya diam.",
+                    "Saya akan menunggu momen yang tepat sebelum menanggapi.",
 
                 PlayerAction.Bluff =>
-                    "Mungkin saya bisa menggertak dan melihat reaksinya.",
+                    "Saya mencoba melihat sejauh mana hakim dan saksi bisa dibawa ke arah yang logis.",
 
                 PlayerAction.Threaten =>
-                    "Saya perlu memberikan sedikit tekanan.",
+                    "Saya perlu menegaskan bahwa keterangan ini tidak konsisten dengan fakta.",
 
                 PlayerAction.Object =>
-                    "Saya rasa saya harus mengajukan keberatan.",
+                    "Saya keberatan, pertanyaan itu tidak relevan dengan inti kasus.",
 
                 PlayerAction.Interrupt =>
-                    "Saya harus menyela sekarang.",
+                    "Saya harus menyela agar tidak ada kesimpulan yang keliru terbentuk.",
 
                 PlayerAction.CompareEvidence =>
-                    "Saya perlu membandingkan bukti yang ada.",
+                    "Saya akan membandingkan bukti-bukti ini untuk menunjukkan konsistensi cerita.",
 
                 _ =>
                     string.Empty

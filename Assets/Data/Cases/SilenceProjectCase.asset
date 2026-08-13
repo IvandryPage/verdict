@@ -3110,7 +3110,7 @@ MonoBehaviour:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
             Text: Gimana aku bisa percaya proses, kalau bukti-buktinya... semuanya
-              kayak ngearah ke aku, Far.
+              kayak ngearah ke aku, Jer.
             Emotion: 7
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5420,7 +5420,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
-            Text: (berbisik) Far... ini beneran soal Ryan doang, atau ada hal lain
+            Text: (berbisik) Jer... ini beneran soal Ryan doang, atau ada hal lain
               yang lebih besar?
             Emotion: 6
             WaitMode: 0

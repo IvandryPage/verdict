@@ -172,6 +172,19 @@ namespace Verdict.Systems.Evaluation
                 }
             }
 
+            IReadOnlyList<CourtStateEffectData> roleEffects =
+                CreateDefenseRoleEffects(
+                    argument.Action,
+                    resolvedClaims.Any(rc => rc.IsSuccess),
+                    generatedEffects.Count > 0);
+
+            if (roleEffects.Count > 0)
+            {
+                generatedEffects.AddRange(roleEffects);
+                diagnostics.Add(
+                    $"Applied defense-lawyer role effects for action '{argument.Action}'.");
+            }
+
             bool overallSuccess =
                 resolvedClaims.Any(
                     rc => rc.IsSuccess);
@@ -204,6 +217,88 @@ namespace Verdict.Systems.Evaluation
             cost.SetValue(chosen.Item2);
 
             return new[] { cost };
+        }
+
+        private static IReadOnlyList<CourtStateEffectData> CreateDefenseRoleEffects(
+            PlayerAction action,
+            bool success,
+            bool hasGeneratedEffects)
+        {
+            if (action == PlayerAction.None)
+            {
+                return Array.Empty<CourtStateEffectData>();
+            }
+
+            List<CourtStateEffectData> effects = new();
+
+            switch (action)
+            {
+                case PlayerAction.PresentEvidence:
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, success ? 6 : 2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.PublicOpinion, success ? 5 : 2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, success ? 4 : 1, StatOperation.Add));
+                    break;
+
+                case PlayerAction.Question:
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, success ? 4 : 1, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, success ? 5 : 2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.ProsecutorPressure, success ? -3 : -1, StatOperation.Add));
+                    break;
+
+                case PlayerAction.Press:
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, success ? 4 : -2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.PublicOpinion, success ? 2 : -1, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.ProsecutorPressure, success ? -2 : 2, StatOperation.Add));
+                    break;
+
+                case PlayerAction.Object:
+                case PlayerAction.Interrupt:
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, success ? 3 : 1, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, success ? 3 : 1, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.ProsecutorPressure, success ? -3 : 1, StatOperation.Add));
+                    break;
+
+                case PlayerAction.CompareEvidence:
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, success ? 5 : 2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.PublicOpinion, success ? 4 : 2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, success ? 4 : 1, StatOperation.Add));
+                    break;
+
+                case PlayerAction.Bluff:
+                case PlayerAction.Threaten:
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, success ? 2 : -4, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, success ? 1 : -4, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.ProsecutorPressure, success ? 2 : 5, StatOperation.Add));
+                    break;
+
+                case PlayerAction.RemainSilent:
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, -3, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, -2, StatOperation.Add));
+                    break;
+
+                default:
+                    return Array.Empty<CourtStateEffectData>();
+            }
+
+            if (!hasGeneratedEffects && action == PlayerAction.RemainSilent)
+            {
+                return effects;
+            }
+
+            return effects;
+        }
+
+        private static CourtStateEffectData CreateStatEffect(
+            CourtStat stat,
+            int value,
+            StatOperation operation)
+        {
+            var effect = new CourtStateEffectData();
+            effect.SetEffect(CourtStateEffect.ModifyCourtStat);
+            effect.SetCourtStat(stat);
+            effect.SetOperation(operation);
+            effect.SetValue(value);
+            return effect;
         }
 
         private StatementRuntime FindStatement(
