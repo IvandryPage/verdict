@@ -7,6 +7,8 @@ namespace Verdict.Systems
 {
     public sealed class CourtStateEffectProcessor
     {
+        private const float StatEffectScale = 0.65f;
+
         private readonly CaseRuntime runtime;
 
         public CourtStateEffectProcessor(
@@ -117,9 +119,10 @@ namespace Verdict.Systems
 
                 case CourtStateEffect.ModifyCourtStat:
 
+                    int scaledValue = ScaleStatEffect(effectData.Value);
                     CourtState.ModifyCourtStat(
                         effectData.CourtStat,
-                        effectData.Value,
+                        scaledValue,
                         effectData.Operation);
 
                     break;
@@ -152,6 +155,18 @@ namespace Verdict.Systems
             }
 
             return null;
+        }
+
+        private static int ScaleStatEffect(int rawValue)
+        {
+            if (rawValue == 0)
+            {
+                return 0;
+            }
+
+            float scaled = rawValue * StatEffectScale;
+            int rounded = Mathf.RoundToInt(scaled);
+            return rounded == 0 && rawValue != 0 ? Math.Sign(rawValue) : rounded;
         }
 
         private void RevealStatement(string statementId)

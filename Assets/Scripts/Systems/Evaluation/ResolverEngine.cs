@@ -168,7 +168,7 @@ namespace Verdict.Systems.Evaluation
                 {
                     generatedEffects.AddRange(silenceCosts);
                     diagnostics.Add(
-                        "RemainSilent applied a cost to court state.");
+                        "RemainSilent applied a mild cost to court state.");
                 }
             }
 
@@ -201,10 +201,10 @@ namespace Verdict.Systems.Evaluation
         {
             var choices = new[]
             {
-                (CourtStat.JudgeTrust, -5, StatOperation.Add),
-                (CourtStat.PublicOpinion, -4, StatOperation.Add),
-                (CourtStat.DefenseConfidence, -4, StatOperation.Add),
-                (CourtStat.ProsecutorPressure, 5, StatOperation.Add)
+                (CourtStat.JudgeTrust, -2, StatOperation.Add),
+                (CourtStat.PublicOpinion, -1, StatOperation.Add),
+                (CourtStat.DefenseConfidence, -1, StatOperation.Add),
+                (CourtStat.ProsecutorPressure, 2, StatOperation.Add)
             };
 
             int index = UnityEngine.Random.Range(0, choices.Length);
@@ -272,8 +272,8 @@ namespace Verdict.Systems.Evaluation
                     break;
 
                 case PlayerAction.RemainSilent:
-                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, -3, StatOperation.Add));
-                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, -2, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.DefenseConfidence, -1, StatOperation.Add));
+                    effects.Add(CreateStatEffect(CourtStat.JudgeTrust, -1, StatOperation.Add));
                     break;
 
                 default:

@@ -31,10 +31,10 @@ MonoBehaviour:
   version: 1
   author: Galang Ivandry
   courtSetup:
-    judgeTrust: 60
+    judgeTrust: 55
     penalty: 0
-    publicOpinion: 20
-    juryOpinion: 30
+    publicOpinion: 30
+    juryOpinion: 35
     storyProgress: 0
     caseProgress: 0
   judge: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
@@ -2652,28 +2652,28 @@ MonoBehaviour:
       Namun dalang sesungguhnya di balik kematian Ryan dan proyek Rp3,8 triliun yang
       bermasalah itu belum juga tertangkap. Kasus ditutup, tapi pertanyaan besarnya
       tetap menggantung.
-    minimumJudgeTrust: 55
-    maximumPenalty: 45
-    minimumPublicOpinion: 20
-    minimumCaseProgress: 20
+    minimumJudgeTrust: 38
+    maximumPenalty: 70
+    minimumPublicOpinion: 24
+    minimumCaseProgress: 10
     minimumStoryProgress: 0
-    minimumJuryTrust: 0
-    minimumDefenseConfidence: 0
-    maximumProsecutorPressure: 100
+    minimumJuryTrust: 22
+    minimumDefenseConfidence: 24
+    maximumProsecutorPressure: 82
   - id: end_good_conspiracy_exposed
     title: Retak yang Menjalar
     description: Arga dinyatakan tidak bersalah. Data cloud Ryan yang terungkap di
       akhir persidangan cukup kuat untuk membuka penyelidikan resmi terhadap Adrian
       Wijaya dan jaringan di sekitarnya. Ini baru permulaan, tapi untuk pertama kalinya,
       konspirasi itu punya nama.
-    minimumJudgeTrust: 75
-    maximumPenalty: 30
-    minimumPublicOpinion: 55
-    minimumCaseProgress: 45
-    minimumStoryProgress: 0
-    minimumJuryTrust: 40
-    minimumDefenseConfidence: 40
-    maximumProsecutorPressure: 40
+    minimumJudgeTrust: 58
+    maximumPenalty: 42
+    minimumPublicOpinion: 42
+    minimumCaseProgress: 28
+    minimumStoryProgress: 18
+    minimumJuryTrust: 32
+    minimumDefenseConfidence: 38
+    maximumProsecutorPressure: 50
   - id: end_true_open_question
     title: Mengapa Ryan Harus Dibunuh?
     description: 'Seluruh bukti korupsi terbongkar sepenuhnya di depan pengadilan,
@@ -2681,14 +2681,14 @@ MonoBehaviour:
       terjawab: siapa yang benar-benar memerintahkan pembunuhan itu, dan siapa yang
       paling diuntungkan dari kematian Ryan? Kasus ini resmi ditutup, investigasi
       yang sesungguhnya baru saja dimulai.'
-    minimumJudgeTrust: 90
-    maximumPenalty: 10
-    minimumPublicOpinion: 65
-    minimumCaseProgress: 70
-    minimumStoryProgress: 100
-    minimumJuryTrust: 50
-    minimumDefenseConfidence: 50
-    maximumProsecutorPressure: 15
+    minimumJudgeTrust: 72
+    maximumPenalty: 18
+    minimumPublicOpinion: 55
+    minimumCaseProgress: 46
+    minimumStoryProgress: 38
+    minimumJuryTrust: 44
+    minimumDefenseConfidence: 48
+    maximumProsecutorPressure: 28
   narrative:
     startNodeId: 141442834f0f426ea201cd2a3a6e18ac
     nodes:
