@@ -92,7 +92,6 @@ namespace Verdict.UI.Evidence
             List<EvidenceData> evidenceList =
                 availableEvidence?
                     .Where(e => e != null)
-                    .OrderBy(_ => UnityEngine.Random.value)
                     .ToList() ?? new List<EvidenceData>();
 
             BuildEvidenceOptions(evidenceList);

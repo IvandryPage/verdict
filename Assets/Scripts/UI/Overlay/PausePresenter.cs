@@ -67,8 +67,9 @@ namespace Verdict.UI.Overlay
 
             if (loadButton != null)
             {
-                loadButton.gameObject.SetActive(false);
+                loadButton.gameObject.SetActive(true);
                 loadButton.onClick.RemoveListener(LoadGame);
+                loadButton.onClick.AddListener(LoadGame);
             }
 
             if (resumeButton != null)
@@ -252,6 +253,11 @@ namespace Verdict.UI.Overlay
         public void Show()
         {
             IsPaused = true;
+
+            if (loadButton != null && caseSessionManager != null)
+            {
+                loadButton.interactable = caseSessionManager.SaveExists();
+            }
 
             if (pauseGroup != null)
             {

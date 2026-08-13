@@ -919,7 +919,7 @@ MonoBehaviour:
   statementText: {fileID: 349824478}
   statementSpeaker: {fileID: 1386811850}
   choiceOptionsContainer: {fileID: 675762880}
-  choiceOptionPrefab: {fileID: 968034246168550353, guid: eef2422eba6cd487d98324ae451d9e55, type: 3}
+  choiceOptionPrefab: {fileID: 7048886425934121162, guid: 1d491e7860d162e4d9a2f483df5d4991, type: 3}
   evidencePresenter: {fileID: 1872900634}
 --- !u!1 &127692294
 GameObject:
@@ -1234,6 +1234,7 @@ MonoBehaviour:
   fadeImage: {fileID: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 1}
   defaultDuration: 0.35
+  defaultHoldDuration: 0.15
 --- !u!1 &165870743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,8 +1511,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.39624, y: -155}
-  m_SizeDelta: {x: 1720.7925, y: 230}
+  m_AnchoredPosition: {x: 930.8151, y: -155}
+  m_SizeDelta: {x: 1661.6302, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225655911
 MonoBehaviour:
@@ -2131,8 +2132,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 843.39624, y: -121.095}
-  m_SizeDelta: {x: 1646.7925, y: 46.93}
+  m_AnchoredPosition: {x: 813.8151, y: -121.095}
+  m_SizeDelta: {x: 1587.6302, y: 46.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349824478
 MonoBehaviour:
@@ -2943,8 +2944,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 860.39624, y: -115}
-  m_SizeDelta: {x: 1696.7925, y: 206}
+  m_AnchoredPosition: {x: 830.8151, y: -115}
+  m_SizeDelta: {x: 1637.6302, y: 206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531847048
 MonoBehaviour:
@@ -3563,8 +3564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.39624, y: -484.77734}
-  m_SizeDelta: {x: 1720.7925, y: 400}
+  m_AnchoredPosition: {x: 930.8151, y: -501.9312}
+  m_SizeDelta: {x: 1661.6302, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675762881
 MonoBehaviour:
@@ -3583,7 +3584,7 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 10
     m_Bottom: 10
-  m_ChildAlignment: 1
+  m_ChildAlignment: 2
   m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
@@ -4543,7 +4544,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 165870745}
-  musicClips: []
+  musicClips:
+  - Id: bgm_courtroom_tension
+    Clip: {fileID: 8300000, guid: b369a7e4f0a1b694f99e99e45d92448c, type: 3}
+    Volume: 0.8
+    Pitch: 0
   sfxSource: {fileID: 375267899}
   sfxClips:
   - Id: ui_click
@@ -4559,6 +4564,14 @@ MonoBehaviour:
     Volume: 1
     Pitch: 0
   - Id: choice_open
+    Clip: {fileID: 8300000, guid: d8f9bff7a78eb214893a632b4d4a557b, type: 3}
+    Volume: 1
+    Pitch: 0
+  - Id: case_start
+    Clip: {fileID: 8300000, guid: d8f9bff7a78eb214893a632b4d4a557b, type: 3}
+    Volume: 1
+    Pitch: 0
+  - Id: evidence_unlocked
     Clip: {fileID: 8300000, guid: d8f9bff7a78eb214893a632b4d4a557b, type: 3}
     Volume: 1
     Pitch: 0
@@ -5826,8 +5839,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 843.39624, y: -46.815002}
-  m_SizeDelta: {x: 1646.7925, y: 53.63}
+  m_AnchoredPosition: {x: 813.8151, y: -46.815002}
+  m_SizeDelta: {x: 1587.6302, y: 53.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386811850
 MonoBehaviour:

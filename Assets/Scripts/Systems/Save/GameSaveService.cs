@@ -171,6 +171,12 @@ namespace Verdict.Systems.Save
             return true;
         }
 
+        public bool SaveExists()
+        {
+            string path = Path.Combine(saveDirectoryPath, saveFileName);
+            return File.Exists(path);
+        }
+
         private static void RestoreFlowToValidStatement(
             CaseSession session,
             GameSaveData data)

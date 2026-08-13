@@ -14,6 +14,7 @@ namespace Verdict.Presentation
     /// </summary>
     public sealed class CourtroomCameraRig : MonoBehaviour
     {
+#pragma warning disable 0649
         [Serializable]
         private sealed class CameraEntry
         {
@@ -21,6 +22,7 @@ namespace Verdict.Presentation
             public string speakerId;
             public GameObject cameraObject;
         }
+#pragma warning restore 0649
 
         [Header("Controller")]
         [SerializeField]

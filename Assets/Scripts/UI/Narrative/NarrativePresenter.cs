@@ -456,6 +456,7 @@ namespace Verdict.UI.Narrative
             if (statementText != null)
             {
                 statementText.text = currentStatementText;
+                statementText.maxVisibleCharacters = currentStatementText.Length;
             }
         }
 
@@ -471,21 +472,19 @@ namespace Verdict.UI.Narrative
         private IEnumerator RevealStatementText(string text)
         {
             statementRevealCoroutine = null;
-            statementText.text = string.Empty;
+            statementText.text = text;
+            statementText.maxVisibleCharacters = 0;
 
-            string[] words = text.Split(
-                new[] { ' ' },
-                StringSplitOptions.None);
+            yield return null;
 
-            for (int index = 0; index < words.Length; index++)
+            int totalCharacters = statementText.textInfo.characterCount > 0 ? statementText.textInfo.characterCount : text.Length;
+            int counter = 0;
+
+            while (counter <= totalCharacters)
             {
-                statementText.text += words[index];
+                statementText.maxVisibleCharacters = counter;
 
-                if (index < words.Length - 1)
-                {
-                    statementText.text += " ";
-                }
-
+                counter++;
                 yield return new WaitForSeconds(wordRevealDelay);
             }
 
@@ -516,6 +515,7 @@ namespace Verdict.UI.Narrative
             if (dialogueText != null)
             {
                 dialogueText.text = currentDialogueText;
+                dialogueText.maxVisibleCharacters = currentDialogueText.Length;
             }
 
             isDialogueRevealing = false;
@@ -535,21 +535,19 @@ namespace Verdict.UI.Narrative
         private IEnumerator RevealDialogueText(string text)
         {
             isDialogueRevealing = true;
-            dialogueText.text = string.Empty;
+            dialogueText.text = text;
+            dialogueText.maxVisibleCharacters = 0;
 
-            string[] words = text.Split(
-                new[] { ' ' },
-                StringSplitOptions.None);
+            yield return null;
 
-            for (int index = 0; index < words.Length; index++)
+            int totalCharacters = dialogueText.textInfo.characterCount > 0 ? dialogueText.textInfo.characterCount : text.Length;
+            int counter = 0;
+
+            while (counter <= totalCharacters)
             {
-                dialogueText.text += words[index];
+                dialogueText.maxVisibleCharacters = counter;
 
-                if (index < words.Length - 1)
-                {
-                    dialogueText.text += " ";
-                }
-
+                counter++;
                 yield return new WaitForSeconds(wordRevealDelay);
             }
 
@@ -595,11 +593,11 @@ namespace Verdict.UI.Narrative
                 actions.Add(PlayerAction.RemainSilent);
             }
 
-            List<PlayerAction> randomizedActions =
-                actions.OrderBy(_ => UnityEngine.Random.value)
+            List<PlayerAction> orderedActions =
+                actions.OrderBy(action => action)
                        .ToList();
 
-            foreach (PlayerAction action in randomizedActions)
+            foreach (PlayerAction action in orderedActions)
             {
                 ChoiceOptionView option =
                     Instantiate(
@@ -628,12 +626,7 @@ namespace Verdict.UI.Narrative
                 return;
             }
 
-            List<int> choiceOrder =
-                Enumerable.Range(0, choice.Choices.Count)
-                          .OrderBy(_ => UnityEngine.Random.value)
-                          .ToList();
-
-            foreach (int choiceIndex in choiceOrder)
+            for (int choiceIndex = 0; choiceIndex < choice.Choices.Count; choiceIndex++)
             {
                 NarrativeChoiceOptionData choiceOption =
                     choice.Choices[choiceIndex];

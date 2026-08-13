@@ -128,6 +128,12 @@ namespace Verdict.Systems
             return service.Save(CurrentSession);
         }
 
+        public bool SaveExists(string fileName = "savegame.json")
+        {
+            GameSaveService service = new GameSaveService(fileName);
+            return service.SaveExists();
+        }
+
         public GameSaveData LoadSavedGame(
             string fileName = "savegame.json")
         {
