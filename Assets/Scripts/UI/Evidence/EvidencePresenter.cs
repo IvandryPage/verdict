@@ -100,18 +100,18 @@ namespace Verdict.UI.Evidence
             if (evidenceList.Count > 0)
             {
                 EvidenceData defaultEvidence = evidenceList[0];
-                selectedEvidence.Add(defaultEvidence);
-                UpdateOptionVisuals();
-                UpdatePresentButton();
 
                 if (evidenceDetailView != null)
                 {
                     evidenceDetailView.Show(
                         defaultEvidence,
-                        true,
+                        false,
                         HandleSelectToggled,
                         CloseDetail);
                 }
+
+                UpdateOptionVisuals();
+                UpdatePresentButton();
             }
             else
             {

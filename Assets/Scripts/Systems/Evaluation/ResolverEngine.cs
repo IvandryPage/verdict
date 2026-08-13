@@ -159,6 +159,19 @@ namespace Verdict.Systems.Evaluation
                     $"action '{argument.Action}'.");
             }
 
+            if (argument.Action == PlayerAction.RemainSilent)
+            {
+                IReadOnlyList<CourtStateEffectData> silenceCosts =
+                    CreateSilentCostEffects();
+
+                if (silenceCosts.Count > 0)
+                {
+                    generatedEffects.AddRange(silenceCosts);
+                    diagnostics.Add(
+                        "RemainSilent applied a cost to court state.");
+                }
+            }
+
             bool overallSuccess =
                 resolvedClaims.Any(
                     rc => rc.IsSuccess);
@@ -169,6 +182,28 @@ namespace Verdict.Systems.Evaluation
                 resolvedClaims,
                 generatedEffects,
                 diagnostics);
+        }
+
+        private static IReadOnlyList<CourtStateEffectData> CreateSilentCostEffects()
+        {
+            var choices = new[]
+            {
+                (CourtStat.JudgeTrust, -5, StatOperation.Add),
+                (CourtStat.PublicOpinion, -4, StatOperation.Add),
+                (CourtStat.DefenseConfidence, -4, StatOperation.Add),
+                (CourtStat.ProsecutorPressure, 5, StatOperation.Add)
+            };
+
+            int index = UnityEngine.Random.Range(0, choices.Length);
+            var chosen = choices[index];
+
+            CourtStateEffectData cost = new CourtStateEffectData();
+            cost.SetEffect(CourtStateEffect.ModifyCourtStat);
+            cost.SetCourtStat(chosen.Item1);
+            cost.SetOperation(chosen.Item3);
+            cost.SetValue(chosen.Item2);
+
+            return new[] { cost };
         }
 
         private StatementRuntime FindStatement(
