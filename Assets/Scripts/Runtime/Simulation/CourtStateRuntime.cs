@@ -13,8 +13,14 @@ namespace Verdict.Runtime
         // Designer-facing court stats stored in a dictionary for easy extension.
         private readonly Dictionary<CourtStat, int> courtStats = new()
         {
-            { CourtStat.JudgeTrust, 100 },
-            { CourtStat.Penalty, 0 }
+            { CourtStat.JudgeTrust, 70 },
+            { CourtStat.Penalty, 0 },
+            { CourtStat.PublicOpinion, 50 },
+            { CourtStat.StoryProgress, 0 },
+            { CourtStat.CaseProgress, 0 },
+            { CourtStat.JuryTrust, 50 },
+            { CourtStat.DefenseConfidence, 50 },
+            { CourtStat.ProsecutorPressure, 50 }
         };
 
         public IReadOnlyCollection<string> RevealedStatementIds => revealedStatementIds;
@@ -33,16 +39,14 @@ namespace Verdict.Runtime
 
         public int GetCourtStat(CourtStat stat)
         {
-            if (courtStats.TryGetValue(stat, out int value))
-            {
-                return value;
-            }
-
-            return 0;
+            EnsureStatExists(stat);
+            return courtStats[stat];
         }
 
         public void ModifyCourtStat(CourtStat stat, int value, StatOperation operation = StatOperation.Add)
         {
+            EnsureStatExists(stat);
+
             if (operation == StatOperation.Add && value == 0)
             {
                 return;
@@ -88,6 +92,14 @@ namespace Verdict.Runtime
             }
 
             courtStats[stat] = (int)next;
+        }
+
+        public void EnsureStatExists(CourtStat stat)
+        {
+            if (!courtStats.ContainsKey(stat))
+            {
+                courtStats[stat] = 0;
+            }
         }
 
         // Backwards-compatible helpers that map to the stat-based API.

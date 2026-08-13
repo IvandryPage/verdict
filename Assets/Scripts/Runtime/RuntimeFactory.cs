@@ -211,6 +211,19 @@ namespace Verdict.Runtime
                 courtState.ModifyCourtStat(CourtStat.JuryTrust, data.CourtSetup.JuryOpinion, StatOperation.Set);
                 courtState.ModifyCourtStat(CourtStat.StoryProgress, data.CourtSetup.StoryProgress, StatOperation.Set);
                 courtState.ModifyCourtStat(CourtStat.CaseProgress, data.CourtSetup.CaseProgress, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.DefenseConfidence, 50, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.ProsecutorPressure, 50, StatOperation.Set);
+            }
+            else
+            {
+                courtState.ModifyCourtStat(CourtStat.JudgeTrust, 70, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.Penalty, 0, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.PublicOpinion, 50, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.JuryTrust, 50, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.StoryProgress, 0, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.CaseProgress, 0, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.DefenseConfidence, 50, StatOperation.Set);
+                courtState.ModifyCourtStat(CourtStat.ProsecutorPressure, 50, StatOperation.Set);
             }
 
             return courtState;

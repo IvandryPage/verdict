@@ -87,14 +87,6 @@ namespace Verdict.UI.Narrative
         private readonly List<ChoiceOptionView> spawnedOptions = new();
 
         /// <summary>
-        /// Fired when the player chooses a courtroom action.
-        ///
-        /// The presenter does not execute the action itself.
-        /// Another UI/gameplay layer can react to this.
-        /// </summary>
-        public event Action<PlayerAction> ActionRequested;
-
-        /// <summary>
         /// Bind the presenter to the active CourtroomController.
         /// </summary>
         public void Bind(CourtroomController controller)
@@ -226,6 +218,14 @@ namespace Verdict.UI.Narrative
                 return;
             }
 
+            NarrativeCoordinator narrative = courtroomController.Narrative;
+            if (narrative != null &&
+                (narrative.IsPlaying || narrative.IsWaitingForStatement || narrative.IsWaitingForChoice))
+            {
+                courtroomController.ResumeNarrative();
+                return;
+            }
+
             if (courtroomController.CanInteract)
             {
                 return;
@@ -291,7 +291,11 @@ namespace Verdict.UI.Narrative
 
             ShowStatement(statement);
 
-            if (!courtroomController.CanInteract)
+            bool canUseActionPanel =
+                courtroomController.CanInteract ||
+                (courtroomController.CourtroomState == CourtroomState.Statement && statement != null);
+
+            if (!canUseActionPanel)
             {
                 HideChoicePanel();
                 return;

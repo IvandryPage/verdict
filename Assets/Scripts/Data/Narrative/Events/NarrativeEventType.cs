@@ -20,8 +20,6 @@ namespace Verdict.Data.Narrative
 
         CameraShake,
 
-        ScreenFade,
-
-        ChangeBackground
+        ScreenFade
     }
 }

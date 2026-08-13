@@ -138,28 +138,22 @@ namespace Verdict.Systems.Save
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(data.CurrentStatementId) &&
-                session.Flow.TryMoveToStatement(data.CurrentStatementId))
-            {
-                // restored via flow position above
-            }
-            else
-            {
-                session.Flow.Reset();
-            }
+            RestoreFlowToValidStatement(session, data);
 
-            if (session.NarrativeCoordinator != null &&
-                !session.NarrativeCoordinator.HasActiveNarrative)
+            if (session.NarrativeCoordinator != null)
             {
-                session.NarrativeCoordinator.Play(session.Runtime.Data.Narrative);
-            }
+                if (!session.NarrativeCoordinator.HasActiveNarrative)
+                {
+                    session.NarrativeCoordinator.Play(session.Runtime.Data.Narrative);
+                }
 
-            if (!string.IsNullOrWhiteSpace(data.CurrentNarrativeNodeId) &&
-                session.NarrativeCoordinator != null)
-            {
-                session.NarrativeCoordinator.RestoreRuntimePosition(
-                    data.CurrentNarrativeNodeId,
-                    data.CurrentNarrativeEntryIndex);
+                if (!string.IsNullOrWhiteSpace(data.CurrentNarrativeNodeId) &&
+                    !session.NarrativeCoordinator.RestoreRuntimePosition(
+                        data.CurrentNarrativeNodeId,
+                        data.CurrentNarrativeEntryIndex))
+                {
+                    session.NarrativeCoordinator.Play(session.Runtime.Data.Narrative);
+                }
             }
 
             return true;
@@ -175,6 +169,33 @@ namespace Verdict.Systems.Save
 
             File.Delete(path);
             return true;
+        }
+
+        private static void RestoreFlowToValidStatement(
+            CaseSession session,
+            GameSaveData data)
+        {
+            if (session == null || session.Flow == null)
+            {
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(data.CurrentStatementId) &&
+                session.Flow.TryMoveToStatement(data.CurrentStatementId))
+            {
+                return;
+            }
+
+            foreach (StatementRuntime statement in session.Runtime.StatementsById.Values)
+            {
+                if (statement != null && statement.IsVisible)
+                {
+                    session.Flow.TryMoveToStatement(statement.Data.Id);
+                    return;
+                }
+            }
+
+            session.Flow.Reset();
         }
 
         private static GameSaveData BuildSaveData(CaseSession session)

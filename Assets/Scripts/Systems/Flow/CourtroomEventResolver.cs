@@ -3,6 +3,7 @@ using UnityEngine;
 using Verdict.Data.Narrative;
 using Verdict.Data.Presentation;
 using Verdict.Systems.Presentation;
+using Verdict.UI.Narrative;
 
 namespace Verdict.Systems
 {
@@ -11,6 +12,8 @@ namespace Verdict.Systems
         private readonly CourtroomController courtroomController;
         private readonly CourtroomCameraController courtroomCameraController;
         private readonly global::Verdict.NarrativeAudioController narrativeAudioController;
+        private readonly ChapterPresenter chapterPresenter;
+        private readonly ScreenFadePresenter screenFadePresenter;
 
         public event Action<NarrativeEventData> PresentationEventReceived;
         public event Action<GameplayNodeData> GameplayEventReceived;
@@ -18,13 +21,17 @@ namespace Verdict.Systems
         public CourtroomEventResolver(
             CourtroomController courtroomController,
             CourtroomCameraController courtroomCameraController = null,
-            global::Verdict.NarrativeAudioController narrativeAudioController = null)
+            global::Verdict.NarrativeAudioController narrativeAudioController = null,
+            ChapterPresenter chapterPresenter = null,
+            ScreenFadePresenter screenFadePresenter = null)
         {
             this.courtroomController = courtroomController ??
                 throw new ArgumentNullException(nameof(courtroomController));
 
             this.courtroomCameraController = courtroomCameraController;
             this.narrativeAudioController = narrativeAudioController;
+            this.chapterPresenter = chapterPresenter;
+            this.screenFadePresenter = screenFadePresenter;
         }
 
         public void Bind()
@@ -141,13 +148,9 @@ namespace Verdict.Systems
                     break;
 
                 case NarrativeEventType.ScreenFade:
-                    Debug.Log(
-                        $"[EventResolver] Screen fade: {eventData.Parameter} ({eventData.Value})");
-                    break;
-
-                case NarrativeEventType.ChangeBackground:
-                    Debug.Log(
-                        $"[EventResolver] Change background: {eventData.Parameter}");
+                    screenFadePresenter?.Trigger(
+                        eventData.Parameter,
+                        eventData.Value);
                     break;
 
                 case NarrativeEventType.None:
@@ -164,7 +167,8 @@ namespace Verdict.Systems
                 return;
             }
 
-            string payload = node.GameplayEventId.Trim().ToLowerInvariant();
+            string originalEventId = node.GameplayEventId.Trim();
+            string payload = originalEventId.ToLowerInvariant();
 
             switch (payload)
             {
@@ -234,6 +238,15 @@ namespace Verdict.Systems
                     break;
 
                 default:
+                    if (TryParseChapterEventId(
+                        payload,
+                        originalEventId,
+                        out string chapterTitle))
+                    {
+                        chapterPresenter?.ShowChapter(chapterTitle);
+                        return;
+                    }
+
                     if (node.Category == GameplayEventCategory.UnlockFeature)
                     {
                         if (payload == "unlock evidence" || payload == "unlockevidence")
@@ -260,6 +273,54 @@ namespace Verdict.Systems
                         $"[EventResolver] Gameplay event not mapped: {node.GameplayEventId}");
                     break;
             }
+        }
+
+        private static bool TryParseChapterEventId(
+            string payload,
+            string originalEventId,
+            out string chapterTitle)
+        {
+            chapterTitle = null;
+
+            if (string.IsNullOrWhiteSpace(payload) ||
+                string.IsNullOrWhiteSpace(originalEventId))
+            {
+                return false;
+            }
+
+            const string chapterPrefix = "chapter:";
+            const string chapterLabelPrefix = "chapter ";
+            const string chapterUnderscorePrefix = "chapter_";
+
+            string trimmed = payload.Trim();
+            string originalTrimmed = originalEventId.Trim();
+
+            if (trimmed.StartsWith(chapterPrefix, StringComparison.Ordinal))
+            {
+                chapterTitle = originalTrimmed.Substring(chapterPrefix.Length).Trim();
+                return !string.IsNullOrWhiteSpace(chapterTitle);
+            }
+
+            if (trimmed.StartsWith(chapterLabelPrefix, StringComparison.Ordinal))
+            {
+                chapterTitle = originalTrimmed.Substring(chapterLabelPrefix.Length).Trim();
+                return !string.IsNullOrWhiteSpace(chapterTitle);
+            }
+
+            if (trimmed.StartsWith(chapterUnderscorePrefix, StringComparison.Ordinal))
+            {
+                int separatorIndex = originalTrimmed.IndexOf(':');
+                if (separatorIndex >= 0)
+                {
+                    chapterTitle = originalTrimmed.Substring(separatorIndex + 1).Trim();
+                    return !string.IsNullOrWhiteSpace(chapterTitle);
+                }
+
+                chapterTitle = originalTrimmed.Substring(chapterUnderscorePrefix.Length).Trim();
+                return !string.IsNullOrWhiteSpace(chapterTitle);
+            }
+
+            return false;
         }
 
         private static bool TryParseUnlockEvidenceEventId(

@@ -89,11 +89,35 @@ namespace Verdict.UI.Evidence
                 evidenceDetailView.Hide();
             }
 
-            BuildEvidenceOptions(
-                availableEvidence);
+            List<EvidenceData> evidenceList =
+                availableEvidence?
+                    .Where(e => e != null)
+                    .OrderBy(_ => UnityEngine.Random.value)
+                    .ToList() ?? new List<EvidenceData>();
 
-            UpdateOptionVisuals();
-            UpdatePresentButton();
+            BuildEvidenceOptions(evidenceList);
+
+            if (evidenceList.Count > 0)
+            {
+                EvidenceData defaultEvidence = evidenceList[0];
+                selectedEvidence.Add(defaultEvidence);
+                UpdateOptionVisuals();
+                UpdatePresentButton();
+
+                if (evidenceDetailView != null)
+                {
+                    evidenceDetailView.Show(
+                        defaultEvidence,
+                        true,
+                        HandleSelectToggled,
+                        CloseDetail);
+                }
+            }
+            else
+            {
+                UpdateOptionVisuals();
+                UpdatePresentButton();
+            }
 
             if (panel != null)
             {
@@ -184,6 +208,16 @@ namespace Verdict.UI.Evidence
 
             if (selectedEvidence.Contains(evidence))
             {
+                if (selectedEvidence.Count <= 1)
+                {
+                    if (evidenceDetailView != null)
+                    {
+                        evidenceDetailView.UpdateSelectionState(true);
+                    }
+
+                    return;
+                }
+
                 selectedEvidence.Remove(evidence);
             }
             else

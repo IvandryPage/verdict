@@ -62,7 +62,11 @@ namespace Verdict.Systems
             CurrentEntry?.Line;
 
         public bool HasActiveNarrative =>
-            runner.Runtime != null;
+            runner != null &&
+            runner.Runtime != null &&
+            !runner.Runtime.IsFinished &&
+            State != NarrativeState.Finished &&
+            State != NarrativeState.Idle;
 
         public event Action NarrativeStarted;
 

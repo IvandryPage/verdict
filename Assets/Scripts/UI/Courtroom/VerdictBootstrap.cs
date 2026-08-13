@@ -7,6 +7,7 @@ using Verdict.Systems;
 using Verdict.Systems.Presentation;
 using Verdict.Systems.Save;
 using Verdict.UI.Evidence;
+using Verdict.UI.MainMenu;
 using Verdict.UI.Narrative;
 using Verdict.UI.Overlay;
 
@@ -35,9 +36,15 @@ namespace Verdict
         [SerializeField]
         private CourtroomCameraRig courtroomCameraRig;
 
+        [SerializeField]
+        private Verdict.UI.Narrative.ChapterPresenter chapterPresenter;
+
+        [SerializeField]
+        private Verdict.UI.Narrative.ScreenFadePresenter screenFadePresenter;
+
         [Header("Audio")]
         [SerializeField]
-        private global::Verdict.NarrativeAudioController narrativeAudioController;
+        private Verdict.NarrativeAudioController narrativeAudioController;
 
         private CaseSessionManager caseSessionManager;
         private CourtroomController courtroomController;
@@ -62,10 +69,25 @@ namespace Verdict
 
         private void Start()
         {
-            // Save/load resume is intentionally disabled while the runtime restore flow
-            // is still being validated. Automatically restoring from a stale save file
-            // prevents the narrative from starting normally and can leave the case in a
-            // blank state with no dialogue visible.
+            if (MainMenuPresenter.ShouldLoadSavedGame)
+            {
+                bool loaded = caseSessionManager.TryLoadSavedCase(caseData);
+                if (loaded)
+                {
+                    courtroomController.RefreshRuntimeNarrativeState();
+                    if (narrativePresenter != null)
+                    {
+                        narrativePresenter.Refresh();
+                    }
+
+                    MainMenuPresenter.ShouldLoadSavedGame = false;
+                    return;
+                }
+
+                Debug.LogWarning("[VerdictBootstrap] Continue flag was set, but no valid save could be restored. Starting a fresh case.");
+                MainMenuPresenter.ShouldLoadSavedGame = false;
+            }
+
             BeginCase();
         }
 
@@ -104,7 +126,9 @@ namespace Verdict
                 new CourtroomEventResolver(
                     courtroomController,
                     courtroomCameraController,
-                    narrativeAudioController);
+                    narrativeAudioController,
+                    chapterPresenter,
+                    screenFadePresenter);
 
             courtroomEventResolver.Bind();
 

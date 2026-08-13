@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Verdict.Data.Cases;
+using Verdict.Data.Evidence;
 using Verdict.Data.Narrative;
 using Verdict.Runtime;
 using Verdict.Systems;
@@ -55,6 +56,9 @@ namespace Verdict
         private string caseStartSoundId = "case_start";
 
         [SerializeField]
+        private string evidenceUnlockedSoundId = "evidence_unlocked";
+
+        [SerializeField]
         private float clickCooldownSeconds = 0.08f;
 
         private float lastClickTime;
@@ -89,7 +93,7 @@ namespace Verdict
             boundController.CurrentStatementChanged += HandleCurrentStatementChanged;
             boundController.NarrativeEntryChanged += HandleNarrativeEntryChanged;
             boundController.ChoiceRequested += HandleChoiceRequested;
-            boundController.ArgumentResolved += HandleArgumentResolved;
+            boundController.EvidenceUnlocked += HandleEvidenceUnlocked;
             boundController.EndingTriggered += HandleEndingTriggered;
         }
 
@@ -104,7 +108,7 @@ namespace Verdict
             boundController.CurrentStatementChanged -= HandleCurrentStatementChanged;
             boundController.NarrativeEntryChanged -= HandleNarrativeEntryChanged;
             boundController.ChoiceRequested -= HandleChoiceRequested;
-            boundController.ArgumentResolved -= HandleArgumentResolved;
+            boundController.EvidenceUnlocked -= HandleEvidenceUnlocked;
             boundController.EndingTriggered -= HandleEndingTriggered;
             boundController = null;
         }
@@ -144,14 +148,14 @@ namespace Verdict
             PlaySound(choiceSoundId, 0.7f);
         }
 
-        private void HandleArgumentResolved(ResolverResult result)
+        private void HandleEvidenceUnlocked(EvidenceData evidence)
         {
-            if (result == null)
+            if (evidence == null)
             {
                 return;
             }
 
-            PlaySound("argument_resolve", 0.8f);
+            PlaySound(evidenceUnlockedSoundId, 0.8f);
         }
 
         private void HandleEndingTriggered(EndingData ending)

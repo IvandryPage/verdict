@@ -33,7 +33,7 @@ namespace Verdict.Systems
         private CaseSession Session =>
             caseSessionManager.CurrentSession;
 
-        private NarrativeCoordinator Narrative =>
+        public NarrativeCoordinator Narrative =>
             Session?.NarrativeCoordinator;
 
         // Current runtime data
@@ -572,6 +572,40 @@ namespace Verdict.Systems
         public bool ResumeNarrative()
         {
             return Narrative?.TryResume() ?? false;
+        }
+
+        /// <summary>
+        /// Rebinds the narrative subscription and replays the current visual state
+        /// after a save-load restore, so the UI updates immediately from the saved
+        /// node/statement without needing a fresh case start.
+        /// </summary>
+        public void RefreshRuntimeNarrativeState()
+        {
+            EnsureNarrativeSubscribed();
+
+            if (CurrentChoice != null)
+            {
+                SetCourtroomState(CourtroomState.Statement);
+                ChoiceRequested?.Invoke(CurrentChoice);
+                return;
+            }
+
+            if (CurrentStatement != null)
+            {
+                SetCourtroomState(CourtroomState.Statement);
+                CurrentStatementChanged?.Invoke(CurrentStatement);
+            }
+
+            if (CurrentNarrativeEntry != null)
+            {
+                SetCourtroomState(CourtroomState.Statement);
+                NarrativeEntryChanged?.Invoke(CurrentNarrativeEntry);
+            }
+
+            if (CurrentStatement == null && CurrentNarrativeEntry == null && CurrentChoice == null)
+            {
+                SetCourtroomState(CourtroomState.None);
+            }
         }
 
         // STATEMENT NAVIGATION

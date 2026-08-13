@@ -538,7 +538,7 @@ namespace Verdict.Editor.NarrativeEditor
 
             extensionContainer.Add(hint);
 
-            Label unlockHint = new("Unlock evidence syntax: unlock_evidence:<evidenceId> or unlock evidence to open the evidence chooser.")
+            Label unlockHint = new("Examples: unlock_evidence:<evidenceId>, chapter_1:Judul Chapter, or chapter:Judul Chapter.")
             {
                 style = { whiteSpace = WhiteSpace.Normal, fontSize = 10, marginBottom = 8, color = new Color(.5f, .7f, .5f) }
             };
@@ -554,7 +554,7 @@ namespace Verdict.Editor.NarrativeEditor
 
             TextField field = new("Event Id") { value = node.GameplayEventId };
 
-            field.tooltip = "Example: unlock_evidence:knife_evidence or unlock evidence";
+            field.tooltip = "Example: unlock_evidence:knife_evidence, chapter_1:Judul Chapter, or chapter:Judul Chapter";
             field.RegisterValueChangedCallback(evt =>
                 editService.SetGameplayEventId(node, evt.newValue));
 

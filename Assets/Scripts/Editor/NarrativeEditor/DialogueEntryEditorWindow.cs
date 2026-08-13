@@ -194,7 +194,6 @@ namespace Verdict.Editor.NarrativeEditor
                 NarrativeEventType.CameraMove => "Camera Preset",
                 NarrativeEventType.CameraShake => "Shake Preset",
                 NarrativeEventType.ScreenFade => "Fade Color (e.g. black)",
-                NarrativeEventType.ChangeBackground => "Background Id",
                 _ => "Parameter"
             };
         }

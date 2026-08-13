@@ -2882,9 +2882,9 @@ MonoBehaviour:
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
-            Type: 7
-            Parameter: bg_courtroom_main
-            Value: 0
+            Type: 6
+            Parameter: black
+            Value: 0.25
         - Type: 1
           Line:
             SpeakerType: 0
@@ -2940,7 +2940,7 @@ MonoBehaviour:
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: a4b071d141eb41bab58eb9e071078fd5
-        position: {x: 709.5, y: 270}
+        position: {x: 776, y: 469}
         entries:
         - Type: 0
           Line:
@@ -2987,29 +2987,29 @@ MonoBehaviour:
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
-        position: {x: 1603.5, y: 270}
-        category: 3
-        gameplayEventId: chapter:1
+        position: {x: 1809, y: 871}
+        category: 0
+        gameplayEventId: chapter_1:Judul Chapter
         nextNodeId: 6488016964b542818466f1a3f29a5d61
     - rid: 1763526658047344644
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 6488016964b542818466f1a3f29a5d61
-        position: {x: 2140.5, y: 270}
+        position: {x: 2423, y: 532}
         statementId: 23545e9101d04b7bae20853cf004cd8a
         nextNodeId: 3abe821eb6104aa8804f79062ab6304c
     - rid: 1763526658047344645
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 3abe821eb6104aa8804f79062ab6304c
-        position: {x: 3077.5, y: 270}
+        position: {x: 3244, y: 484}
         statementId: 8e481df44a8148c3ac1caf78dc172438
         nextNodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
     - rid: 1763526658047344646
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
-        position: {x: 4000, y: 270}
+        position: {x: 4003, y: 403}
         statementId: 7c2d85980d1b4f0c829c82ab9bdc6649
         nextNodeId: a35b2afc83984a5d8014b23702c7f290
     - rid: 1763526658047344647
@@ -3107,7 +3107,7 @@ MonoBehaviour:
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: c8f05b75d67c4f4a85707f09d9f63d30
-        position: {x: 7965.5, y: 278.5}
+        position: {x: 7921, y: 246}
         category: 1
         gameplayEventId: unlock_evidence:ev_flashdisk_empty
         nextNodeId: 1abfb2e8a0fc48beb51b1c1617a83626
@@ -3115,7 +3115,7 @@ MonoBehaviour:
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 1abfb2e8a0fc48beb51b1c1617a83626
-        position: {x: 8608, y: 270}
+        position: {x: 8514, y: 218}
         entries:
         - Type: 0
           Line:
@@ -3161,7 +3161,7 @@ MonoBehaviour:
       type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
-        position: {x: 9001.5, y: 278.5}
+        position: {x: 9068, y: 501}
         category: 1
         gameplayEventId: unlock_evidence:ev_flashdisk_format_log
         nextNodeId: d14138d3f8f246ab8ad2711e69a93e68

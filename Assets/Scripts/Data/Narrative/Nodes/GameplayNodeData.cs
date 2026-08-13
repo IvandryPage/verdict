@@ -32,7 +32,9 @@ namespace Verdict.Data.Narrative
     /// immediately continues to NextNodeId - it does not pause on its
     /// own. For evidence unlocks, use Category=UnlockFeature and
     /// GameplayEventId="unlock_evidence:<evidenceId>" or
-    /// "unlock evidence" to open the evidence chooser.
+    /// "unlock evidence" to open the evidence chooser. For chapter
+    /// transitions, use a pattern like "chapter_1:Judul Chapter" or
+    /// "chapter:Judul Chapter".
     /// Note: a Statement node already announces itself when the
     /// graph reaches it (via StatementReached), and a Choice node
     /// already announces itself (via ChoiceRequested) - you don't need a
