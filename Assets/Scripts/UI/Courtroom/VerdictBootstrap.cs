@@ -40,9 +40,6 @@ namespace Verdict
         [SerializeField]
         private Verdict.UI.Narrative.ChapterPresenter chapterPresenter;
 
-        [SerializeField]
-        private Verdict.UI.Narrative.ScreenFadePresenter screenFadePresenter;
-
         [Header("Audio")]
         [SerializeField]
         private Verdict.NarrativeAudioController narrativeAudioController;
@@ -64,7 +61,8 @@ namespace Verdict
             Initialize();
         }
 
-        private void OnDestroy() {
+        private void OnDestroy()
+        {
             inputActions.Player.Disable();
         }
 
@@ -89,17 +87,6 @@ namespace Verdict
                 MainMenuPresenter.ShouldLoadSavedGame = false;
             }
 
-            StartCoroutine(BeginCaseAfterDelay());
-        }
-
-        private IEnumerator BeginCaseAfterDelay()
-        {
-            if (screenFadePresenter != null)
-            {
-                screenFadePresenter.Trigger("black", 0.8f, 3.6f);
-            }
-
-            yield return new WaitForSeconds(5f);
             BeginCase();
         }
 
@@ -139,8 +126,7 @@ namespace Verdict
                     courtroomController,
                     courtroomCameraController,
                     narrativeAudioController,
-                    chapterPresenter,
-                    screenFadePresenter);
+                    chapterPresenter);
 
             courtroomEventResolver.Bind();
 

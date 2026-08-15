@@ -110,8 +110,10 @@ namespace Verdict.UI.MainMenu
 
             AsyncOperation operation =
                 SceneManager.LoadSceneAsync(sceneName);
+            AsyncOperation operation1 =
+                SceneManager.LoadSceneAsync("furniture", LoadSceneMode.Additive);
 
-            while (!operation.isDone)
+            while (!operation.isDone && !operation1.isDone)
             {
                 yield return null;
             }

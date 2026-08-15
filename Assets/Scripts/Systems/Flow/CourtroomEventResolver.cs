@@ -13,7 +13,6 @@ namespace Verdict.Systems
         private readonly CourtroomCameraController courtroomCameraController;
         private readonly global::Verdict.NarrativeAudioController narrativeAudioController;
         private readonly ChapterPresenter chapterPresenter;
-        private readonly ScreenFadePresenter screenFadePresenter;
 
         public event Action<NarrativeEventData> PresentationEventReceived;
         public event Action<GameplayNodeData> GameplayEventReceived;
@@ -22,8 +21,7 @@ namespace Verdict.Systems
             CourtroomController courtroomController,
             CourtroomCameraController courtroomCameraController = null,
             global::Verdict.NarrativeAudioController narrativeAudioController = null,
-            ChapterPresenter chapterPresenter = null,
-            ScreenFadePresenter screenFadePresenter = null)
+            ChapterPresenter chapterPresenter = null)
         {
             this.courtroomController = courtroomController ??
                 throw new ArgumentNullException(nameof(courtroomController));
@@ -31,7 +29,6 @@ namespace Verdict.Systems
             this.courtroomCameraController = courtroomCameraController;
             this.narrativeAudioController = narrativeAudioController;
             this.chapterPresenter = chapterPresenter;
-            this.screenFadePresenter = screenFadePresenter;
         }
 
         public void Bind()
@@ -145,12 +142,6 @@ namespace Verdict.Systems
                         Debug.Log(
                             $"[EventResolver] Play sound: {eventData.Parameter}");
                     }
-                    break;
-
-                case NarrativeEventType.ScreenFade:
-                    screenFadePresenter?.Trigger(
-                        eventData.Parameter,
-                        eventData.Value);
                     break;
 
                 case NarrativeEventType.None:
