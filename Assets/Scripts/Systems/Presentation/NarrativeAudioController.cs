@@ -175,34 +175,31 @@ namespace Verdict
 
         public void PlayMusic(string musicId, float volume = 1f)
         {
-            Debug.Log($"[MUSIC 1] PlayMusic called: {musicId}");
             if (string.IsNullOrWhiteSpace(musicId))
-            {
                 return;
-            }
 
             if (musicSource == null)
             {
-                Debug.LogWarning($"[NarrativeAudioController] Missing music source for '{musicId}'.");
+                Debug.LogWarning("[MUSIC] musicSource is NULL");
                 return;
             }
 
             AudioCue cue = FindCue(musicClips, musicId);
-            if (cue == null || cue.Clip == null)
+
+            if (cue == null)
             {
-                Debug.LogWarning($"[NarrativeAudioController] Music clip '{musicId}' not found.");
+                Debug.LogWarning($"[MUSIC] Cue NOT FOUND: {musicId}");
                 return;
             }
 
             musicSource.clip = cue.Clip;
-            musicSource.volume = Mathf.Clamp01(volume * cue.Volume);
-            musicSource.pitch = cue.Pitch;
+            musicSource.volume = volume * cue.Volume;
+            musicSource.pitch = System.Math.Clamp(cue.Pitch, 0.1f, 3f);
             musicSource.loop = true;
 
-            if (!musicSource.isPlaying)
-            {
-                musicSource.Play();
-            }
+            if (!musicSource.isPlaying) return;
+
+            musicSource.Play();
         }
 
         public void StopMusic(string musicId = null)
