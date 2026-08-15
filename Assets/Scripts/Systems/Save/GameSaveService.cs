@@ -138,6 +138,22 @@ namespace Verdict.Systems.Save
                 }
             }
 
+            foreach (ClaimSaveEntry entry in data.ClaimsResolved)
+            {
+                if (string.IsNullOrWhiteSpace(entry?.ClaimId))
+                {
+                    continue;
+                }
+
+                if (runtime.TryGetClaim(entry.ClaimId, out ClaimRuntime claim))
+                {
+                    claim.IsResolved = entry.IsResolved;
+                    claim.WasSuccessful = entry.WasSuccessful;
+                    claim.HasBeenAttempted = entry.HasBeenAttempted;
+                    claim.AttemptCount = entry.AttemptCount;
+                }
+            }
+
             RestoreFlowToValidStatement(session, data);
 
             if (session.NarrativeCoordinator != null)
@@ -271,6 +287,20 @@ namespace Verdict.Systems.Save
                 {
                     Key = evidence.Data.Id,
                     Value = evidence.IsUnlocked
+                });
+            }
+
+            foreach (var kvp in runtime.ClaimsById)
+            {
+                ClaimRuntime claim = kvp.Value;
+
+                data.ClaimsResolved.Add(new ClaimSaveEntry
+                {
+                    ClaimId = kvp.Key,
+                    IsResolved = claim.IsResolved,
+                    WasSuccessful = claim.WasSuccessful,
+                    HasBeenAttempted = claim.HasBeenAttempted,
+                    AttemptCount = claim.AttemptCount
                 });
             }
 

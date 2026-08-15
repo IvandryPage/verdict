@@ -190,7 +190,7 @@ namespace Verdict.Systems
             }
 
             testimony.IsVisible = true;
-            
+
             foreach (StatementRuntime statement in testimony.Statements)
             {
                 statement.IsVisible = true;
@@ -211,6 +211,7 @@ namespace Verdict.Systems
             foreach (TestimonyRuntime testimony in witness.Testimonies)
             {
                 CourtState.RevealTestimony(testimony.Data.Id);
+                testimony.IsVisible = true;
 
                 foreach (StatementRuntime statement in testimony.Statements)
                 {

@@ -106,10 +106,6 @@ namespace Verdict.Systems.Presentation
 
             if (entry.Line.SpeakerType == NarrativeSpeakerType.Narrator)
             {
-                Trigger(new CourtroomCameraRequest(
-                    CourtroomCameraCue.Default,
-                    null,
-                    NarrativeSpeakerType.Narrator));
                 return;
             }
 

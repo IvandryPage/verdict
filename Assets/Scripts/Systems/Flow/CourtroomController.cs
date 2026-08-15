@@ -679,16 +679,16 @@ namespace Verdict.Systems
                 HandleFlowIntents(
                     effectResult);
 
-            ArgumentResolved?.Invoke(
-                result);
-
             if (jumped)
             {
                 return result;
             }
 
             SetCourtroomState(
-                CourtroomState.Statement);
+                CourtroomState.Result);
+
+            ArgumentResolved?.Invoke(
+                result);
 
             return result;
         }
@@ -696,7 +696,7 @@ namespace Verdict.Systems
         // FLOW INTENTS
 
         private bool HandleFlowIntents(
-    CourtStateEffectProcessingResult effectResult)
+            CourtStateEffectProcessingResult effectResult)
         {
             if (effectResult == null)
             {
@@ -905,6 +905,7 @@ namespace Verdict.Systems
 
         public EndingData EvaluateBestEnding()
         {
+            Debug.Log("[Ending] ===== EVALUATING BEST ENDING =====");
             if (Session?.Runtime?.Data?.Endings == null ||
                 Session.Runtime.Data.Endings.Count == 0 ||
                 CourtState == null)

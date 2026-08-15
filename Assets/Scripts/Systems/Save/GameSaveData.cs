@@ -37,11 +37,21 @@ namespace Verdict.Systems.Save
         public List<StringBoolEntry> StatementVisibility = new();
         public List<StringBoolEntry> EvidenceVisibility = new();
         public List<StringBoolEntry> EvidenceUnlocked = new();
-        public List<StringBoolEntry> ClaimsResolved = new();
+        public List<ClaimSaveEntry> ClaimsResolved = new();
 
         public override string ToString()
         {
             return $"CaseId={CaseId}, Statement={CurrentStatementId}, Node={CurrentNarrativeNodeId}";
         }
+    }
+
+    [Serializable]
+    public sealed class ClaimSaveEntry
+    {
+        public string ClaimId;
+        public bool IsResolved;
+        public bool WasSuccessful;
+        public bool HasBeenAttempted;
+        public int AttemptCount;
     }
 }

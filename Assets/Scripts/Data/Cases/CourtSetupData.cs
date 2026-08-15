@@ -11,21 +11,30 @@ namespace Verdict.Data.Cases
     public class CourtSetupData
     {
         [Header("Initial Court State")]
+
         [Range(0, 100)]
-        [SerializeField] private int judgeTrust = 70;
+        [SerializeField] private int judgeTrust = 60;
 
         [Range(0, 100)]
         [SerializeField] private int penalty = 0;
 
         [Range(0, 100)]
-        [SerializeField] private int publicOpinion = 50;
+        [SerializeField] private int publicOpinion = 40;
 
         [Range(0, 100)]
-        [SerializeField] private int juryOpinion = 50;
+        [SerializeField] private int juryOpinion = 40;
 
+        [Range(0, 100)]
         [SerializeField] private int storyProgress = 0;
 
+        [Range(0, 100)]
         [SerializeField] private int caseProgress = 0;
+
+        [Range(0, 100)]
+        [SerializeField] private int defenseConfidence = 50;
+
+        [Range(0, 100)]
+        [SerializeField] private int prosecutorPressure = 0;
 
         public int JudgeTrust => judgeTrust;
         public int Penalty => penalty;
@@ -33,5 +42,7 @@ namespace Verdict.Data.Cases
         public int JuryOpinion => juryOpinion;
         public int StoryProgress => storyProgress;
         public int CaseProgress => caseProgress;
+        public int DefenseConfidence => defenseConfidence;
+        public int ProsecutorPressure => prosecutorPressure;
     }
 }
