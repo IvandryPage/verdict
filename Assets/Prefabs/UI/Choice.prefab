@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: MULAI BARU
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bf3f50681bdd7844ebb12eaadec3382c, type: 2}
-  m_sharedMaterial: {fileID: -8761737272823109129, guid: bf3f50681bdd7844ebb12eaadec3382c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 257b41f6f046d4f4394279c31ea158ae, type: 2}
+  m_sharedMaterial: {fileID: -1348206760707884208, guid: 257b41f6f046d4f4394279c31ea158ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -98,12 +98,12 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 16
   m_fontSizeMax: 24
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 32
-  m_wordSpacing: 0
+  m_characterSpacing: 24
+  m_wordSpacing: 7
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
