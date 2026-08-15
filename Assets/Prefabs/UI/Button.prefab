@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 8943673877210052937}
   - component: {fileID: 8845748747372233856}
   - component: {fileID: 9037119950438818723}
+  - component: {fileID: 6042916293442921176}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -391,7 +392,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4f3b6b88d71b6a14d83fcf4d50cbdf46, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 1
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -401,3 +402,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6042916293442921176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412094766801381682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d5df35f9ec1492ba2947c2c27507a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioController: {fileID: 0}
+  soundId: ui_hover
+  volume: 0.7

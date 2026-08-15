@@ -175,6 +175,7 @@ namespace Verdict
 
         public void PlayMusic(string musicId, float volume = 1f)
         {
+            Debug.Log($"[MUSIC 1] PlayMusic called: {musicId}");
             if (string.IsNullOrWhiteSpace(musicId))
             {
                 return;
@@ -196,6 +197,8 @@ namespace Verdict
             musicSource.clip = cue.Clip;
             musicSource.volume = Mathf.Clamp01(volume * cue.Volume);
             musicSource.pitch = cue.Pitch;
+            musicSource.loop = true;
+
             if (!musicSource.isPlaying)
             {
                 musicSource.Play();

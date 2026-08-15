@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a3e117572c1d42ae8a11495666a174e, type: 3}
   m_Name: SilenceProjectCase
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   id: case_001
   title: Project Silence
   description: Ryan Pratama, staf pengadaan proyek digitalisasi pendidikan nasional
@@ -35,12 +35,14 @@ MonoBehaviour:
   version: 1
   author: Galang Ivandry
   courtSetup:
-    judgeTrust: 55
+    judgeTrust: 50
     penalty: 0
-    publicOpinion: 30
-    juryOpinion: 35
+    publicOpinion: 40
+    juryOpinion: 40
     storyProgress: 0
     caseProgress: 0
+    defenseConfidence: 50
+    prosecutorPressure: 0
   judge: {fileID: 11400000, guid: 3a35bb1be8e1f408cafde3a2ee30b85a, type: 2}
   prosecutor: {fileID: 11400000, guid: 69434817a93924e6b9f55baa5b75264b, type: 2}
   defenseLawyer: {fileID: 11400000, guid: 7c53b5b7b299f4afd81252dbee24ecb4, type: 2}
@@ -456,7 +458,7 @@ MonoBehaviour:
         text: Saya tiba di lokasi pada pukul 22.15 setelah menerima laporan warga
           tentang keributan di apartemen korban.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 225c3420770844cb9c38cbe3ee740149
           factId: fact_yudi_arrival_time
@@ -478,7 +480,7 @@ MonoBehaviour:
         text: Sidik jari tersangka, Arga Mahendra, ditemukan pada gagang pintu dan
           meja kerja korban.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 134b7087685e4854833631676b338e5b
           factId: fact_arga_fingerprints_found
@@ -490,7 +492,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -507,7 +509,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -515,7 +517,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -533,14 +535,14 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
@@ -555,7 +557,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -564,7 +566,7 @@ MonoBehaviour:
         text: Rekaman CCTV lobi menunjukkan Arga memasuki apartemen pukul 21.40,
           lalu tidak terlihat keluar sampai pagi hari.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: a1e8937912b745c294e534612e47f1aa
           factId: fact_timestamp_mismatch
@@ -577,35 +579,35 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
@@ -620,21 +622,21 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 1
               characterStat: 0
@@ -645,28 +647,28 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -688,14 +690,14 @@ MonoBehaviour:
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -706,28 +708,28 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -735,14 +737,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 4
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -753,14 +755,14 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 2
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -773,35 +775,35 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
@@ -816,21 +818,21 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 1
               characterStat: 0
@@ -839,7 +841,7 @@ MonoBehaviour:
         text: Ponsel korban berisi riwayat pesan dengan Arga yang bernada pertengkaran
           pada malam kejadian.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 256e98d8075043a2b8790019fd7ccc59
           factId: fact_whatsapp_argument_exists
@@ -864,7 +866,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -879,7 +881,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -888,7 +890,7 @@ MonoBehaviour:
         text: Sejauh pemeriksaan kami, tersangka tidak dapat memberikan alibi yang
           meyakinkan untuk malam itu.
         initiallyVisible: 0
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 0bdf6df6c53849e68abbedfe5d5f7129
           factId: fact_police_initial_alibi_assesment
@@ -907,7 +909,7 @@ MonoBehaviour:
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -919,7 +921,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -942,7 +944,7 @@ MonoBehaviour:
         text: Kami berhasil memulihkan sebagian data dari laptop korban yang sempat
           coba dihapus.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 20881cc576b042cf891602f157f84be5
           factId: fact_laptop_data_partially_recovered
@@ -954,7 +956,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -973,7 +975,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -983,7 +985,7 @@ MonoBehaviour:
         text: Data tersebut memuat rangkaian email internal yang secara halus mengarahkan
           kemenangan tender ke satu vendor tertentu.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 1f0fbededf474d7a9e502afa4abd2859
           factId: fact_ryan_investigating_corruption
@@ -1003,21 +1005,21 @@ MonoBehaviour:
               value: 0
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
@@ -1025,14 +1027,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -1041,7 +1043,7 @@ MonoBehaviour:
         text: Metadata pada beberapa laporan evaluasi menunjukkan dokumen tersebut
           diedit setelah tanggal resmi persetujuannya.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 97c3fd11a8e147ae8367cfcf8d7d1021
           factId: fact_ryan_investigating_corruption
@@ -1053,21 +1055,21 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
@@ -1075,7 +1077,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1084,7 +1086,7 @@ MonoBehaviour:
         text: Kami juga menemukan log server yang mencatat adanya penghapusan data
           dari jarak jauh terhadap file-file korban.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 520b92480dd34b2c9bd6448908ec4afd
           factId: fact_remote_deletion_from_ministry_network
@@ -1103,28 +1105,28 @@ MonoBehaviour:
               value: 0
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
@@ -1132,7 +1134,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1149,21 +1151,21 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
@@ -1171,7 +1173,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1180,7 +1182,7 @@ MonoBehaviour:
         text: Selain itu, kami menelusuri dokumen administratif proyek, tender, kontrak,
           hingga berita acara serah terimanya.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 02c03122a9e54201aeab877ffbe6280f
           factId: fact_paper_trail_confirms_fraud
@@ -1192,7 +1194,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -1208,21 +1210,21 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
@@ -1230,7 +1232,7 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1251,7 +1253,7 @@ MonoBehaviour:
         text: Saya tidak tahu-menahu soal dugaan manipulasi laporan audit. Semua
           sudah sesuai prosedur.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 36c9118954b744c19f95f8654814c3f9
           factId: fact_audit_report_altered
@@ -1277,28 +1279,28 @@ MonoBehaviour:
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 4
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 1
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -1320,14 +1322,14 @@ MonoBehaviour:
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1359,21 +1361,21 @@ MonoBehaviour:
               value: 20
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 1
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 1
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -1381,14 +1383,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -1421,28 +1423,28 @@ MonoBehaviour:
               value: 20
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -1450,14 +1452,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -1466,7 +1468,7 @@ MonoBehaviour:
         text: Evaluasi vendor juga sudah melalui proses yang wajar, tidak ada yang
           saya ubah.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: b8c8647af8c7448b848e7e6f3d9ceef8
           factId: fact_vendor_evaluation_manipulated
@@ -1486,21 +1488,21 @@ MonoBehaviour:
               value: 0
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
@@ -1508,14 +1510,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 1
               characterStat: 0
@@ -1533,21 +1535,21 @@ MonoBehaviour:
               value: 0
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 4
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
@@ -1562,14 +1564,14 @@ MonoBehaviour:
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1580,7 +1582,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -1596,7 +1598,7 @@ MonoBehaviour:
         text: Baik... saya akui, laporan audit itu pernah diminta untuk diubah sebelum
           akhirnya disahkan.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: c501153f2eaa42d0a406479a4d6b2d9c
           factId: fact_audit_report_altered
@@ -1617,7 +1619,7 @@ MonoBehaviour:
       - id: a17389a14d6c4767a4b6553dfb76cd41
         text: Evaluasi vendor juga memang tidak sepenuhnya sesuai fakta di lapangan.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 68640b22ce6f41f699340b195eb16fb1
           factId: fact_vendor_evaluation_manipulated
@@ -1640,7 +1642,7 @@ MonoBehaviour:
           belum selesai. Tapi saya bersumpah, saya tidak tahu siapa yang membunuh
           Ryan.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: a03e33fbdd7e44048e60408115ab14ec
           factId: fact_ryan_investigating_corruption
@@ -1652,21 +1654,21 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
@@ -1688,7 +1690,7 @@ MonoBehaviour:
       - id: 09f833a0b798473b9d8740a6eebdb696
         text: Kami memperoleh rekaman CCTV tambahan dari kamera lain di gedung apartemen.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: b9418c0246e5416bad9cf389e083646c
           factId: fact_additional_cctv_obtained
@@ -1700,7 +1702,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -1710,7 +1712,7 @@ MonoBehaviour:
         text: Setelah ditelusuri ulang... rekaman itu menunjukkan Arga sempat keluar
           apartemen sekitar pukul 23.10, dan baru kembali menjelang subuh.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: f639e471373d4400b21015334ef10e1f
           factId: fact_arga_left_and_returned
@@ -1723,35 +1725,35 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -1766,21 +1768,21 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 1
               characterStat: 0
@@ -1791,28 +1793,28 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 4
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -1827,14 +1829,14 @@ MonoBehaviour:
               value: 0
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1845,14 +1847,14 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -1860,14 +1862,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -1876,7 +1878,7 @@ MonoBehaviour:
         text: Riwayat GPS dan panggilan telepon korban pada rentang waktu itu juga
           belum sepenuhnya kami telusuri saat penyelidikan awal
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 280d909ebd8e471795fbc9c75558f8d6
           factId: fact_arga_has_alibi_window
@@ -1888,7 +1890,7 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
@@ -1900,21 +1902,21 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
@@ -1929,14 +1931,14 @@ MonoBehaviour:
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 2
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -1958,7 +1960,7 @@ MonoBehaviour:
         text: Saya adalah direktur proyek ini, dan saya bekerja secara profesional
           bersama seluruh tim.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 9e3b0c8339a6488aa642d5e052e236dd
           factId: fact_adrian_claims_professional
@@ -1980,7 +1982,7 @@ MonoBehaviour:
         text: Ryan? Terus terang saya hampir tidak mengenalnya. Ia hanya salah satu
           staf pengadaan di antara puluhan lainnya.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 5e8a409bce7947a2acd8d0abb58e2d50
           factId: fact_adrian_denied_knowing_ryan
@@ -1992,14 +1994,14 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 2
               value: 2
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
@@ -2014,14 +2016,14 @@ MonoBehaviour:
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -2040,35 +2042,35 @@ MonoBehaviour:
               value: 25
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -2083,14 +2085,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2109,35 +2111,35 @@ MonoBehaviour:
               value: 25
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -2152,14 +2154,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2177,28 +2179,28 @@ MonoBehaviour:
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 6
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
@@ -2212,7 +2214,7 @@ MonoBehaviour:
               value: 0
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
@@ -2220,21 +2222,21 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 1
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2243,7 +2245,7 @@ MonoBehaviour:
         text: Kalau ada foto atau catatan pertemuan, itu mungkin sekadar rapat rutin
           proyek. Tidak lebih.
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 0b72aabf154c4f81b9d53e69f5c435e2
           factId: fact_adrian_claims_routine_meetings
@@ -2267,14 +2269,14 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 2
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -2289,14 +2291,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2305,7 +2307,7 @@ MonoBehaviour:
         text: .....Baiklah. Kami memang beberapa kali bertemu di luar rapat resmi.
           Tapi itu tidak ada hubungannya dengan kematiannya.
         initiallyVisible: 0
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: dac30fd93fd245aa83d811342d865d74
           factId: fact_adrian_knows_ryan_closely
@@ -2317,28 +2319,28 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
@@ -2367,7 +2369,7 @@ MonoBehaviour:
       - id: efb56c13637c44a4bc8279d05dda442d
         text: Saya bekerja sebagai asisten pribadi Pak Adrian selama tiga tahun terakhir
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: de0d94bbf10d4b649cb923ff7537f7b8
           factId: fact_melati_worked_for_adrian
@@ -2390,7 +2392,7 @@ MonoBehaviour:
           seseorang. Katanya, 'pastikan semua jejak di server dan flashdisk itu hilang
           total.'
         initiallyVisible: 1
-        nextStatementId:
+        nextStatementId: 
         claims:
         - id: 5a1e7a18d7b94ee6b1a3db20a42fd1fe
           factId: fact_melati_witnessed_deletion_order
@@ -2409,14 +2411,14 @@ MonoBehaviour:
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
               value: 3
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
@@ -2430,49 +2432,49 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
               value: 20
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 1
               characterStat: 0
@@ -2480,14 +2482,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2505,56 +2507,56 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 0
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 3
               operation: 0
               characterStat: 0
               value: 20
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
               value: 15
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 6
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 1
               characterStat: 0
               value: 20
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 5
               operation: 0
               characterStat: 0
@@ -2569,14 +2571,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 5
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2587,14 +2589,14 @@ MonoBehaviour:
             successEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 4
               operation: 0
               characterStat: 0
               value: 8
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 2
               operation: 1
               characterStat: 0
@@ -2609,14 +2611,14 @@ MonoBehaviour:
             failureEffects:
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 1
               operation: 0
               characterStat: 0
               value: 10
             - effect: 8
               targetType: 0
-              targetId:
+              targetId: 
               courtStat: 7
               operation: 0
               characterStat: 0
@@ -2632,7 +2634,7 @@ MonoBehaviour:
   - id: 5caac3026acb4abd8838cbe562acfd19
     character: {fileID: 11400000, guid: 09de275642787432ba3d7d86c79f9d91, type: 2}
     role: 0
-    description:
+    description: 
     testimonies: []
     initiallyVisible: 1
   endings:
@@ -2696,7 +2698,7 @@ MonoBehaviour:
     minimumDefenseConfidence: 48
     maximumProsecutorPressure: 28
   narrative:
-    startNodeId: 141442834f0f426ea201cd2a3a6e18ac
+    startNodeId: bb2e8a09bdf74124b53a21db4c413f58
     nodes:
     - rid: 1763526658047344640
     - rid: 1763526658047344641
@@ -2814,24 +2816,20 @@ MonoBehaviour:
     - rid: 2436170619896463540
     - rid: 2436170619896463541
     - rid: 2436170619896463542
-    - rid: 2436170619896463543
-    - rid: 2436170619896463544
-    - rid: 2436170619896463545
-    - rid: 2436170619896463546
-    - rid: 2436170619896463547
-    - rid: 2436170619896463548
-    - rid: 2436170619896463549
-    - rid: 2436170619896463550
-    - rid: 2436170619896463551
-    - rid: 2436170619896463552
-    - rid: 2436170619896463553
-    - rid: 2436170619896463554
-    - rid: 2436170619896463555
-    - rid: 2436170619896463556
-    - rid: 2436170619896463557
-    - rid: 2436170619896463558
-    - rid: 2436170619896463559
-    - rid: 2436170619896463560
+    - rid: 1763526829232357452
+    - rid: 1763526829232357453
+    - rid: 1763526829232357454
+    - rid: 1763526829232357455
+    - rid: 1763526829232357456
+    - rid: 1763526829232357457
+    - rid: 1763526829232357458
+    - rid: 1763526829232357459
+    - rid: 1763526829232357460
+    - rid: 1763526829232357461
+    - rid: 1763526829232357462
+    - rid: 1763526829232357463
+    - rid: 1763526829232357464
+    - rid: 1763526829232357474
   references:
     version: 2
     RefIds:
@@ -2969,43 +2967,19 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 6
-            Parameter: black
-            Value: 0.8
-        - Type: 1
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 1
             Parameter: bgm_courtroom_tension
-            Value: 0.8
+            Value: 1
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 3
-            Parameter: sfx_gavel_single
-            Value: 0.9
-        - Type: 1
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3024,7 +2998,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3038,7 +3012,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3051,20 +3025,20 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.6
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: a4b071d141eb41bab58eb9e071078fd5
     - rid: 1763526658047344641
       type: {class: DialogueNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
         nodeId: a4b071d141eb41bab58eb9e071078fd5
-        position: {x: -686, y: 632}
+        position: {x: -686, y: 634}
         entries:
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3083,7 +3057,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3096,7 +3070,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3109,7 +3083,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3122,7 +3096,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: b85532ff00864ec0ab16b652e4eff725
     - rid: 1763526658047344643
@@ -3386,6 +3360,164 @@ MonoBehaviour:
       data:
         factId: fact_melati_witnessed_deletion_order
         requireSupportingEvidencePresented: 1
+    - rid: 1763526829232357452
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 81e66c8104c44024b0b4fd0002ed5fbc
+        position: {x: 61093, y: 502}
+        endingId: end_bad_arga_convicted
+    - rid: 1763526829232357453
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 31f18c2ba3ba4eebb5d6062e434c38d6
+        position: {x: 61093, y: 1356.5}
+        endingId: end_true_open_question
+    - rid: 1763526829232357454
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+        position: {x: 61152, y: 934.5}
+        endingId: end_neutral_partial_truth
+    - rid: 1763526829232357455
+      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 05ee3180ab1f4caf8f70e773f89f0967
+        position: {x: 61093, y: 690.5}
+        endingId: end_good_conspiracy_exposed
+    - rid: 1763526829232357456
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 0415456627e040d887c956af708d5754
+        position: {x: 59904.5, y: 855}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 55
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 5c6f689d908e4efcb7fa009a03c7261b
+        falseNodeId: 81e66c8104c44024b0b4fd0002ed5fbc
+    - rid: 1763526829232357457
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 5c6f689d908e4efcb7fa009a03c7261b
+        position: {x: 60233.5, y: 653.5}
+        condition:
+          mode: 0
+          stat: 4
+          comparisonOperator: 0
+          value: 45
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: d3b42b94b950400f8aa0f2dc021deb10
+        falseNodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+    - rid: 1763526829232357458
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: d3b42b94b950400f8aa0f2dc021deb10
+        position: {x: 60517, y: 527.5}
+        condition:
+          mode: 0
+          stat: 3
+          comparisonOperator: 0
+          value: 70
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 31f18c2ba3ba4eebb5d6062e434c38d6
+        falseNodeId: 124b8d393f23484f949d78aad7b3b702
+    - rid: 1763526829232357459
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 124b8d393f23484f949d78aad7b3b702
+        position: {x: 60596, y: 898.5}
+        condition:
+          mode: 0
+          stat: 4
+          comparisonOperator: 0
+          value: 45
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 05ee3180ab1f4caf8f70e773f89f0967
+        falseNodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+    - rid: 1763526829232357460
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 9b50f905119f4ea39ac26e2a0a3b5190
+        position: {x: 60008.5, y: 1074.5}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 50
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 6c4ea45e166a400f870e120714502e5b
+        falseNodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+    - rid: 1763526829232357461
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 6c4ea45e166a400f870e120714502e5b
+        position: {x: 60364, y: 1235}
+        condition:
+          mode: 0
+          stat: 4
+          comparisonOperator: 0
+          value: 35
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: d3b42b94b950400f8aa0f2dc021deb10
+        falseNodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+    - rid: 1763526829232357462
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: db3bd5162b9e45d68e0f31c624bf059a
+        position: {x: 59967, y: 1323}
+        condition:
+          mode: 0
+          stat: 0
+          comparisonOperator: 0
+          value: 45
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 7b4688a43de246398304f63582d01118
+        falseNodeId: 81e66c8104c44024b0b4fd0002ed5fbc
+    - rid: 1763526829232357463
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 7b4688a43de246398304f63582d01118
+        position: {x: 60312, y: 1478}
+        condition:
+          mode: 0
+          stat: 6
+          comparisonOperator: 0
+          value: 45
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 2fead9c315e8462e81c559534dc42982
+        falseNodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+    - rid: 1763526829232357464
+      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: 2fead9c315e8462e81c559534dc42982
+        position: {x: 60728.5, y: 1277}
+        condition:
+          mode: 0
+          stat: 7
+          comparisonOperator: 3
+          value: 30
+          claimId: 
+          requireSuccessful: 1
+        trueNodeId: 05ee3180ab1f4caf8f70e773f89f0967
+        falseNodeId: 69cd7c79d5314abd9e45f49043e9a1d5
+    - rid: 1763526829232357474
+      type: {class: GameplayNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
+      data:
+        nodeId: bb2e8a09bdf74124b53a21db4c413f58
+        position: {x: -1814, y: 240}
+        category: 0
+        gameplayEventId: chapter_0:Prolog
+        nextNodeId: 141442834f0f426ea201cd2a3a6e18ac
     - rid: 2436170619896463423
       type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
@@ -3423,7 +3555,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3431,18 +3563,6 @@ MonoBehaviour:
             Type: 4
             Parameter: cam_judge_bench
             Value: 1
-        - Type: 1
-          Line:
-            SpeakerType: 0
-            Speaker: {fileID: 0}
-            Text:
-            Emotion: 0
-            WaitMode: 0
-            AutoAdvanceDelay: 1
-          Event:
-            Type: 3
-            Parameter: sfx_gavel_single
-            Value: 0.8
         - Type: 0
           Line:
             SpeakerType: 1
@@ -3454,8 +3574,20 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
+        - Type: 1
+          Line:
+            SpeakerType: 0
+            Speaker: {fileID: 0}
+            Text: 
+            Emotion: 0
+            WaitMode: 0
+            AutoAdvanceDelay: 1
+          Event:
+            Type: 3
+            Parameter: sfx_gavel_single
+            Value: 0.8
         - Type: 0
           Line:
             SpeakerType: 0
@@ -3467,7 +3599,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3482,7 +3614,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 81553987378a4c38a04f6a04c193d6bb
     - rid: 2436170619896463432
@@ -3495,7 +3627,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3517,7 +3649,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3531,7 +3663,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3544,13 +3676,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3569,7 +3701,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 8df30fb90d804fd2b2f99ac10e8be7c4
     - rid: 2436170619896463433
@@ -3589,7 +3721,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3601,7 +3733,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.6
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3614,7 +3746,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 47e3c25bb9ff4ea289dafe8d8ac6d75f
     - rid: 2436170619896463434
@@ -3633,7 +3765,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3648,13 +3780,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3674,7 +3806,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3686,7 +3818,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 6488016964b542818466f1a3f29a5d61
     - rid: 2436170619896463435
@@ -3706,7 +3838,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3719,7 +3851,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.8
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 3abe821eb6104aa8804f79062ab6304c
     - rid: 2436170619896463436
@@ -3732,7 +3864,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3751,7 +3883,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3764,7 +3896,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: d58ea7dacb11432c8dc6df6b8f8e79bd
     - rid: 2436170619896463437
@@ -3784,7 +3916,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3796,7 +3928,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 7b8589fd35ef49eeae5a5023b88eaa71
     - rid: 2436170619896463439
@@ -3830,7 +3962,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: c731a42f7a74405084132fe506665da5
     - rid: 2436170619896463441
@@ -3843,7 +3975,7 @@ MonoBehaviour:
           stat: 1
           comparisonOperator: 1
           value: 6
-          claimId:
+          claimId: 
           requireSuccessful: 1
         trueNodeId: edc4e3fb50fd41e3a1ae1b10860e0260
         falseNodeId: d40b9a9d2d2f43e698cf562e9afc21e3
@@ -3864,7 +3996,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3877,7 +4009,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3889,7 +4021,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: c731a42f7a74405084132fe506665da5
     - rid: 2436170619896463443
@@ -3902,7 +4034,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -3921,7 +4053,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3934,7 +4066,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3947,7 +4079,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3959,7 +4091,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: c6aaa963e0224b2eaedb4f49d65ccafa
     - rid: 2436170619896463444
@@ -3979,7 +4111,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.3
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -3992,7 +4124,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: c8f05b75d67c4f4a85707f09d9f63d30
     - rid: 2436170619896463445
@@ -4012,7 +4144,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4024,7 +4156,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.8
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4037,7 +4169,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4049,7 +4181,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 639b0e457a6e459faa4bafe3f63caa3b
     - rid: 2436170619896463446
@@ -4070,7 +4202,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.2
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4083,7 +4215,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4096,7 +4228,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 74741e8f8a2c44bbb5d070f0cddbb42d
     - rid: 2436170619896463448
@@ -4116,7 +4248,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4128,19 +4260,19 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.5
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 5
-            Parameter:
+            Parameter: 
             Value: 0.15
         - Type: 0
           Line:
@@ -4153,7 +4285,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 0c4f0a004d7b4cf7a7c6e91bf26bec03
     - rid: 2436170619896463449
@@ -4172,7 +4304,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4184,7 +4316,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4196,7 +4328,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 41ca8ac4c645495b9ccc880c6a90a47f
     - rid: 2436170619896463450
@@ -4209,7 +4341,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4228,7 +4360,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.4
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: dce505b259d548949690e86e93ac31b7
     - rid: 2436170619896463451
@@ -4241,7 +4373,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4260,13 +4392,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4285,7 +4417,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4298,7 +4430,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 861809f7d30a46b19b0bf171695f45da
     - rid: 2436170619896463452
@@ -4325,7 +4457,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4344,7 +4476,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4357,7 +4489,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 0f518204e94f4b27b5e5d2ec9e75de47
     - rid: 2436170619896463455
@@ -4384,7 +4516,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4396,7 +4528,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4409,13 +4541,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.3
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4433,7 +4565,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 10502bbef53d4d839941ff45bff95755
     - rid: 2436170619896463457
@@ -4446,7 +4578,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4458,13 +4590,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 2
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4476,7 +4608,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.4
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 4ec2ead05ef14fa898ef194dc577fc1c
     - rid: 2436170619896463458
@@ -4496,7 +4628,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4509,7 +4641,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4522,7 +4654,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: eba2dbd89cf84514b7817f7765f3e3ee
     - rid: 2436170619896463459
@@ -4550,7 +4682,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4563,7 +4695,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4576,7 +4708,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4588,7 +4720,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 019386654495452d8b623d83033d2379
     - rid: 2436170619896463461
@@ -4614,7 +4746,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4627,7 +4759,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.8
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 32849f03705c439aa8bde00be07c0acf
     - rid: 2436170619896463463
@@ -4654,7 +4786,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4667,7 +4799,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 13e97abf8ef2471caa458967ede5d56f
     - rid: 2436170619896463465
@@ -4687,7 +4819,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4700,7 +4832,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 3787654df0f1423489c3b855cf4b785a
     - rid: 2436170619896463466
@@ -4726,7 +4858,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4738,7 +4870,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.6
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: dbe46c08db2f43c48339772dfb1a4ca7
     - rid: 2436170619896463468
@@ -4765,13 +4897,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.9
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4789,7 +4921,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4802,7 +4934,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 49a6d561723d4aecbeff80b475f9ca86
     - rid: 2436170619896463470
@@ -4815,7 +4947,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4833,7 +4965,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4846,7 +4978,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 2c9a8dd635684b6ea58ff8e7cc6c8d3a
     - rid: 2436170619896463471
@@ -4873,7 +5005,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4886,7 +5018,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.3
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4899,7 +5031,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 46077e8fc6fe450bbcecf652ae246b7c
     - rid: 2436170619896463473
@@ -4912,7 +5044,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4924,13 +5056,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 2
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -4942,7 +5074,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.2
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: d42e0b65cc7a4ddc908fa25fe7cb34b2
     - rid: 2436170619896463474
@@ -4955,7 +5087,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4973,13 +5105,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -4998,7 +5130,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5010,7 +5142,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5023,7 +5155,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: e344aecf0d174e989f3ea6fa16f5e7a1
     - rid: 2436170619896463475
@@ -5049,7 +5181,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5061,7 +5193,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.7
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: aafef51926554354906f1d4a7d1b6a45
     - rid: 2436170619896463477
@@ -5088,7 +5220,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5101,7 +5233,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5114,7 +5246,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: cc4720d57a0a40689cc65f57e4ecbe76
     - rid: 2436170619896463479
@@ -5141,7 +5273,7 @@ MonoBehaviour:
           stat: 1
           comparisonOperator: 1
           value: 6
-          claimId:
+          claimId: 
           requireSuccessful: 1
         trueNodeId: 3b707f2db7654a42988d2d5bc0d1d5f3
         falseNodeId: ad69a11ab4ae4b01ab97ac7db4b0f172
@@ -5162,7 +5294,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5175,7 +5307,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 76e78b00d03c407cb663efd918ab67c8
     - rid: 2436170619896463482
@@ -5195,7 +5327,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 76e78b00d03c407cb663efd918ab67c8
     - rid: 2436170619896463483
@@ -5214,13 +5346,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 5
-            Parameter:
+            Parameter: 
             Value: 0.1
         - Type: 0
           Line:
@@ -5232,7 +5364,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.4
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5245,7 +5377,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5257,7 +5389,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 70319fc3238542309504c716c62c6f4c
     - rid: 2436170619896463485
@@ -5284,7 +5416,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.9
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5296,7 +5428,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 918ef006d4ed4adf8f59a8b06119e467
     - rid: 2436170619896463487
@@ -5323,7 +5455,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5336,7 +5468,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 4154107d40f044818d33c74f71e97579
     - rid: 2436170619896463489
@@ -5356,13 +5488,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5380,7 +5512,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: ea20c53dfeb145879b864285c0a3d5e0
     - rid: 2436170619896463490
@@ -5407,7 +5539,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: a25c4e9a4b384e48a6f15721fa5b12e0
     - rid: 2436170619896463492
@@ -5427,7 +5559,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5440,7 +5572,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5452,7 +5584,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: feded6e200644e9eb980037a29dea701
     - rid: 2436170619896463493
@@ -5465,7 +5597,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5477,13 +5609,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 2
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5496,7 +5628,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.4
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 1b4be7e45bee409284f44923413bd7bc
     - rid: 2436170619896463494
@@ -5509,7 +5641,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5528,7 +5660,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5541,7 +5673,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5553,7 +5685,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 008efd4ee6e643e686b529205ec59daa
     - rid: 2436170619896463495
@@ -5573,7 +5705,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5586,7 +5718,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: ed76c597f88c4169b99b989c6147a960
     - rid: 2436170619896463496
@@ -5622,7 +5754,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5635,7 +5767,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5647,7 +5779,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: cb9b257031a64715a1fb61b3c419c30c
     - rid: 2436170619896463499
@@ -5683,7 +5815,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5696,7 +5828,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 3ed994d56d9c454b831c3ac083befdd7
     - rid: 2436170619896463502
@@ -5740,7 +5872,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5752,7 +5884,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5765,7 +5897,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5778,7 +5910,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 10ed0041d33041269057017becce1cb9
     - rid: 2436170619896463507
@@ -5807,7 +5939,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5826,13 +5958,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5851,7 +5983,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: cfb0755a3b7a4494aa609cdab1d0cc43
     - rid: 2436170619896463510
@@ -5878,7 +6010,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5891,7 +6023,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 0.8
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 63694328b5fb4d979857a5f6d3ebd46b
     - rid: 2436170619896463512
@@ -5911,7 +6043,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -5930,7 +6062,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5942,7 +6074,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 4095182778c54bf5b1ffbc219f7e6939
     - rid: 2436170619896463514
@@ -5969,7 +6101,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -5982,7 +6114,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: f9e7b92610084309855d1434eca55deb
     - rid: 2436170619896463516
@@ -6002,7 +6134,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6015,7 +6147,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 6110cfb6999f43fc9a1f8179b85e026d
     - rid: 2436170619896463517
@@ -6028,7 +6160,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6040,13 +6172,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 2
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6059,7 +6191,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.5
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 33670ef3536b49dcb822332057225722
     - rid: 2436170619896463518
@@ -6072,7 +6204,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6091,13 +6223,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6117,7 +6249,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6129,7 +6261,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6142,7 +6274,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: ac5877418e2a43e7b6f457415c6c98dc
     - rid: 2436170619896463519
@@ -6169,7 +6301,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6182,7 +6314,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 657a957e08dd45b58bd9b48d088756f1
     - rid: 2436170619896463521
@@ -6216,7 +6348,7 @@ MonoBehaviour:
           stat: 1
           comparisonOperator: 1
           value: 6
-          claimId:
+          claimId: 
           requireSuccessful: 1
         trueNodeId: 602cdfcaf65947eb8ab378928b23431a
         falseNodeId: 1e3dd1abf671435a9c669a2c93370011
@@ -6243,7 +6375,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6255,7 +6387,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6267,7 +6399,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: edfaff4febf14f75a6e86515f4f7df42
     - rid: 2436170619896463526
@@ -6287,7 +6419,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6300,7 +6432,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6313,7 +6445,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: edfaff4febf14f75a6e86515f4f7df42
     - rid: 2436170619896463527
@@ -6339,7 +6471,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6351,7 +6483,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6364,7 +6496,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: c67462381ce74c1ea20c91730cc7cfc6
     - rid: 2436170619896463529
@@ -6383,7 +6515,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6396,7 +6528,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6409,7 +6541,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1.3
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 8d0d1d78cf0748bcb9f991673e4c2c71
     - rid: 2436170619896463530
@@ -6422,7 +6554,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6434,13 +6566,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 2
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6453,7 +6585,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 0be21866753240fcadc053bae0d727aa
     - rid: 2436170619896463531
@@ -6466,7 +6598,7 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6485,7 +6617,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6499,7 +6631,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6512,7 +6644,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6524,7 +6656,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 0b8968da57534343974cc5b1e770d21b
     - rid: 2436170619896463532
@@ -6551,13 +6683,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6569,13 +6701,13 @@ MonoBehaviour:
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 5
-            Parameter:
+            Parameter: 
             Value: 0.1
         - Type: 0
           Line:
@@ -6589,7 +6721,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6602,7 +6734,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6615,7 +6747,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6629,19 +6761,19 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 215ed04ea73544f6a5188166610e85cb
     - rid: 2436170619896463534
@@ -6675,7 +6807,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6687,7 +6819,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6700,13 +6832,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6725,9 +6857,9 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
-        nextNodeId:
+        nextNodeId: 5e8a7c55f78948eeb077f5e9b763040b
     - rid: 2436170619896463537
       type: {class: StatementNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
       data:
@@ -6752,7 +6884,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6765,7 +6897,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: be634a920e1b4875999e5d04cbf1cfe0
     - rid: 2436170619896463540
@@ -6792,7 +6924,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6805,13 +6937,13 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 1
           Line:
             SpeakerType: 0
             Speaker: {fileID: 0}
-            Text:
+            Text: 
             Emotion: 0
             WaitMode: 0
             AutoAdvanceDelay: 1
@@ -6830,7 +6962,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         - Type: 0
           Line:
@@ -6842,7 +6974,7 @@ MonoBehaviour:
             AutoAdvanceDelay: 1
           Event:
             Type: 0
-            Parameter:
+            Parameter: 
             Value: 0
         nextNodeId: 5e8a7c55f78948eeb077f5e9b763040b
     - rid: 2436170619896463542
@@ -6853,235 +6985,15 @@ MonoBehaviour:
         choices:
         - choiceId: 39cbd87e7235449591dc7347e37accee
           text: Tuduh Adrian Wijaya sebagai dalang utama di balik semuanya.
-          nextNodeId: 206defc6cf6d49adac52f2a50584c5ae
+          nextNodeId: 0415456627e040d887c956af708d5754
         - choiceId: 530380316f384f288e4a98f3323f13d6
           text: Nyatakan bahwa dalang sesungguhnya masih belum diketahui, dan konspirasi
             ini harus terus diselidiki.
-          nextNodeId: 16882fc093e34493ae04e759aa118d7e
+          nextNodeId: 9b50f905119f4ea39ac26e2a0a3b5190
         - choiceId: 9ebae3f10f8a4842ade98e0b9467ce9c
           text: Fokus hanya membebaskan Arga, tanpa membongkar lebih jauh isu korupsi
             ini.
-          nextNodeId: 722a3765c7b7413fbd9f54242fcc5dc7
-    - rid: 2436170619896463543
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 206defc6cf6d49adac52f2a50584c5ae
-        position: {x: 59982, y: 736}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 1
-          value: 90
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 33f3927c3b8b4a3eb4782eb4795d31b5
-        falseNodeId: b4d50309134c45ad97fd1a45f248f95e
-    - rid: 2436170619896463544
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 33f3927c3b8b4a3eb4782eb4795d31b5
-        position: {x: 60328, y: 591}
-        condition:
-          mode: 0
-          stat: 4
-          comparisonOperator: 1
-          value: 70
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 8d6e3e99d5cd4f95ab014a9ea379698e
-        falseNodeId: b4d50309134c45ad97fd1a45f248f95e
-    - rid: 2436170619896463545
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: b4d50309134c45ad97fd1a45f248f95e
-        position: {x: 60582, y: 876}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 1
-          value: 75
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 0e03fca2ff684a6388e855a5c0063ca9
-        falseNodeId: a943c33c51134d7896ab325848808594
-    - rid: 2436170619896463546
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 8d6e3e99d5cd4f95ab014a9ea379698e
-        position: {x: 60694, y: 535}
-        condition:
-          mode: 0
-          stat: 2
-          comparisonOperator: 1
-          value: 65
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: d1f89ea205cf435783323e4f6b6387f2
-        falseNodeId: b4d50309134c45ad97fd1a45f248f95e
-    - rid: 2436170619896463547
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: d1f89ea205cf435783323e4f6b6387f2
-        position: {x: 60986, y: 535}
-        condition:
-          mode: 0
-          stat: 3
-          comparisonOperator: 1
-          value: 100
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 07a9ba7e09c1445ba20a99bfdbbb48cb
-        falseNodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
-    - rid: 2436170619896463548
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 07a9ba7e09c1445ba20a99bfdbbb48cb
-        position: {x: 61289, y: 487}
-        endingId: end_true_open_question
-    - rid: 2436170619896463549
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
-        position: {x: 61488, y: 653}
-        endingId: end_good_conspiracy_exposed
-    - rid: 2436170619896463550
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 0e03fca2ff684a6388e855a5c0063ca9
-        position: {x: 61047, y: 757}
-        condition:
-          mode: 0
-          stat: 4
-          comparisonOperator: 1
-          value: 45
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 404eb911dc844bf0be2e8ec70bae3bac
-        falseNodeId: a943c33c51134d7896ab325848808594
-    - rid: 2436170619896463551
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 404eb911dc844bf0be2e8ec70bae3bac
-        position: {x: 61331, y: 889}
-        condition:
-          mode: 0
-          stat: 5
-          comparisonOperator: 1
-          value: 50
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
-        falseNodeId: a943c33c51134d7896ab325848808594
-    - rid: 2436170619896463552
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: a943c33c51134d7896ab325848808594
-        position: {x: 61309, y: 1237}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 0
-          value: 54
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 74dc8fc345ee4036ae7128fd50120873
-        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
-    - rid: 2436170619896463553
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 74dc8fc345ee4036ae7128fd50120873
-        position: {x: 61708, y: 1067}
-        endingId: end_neutral_partial_truth
-    - rid: 2436170619896463554
-      type: {class: EndNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 8d59ca20eabd4b5db0118019732b375a
-        position: {x: 61693, y: 1337}
-        endingId: end_bad_arga_convicted
-    - rid: 2436170619896463555
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 16882fc093e34493ae04e759aa118d7e
-        position: {x: 60069, y: 1142}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 0
-          value: 79
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: cef8c7e0d3724243a4ca971ec413112b
-        falseNodeId: ac2340c38d214be289c615a765aaf89e
-    - rid: 2436170619896463556
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: cef8c7e0d3724243a4ca971ec413112b
-        position: {x: 60454, y: 1104}
-        condition:
-          mode: 0
-          stat: 2
-          comparisonOperator: 0
-          value: 59
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 1f67da98a7c448d4bbf477777f661431
-        falseNodeId: ac2340c38d214be289c615a765aaf89e
-    - rid: 2436170619896463557
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 1f67da98a7c448d4bbf477777f661431
-        position: {x: 60733, y: 1129}
-        condition:
-          mode: 0
-          stat: 6
-          comparisonOperator: 0
-          value: 49
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 7d27abdda28540cb92c1ec7afdd4bb9c
-        falseNodeId: ac2340c38d214be289c615a765aaf89e
-    - rid: 2436170619896463558
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: ac2340c38d214be289c615a765aaf89e
-        position: {x: 60804, y: 1476}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 1
-          value: 55
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 74dc8fc345ee4036ae7128fd50120873
-        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
-    - rid: 2436170619896463559
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 722a3765c7b7413fbd9f54242fcc5dc7
-        position: {x: 60069, y: 1415}
-        condition:
-          mode: 0
-          stat: 0
-          comparisonOperator: 0
-          value: 49
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 6ac1816c705a478ab9fdfffab690c25f
-        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
-    - rid: 2436170619896463560
-      type: {class: ConditionNodeData, ns: Verdict.Data.Narrative, asm: Assembly-CSharp}
-      data:
-        nodeId: 6ac1816c705a478ab9fdfffab690c25f
-        position: {x: 60479, y: 1438}
-        condition:
-          mode: 0
-          stat: 7
-          comparisonOperator: 3
-          value: 20
-          claimId:
-          requireSuccessful: 1
-        trueNodeId: 74dc8fc345ee4036ae7128fd50120873
-        falseNodeId: 8d59ca20eabd4b5db0118019732b375a
+          nextNodeId: db3bd5162b9e45d68e0f31c624bf059a
     - rid: 2436170619896463561
       type: {class: ActionConditionData, ns: Verdict.Data.Cases, asm: Assembly-CSharp}
       data:
