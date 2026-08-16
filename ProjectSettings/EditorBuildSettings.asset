@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bootstrap.unity
     guid: 01a2b0b9819cb488f894515dd54ba74b
   - enabled: 1
@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Courtroom.unity
     guid: 2709cd635712b4fb081313576c51c44a
+  - enabled: 1
+    path: Assets/Art/Environment/Courtroom/furniture.unity
+    guid: add7245879146b74ba156d2f27b3f595
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
